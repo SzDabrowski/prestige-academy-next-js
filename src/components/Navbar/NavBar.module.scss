@@ -1,20 +1,25 @@
-.navbar {
-  position: relative;
+@import "../../styles/mixins.scss";
 
-  ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-  }
+.navbar {
+	position: relative;
+
+	ul {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 10px;
+	}
+
+	@include mobile {
+		display: none;
+	}
 }
 
 .menuItem {
-  position: relative;
-  margin: 0 15px;
-  text-decoration: none;
-  color: #fff;
-  letter-spacing: 2px;
-  font-weight: 500;
-  transition: 0.6s;
+	position: relative;
+	margin: 0 15px;
+	text-decoration: none;
+	color: #fff;
+	letter-spacing: 2px;
+	font-weight: 500;
 }

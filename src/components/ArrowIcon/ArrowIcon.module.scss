@@ -1,0 +1,21 @@
+.wrapper {
+	display: flex;
+	height: 20px;
+	align-items: center;
+	justify-content: center;
+}
+
+.icon {
+	position: relative;
+	bottom: -1px;
+	transform-origin: center; /* Set the rotation origin to the center */
+
+	path {
+		transition: stroke 0.6s ease-in-out;
+		stroke: white;
+	}
+}
+
+.pressed {
+	transform: rotateX(180deg); /* Apply the rotation */
+}
