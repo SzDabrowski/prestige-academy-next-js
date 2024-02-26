@@ -1,5 +1,5 @@
-export type MenuItem = {
+export type menuItem = {
   title: string;
   path: string;
-  children?: MenuItem[];
+  children?: menuItem[];
 };

@@ -1,6 +1,9 @@
+@import "../../styles/mixins.scss";
+
 .container {
+  width: 100%;
   max-width: 1240px;
-  margin: 0 auto;
+  margin: auto;
   padding: 0 12px;
   box-sizing: border-box;
   @include mobile {

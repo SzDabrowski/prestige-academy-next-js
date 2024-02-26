@@ -1,34 +1,40 @@
-import { Container } from "@/components/Container/Container";
-import { MenuItem } from "@/types/headerTypes";
+"use client";
 
-const menuitems: MenuItem[] = [
-  {
-    title: "Oferta",
-    path: "/pricing",
-  },
-  {
-    title: "O nas",
-    path: "/about",
-  },
-  {
-    title: "Kursy",
-    path: "/courses",
-    children: [
-      { title: "Dorośli", path: "/" },
-      { title: "Seniorzy", path: "#" },
-      { title: "Pierwszy Taniec", path: "#" },
-    ],
-  },
-  {
-    title: "Kontakt",
-    path: "/contact",
-  },
-];
+import Navbar from "@/components/Navbar/Navbar";
+import DropDownNav from "@/components/DropdownNav/DropdownNav";
+import { Container } from "@/components/Container/Container";
+import { menuItem } from "@/types/headerTypes";
+import { Fade as Hamburger } from "hamburger-react";
+import { useEffect, useState } from "react";
+
+import styles from "./LandingHeader.module.scss";
 
 const LandingHeader = () => {
+  const [isOpenHamb, setOpenHamb] = useState(false);
+  const [isScrolling, setisScrolling] = useState(false);
+
+  const handleScroll = () => {
+    const isScrollGreaterThanZero = window.scrollY > 0;
+    setisScrolling(isScrollGreaterThanZero);
+    console.log(window.scrollY);
+  };
+
+  window.addEventListener("scroll", handleScroll);
   return (
-    <header>
-      <Container></Container>
+    <header className={`${styles.header} ${isScrolling ? styles.moving : ``}`}>
+      <Container>
+        <div className={styles.headerContainer}>
+          <div className={styles.mobileContainer}>
+            <a href="#" className={styles.logo}>
+              logo
+            </a>
+            <div className={styles.hamburgerWrapper}>
+              <Hamburger toggled={isOpenHamb} size={40} toggle={setOpenHamb} />
+            </div>
+          </div>
+          <Navbar />
+        </div>
+      </Container>
     </header>
   );
 };
