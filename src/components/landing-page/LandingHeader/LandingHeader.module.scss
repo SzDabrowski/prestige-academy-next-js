@@ -1,85 +1,90 @@
 @import "../../../styles/mixins.scss";
 
 .moving {
-  padding: 5px 200px;
-  background-color: #fff !important;
-  box-shadow: 0px 0px 1px #000;
+	padding: 5px 200px;
+	background-color: #fff !important;
+	box-shadow: 0px 0px 1px #000;
 
-  * {
-    color: #000 !important;
-  }
+	* {
+		color: #000 !important;
+	}
 
-  path {
-    stroke: #000 !important;
-  }
+	path {
+		stroke: #000 !important;
+	}
 
-  .hamburgerWrapper {
-    > div > * {
-      background-color: #fff;
-    }
-  }
+	.hamburgerWrapper {
+		> div > * {
+			background-color: #fff;
+		}
+	}
 }
 
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  transition: 0.6s;
-  padding: 40px 0;
-  z-index: 1000;
-  background-color: transparent;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	transition: 0.6s;
+	padding: 20px 0;
+	z-index: 1000;
+	background-color: transparent;
 
-  .headerContainer {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-  }
+	.headerContainer {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: center;
 
-  .mobileContainer {
-    display: flex;
-    justify-content: space-between;
-    width: fit-content;
-    @include mobile {
-      width: 100%;
-    }
-  }
+		@include mobile {
+			flex-direction: column;
+			flex-wrap: nowrap;
+			justify-content: left;
+			align-items: flex-start;
+		}
+	}
 
-  .logo {
-    position: relative;
-    font-weight: 700;
-    color: #fff;
-    text-decoration: none;
-    font-size: 2em;
-    text-transform: uppercase;
-    margin: auto 0;
-    transition: 0.6s;
-  }
+	.mobileContainer {
+		display: flex;
+		justify-content: space-between;
+		width: fit-content;
+		@include mobile {
+			width: 100%;
+		}
+	}
 
-  ul {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+	.logo {
+		position: relative;
+		font-weight: 700;
+		color: #fff;
+		text-decoration: none;
+		font-size: 2em;
+		text-transform: uppercase;
+		margin: auto 0;
+		transition: 0.6s;
+	}
 
-  ul li {
-    position: relative;
-    list-style: none;
-  }
+	ul {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 
-  * {
-    transition: 0.6s;
-  }
+	ul li {
+		position: relative;
+		list-style: none;
+	}
+
+	> * {
+		transition: 0.6s;
+	}
 }
 
 .hamburgerWrapper {
-  display: none;
-  @include mobile {
-    display: initial;
-  }
-  * {
-    transition: 0.6s !important;
-  }
+	display: none;
+	@include mobile {
+		display: initial;
+	}
 }

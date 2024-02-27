@@ -9,9 +9,9 @@
 	position: relative;
 	bottom: -1px;
 	transform-origin: center; /* Set the rotation origin to the center */
+	transition: 0.6s;
 
 	path {
-		transition: stroke 0.6s ease-in-out;
 		stroke: white;
 	}
 }

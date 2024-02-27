@@ -1,0 +1,112 @@
+.hero::before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: -1;
+}
+
+.hero {
+	position: relative;
+	height: calc(100vh - 80px);
+	background-image: url("../../../assets/images/hero.jpeg");
+	background-size: cover;
+	background-position: center top;
+	color: #fff;
+	z-index: 0;
+	padding-left: 1.25rem; /* 20px */
+	padding-right: 1.25rem; /* 20px */
+	margin-left: auto; /* 20px */
+	margin-right: auto; /* 20px */
+}
+
+main .flexContainer {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.textContent {
+	max-width: 1280px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20vh;
+	text-align: center;
+	place-items: center;
+}
+
+.textContent h1 {
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 2.5rem;
+	margin-bottom: 1rem;
+	color: white;
+}
+
+.textContent p {
+	font-size: 1.125rem;
+	line-height: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+.formContainer {
+	z-index: 10;
+	position: absolute;
+
+	--width: auto;
+	--height: ;
+	position: absolute;
+	bottom: calc(-1 * (var(--height) / 2));
+	left: calc((100vw - var(--width)) / 2);
+	width: var(--width);
+
+	height: var(--height);
+
+	background-color: white;
+	box-shadow: 0 2px 80px rgba(0, 0, 0, 0.25);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	padding: 50px 30px;
+	width: 70%;
+}
+
+@media (min-width: 768px) {
+	.textContent h1 {
+		font-size: 2.5rem;
+		line-height: 1;
+	}
+	.textContent p {
+		font-size: 1.25rem;
+		line-height: 1.75rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.textContent h1 {
+		font-size: 3rem;
+		line-height: 1;
+		letter-spacing: -0.025rem;
+	}
+	.textContent p {
+		font-size: 1.5rem;
+		line-height: 2rem;
+	}
+}
+
+@media (min-width: 1280px) {
+	.textContent h1 {
+		font-size: 3.5rem;
+		line-height: 1;
+		letter-spacing: -0.05rem;
+	}
+}

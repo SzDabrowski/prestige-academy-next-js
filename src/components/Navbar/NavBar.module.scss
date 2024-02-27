@@ -11,15 +11,34 @@
 	}
 
 	@include mobile {
+		margin-top: 2rem;
 		display: none;
+
+		ul {
+			flex-direction: column;
+			flex-wrap: nowrap;
+			align-items: flex-start !important;
+			justify-content: left;
+		}
 	}
 }
 
+.mobileOpen {
+	display: block;
+}
+
 .menuItem {
-	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 3px;
 	margin: 0 15px;
 	text-decoration: none;
 	color: #fff;
 	letter-spacing: 2px;
 	font-weight: 500;
+	cursor: pointer;
+
+	@include mobile {
+		margin: 15px 0;
+	}
 }

@@ -1,50 +1,93 @@
 /* Dropdown Header Styles */
-
-.dropdownHeader {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  margin: 0 15px;
-  text-decoration: none;
-  color: #fff;
-  letter-spacing: 2px;
-  font-weight: 500;
-  cursor: pointer;
-}
+@import "../../styles/mixins.scss";
 
 .wrapper {
-  position: absolute;
-  top: calc(100% + 0.25rem);
+	position: relative;
+	padding: 1rem;
+
+	@include mobile {
+		padding: 0;
+	}
+}
+
+.dropdownHeader {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+	margin: 0 15px;
+	text-decoration: none;
+	color: #fff;
+	letter-spacing: 2px;
+	font-weight: 500;
+	cursor: pointer;
+
+	@include mobile {
+		margin: 15px 0;
+	}
 }
 
 /* Dropdown Box Styles */
 .dropdownBox {
-  flex-wrap: wrap;
-  display: flex;
-  flex-direction: column; /* Updated to column layout for better alignment */
-  padding: 10px;
-  cursor: pointer;
-  background-color: #333;
-  color: white;
+	display: none; /* Use visibility instead of display */
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	top: calc(100%);
+
+	cursor: pointer;
+
+	box-shadow: rgba(#666, 0.2) 0px 0px 20px 5px;
+	transition: opacity 0.4s, visibility 0s 0.4s; /* Add a delay for visibility */
+
+	ul {
+		background-color: #fff;
+		color: #ccc;
+		border-radius: 10px;
+		flex-wrap: wrap;
+		display: flex;
+		flex-direction: column;
+		padding: 5px;
+	}
+
+	@include mobile {
+		box-shadow: none;
+		position: relative;
+	}
+}
+
+.active {
+	opacity: 1;
+	pointer-events: initial;
+	visibility: visible; /* Make the dropdown visible when active */
+	display: block;
 }
 
 /* Dropdown Item Styles */
 .item {
-  width: 100%;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  height: 52px;
-  padding: 0 20px; /* Adjusted padding */
-  cursor: pointer;
-  color: #89939e;
-  &:hover {
-    background-color: #2a2f35;
-  }
+	width: 100%;
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	height: 52px;
+	padding: 0 20px;
+	padding-right: 40px;
+	cursor: pointer;
+	border-radius: 10px;
+	transition: 0.2s;
+	outline: transparent;
+	color: #000;
+
+	* {
+		transition: 0.2s !important;
+	}
+
+	&:hover {
+		outline: 1px solid #000;
+	}
 }
 
 /* Bold Text Styles */
 .bold {
-  font-weight: bold; /* Updated to use font-weight for bold text */
-  color: #fff;
+	font-weight: bold;
+	color: #fff;
 }
