@@ -1,0 +1,86 @@
+@import "../../styles/mixins.scss";
+
+.footer {
+  color: white;
+  background: rgb(92, 9, 9);
+  background: linear-gradient(
+    61deg,
+    rgba(92, 9, 9, 1) 30%,
+    rgba(136, 6, 133, 0.3) 100%
+  );
+  padding: 40px 0 200px 0;
+
+  span {
+    display: block;
+  }
+}
+
+.flexGroup {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 100px;
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  > div {
+    flex-grow: 1;
+  }
+}
+
+.summary {
+  flex-grow: 2;
+  color: #fff;
+  text-align: left;
+
+  .question {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .contact {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 90px;
+
+    &::after {
+      content: "";
+      position: relative;
+      top: 20px;
+      display: block;
+      width: 130px;
+      height: 10px;
+      background-color: #fff;
+    }
+  }
+
+  .about {
+    font-size: 1rem;
+    line-height: calc(1rem + 12px);
+    font-weight: 400;
+  }
+}
+
+.menu {
+  ul {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    li {
+      margin-bottom: 40px;
+    }
+  }
+}
+
+.info {
+  > * {
+    margin-bottom: 40px;
+  }
+}
