@@ -1,37 +1,45 @@
 @import "../styles/mixins.scss";
 @import "../styles/fonts";
 
+:root {
+	--gradient-main: linear-gradient(
+		61deg,
+		rgba(92, 9, 9, 1) 40%,
+		rgba(58, 14, 50, 255) 100%
+	);
+}
+
 body,
 button,
 input,
 textarea,
 select {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 500;
 }
 
 button {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+	text-decoration: none;
+	color: inherit;
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
 }
 
 html,
 body {
-  max-width: 100%;
-  color: #e2eaf1;
-  background-color: #0f1217;
+	max-width: 100%;
+	color: #000;
+	background-color: #fff;
 }
 
 ul {
-  list-style-type: none;
+	list-style-type: none;
 }
