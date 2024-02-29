@@ -8,11 +8,11 @@
     "path": "/about"
   },
   {
-    "title": "Kursy",
+    "title": "Kursy tańca",
     "path": "/courses",
     "children": [
       { "title": "Dorośli", "path": "/" },
-      { "title": "Seniorzy", "path": "#" },
+      { "title": "Dzieci", "path": "#" },
       { "title": "Pierwszy Taniec", "path": "#" }
     ]
   },
