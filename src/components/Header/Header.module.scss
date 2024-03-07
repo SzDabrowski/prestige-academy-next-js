@@ -1,17 +1,9 @@
-@import "../../../styles/mixins.scss";
+@import "../../styles/mixins.scss";
 
 .moving {
 	padding: 5px 200px;
 	background-color: #fff !important;
 	box-shadow: 0px 0px 1px #000;
-
-	* {
-		color: #000 !important;
-	}
-
-	path {
-		stroke: #000 !important;
-	}
 
 	.hamburgerWrapper {
 		> div > * {
@@ -21,14 +13,23 @@
 }
 
 .header {
-	position: fixed;
+	//position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	transition: 0.6s;
 	padding: 20px 0;
 	z-index: 1000;
-	background-color: transparent;
+	background-color: #fff;
+	//box-shadow: 0px 0px 1px #000;
+
+	* {
+		color: #000;
+	}
+
+	path {
+		stroke: #000 !important;
+	}
 
 	.headerContainer {
 		display: flex;
@@ -57,7 +58,7 @@
 	.logo {
 		position: relative;
 		font-weight: 700;
-		color: #fff;
+		color: #000;
 		text-decoration: none;
 		font-size: 2em;
 		text-transform: uppercase;
