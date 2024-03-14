@@ -1,11 +1,21 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 import { Container } from "@/components/Container/Container";
 import { DropdownSelect } from "@/components/DropdownSelect/DropdownSelect";
+import { Switch } from "@radix-ui/react-switch";
+
+import danceCourses from "@/data/danceCourses.json";
 
 import styles from "./ContactFrom.module.scss";
 
 const ContactForm = () => {
+  const [selectedDanceCourse, setselectedDanceCourse] = useState("");
+
+  const handleDropdownSelect = (value: string) => {
+    setselectedDanceCourse(value);
+  };
+
   return (
     <Container>
       <div className={styles.wrapper}>
@@ -21,7 +31,13 @@ const ContactForm = () => {
               value="7369090a-7acb-46e8-b84d-69101f7fe01a"
             />
 
-            <DropdownSelect />
+            <DropdownSelect
+              title={"Kursy tańca"}
+              options={danceCourses}
+              placeholder={"Wybierz kurs"}
+              getValue={handleDropdownSelect}
+            />
+            <Switch />
 
             <label className={styles.label}>
               <span>Twoje nazwisko</span>
@@ -39,6 +55,16 @@ const ContactForm = () => {
                 type="email"
                 name="email"
                 placeholder="Twój adres email"
+                required
+              />
+            </label>
+
+            <label className={styles.label}>
+              <span>Adres email</span>
+              <input
+                type="number"
+                name="phone"
+                placeholder="Numer telefonu"
                 required
               />
             </label>

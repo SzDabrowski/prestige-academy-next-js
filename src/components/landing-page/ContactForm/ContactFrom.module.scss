@@ -1,88 +1,94 @@
 @import "../../../styles/mixins.scss";
 
 .wrapper {
-	position: relative;
-	background-color: #fff;
-	height: 150px;
-	@include mobile {
-		height: 400px;
-	}
+  position: relative;
+  background-color: #fff;
+  height: 150px;
+  @include mobile {
+    height: 400px;
+  }
 }
 
 .formContainer {
-	position: absolute;
-	margin: auto;
-	padding: 35px;
-	width: 100%;
-	box-shadow: rgba(196, 197, 198, 0.4) 0px 13px 72px 15px;
-	margin-top: -80px;
+  position: absolute;
+  margin: auto;
+  padding: 35px;
+  padding-bottom: 45px;
+  width: 100%;
+  box-shadow: rgba(196, 197, 198, 0.4) 0px 13px 72px 15px;
+  margin-top: -80px;
 
-	z-index: 10;
-	background-color: #fff;
+  z-index: 10;
+  background-color: #fff;
 }
 
 .form {
-	color: #000;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
-	gap: 30px;
-	flex-wrap: wrap;
+  color: #000;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
 }
 
 .label {
-	flex-grow: 1;
-	width: 220px;
-	display: flex;
-	flex-wrap: wrap;
-	text-transform: uppercase;
-	font-size: 1rem;
-	margin-bottom: 10px;
-	margin-top: 10px;
+  flex-grow: 1;
+  width: 220px;
+  display: flex;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .label span {
-	flex-grow: 1;
-	padding-left: 0.5rem;
+  flex-grow: 1;
+  padding-left: 0.5rem;
 }
 
 .label input {
-	width: 100%;
-	flex-grow: 2;
-	padding: 0.5rem;
-	font-size: 0.9rem;
-	border: none;
-	box-shadow: 0 4px 0px -3px #ccc;
-	box-sizing: border-box;
-	transition: ease-in-out 0.4s;
+  width: 100%;
+  flex-grow: 2;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: none;
+  box-shadow: 0 4px 0px -3px #ccc;
+  box-sizing: border-box;
+  transition: ease-in-out 0.4s;
 }
 
 .label input:focus-within {
-	box-shadow: 0 4px 0px -2px hsl(0, 63%, 44%);
+  box-shadow: 0 4px 0px -2px hsl(0, 63%, 44%);
 }
 
 .label input::placeholder {
-	color: #ccc;
+  color: #ccc;
 }
 
 .label input:focus {
-	outline: none;
+  outline: none;
 }
 
 .button {
-	background-color: hsl(0, 63%, 44%);
-	border-radius: 30px;
-	height: 60px;
-	width: 200px;
-	color: #fff;
-	font-weight: 600;
-	letter-spacing: 1.5px;
+  text-transform: uppercase;
+  top: calc(100% - 30px);
+  position: absolute;
+  background-color: hsl(0, 63%, 44%);
+  border-radius: 12px;
+  height: 60px;
+  width: 300px;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  border: none;
+  box-shadow: rgba(196, 197, 198, 0.4) 0px 13px 72px 15px;
 }
 
 @media (min-width: 1024px) {
-	.form {
-		flex-direction: row;
-	}
+  .form {
+    flex-direction: row;
+  }
 }

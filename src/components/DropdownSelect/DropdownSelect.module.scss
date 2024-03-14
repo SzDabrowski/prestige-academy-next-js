@@ -1,72 +1,75 @@
 .selectMenu {
-	flex-grow: 1;
-	width: 220px;
-	display: flex;
-	flex-wrap: wrap;
-	font-size: 1rem;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	color: black;
-	position: relative;
+  flex-grow: 1;
+  width: 220px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: black;
+  position: relative;
 
-	&.active {
-		.selectBtn {
-			box-shadow: 0 4px 0px -2px hsl(0, 63%, 44%);
-		}
+  &.active {
+    .selectBtn {
+      box-shadow: 0 4px 0px -2px hsl(0, 63%, 44%);
+    }
 
-		.options {
-			display: block;
-		}
-	}
+    .options {
+      display: block;
+    }
+  }
+}
+
+.btnLabel {
+  text-transform: uppercase;
 }
 
 .selectBtn {
-	//background-color: red;
-	width: 100%;
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0.5rem;
-	font-size: 0.9rem;
-	border: none;
-	box-shadow: 0 4px 0px -3px #ccc;
-	box-sizing: border-box;
-	transition: ease-in-out 0.4s;
-	cursor: pointer;
+  //background-color: red;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: none;
+  box-shadow: 0 4px 0px -3px #ccc;
+  box-sizing: border-box;
+  transition: ease-in-out 0.4s;
+  cursor: pointer;
 
-	path {
-		stroke: black;
-	}
+  path {
+    stroke: black;
+  }
 
-	.placeholder {
-		color: #999;
-	}
+  .placeholder {
+    color: #999;
+  }
 }
 
 .options {
-	border: 1px solid black;
-	width: 100%;
-	position: absolute;
-	top: 60px;
-	padding: 20px;
-	margin-top: 10px;
-	border-radius: 8px;
-	background: #fff;
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-	display: none;
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: rgba(196, 197, 198, 0.4) 0px 13px 72px 15px;
+  display: none;
 
-	.option {
-		display: flex;
-		height: 55px;
-		cursor: pointer;
-		padding: 0 16px;
-		border-radius: 8px;
-		align-items: center;
-		background: #fff;
+  .option {
+    display: flex;
+    height: 55px;
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 8px;
+    align-items: center;
+    background: #fff;
 
-		&:hover {
-			background: #f2f2f2;
-		}
-	}
+    &:hover {
+      background: #f2f2f2;
+    }
+  }
 }
