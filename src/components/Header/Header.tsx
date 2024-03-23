@@ -32,7 +32,7 @@ const Header = () => {
         <div className={styles.headerContainer}>
           <div className={styles.mobileContainer}>
             <a href="/" className={styles.logo}>
-              <PrestigeLogoIcon textFillColor={""} />
+              <PrestigeLogoIcon textfillColor={"black"} />
             </a>
             <div className={styles.hamburgerWrapper}>
               <Hamburger
