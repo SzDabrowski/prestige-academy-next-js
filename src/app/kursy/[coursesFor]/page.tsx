@@ -1,17 +1,16 @@
 import Header from "@/components/Header/Header";
-import styles from "../../page.module.css";
+import styles from "./page.module.scss";
 import Footer from "@/components/Footer/Footer";
 import { Container } from "@/components/Container/Container";
-import { ClassSummary } from "@/components/ClassSummary/ClassSummary";
+import { CoursesContent } from "./components/CoursesContent";
+import { useRouter } from "next/router";
 
-export default function Home() {
+export default function Home({ params }: { params: any }) {
   return (
     <main className={styles.main}>
       <Header />
       <Container>
-        <ClassSummary />
-        <ClassSummary reverse={true} />
-        <ClassSummary />
+        <CoursesContent group={params.coursesFor} />
       </Container>
 
       <Footer />

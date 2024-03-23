@@ -1,0 +1,27 @@
+.contentContainer {
+  padding: 50px 0;
+  > * {
+    margin-bottom: 50px;
+  }
+  .heading {
+    text-align: center;
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      color: gray;
+      font-size: 1.125rem;
+    }
+  }
+}
+
+.coursesList {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+}

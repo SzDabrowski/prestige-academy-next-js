@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Oferta",
+    "path": "/oferta"
+  },
+  {
+    "title": "O nas",
+    "path": "/o_nas"
+  },
+  {
+    "title": "Kursy tańca",
+    "path": "",
+    "children": [
+      { "title": "Dorośli", "path": "/kursy/dorosli" },
+      { "title": "Dzieci", "path": "/kursy/dzieci" },
+      { "title": "Pierwszy Taniec", "path": "/kursy/pierwszy_taniec" }
+    ]
+  },
+  {
+    "title": "Kontakt",
+    "path": "/kontakt"
+  }
+]

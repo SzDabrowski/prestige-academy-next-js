@@ -1,0 +1,7 @@
+.coursesContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 3rem 0;
+}
