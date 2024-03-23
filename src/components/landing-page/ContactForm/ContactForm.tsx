@@ -16,6 +16,8 @@ const ContactForm = () => {
     setselectedDanceCourse(value);
   };
 
+  const courseTitles = danceCourses.map((course) => course.title);
+
   return (
     <Container>
       <div className={styles.wrapper}>
@@ -33,7 +35,7 @@ const ContactForm = () => {
 
             <DropdownSelect
               title={"Kursy tańca"}
-              options={danceCourses}
+              options={courseTitles}
               placeholder={"Wybierz kurs"}
               getValue={handleDropdownSelect}
             />

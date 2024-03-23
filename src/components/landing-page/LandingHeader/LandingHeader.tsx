@@ -7,6 +7,7 @@ import { menuItem } from "@/types/headerTypes";
 import { Fade as Hamburger } from "hamburger-react";
 import { useEffect, useState } from "react";
 import { checkIfInMobileView } from "@/utils/clientUtils";
+import { PrestigeLogoIcon } from "@/components/LogoIcon/PrestigeLogoIcon";
 
 import styles from "./LandingHeader.module.scss";
 
@@ -37,7 +38,9 @@ const LandingHeader = () => {
         <div className={styles.headerContainer}>
           <div className={styles.mobileContainer}>
             <a href="#" className={styles.logo}>
-              logo
+              <PrestigeLogoIcon
+                textfillColor={isScrolling || isOpenHamb ? "#000" : "#fff"}
+              />
             </a>
             <div className={styles.hamburgerWrapper}>
               <Hamburger
