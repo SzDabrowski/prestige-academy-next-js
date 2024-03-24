@@ -4,10 +4,6 @@
   color: white;
   background: var(--gradient-main);
   padding: 40px 0 200px 0;
-
-  span {
-    display: block;
-  }
 }
 
 .logo {
@@ -16,6 +12,7 @@
 
   svg {
     position: relative;
+    top: -20px !important;
     left: -30px;
     width: 300px;
   }
@@ -35,12 +32,58 @@
   > div {
     flex-grow: 1;
   }
+
+  .menuItem {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      bottom: -5px;
+      height: 2px;
+      width: 0;
+      background: #fff;
+      transition: width 250ms;
+    }
+
+    &:hover,
+    &:active {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  .item,
+  .item a {
+    min-width: 150px;
+    height: 30px;
+    display: flex;
+    align-items: flex-start;
+    line-height: 30px;
+    text-align: left;
+    svg {
+      display: inline;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .item .socialIcon a {
+    min-width: 10px;
+  }
 }
 
 .summary {
   flex-grow: 2;
   color: #fff;
   text-align: left;
+
+  span {
+    display: block;
+  }
 
   .question {
     font-size: 1.5rem;
@@ -88,5 +131,21 @@
 .info {
   > * {
     margin-bottom: 40px;
+  }
+}
+
+.socialIcon {
+  display: flex;
+  justify-content: flex-start;
+
+  a {
+    margin-right: 30px;
+  }
+
+  a svg {
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+    display: inline-block;
   }
 }

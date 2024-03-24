@@ -3,17 +3,20 @@ import styles from "./Footer.module.scss";
 
 import navbarItems from "../../data/NavbarItems.json";
 
-import { PrestigeLogoIcon } from "../LogoIcon/PrestigeLogoIcon";
+import { PrestigeLogoIcon } from "../icons/LogoIcon/PrestigeLogoIcon";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  AdressIcon,
+  PhoneIcon,
+  MailIcon,
+} from "../icons/SocialIcons";
+
+import CompamyInfo from "../../data/companyInfo.json";
 
 const footerItems = {
   aboutUs:
     "Our client list is drawn from the competetive world of stand-up comendy and our boutique, focused company work closely with them to develop talents on the circuit into the skills needed for along-lasting career performing and writing for television.",
-
-  companyInfo: [
-    "1794 Rich Oak Avenue Los Angeles",
-    "+11 111 111 111",
-    "info@gmail.com",
-  ],
 };
 
 const Footer = () => {
@@ -22,8 +25,8 @@ const Footer = () => {
       <Container>
         <div className={styles.flexGroup}>
           <div className={styles.summary}>
-            <span className={styles.question}>Any Question?</span>
-            <span className={styles.contact}>Contact Us</span>
+            <span className={styles.question}>Masz Pytania?</span>
+            <span className={styles.contact}>Napisz do nas!</span>
 
             <span className={styles.about}>{footerItems.aboutUs}</span>
           </div>
@@ -36,16 +39,42 @@ const Footer = () => {
               <div className={styles.menu}>
                 <ul>
                   {navbarItems.map((item, index) => (
-                    <li className={styles.item}>
+                    <li className={`${styles.item} ${styles.menuItem}`}>
                       <a href={item.path}>{item.title}</a>
                     </li>
                   ))}
                 </ul>
               </div>
               <div className={styles.info}>
-                {footerItems.companyInfo.map((item) => (
-                  <span className={styles.item}>{item}</span>
-                ))}
+                <div className={styles.item}>
+                  <AdressIcon fillColor="#fff" />
+                  <span>{CompamyInfo.contact.adress}</span>
+                </div>
+
+                <div className={styles.item}>
+                  <a href={`tel:${CompamyInfo.contact.phoneNumber}`}>
+                    <PhoneIcon fillColor="#fff" />
+                    <span>{CompamyInfo.contact.phoneNumber}</span>
+                  </a>
+                </div>
+
+                <div className={styles.item}>
+                  <a href={`mailto:${CompamyInfo.contact.email}`}>
+                    <MailIcon fillColor="#fff" />
+                    <span>{CompamyInfo.contact.email}</span>
+                  </a>
+                </div>
+
+                <span className={styles.item}>
+                  <span className={styles.socialIcon}>
+                    <a href={CompamyInfo.socialMedia.facebook}>
+                      <FacebookIcon fillColor="#fff" />
+                    </a>
+                    <a href={CompamyInfo.socialMedia.instagram}>
+                      <InstagramIcon fillColor="#fff" />
+                    </a>
+                  </span>
+                </span>
               </div>
             </div>
           </div>

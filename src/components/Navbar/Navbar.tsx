@@ -1,6 +1,6 @@
 import NavbarItems from "../../data/NavbarItems.json";
 import DropDownNav from "../DropdownNav/DropdownNav";
-import { PrestigeLogoIcon } from "../LogoIcon/PrestigeLogoIcon";
+import { PrestigeLogoIcon } from "../icons/LogoIcon/PrestigeLogoIcon";
 
 import styles from "./NavBar.module.scss";
 

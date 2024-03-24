@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { menuItem } from "@/types/headerTypes";
-import ArrowIcon from "../ArrowIcon/ArrowIcon";
+import ArrowIcon from "../icons/ArrowIcon/ArrowIcon";
 import { checkIfInMobileView } from "@/utils/clientUtils";
 import Link from "next/link";
 

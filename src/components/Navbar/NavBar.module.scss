@@ -1,44 +1,64 @@
 @import "../../styles/mixins.scss";
 
 .navbar {
-	position: relative;
+  position: relative;
 
-	ul {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: 10px;
-	}
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
 
-	@include mobile {
-		margin-top: 2rem;
-		display: none;
+  @include mobile {
+    margin-top: 2rem;
+    display: none;
 
-		ul {
-			flex-direction: column;
-			flex-wrap: nowrap;
-			align-items: flex-start !important;
-			justify-content: left;
-		}
-	}
+    ul {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: flex-start !important;
+      justify-content: left;
+    }
+  }
 }
 
 .mobileOpen {
-	display: block;
+  display: block;
 }
 
 .menuItem {
-	display: flex;
-	align-items: center;
-	gap: 3px;
-	margin: 0 15px;
-	text-decoration: none;
-	color: #fff;
-	letter-spacing: 2px;
-	font-weight: 500;
-	cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0 15px;
+  text-decoration: none;
+  color: #fff;
+  letter-spacing: 2px;
+  font-weight: 500;
+  cursor: pointer;
 
-	@include mobile {
-		margin: 15px 0;
-	}
+  position: relative;
+  &::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: -5px;
+    height: 2px;
+    width: 0;
+    background: #fff;
+    transition: width 250ms;
+  }
+
+  &:hover,
+  &:active {
+    &::after {
+      width: 100%;
+    }
+  }
+
+  @include mobile {
+    margin: 15px 0;
+  }
 }

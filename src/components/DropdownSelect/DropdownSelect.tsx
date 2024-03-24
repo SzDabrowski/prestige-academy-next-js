@@ -1,6 +1,6 @@
 "use client";
 import styles from "./DropdownSelect.module.scss";
-import ArrowIcon from "../ArrowIcon/ArrowIcon";
+import ArrowIcon from "../icons/ArrowIcon/ArrowIcon";
 import { useState } from "react";
 
 interface iDropdownSelect {
