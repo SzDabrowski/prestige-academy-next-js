@@ -78,12 +78,30 @@
   color: #000;
   line-height: calc(1rem + 8px);
 
-  * {
-    transition: 0.2s !important;
+  a {
+    width: 100%;
+    position: relative;
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      bottom: 0px;
+      height: 2px;
+      width: 0;
+      background: #d3277c;
+      transition: width 250ms;
+    }
+
+    &:hover,
+    &:active {
+      &::after {
+        width: 100%;
+      }
+    }
   }
 
-  &:hover {
-    outline: 1px solid #000;
+  * {
+    transition: 0.2s !important;
   }
 }
 

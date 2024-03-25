@@ -14,30 +14,36 @@ const CoursesSection = () => {
         </p>
 
         <div className={styles.container}>
-          <div className={styles.adults}>
-            <Link href={"/kursy/" + courseForEnum.adults}>
-              <div className={styles.wrapper}>
-                <span>Taniec dla dorosłych - odkryj radość ruchu</span>
-              </div>
-            </Link>
+          <div className={`${styles.wrapper} ${styles.small}`}>
+            <div className={styles.adults}>
+              <Link href={"/kursy/" + courseForEnum.adults}>
+                <div className={styles.textWrapper}>
+                  <span>Taniec dla dorosłych - odkryj radość ruchu</span>
+                </div>
+              </Link>
+            </div>
           </div>
 
-          <div className={styles.kids}>
-            <Link href={"/kursy/" + courseForEnum.kids}>
-              <div className={styles.wrapper}>
-                <span>Przygoda z tańcem dla najmłodyszch</span>
-              </div>
-            </Link>
+          <div className={`${styles.wrapper} ${styles.small}`}>
+            <div className={styles.kids}>
+              <Link href={"/kursy/" + courseForEnum.kids}>
+                <div className={styles.textWrapper}>
+                  <span>Przygoda z tańcem dla najmłodyszch</span>
+                </div>
+              </Link>
+            </div>
           </div>
 
-          <div className={styles.wedding}>
-            <Link href={"/kursy/" + courseForEnum.firstDance}>
-              <div className={styles.wrapper}>
-                <span>
-                  Wyjątkowy pierwszy taniec - indywidualne kursy dla par
-                </span>
-              </div>
-            </Link>
+          <div className={`${styles.wrapper} ${styles.wide}`}>
+            <div className={styles.wedding}>
+              <Link href={"/kursy/" + courseForEnum.firstDance}>
+                <div className={styles.textWrapper}>
+                  <span>
+                    Wyjątkowy pierwszy taniec - indywidualne kursy dla par
+                  </span>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -9,6 +9,12 @@
     color: #000 !important;
   }
 
+  nav {
+    * path {
+      stroke: #000 !important;
+    }
+  }
+
   .hamburgerWrapper {
     > div > * {
       background-color: #fff;
@@ -72,6 +78,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    svg {
+      stroke: red;
+    }
   }
 
   ul li {
