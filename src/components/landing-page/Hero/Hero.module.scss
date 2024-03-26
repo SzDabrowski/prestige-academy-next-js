@@ -1,93 +1,97 @@
 @import "../../../styles/mixins.scss";
 
+.hero::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+}
+
 .hero::before {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.3);
-	z-index: -1;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: url("../../../assets/images/hero.jpeg");
+  background-size: cover;
+  background-position: center top;
+
+  animation: zoom-in-animation 30s infinite alternate;
+
+  @keyframes zoom-in-animation {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.2); /* Adjust scale factor as needed */
+    }
+  }
+}
+
+.heroWrapper {
+  height: calc(100vh - 80px);
+  min-height: 700px;
+  overflow: hidden;
 }
 
 .hero {
-	position: relative;
-	height: calc(100vh - 80px);
-	min-height: 700px;
-	background-image: url("../../../assets/images/hero.jpeg");
-	background-size: cover;
-	background-position: center top;
-	color: #fff;
-	z-index: 0;
-	padding-left: 1.25rem; /* 20px */
-	padding-right: 1.25rem; /* 20px */
-	margin-left: auto; /* 20px */
-	margin-right: auto; /* 20px */
+  position: relative;
+  height: 100%;
+
+  color: #fff;
+  z-index: 0;
+  padding-left: 1.25rem; /* 20px */
+  padding-right: 1.25rem; /* 20px */
+  margin-left: auto; /* 20px */
+  margin-right: auto; /* 20px */
 }
 
 main .flexContainer {
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	margin-left: auto;
-	margin-right: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .textContent {
-	max-width: 1280px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 20vh;
-	text-align: center;
-	place-items: center;
+  position: absolute;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20vh;
+  text-align: center;
+  place-items: center;
 }
 
 .textContent h1 {
-	font-size: 4rem;
-	font-weight: 700;
-	margin-bottom: 1rem;
-	color: white;
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
 
-	@include mobile {
-		font-size: 2rem;
-	}
+  @include mobile {
+    font-size: 2rem;
+  }
 }
 
 .textContent p {
-	font-size: 2rem;
-	margin-top: 1.5rem;
-	padding: 0 15%;
+  font-size: 2rem;
+  margin-top: 1.5rem;
+  padding: 0 15%;
 
-	@include mobile {
-		font-size: 1.2rem;
-		line-height: 2rem;
-		padding: 0;
-	}
-}
-
-.formContainer {
-	z-index: 10;
-	position: absolute;
-
-	--width: auto;
-	--height: ;
-	position: absolute;
-	bottom: calc(-1 * (var(--height) / 2));
-	left: calc((100vw - var(--width)) / 2);
-	width: var(--width);
-
-	height: var(--height);
-
-	background-color: white;
-	box-shadow: 0 2px 80px rgba(0, 0, 0, 0.25);
-
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin: auto;
-	padding: 50px 30px;
-	width: 70%;
+  @include mobile {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    padding: 0;
+  }
 }

@@ -45,7 +45,8 @@
     .wedding {
       flex: 1 0 calc(50% - 5px);
       height: 100%;
-      animation: transform 0.35s ease;
+      transition: transform 0.35s ease-in-out;
+      transform: scale(1);
 
       &:hover {
         transform: scale(1.1);
