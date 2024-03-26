@@ -1,14 +1,13 @@
 import Header from "@/components/Header/Header";
 //import styles from "./page.module.scss";
 import Footer from "@/components/Footer/Footer";
-import { Container } from "@/components/Container/Container";
+import { FirstDanceContent } from "./components/firstDanceContent/FirstDanceContent";
 
 export default function Home() {
   return (
     <main className={""}>
       <Header />
-      <Container></Container>
-
+      <FirstDanceContent />
       <Footer />
     </main>
   );
