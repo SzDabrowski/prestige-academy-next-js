@@ -27,6 +27,12 @@
     color: #000;
   }
 
+  nav {
+    * path {
+      stroke: #000 !important;
+    }
+  }
+
   .headerContainer {
     display: flex;
     flex-direction: row;

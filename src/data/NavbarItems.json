@@ -1,11 +1,11 @@
 [
   {
-    "title": "Oferta",
-    "path": "/oferta"
-  },
-  {
     "title": "O nas",
     "path": "/o_nas"
+  },
+  {
+    "title": "Kontakt",
+    "path": "/kontakt"
   },
   {
     "title": "Kursy tańca",
@@ -15,9 +15,5 @@
       { "title": "Dzieci", "path": "/kursy/dzieci" },
       { "title": "Pierwszy Taniec", "path": "/kursy/pierwszy_taniec" }
     ]
-  },
-  {
-    "title": "Kontakt",
-    "path": "/kontakt"
   }
 ]

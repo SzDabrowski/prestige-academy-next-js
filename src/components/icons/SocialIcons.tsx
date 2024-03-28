@@ -84,9 +84,9 @@ export const MailIcon = (props: iSocialIcon) => {
               fill="none"
               points="4 8.2 12 14.1 20 8.2"
               stroke={props.fillColor}
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
             />
 
             <rect
@@ -95,9 +95,9 @@ export const MailIcon = (props: iSocialIcon) => {
               rx="2"
               ry="2"
               stroke={props.fillColor}
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               width="18"
               x="3"
               y="6.5"

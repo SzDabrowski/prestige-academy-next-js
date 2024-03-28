@@ -1,19 +1,21 @@
 .textArea {
-	textarea {
-		padding: 0.75rem 1.5rem;
-		width: 100%;
-		color: black;
-		margin-bottom: 1.125rem;
-		min-height: 150px;
+  textarea {
+    padding: 0.75rem 1.5rem;
+    width: 100%;
+    color: black;
+    margin-bottom: 1.125rem;
+    min-height: 150px;
 
-		outline: 2px solid transparent;
-		font-size: 1rem;
-		border-radius: 10px;
-		border: 2px solid rgb(209 213 219);
-		resize: vertical;
+    outline: 2px solid transparent;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 2px solid rgb(209 213 219);
+    resize: vertical;
 
-		&:focus {
-			outline: 2px solid black;
-		}
-	}
+    transition: outline 0.5s ease;
+
+    &:focus {
+      outline: 2px solid #d3277c;
+    }
+  }
 }
