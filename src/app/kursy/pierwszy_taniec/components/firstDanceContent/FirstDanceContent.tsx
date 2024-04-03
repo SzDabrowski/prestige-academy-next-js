@@ -35,7 +35,7 @@ export const FirstDanceContent = () => {
               <p></p>
               <div className={styles.whiteSpace}></div>
               <p className={styles.big}>
-                Razem uczynimy go magicznym przeżyciem!
+                Razem uczynimy go niezapomnianym przeżyciem
               </p>
             </div>
           </Container>
