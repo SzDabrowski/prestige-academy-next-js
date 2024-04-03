@@ -15,6 +15,7 @@ export function findCourseByTitle(
 ): courseData {
   let foundCourse: courseData = {
     title: "",
+    img: "",
     data: {
       for: "",
       description: "",
