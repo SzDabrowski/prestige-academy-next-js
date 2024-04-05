@@ -1,89 +1,110 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Container } from "@/components/Container/Container";
 import { DropdownSelect } from "@/components/DropdownSelect/DropdownSelect";
+import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 
 import danceCourses from "@/data/danceCourses.json";
 
 import styles from "./ContactFrom.module.scss";
 
+interface FormInputs {
+  selectedDanceCourse: string;
+  name: string;
+  email: string;
+  phone: string;
+}
+
 const ContactForm = () => {
-	const [selectedDanceCourse, setselectedDanceCourse] = useState("");
+  const [selectedDanceCourse, setselectedDanceCourse] = useState("");
 
-	const handleDropdownSelect = (value: string) => {
-		setselectedDanceCourse(value);
-	};
+  const handleDropdownSelect = (value: string) => {
+    setselectedDanceCourse(value);
+    return value;
+  };
 
-	const courseTitles = danceCourses.map((course) => course.title);
+  useEffect(() => {
+    console.log("selected use effect: " + selectedDanceCourse);
+    setValue("selectedDanceCourse", selectedDanceCourse);
+  }, [selectedDanceCourse]);
 
-	return (
-		<Container>
-			<div className={styles.wrapper}>
-				<div className={styles.formContainer}>
-					<form
-						className={styles.form}
-						action="https://api.web3forms.com/submit"
-						method="POST"
-					>
-						<input
-							type="hidden"
-							name="access_key"
-							value="7369090a-7acb-46e8-b84d-69101f7fe01a"
-						/>
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<FormInputs>();
 
-						<DropdownSelect
-							title={"Kursy tańca"}
-							options={courseTitles}
-							placeholder={"Wybierz kurs"}
-							getValue={handleDropdownSelect}
-						/>
+  const courseTitles = danceCourses.map((course) => course.title);
 
-						<label className={styles.label}>
-							<span>Twoje nazwisko</span>
-							<input
-								type="text"
-								name="name"
-								placeholder="Jan Kowalski"
-								required
-							/>
-						</label>
+  const onSubmit = (data: FormInputs) => {
+    console.log(data);
+    // Submit your form data here
+  };
 
-						<label className={styles.label}>
-							<span>Adres email</span>
-							<input
-								type="email"
-								name="email"
-								placeholder="Twój adres email"
-								required
-							/>
-						</label>
+  return (
+    <Container>
+      <div className={styles.wrapper}>
+        <div className={styles.formContainer}>
+          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            {/* <input
+              type="hidden"
+              name="access_key"
+              value="7369090a-7acb-46e8-b84d-69101f7fe01a"
+            /> */}
 
-						<label className={styles.label}>
-							<span>Adres email</span>
-							<input
-								type="number"
-								name="phone"
-								placeholder="Numer telefonu"
-								required
-							/>
-						</label>
+            <DropdownSelect
+              title={"Kursy tańca"}
+              options={courseTitles}
+              placeholder={"Wybierz kurs"}
+              getValue={handleDropdownSelect}
+            />
+            <input
+              type="hidden"
+              {...register("selectedDanceCourse")}
+              placeholder={selectedDanceCourse}
+            />
 
-						<div
-							className="h-captcha"
-							data-captcha="true"
-						></div>
-						<button
-							className={styles.button}
-							type="submit"
-						>
-							Zapisz się!
-						</button>
-					</form>
-				</div>
-			</div>
-		</Container>
-	);
+            <label className={styles.label}>
+              <span>Twoje nazwisko</span>
+              <input
+                type="text"
+                {...register("name", { required: true })}
+                placeholder="Jan Kowalski"
+              />
+              {errors.name && <span>This field is required</span>}
+            </label>
+
+            <label className={styles.label}>
+              <span>Adres email</span>
+              <input
+                type="email"
+                {...register("email", { required: true })}
+                placeholder="Twój adres email"
+              />
+              {errors.email && <span>This field is required</span>}
+            </label>
+
+            <label className={styles.label}>
+              <span>Numer telefonu</span>
+              <input
+                type="tel"
+                {...register("phone", { required: true })}
+                placeholder="Numer telefonu"
+              />
+              {errors.phone && <span>This field is required</span>}
+            </label>
+
+            <div className="h-captcha" data-captcha="true"></div>
+            <button className={styles.button} type="submit">
+              Zapisz się!
+            </button>
+          </form>
+        </div>
+      </div>
+    </Container>
+  );
 };
 
 export default ContactForm;
