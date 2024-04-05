@@ -3,7 +3,7 @@ import { Container } from "@/components/Container/Container";
 import ContactForm from "@/components/landing-page/ContactForm/ContactForm";
 import Video from "next-video";
 
-import firstDanceVideo from "@/videos/first_dance_video.mp4";
+import firstDanceVideo from "@/../videos/first_dance_video.mp4";
 
 export const FirstDanceContent = () => {
   return (

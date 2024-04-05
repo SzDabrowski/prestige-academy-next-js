@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev & npx next-video sync -w",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -14,6 +14,7 @@
     "next-video": "^0.17.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.51.2",
     "sass": "^1.71.1"
   },
   "devDependencies": {
