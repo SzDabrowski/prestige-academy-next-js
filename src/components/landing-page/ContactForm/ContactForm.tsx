@@ -5,6 +5,8 @@ import { Container } from "@/components/Container/Container";
 import { DropdownSelect } from "@/components/DropdownSelect/DropdownSelect";
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 
+import { checkIfCourseForPairs } from "@/utils/clientUtils";
+
 import danceCourses from "@/data/danceCourses.json";
 
 import styles from "./ContactFrom.module.scss";
@@ -18,6 +20,7 @@ interface FormInputs {
 
 const ContactForm = () => {
   const [selectedDanceCourse, setselectedDanceCourse] = useState("");
+  const [showDancePartnerInput, setShowDancePartnerInput] = useState(false);
 
   const handleDropdownSelect = (value: string) => {
     setselectedDanceCourse(value);
@@ -26,7 +29,13 @@ const ContactForm = () => {
 
   useEffect(() => {
     console.log("selected use effect: " + selectedDanceCourse);
+
+    //set value of  hook-form field
     setValue("selectedDanceCourse", selectedDanceCourse);
+
+    setShowDancePartnerInput(
+      checkIfCourseForPairs(danceCourses, selectedDanceCourse)
+    );
   }, [selectedDanceCourse]);
 
   const {
@@ -75,6 +84,20 @@ const ContactForm = () => {
               />
               {errors.name && <span>This field is required</span>}
             </label>
+
+            {showDancePartnerInput ? (
+              <label className={styles.label}>
+                <span>Nazwisko Partnera:</span>
+                <input
+                  type="text"
+                  {...register("name", { required: true })}
+                  placeholder="Jan Kowalski"
+                />
+                {errors.name && <span>This field is required</span>}
+              </label>
+            ) : (
+              ""
+            )}
 
             <label className={styles.label}>
               <span>Adres email</span>

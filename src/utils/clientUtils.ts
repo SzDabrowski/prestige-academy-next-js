@@ -16,6 +16,7 @@ export function findCourseByTitle(
   let foundCourse: courseData = {
     title: "",
     img: "",
+    pair: false,
     data: {
       for: "",
       description: "",
@@ -23,11 +24,24 @@ export function findCourseByTitle(
     },
   };
   json.forEach((item: courseData) => {
-    if (toCamelCase(item.title) === course) {
+    if (toCamelCase(item.title) === toCamelCase(course)) {
       foundCourse = item;
     }
   });
   return foundCourse;
+}
+
+export function checkIfCourseForPairs(
+  json: courseData[],
+  courseName: string
+): boolean {
+  const foundCourse = findCourseByTitle(json, courseName);
+
+  if (foundCourse.pair) {
+    return foundCourse.pair;
+  } else {
+    return false;
+  }
 }
 
 export function toCamelCase(str: string) {
