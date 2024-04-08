@@ -1,4 +1,5 @@
 @import "../../../styles/mixins.scss";
+@import "../../../styles/_colors.scss";
 
 .wrapper {
   position: relative;
@@ -82,7 +83,7 @@
 }
 
 .label input:focus-within {
-  box-shadow: 0 4px 0px -2px hsl(0, 63%, 44%);
+  box-shadow: 0 4px 0px -2px $clr-logo-main;
 }
 
 .label input::placeholder {
@@ -97,15 +98,26 @@
   text-transform: uppercase;
   top: calc(100% - 30px);
   position: absolute;
-  background-color: #d3277c;
+  background-image: $grd-main;
   border-radius: 12px;
-  height: 60px;
-  width: 300px;
+  padding: 25px 100px;
+
   color: #fff;
+  font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 1.5px;
+  transition: 0.5s;
+  background-size: 100% auto;
   border: none;
   box-shadow: rgba(196, 197, 198, 0.4) 0px 13px 72px 15px;
+
+  &:hover {
+    font-size: 0.95rem;
+    background-position: right center; /* change the direction of the change here */
+    padding: 27px 102px;
+    color: #fff;
+    text-decoration: none;
+  }
 }
 
 @media (min-width: 1024px) {
