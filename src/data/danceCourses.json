@@ -31,7 +31,7 @@
   },
   {
     "title": "Taniec Towarzyski dla dzieci",
-    "pair": false,
+    "pair": true,
     "img": "towarzyski_dzieci.jpg",
     "data": {
       "for": "dzieci",
