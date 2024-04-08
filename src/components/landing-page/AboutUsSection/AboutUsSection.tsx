@@ -14,6 +14,7 @@ const AboutUsSection = () => {
               tancerze Krystian i Greta Kisielewscy, którzy specjalizują się w
               tańcach latynoamerykańskich jak i standardowych.
             </p>
+            <div className={styles.card}></div>
           </div>
           <div className={styles.flexGroup}>
             <div className={styles.person}>
