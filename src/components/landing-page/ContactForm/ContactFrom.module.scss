@@ -34,6 +34,7 @@
 	flex-wrap: wrap;
 
 	.inputsContainer {
+		padding-bottom: 1rem;
 		display: flex;
 		align-items: center;
 		gap: 30px;
@@ -57,7 +58,35 @@
 	margin-bottom: 10px;
 	margin-top: 10px;
 	transition: transform 0.5s ease, opacity 0.5s;
-	position: initial;
+	position: relative;
+
+	span {
+		flex-grow: 1;
+		padding-left: 0.5rem;
+	}
+
+	input {
+		width: 100%;
+		flex-grow: 2;
+		padding: 0.5rem;
+		font-size: 0.9rem;
+		border: none;
+		box-shadow: 0 4px 0px -3px #ccc;
+		box-sizing: border-box;
+		transition: ease-in-out 0.4s;
+
+		&:focus-within {
+			box-shadow: 0 4px 0px -2px $clr-logo-main;
+		}
+
+		&::placeholder {
+			color: #ccc;
+		}
+
+		&:focus {
+			outline: none;
+		}
+	}
 }
 
 .hidden {
@@ -66,32 +95,13 @@
 	opacity: 0;
 }
 
-.label span {
-	flex-grow: 1;
-	padding-left: 0.5rem;
-}
-
-.label input {
-	width: 100%;
-	flex-grow: 2;
-	padding: 0.5rem;
-	font-size: 0.9rem;
-	border: none;
-	box-shadow: 0 4px 0px -3px #ccc;
-	box-sizing: border-box;
-	transition: ease-in-out 0.4s;
-}
-
-.label input:focus-within {
-	box-shadow: 0 4px 0px -2px $clr-logo-main;
-}
-
-.label input::placeholder {
-	color: #ccc;
-}
-
-.label input:focus {
-	outline: none;
+.error {
+	text-transform: none;
+	color: red;
+	font-size: 0.7rem;
+	position: absolute;
+	bottom: -18px;
+	left: 0;
 }
 
 .button {
