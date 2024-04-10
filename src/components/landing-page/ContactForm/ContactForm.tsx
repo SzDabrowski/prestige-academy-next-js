@@ -30,9 +30,6 @@ const ContactForm = () => {
   };
 
   useEffect(() => {
-    console.log("selected use effect: " + selectedDanceCourse);
-
-    //set value of  hook-form field
     setValue("selectedDanceCourse", selectedDanceCourse);
 
     setShowDancePartnerInput(
@@ -150,7 +147,7 @@ const ContactForm = () => {
                   {...register("email", {
                     required: "To pole jest wymagane",
                     pattern: {
-                      value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                      value: /^[a-z0-9]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
                       message: "Wprowadź poprawny adres email",
                     },
                   })}
@@ -168,10 +165,11 @@ const ContactForm = () => {
                   type="tel"
                   {...register("phone", {
                     required: "To pole jest wymagane",
-                    validate: (value) => {
-                      const formattedNumber = phoneNumberAutoFormat(value);
-                      setValue("phone", formattedNumber);
-                      return true;
+                    minLength: 9,
+                    maxLength: 9,
+                    pattern: {
+                      value: /^[0-9]+$/,
+                      message: "Wprowadź poprawny numer telefonu",
                     },
                   })}
                   placeholder="Numer telefonu"
