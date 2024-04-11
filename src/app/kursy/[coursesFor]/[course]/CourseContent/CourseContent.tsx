@@ -30,7 +30,7 @@ export const CourseContent = (props: iCourseContent) => {
         </div>
       </main>
       <div className={styles.contactWrapper}>
-        <ContactForm />
+        <ContactForm selectedDanceCourse={props.data.title} />
       </div>
     </div>
   );

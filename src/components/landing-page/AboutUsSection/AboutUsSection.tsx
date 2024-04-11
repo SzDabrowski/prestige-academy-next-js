@@ -19,26 +19,32 @@ const AboutUsSection = () => {
           <div className={styles.flexGroup}>
             <div className={styles.person}>
               <div className={styles.avatar}></div>
-              <span className={styles.name}>Greta</span>
-              <span className={styles.info}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </span>
+              <div className={styles.personText}>
+                <span className={styles.name}>Greta</span>
+                <span className={styles.info}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </span>
+              </div>
             </div>
 
             <div className={styles.person}>
               <div className={styles.avatar}></div>
-              <span className={styles.name}>Krystian</span>
-              <span className={styles.info}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </span>
+              <div className={styles.personText}>
+                <span className={styles.name}>Krystian</span>
+                <span className={styles.info}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </span>
+              </div>
             </div>
 
             <div className={styles.person}>
               <div className={styles.avatar}></div>
-              <span className={styles.name}>Szymon</span>
-              <span className={styles.info}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </span>
+              <div className={styles.personText}>
+                <span className={styles.name}>Szymon</span>
+                <span className={styles.info}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </span>
+              </div>
             </div>
           </div>
         </section>

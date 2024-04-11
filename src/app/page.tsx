@@ -6,13 +6,17 @@ import Footer from "@/components/Footer/Footer";
 import ContactForm from "@/components/landing-page/ContactForm/ContactForm";
 import CoursesSection from "@/components/landing-page/CoursesSection/CoursesSection";
 import AboutUsSection from "@/components/landing-page/AboutUsSection/AboutUsSection";
+import { Container } from "@/components/Container/Container";
 
 export default function Home() {
   return (
     <main className={styles.main}>
       <LandingHeader />
+
       <Hero />
-      <ContactForm />
+      <Container>
+        <ContactForm />
+      </Container>
       <CoursesSection />
       <AboutUsSection />
       <Footer />
