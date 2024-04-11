@@ -10,7 +10,7 @@ import { phoneNumberAutoFormat } from "@/utils/formUtils";
 
 import danceCourses from "@/data/danceCourses.json";
 
-import styles from "./ContactFrom.module.scss";
+import styles from "./CourseForm.module.scss";
 
 interface FormInputs {
   selectedDanceCourse: string;
@@ -20,11 +20,11 @@ interface FormInputs {
   phone: string;
 }
 
-interface iContactForm {
+interface iCourseForm {
   selectedDanceCourse?: string;
 }
 
-const ContactForm = (props: iContactForm) => {
+const CourseForm = (props: iCourseForm) => {
   const [selectedDanceCourse, setselectedDanceCourse] = useState(
     props.selectedDanceCourse ? props.selectedDanceCourse : ""
   );
@@ -206,4 +206,4 @@ const ContactForm = (props: iContactForm) => {
   );
 };
 
-export default ContactForm;
+export default CourseForm;

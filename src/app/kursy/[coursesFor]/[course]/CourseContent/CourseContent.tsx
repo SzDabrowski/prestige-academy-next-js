@@ -1,5 +1,5 @@
 import styles from "./CourseContent.module.scss";
-import ContactForm from "@/components/landing-page/ContactForm/ContactForm";
+import CourseForm from "@/components/CourseForm/CourseForm";
 import courseData from "@/types/courseTypes";
 import Image from "next/image";
 
@@ -26,11 +26,14 @@ export const CourseContent = (props: iCourseContent) => {
           <span className={styles.danceGroup}>{`kursy/${props.group}`}</span>
           <h1>{props.data.title}</h1>
           <p>{props.data.data.description}</p>
-          <div className={styles.videoContainer}></div>
+          <div className={styles.videoContainer}>
+            <span>Zobacz jak wygląda ten taniec:</span>
+            <div className={styles.videoWrapper}></div>
+          </div>
         </div>
       </main>
       <div className={styles.contactWrapper}>
-        <ContactForm selectedDanceCourse={props.data.title} />
+        <CourseForm selectedDanceCourse={props.data.title} />
       </div>
     </div>
   );
