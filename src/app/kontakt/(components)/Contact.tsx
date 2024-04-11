@@ -2,9 +2,9 @@
 
 import { Container } from "@/components/Container/Container";
 import styles from "./Contact.module.scss";
-import TextArea from "./TextArea/TextArea";
 import { MapComponent } from "./MapComponent";
 import companyInfo from "../../../data/companyInfo.json";
+import { ContactForm } from "@/components/ContactForm/ContactForm";
 
 export const Contact = () => {
   return (
@@ -26,16 +26,7 @@ export const Contact = () => {
             <span>{companyInfo.contact.phoneNumber}</span>
           </div>
           <div className={styles.contactForm}>
-            <form
-              action="
-			"
-            >
-              <input type="text" placeholder="Nazwisko" />
-              <input type="text" placeholder="Adres Email" />
-              <input type="text" placeholder="Numer Telefonu" />
-              <TextArea />
-              <button>Wyślij wiadomość</button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </Container>

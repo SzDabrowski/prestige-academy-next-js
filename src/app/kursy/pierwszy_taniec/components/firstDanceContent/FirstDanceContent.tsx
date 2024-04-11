@@ -1,6 +1,6 @@
 import styles from "./FirstDanceContent.module.scss";
 import { Container } from "@/components/Container/Container";
-import ContactForm from "@/components/landing-page/ContactForm/ContactForm";
+import { ContactForm } from "@/components/ContactForm/ContactForm";
 import Video from "next-video";
 
 import firstDanceVideo from "@/../videos/first_dance_video.mp4";
@@ -52,9 +52,9 @@ export const FirstDanceContent = () => {
         <section className={styles.formSection}>
           <Container>
             <h3>Zapisz sie!</h3>
-            {/* <div className={styles.wrapper}>
+            <div className={styles.formWrapper}>
               <ContactForm />
-            </div> */}
+            </div>
           </Container>
         </section>
       </main>

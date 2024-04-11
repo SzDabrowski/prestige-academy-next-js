@@ -2,13 +2,13 @@
 
 .hero {
   width: 100%;
-  height: 70vh;
+  height: 60vh;
   background-image: url("/../../assets/images/wedding.jpg");
   background-size: cover;
   background-position: center;
 
   @include mobile {
-    height: 50vh;
+    height: 60vh;
   }
 
   .titleSection {
@@ -41,7 +41,7 @@
 
 .title {
   margin: auto;
-  margin-top: 5rem;
+  margin: 6rem 0;
   text-align: center;
   padding: 0 20%;
 
@@ -59,11 +59,11 @@
 .textContent {
   font-size: 1rem;
   text-align: center;
-  margin: 1rem 0;
 
   * {
-    margin: 1rem 0;
-    line-height: 1.75rem;
+    margin: 2rem 0;
+    line-height: 2.25rem;
+    letter-spacing: 1px;
     font-weight: 500;
   }
 
@@ -104,5 +104,13 @@
     margin-top: 50px;
     position: relative;
     top: 80px;
+  }
+}
+
+.formWrapper {
+  padding: 5rem 15rem;
+
+  @include mobile {
+    padding: 5rem 0;
   }
 }

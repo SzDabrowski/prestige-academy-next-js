@@ -3,10 +3,10 @@ import LandingHeader from "@/components/landing-page/LandingHeader/LandingHeader
 import styles from "./page.module.css";
 import Hero from "@/components/landing-page/Hero/Hero";
 import Footer from "@/components/Footer/Footer";
-import ContactForm from "@/components/landing-page/ContactForm/ContactForm";
 import CoursesSection from "@/components/landing-page/CoursesSection/CoursesSection";
 import AboutUsSection from "@/components/landing-page/AboutUsSection/AboutUsSection";
 import { Container } from "@/components/Container/Container";
+import CourseForm from "@/components/CourseForm/CourseForm";
 
 export default function Home() {
   return (
@@ -15,7 +15,7 @@ export default function Home() {
 
       <Hero />
       <Container>
-        <ContactForm />
+        <CourseForm />
       </Container>
       <CoursesSection />
       <AboutUsSection />
