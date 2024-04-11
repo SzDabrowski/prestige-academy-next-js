@@ -89,6 +89,10 @@
   }
 }
 
+.hiddenLabel {
+  display: none;
+}
+
 .hidden {
   position: absolute;
   transform: scaleY(0);
