@@ -13,7 +13,8 @@
     "children": [
       { "title": "Dorośli", "path": "/kursy/dorosli" },
       { "title": "Dzieci", "path": "/kursy/dzieci" },
-      { "title": "Pierwszy Taniec", "path": "/kursy/pierwszy_taniec" }
+      { "title": "Pierwszy Taniec", "path": "/kursy/pierwszy_taniec" },
+      { "title": "Grupy zlecone", "path": "/kursy/grupy_zlecone" }
     ]
   }
 ]

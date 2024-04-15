@@ -7,7 +7,7 @@ import firstDanceVideo from "@/../videos/first_dance_video.mp4";
 
 export const FirstDanceContent = () => {
   return (
-    <main>
+    <div>
       <section className={styles.hero}></section>
 
       <main>
@@ -51,13 +51,13 @@ export const FirstDanceContent = () => {
         </section>
         <section className={styles.formSection}>
           <Container>
-            <h3>Zapisz sie!</h3>
             <div className={styles.formWrapper}>
+              <h3>Zapisz sie!</h3>
               <ContactForm />
             </div>
           </Container>
         </section>
       </main>
-    </main>
+    </div>
   );
 };
