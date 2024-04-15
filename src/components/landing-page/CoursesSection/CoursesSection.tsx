@@ -34,13 +34,23 @@ const CoursesSection = () => {
             </div>
           </div>
 
-          <div className={`${styles.wrapper} ${styles.wide}`}>
+          <div className={`${styles.wrapper} ${styles.small}`}>
             <div className={styles.wedding}>
               <Link href={"/kursy/" + courseForEnum.firstDance}>
                 <div className={styles.textWrapper}>
                   <span>
                     Wyjątkowy pierwszy taniec - indywidualne kursy dla par
                   </span>
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          <div className={`${styles.wrapper} ${styles.small}`}>
+            <div className={styles.commissioned}>
+              <Link href={"/kursy/" + courseForEnum.commissioned}>
+                <div className={styles.textWrapper}>
+                  <span>Grupy zlecone</span>
                 </div>
               </Link>
             </div>

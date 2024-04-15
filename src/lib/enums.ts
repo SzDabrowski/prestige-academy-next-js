@@ -3,4 +3,5 @@ export const enum courseForEnum {
   kids = "dzieci",
   firstDance = "pierwszy_taniec",
   includes = "includes",
+  commissioned = "grupy_zlecone",
 }
