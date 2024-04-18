@@ -4,7 +4,11 @@ import useAutosizeTextArea from "./useAutosizeTextArea";
 
 import styles from "./TextArea.module.scss";
 
-export default function TextArea() {
+interface iTextArea {
+  getValue: (value: string) => string;
+}
+
+export default function TextArea(props: iTextArea) {
   const [value, setValue] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -14,6 +18,7 @@ export default function TextArea() {
     const val = evt.target?.value;
 
     setValue(val);
+    props.getValue(val);
   };
 
   return (
