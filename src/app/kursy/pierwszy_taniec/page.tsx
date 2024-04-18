@@ -6,9 +6,7 @@ import { FirstDanceContent } from "./components/firstDanceContent/FirstDanceCont
 export default function Home() {
   return (
     <main className={""}>
-      <Header />
       <FirstDanceContent />
-      <Footer />
     </main>
   );
 }

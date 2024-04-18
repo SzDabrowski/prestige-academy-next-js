@@ -4,11 +4,9 @@ import Footer from "@/components/Footer/Footer";
 import { Contact } from "./(components)/Contact";
 
 export default function Home() {
-	return (
-		<main className={styles.main}>
-			<Header />
-			<Contact />
-			<Footer />
-		</main>
-	);
+  return (
+    <main className={styles.main}>
+      <Contact />
+    </main>
+  );
 }

@@ -26,12 +26,9 @@ export default function Home() {
 
   return (
     <main className={""}>
-      <Header />
       <Container>
         <CourseContent data={courseData} group={String(danceGroup)} />
       </Container>
-
-      <Footer />
     </main>
   );
 }
