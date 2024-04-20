@@ -13,7 +13,7 @@ const AboutUs = () => {
 					<p>{aboutUsData.summary.desc_1}</p>
 					<p>{aboutUsData.summary.desc_2}</p>
 					<div className={styles.quote}>
-						<p>"{aboutUsData.summary.quote}"</p>
+						<p>{aboutUsData.summary.quote}</p>
 						<p className={styles.signed}>{aboutUsData.summary.quote_sign}</p>
 					</div>
 					<div className={styles.card}></div>
