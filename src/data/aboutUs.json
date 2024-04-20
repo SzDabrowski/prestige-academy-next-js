@@ -1,0 +1,18 @@
+{
+	"summary": {
+		"desc_1": "Już od niemal 10 lat prowadzimy naukę tańca dla dzieci w przedszkolach  oraz poza nimi na terenie stargardu i okolic, a od nie dawna prowadzimy również kursy tańca dla dorosłych. ",
+		"desc_2": "Co roku staramy się poszerzać naszą ofertę, aby sprotstać wymaganiom, tych dla których taniec jest formą mile spędzonego czasu. W naszej ofercie znajdziesz zajęcia zarówno solo dla pań jak też w parach. Specjalizujemy się w tańcach tj. Taniec Towarzyski, Bachata, Latino, Ladies styling.",
+		"quote": "`Moją pasją oraz możliwością wyrażania swoich emocji jest taniec. Specjalizuję się w tańcach Latynoamerykańskich jak i Standardowych. Taniec traktuję nie tylko jako pracę -to pasja, którą pragnę przekazywać innym.`",
+		"quote_sign": "~ Krystian Kisielewski"
+	},
+
+	"krystian": {
+		"desc": "Załozyciel Akademii Tańca Prestige, szeroko utytułowany tancerz, II V-ce mistrz Polski w klasowych mistrzostwach kraju w  tańcach latynoamerykańskich oraz wielokrotny zwycięzca  ogólnopolskich turniejów tańca."
+	},
+	"Szymon": {
+		"desc": "Tancerz najwyższej międzynarodowej klasy „S” w stylu standard, aktualny mistrz okręgu zachodniopomorskiego w kategorii dorosłych, finalista i zwycięzca wielu turniejów zagranicznych i Polskich."
+	},
+	"Greta": {
+		"desc": "Tancerka najwyższej miedzynarodowej klasy tanecznej 'S' w stylu latynoamerykańskim, szeroko utytułowana tancerka specjalizująca się w tańcach latynoamerykańskich.  Mistrzostwo Polski w tańcach latynoamerykańskich, a później jako dorosła tancerka osiągnęła tytuł II V-ce mistrzyni Rumunii oraz Mistrzostwo Hiszpańskiej Katalonii. "
+	}
+}
