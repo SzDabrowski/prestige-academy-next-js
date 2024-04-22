@@ -26,7 +26,7 @@ const CommissionedContent = () => {
         <section className={styles.formSection}>
           <Container>
             <div className={styles.formWrapper}>
-              <h3>Napisz do nas!</h3>
+              <h2>Napisz do nas!</h2>
               <ContactForm />
             </div>
           </Container>
