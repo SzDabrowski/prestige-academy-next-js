@@ -21,9 +21,16 @@ export const Contact = () => {
               Masz jakieś pytania? Jesteśmy tutaj, aby pomóc. Wypełnij
               formularz, wyślij e-mail lub zadzwoń.
             </p>
-            <span>{companyInfo.contact.adress}</span>
-            <span>{companyInfo.contact.email}</span>
-            <span>{companyInfo.contact.phoneNumber}</span>
+
+            <a href="https://maps.app.goo.gl/z7vsWmaorEjPrTQt5">
+              <span>{companyInfo.contact.adress}</span>
+            </a>
+            <a href="mailto:atprestigedance@gmail.com">
+              <span>{companyInfo.contact.email}</span>
+            </a>
+            <a href="tel:+48796934635">
+              <span>{companyInfo.contact.phoneNumber}</span>
+            </a>
           </div>
           <div className={styles.contactForm}>
             <ContactForm />
