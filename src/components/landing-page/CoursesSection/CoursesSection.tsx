@@ -9,8 +9,13 @@ const CoursesSection = () => {
       <section className={styles.section}>
         <h2 className={styles.header}>Kursy tańca</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in
-          massa enim. In est nunc, consequat non sodales a, tempus eget augue.
+          Już od niemal 10 lat prowadzimy naukę tańca dla dzieci w przedszkolach
+          oraz poza nimi na terenie stargardu i okolic, a od nie dawna
+          prowadzimy również kursy tańca dla dorosłych.
+        </p>
+        <p>
+          Co roku staramy się poszerzać naszą ofertę, aby sprostać wymaganiom,
+          tych dla których taniec jest formą mile spędzonego czasu.
         </p>
 
         <div className={styles.container}>

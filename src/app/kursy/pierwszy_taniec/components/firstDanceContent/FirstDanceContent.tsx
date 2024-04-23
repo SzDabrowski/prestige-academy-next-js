@@ -38,15 +38,17 @@ export const FirstDanceContent = () => {
               <p></p>
               <div className={styles.whiteSpace}></div>
               <p className={styles.big}>
-                Razem uczynimy go niezapomnianym przeżyciem
+                Razem uczynimy go niezapomnianym przeżyciem!
               </p>
             </div>
           </Container>
         </section>
         <section className={styles.videoSection}>
           <Container>
-            {/* <h2>Jak to działa</h2> */}
-            <Video src={firstDanceVideo} />
+            <h2>Zobacz jedną z naszych choreografii:</h2>
+            <div className={styles.wrapper}>
+              <Video src={firstDanceVideo} />
+            </div>
           </Container>
         </section>
         <section className={styles.formSection}>
