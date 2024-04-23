@@ -149,6 +149,10 @@
           height: fit-content;
           overflow: hidden;
 
+          @include mobile {
+            position: relative;
+          }
+
           .infoText {
             transition: height 0.5s linear;
             overflow-y: hidden;
