@@ -60,7 +60,9 @@
   }
 
   .flexGroup {
+    position: relative;
     padding: 100px 0;
+    margin-bottom: 100px;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -68,6 +70,7 @@
     gap: 30px;
     @include mobile {
       flex-wrap: wrap;
+      justify-content: center;
       padding: 50px 0;
     }
 
@@ -100,19 +103,21 @@
       }
 
       .greta {
-        background-image: url("../../../../../public/assets/images/greta.jpg");
+        background-image: url("../../../../../public/assets/images/greta-min.jpg");
       }
 
       .krystian {
-        background-image: url("../../../../../public/assets/images/krystian.jpg");
+        background-image: url("../../../../../public/assets/images/krystian-min.jpg");
       }
 
       .szymon {
-        background-image: url("../../../../../public/assets/images/szymon.jpg");
+        background-image: url("../../../../../public/assets/images/szymon-min.jpg");
       }
 
       .personText {
         text-align: center;
+        width: 100%;
+
         span {
           display: block;
           margin-bottom: 1.5rem;
@@ -129,14 +134,72 @@
           font-weight: 600;
         }
 
+        .infoWrapper {
+          position: relative;
+          width: 100%;
+        }
+
         .info {
+          position: absolute;
+          --lineHeight: 1.2rem;
           text-align: center;
           font-size: 1rem;
+          line-height: var(--lineHeight);
           color: #505050;
-          height: 300px;
+          height: fit-content;
+          overflow: hidden;
 
-          @include mobile {
-            height: fit-content;
+          .infoText {
+            transition: height 0.5s linear;
+            overflow-y: hidden;
+            max-height: 300px; /* approximate max height */
+            transition-property: all;
+            transition-duration: 0.6s;
+            transition-timing-function: cubic-bezier(1, 1, 1, 1);
+            padding-bottom: 1rem;
+            box-shadow: 0px 10px 10px -15px #111;
+            margin-bottom: 1rem;
+          }
+
+          .infoClosed {
+            max-height: calc(var(--lineHeight) * 3);
+          }
+
+          // @include mobile {
+          //   height: fit-content;
+          // }
+        }
+
+        .infoButton {
+          bottom: 0px;
+          margin: 0.5rem auto;
+
+          width: 100px;
+          cursor: pointer;
+          border: #000 1px solid;
+          border-radius: 30px;
+          padding: 2px;
+
+          * {
+            margin: auto;
+            position: relative;
+            right: -2px;
+          }
+
+          * > path {
+            stroke: black;
+          }
+
+          &:hover,
+          &:target {
+            border: $clr-logo-main 1px solid;
+            div > svg > path {
+              stroke: $clr-logo-main;
+            }
+          }
+
+          &:hover {
+            transform: scale(1.1);
           }
         }
       }
