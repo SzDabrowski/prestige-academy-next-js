@@ -65,7 +65,11 @@
     align-items: center;
 
     @include mobile {
-      flex-wrap: wrap;
+      @include mobile {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 50px 0;
+      }
     }
 
     .person {
@@ -85,7 +89,7 @@
         width: 300px;
         aspect-ratio: 1/1.5;
         //border-radius: 30px;
-        background-image: url("../../../../public/assets/images/profile.avif");
+
         background-repeat: no-repeat;
         background-position: center top;
         background-size: cover;
@@ -98,15 +102,15 @@
       }
 
       .greta {
-        background-image: url("../../../../public/assets/images/greta.jpg");
+        background-image: url("../../../../public/assets/images/greta-min.jpg");
       }
 
       .krystian {
-        background-image: url("../../../../public/assets/images/krystian.jpg");
+        background-image: url("../../../../public/assets/images/krystian-min.jpg");
       }
 
       .szymon {
-        background-image: url("../../../../public/assets/images/szymon.jpg");
+        background-image: url("../../../../public/assets/images/szymon-min.jpg");
       }
 
       .personText {

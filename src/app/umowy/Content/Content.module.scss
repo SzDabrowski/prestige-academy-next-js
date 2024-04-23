@@ -1,0 +1,22 @@
+.main {
+  min-height: 40vh;
+  width: 100%;
+  margin: 100px auto;
+}
+
+.titleSection {
+  margin: auto;
+  text-align: center;
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 4rem;
+  }
+}
+
+.tableSection {
+  overflow-x: auto;
+  table {
+    margin: auto;
+    text-align: center;
+  }
+}

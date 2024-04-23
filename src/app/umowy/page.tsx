@@ -1,7 +1,10 @@
+import { Content } from "./Content/Content";
+import { Container } from "@/components/Container/Container";
+
 export default function Home() {
-	return (
-		<main>
-			<h1>UMOWY</h1>
-		</main>
-	);
+  return (
+    <Container>
+      <Content />
+    </Container>
+  );
 }
