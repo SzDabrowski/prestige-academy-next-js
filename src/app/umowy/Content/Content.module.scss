@@ -1,22 +1,36 @@
+@import "../../../styles/_colors.scss";
+
 .main {
-  min-height: 40vh;
-  width: 100%;
-  margin: 100px auto;
+	min-height: 500px;
+	width: 100%;
+	padding-bottom: 200px;
+
+	background-image: url("../../../../public/assets/images/hero.jpeg");
+	background-position: top;
+	background-size: cover;
+	position: relative;
 }
 
 .titleSection {
-  margin: auto;
-  text-align: center;
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 4rem;
-  }
+	margin: auto;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 100px;
+	h1 {
+		font-size: 2rem;
+		margin-bottom: 4rem;
+		background: $grd-accents;
+		-webkit-background-clip: text;
+
+		-webkit-text-fill-color: transparent;
+	}
 }
 
 .tableSection {
-  overflow-x: auto;
-  table {
-    margin: auto;
-    text-align: center;
-  }
+	overflow-x: auto;
+
+	table {
+		margin: auto;
+		text-align: center;
+	}
 }

@@ -16,8 +16,12 @@ export const Table = () => {
 				{preschoolsData.map((item, index) => {
 					return (
 						<tr key={index}>
-							<td>{item.value}</td>
-							<td>Pobierz</td>
+							<td>
+								<p>{item.value}</p>
+							</td>
+							<td>
+								<a href="">Pobierz</a>
+							</td>
 						</tr>
 					);
 				})}
