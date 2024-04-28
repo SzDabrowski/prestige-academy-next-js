@@ -3,6 +3,8 @@ import styles from "./Table.module.scss";
 
 import preschoolsData from "@/data/preschools.json";
 
+import { fileNames } from "@/lib/enums";
+
 export const Table = () => {
 	return (
 		<table className={styles.table}>
@@ -20,7 +22,7 @@ export const Table = () => {
 								<p>{item.value}</p>
 							</td>
 							<td>
-								<a href="">Pobierz</a>
+								<a href={`/files/${fileNames.pm}`}>Pobierz</a>
 							</td>
 						</tr>
 					);
