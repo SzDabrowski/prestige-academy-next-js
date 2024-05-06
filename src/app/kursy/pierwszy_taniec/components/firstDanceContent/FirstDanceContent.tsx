@@ -55,7 +55,7 @@ export const FirstDanceContent = () => {
           <Container>
             <div className={styles.formWrapper}>
               <h3>Zapisz sie!</h3>
-              <ContactForm />
+              <ContactForm courseName="Pierwszy taniec weselny" />
             </div>
           </Container>
         </section>
