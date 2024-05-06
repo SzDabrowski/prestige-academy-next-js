@@ -1,13 +1,18 @@
+"use client";
+
 import styles from "./CourseContent.module.scss";
 import CourseForm from "@/components/CourseForm/CourseForm";
 import courseData from "@/types/courseTypes";
 import Image from "next/image";
+import { useState } from "react";
 
 interface iCourseContent {
   data: courseData;
   group: string;
 }
 export const CourseContent = (props: iCourseContent) => {
+  const [hasVideos, setHasVideo] = useState(false);
+
   return (
     <div className={styles.mainContainer}>
       <main className={styles.mainSection}>
@@ -26,10 +31,14 @@ export const CourseContent = (props: iCourseContent) => {
           <span className={styles.danceGroup}>{`kursy/${props.group}`}</span>
           <h1>{props.data.title}</h1>
           <p>{props.data.data.description}</p>
-          <div className={styles.videoContainer}>
-            <span>Zobacz jak wygląda ten taniec:</span>
-            <div className={styles.videoWrapper}></div>
-          </div>
+          {hasVideos ? (
+            <div className={styles.videoContainer}>
+              <span>Zobacz jak wygląda ten taniec:</span>
+              <div className={styles.videoWrapper}></div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </main>
       <div className={styles.contactWrapper}>
