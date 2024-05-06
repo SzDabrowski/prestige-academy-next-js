@@ -27,7 +27,7 @@ const CommissionedContent = () => {
           <Container>
             <div className={styles.formWrapper}>
               <h2>Napisz do nas!</h2>
-              <ContactForm />
+              <ContactForm courseName="Grupy zlecone" />
             </div>
           </Container>
         </section>

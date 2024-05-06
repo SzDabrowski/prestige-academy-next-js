@@ -2,7 +2,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 
 import { DropdownSelect } from "@/components/DropdownSelect/DropdownSelect";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, useWatch } from "react-hook-form";
 
 import { checkIfCourseForPairs } from "@/utils/clientUtils";
 import { phoneNumberAutoFormat } from "@/utils/formUtils";
@@ -17,6 +17,8 @@ interface FormInputs {
   pairName?: string;
   email: string;
   phone: string;
+  subject: string;
+  access_key: string;
 }
 
 interface iCourseForm {
@@ -49,19 +51,61 @@ const CourseForm = (props: iCourseForm) => {
     );
   }, [selectedDanceCourse]);
 
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [Message, setMessage] = useState("");
+
   const {
     register,
     handleSubmit,
     setValue,
-    formState: { errors },
-  } = useForm<FormInputs>();
+    reset,
+    control,
+    formState: { errors, isSubmitSuccessful, isSubmitting },
+  } = useForm<FormInputs>({
+    mode: "onTouched",
+  });
+
+  const userName = useWatch({
+    control,
+    name: "name",
+    defaultValue: "Someone",
+  });
+
+  useEffect(() => {
+    setValue("subject", `${userName} sent a message from Website`);
+  }, [userName, setValue]);
 
   const courseTitles = danceCourses.map((course) => course.title);
 
-  const onSubmit = (data: FormInputs, event?: any) => {
+  const onSubmit = async (data: FormInputs, event?: any) => {
     event?.preventDefault();
     console.log(data);
-    // Submit your form data here
+    await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data, null, 2),
+    })
+      .then(async (response) => {
+        let json = await response.json();
+        if (json.success) {
+          setIsSuccess(true);
+          setMessage(json.message);
+          event.target.reset();
+          reset();
+          setPhoneNumber("");
+        } else {
+          setIsSuccess(false);
+          setMessage(json.message);
+        }
+      })
+      .catch((error) => {
+        setIsSuccess(false);
+        setMessage("Client Error. Please check the console.log for more info");
+        console.log(error);
+      });
   };
 
   return (
@@ -72,13 +116,14 @@ const CourseForm = (props: iCourseForm) => {
           onSubmit={handleSubmit(onSubmit)}
           noValidate
         >
-          <div className={styles.inputsContainer}>
-            {/* <input
-              type="hidden"
-              name="access_key"
-              value="7369090a-7acb-46e8-b84d-69101f7fe01a"
-            /> */}
+          <input
+            type="hidden"
+            value={process.env.NEXT_PUBLIC_WEBFORM_ACCES_KEY}
+            {...register("access_key")}
+          />
+          <input type="hidden" {...register("subject")} />
 
+          <div className={styles.inputsContainer}>
             <label
               className={`${styles.label} ${
                 props.selectedDanceCourse ? styles.hiddenLabel : ""

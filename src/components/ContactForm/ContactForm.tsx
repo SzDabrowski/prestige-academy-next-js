@@ -9,6 +9,7 @@ import TextArea from "../TextArea/TextArea";
 import { ChangeEvent, useEffect, useState } from "react";
 
 interface ContactFormInputs {
+  courseName?: string;
   name: string;
   email?: string;
   phoneNumber: string;
@@ -17,7 +18,11 @@ interface ContactFormInputs {
   subject: string;
 }
 
-export const ContactForm = () => {
+interface ContactForm {
+  courseName?: string;
+}
+
+export const ContactForm = (props: ContactForm) => {
   const {
     register,
     handleSubmit,
@@ -95,6 +100,16 @@ export const ContactForm = () => {
         {...register("access_key")}
       />
       <input type="hidden" {...register("subject")} />
+
+      {props.courseName ? (
+        <input
+          type="hidden"
+          value={props.courseName}
+          {...register("courseName")}
+        />
+      ) : (
+        ""
+      )}
 
       <label className={styles.label}>
         <span>Imię i nazwisko:</span>
