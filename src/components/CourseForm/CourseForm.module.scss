@@ -140,3 +140,13 @@
     flex-direction: row;
   }
 }
+
+.capWrapper {
+  margin: auto;
+  height: 80px;
+  > div {
+    margin: 10px;
+    transform: scale(0.7);
+    transform-origin: 0 0;
+  }
+}

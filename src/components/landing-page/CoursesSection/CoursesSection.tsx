@@ -19,7 +19,7 @@ const CoursesSection = () => {
         </p>
 
         <div className={styles.container}>
-          <div className={`${styles.wrapper} ${styles.small}`}>
+          <div className={`${styles.wrapper} `}>
             <div className={styles.adults}>
               <Link href={"/kursy/" + courseForEnum.adults}>
                 <div className={styles.textWrapper}>
@@ -29,7 +29,7 @@ const CoursesSection = () => {
             </div>
           </div>
 
-          <div className={`${styles.wrapper} ${styles.small}`}>
+          <div className={`${styles.wrapper} `}>
             <div className={styles.kids}>
               <Link href={"/kursy/" + courseForEnum.kids}>
                 <div className={styles.textWrapper}>
@@ -39,7 +39,7 @@ const CoursesSection = () => {
             </div>
           </div>
 
-          <div className={`${styles.wrapper} ${styles.small}`}>
+          <div className={`${styles.wrapper} `}>
             <div className={styles.wedding}>
               <Link href={"/kursy/" + courseForEnum.firstDance}>
                 <div className={styles.textWrapper}>
@@ -51,11 +51,21 @@ const CoursesSection = () => {
             </div>
           </div>
 
-          <div className={`${styles.wrapper} ${styles.small}`}>
+          <div className={`${styles.wrapper} `}>
             <div className={styles.commissioned}>
               <Link href={"/kursy/" + courseForEnum.commissioned}>
                 <div className={styles.textWrapper}>
                   <span>Grupy zlecone</span>
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          <div className={`${styles.wrapper} ${styles.small}`}>
+            <div className={styles.preschools}>
+              <Link href={"/kursy/" + courseForEnum.preschools}>
+                <div className={styles.textWrapper}>
+                  <span>Przedszkola</span>
                 </div>
               </Link>
             </div>
