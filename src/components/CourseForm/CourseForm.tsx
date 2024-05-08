@@ -10,6 +10,7 @@ import { phoneNumberAutoFormat } from "@/utils/formUtils";
 import danceCourses from "@/data/danceCourses.json";
 
 import styles from "./CourseForm.module.scss";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface FormInputs {
   selectedDanceCourse: string;
@@ -53,6 +54,7 @@ const CourseForm = (props: iCourseForm) => {
 
   const [isSuccess, setIsSuccess] = useState(false);
   const [Message, setMessage] = useState("");
+  const [capVal, setCapVal] = useState(null);
 
   const {
     register,
@@ -72,7 +74,7 @@ const CourseForm = (props: iCourseForm) => {
   });
 
   useEffect(() => {
-    setValue("subject", `${userName} sent a message from Website`);
+    setValue("subject", `${userName} zapisała/ł się na kurs tanća`);
   }, [userName, setValue]);
 
   const courseTitles = danceCourses.map((course) => course.title);
@@ -243,7 +245,21 @@ const CourseForm = (props: iCourseForm) => {
             </label>
           </div>
 
-          <input className={styles.button} type="submit" value="Zapisz się!" />
+          {/* <div className={styles.capWrapper}>
+            <ReCAPTCHA
+              sitekey={process.env.NEXT_PUBLIC_RECAPTHCA_KEY || ""}
+              onChange={(val) => {
+                setCapVal;
+              }}
+            />
+          </div> */}
+
+          <input
+            className={styles.button}
+            type="submit"
+            value="Zapisz się!"
+            // disabled={!capVal}
+          />
         </form>
       </div>
     </div>
