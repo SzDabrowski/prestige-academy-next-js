@@ -126,11 +126,7 @@ const CourseForm = (props: iCourseForm) => {
           <input type="hidden" {...register("subject")} />
 
           <div className={styles.inputsContainer}>
-            <label
-              className={`${styles.label} ${
-                props.selectedDanceCourse ? styles.hiddenLabel : ""
-              }`}
-            >
+            <label className={`${styles.label} ${styles.DropdownSelect}`}>
               <DropdownSelect
                 title={"Kurs tańca"}
                 options={courseTitles}
