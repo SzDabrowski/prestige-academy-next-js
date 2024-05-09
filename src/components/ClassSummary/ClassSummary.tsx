@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./ClassSummary.module.scss";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
 import { toCamelCase } from "@/utils/clientUtils";
@@ -11,7 +11,7 @@ import { courseForEnum } from "@/lib/enums";
 interface iClassSummary {
   title: string;
   data: classData;
-  img: string;
+  img: StaticImageData;
 }
 
 interface classData {
@@ -26,13 +26,7 @@ export const ClassSummary = (props: iClassSummary) => {
   return (
     <section className={styles.danceClass}>
       <div className={styles.imgWrapper}>
-        <Image
-          src={`/assets/images/${props.img}`}
-          alt={""}
-          width={800}
-          height={400}
-          quality={70}
-        />
+        <Image src={props.img} alt={""} width={800} height={400} quality={70} />
       </div>
       <div className={styles.textContainer}>
         <span className={styles.title}>{props.title}</span>

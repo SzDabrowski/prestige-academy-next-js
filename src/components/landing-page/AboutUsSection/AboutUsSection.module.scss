@@ -50,6 +50,7 @@
       &:hover {
         background: $grd-accents;
         -webkit-background-clip: text;
+        background-clip: text;
 
         -webkit-text-fill-color: transparent;
         cursor: pointer;
@@ -102,15 +103,15 @@
       }
 
       .greta {
-        background-image: url("../../../../public/assets/images/greta-min.jpg");
+        background-image: url("../../../../public/assets/images/teachers/greta-min.jpg");
       }
 
       .krystian {
-        background-image: url("../../../../public/assets/images/krystian-min.jpg");
+        background-image: url("../../../../public/assets/images/teachers/krystian-min.jpg");
       }
 
       .szymon {
-        background-image: url("../../../../public/assets/images/szymon-min.jpg");
+        background-image: url("../../../../public/assets/images/teachers/szymon-min.jpg");
       }
 
       .personText {

@@ -2,6 +2,7 @@ import styles from "./CoursesContent.module.scss";
 import { ClassSummary } from "@/components/ClassSummary/ClassSummary";
 import danceCourses from "../../../../data/danceCourses.json";
 import { courseForEnum } from "@/lib/enums";
+import mapCourseToPhoto from "@/utils/coursePhotoMapper";
 
 interface iCoursesContent {
   group: string;
@@ -33,7 +34,7 @@ export const CoursesContent = (props: iCoursesContent) => {
                 key={index}
                 title={danceCourse.title}
                 data={danceCourse.data}
-                img={danceCourse.img !== "" ? danceCourse.img : "article.jpg"}
+                img={mapCourseToPhoto(danceCourse.title)}
               />
             );
           }
