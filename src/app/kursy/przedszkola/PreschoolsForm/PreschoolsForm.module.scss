@@ -1,0 +1,87 @@
+@import "/src/styles/colors";
+
+.formWrapper {
+  max-width: 500px;
+  margin: auto;
+}
+
+.label {
+  text-align: left;
+  visibility: visible;
+  display: block;
+  opacity: 1;
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  transition: transform 0.5s ease, opacity 0.5s;
+  position: relative;
+
+  span {
+    flex-grow: 1;
+    padding-left: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  input {
+    color: black;
+    width: 100%;
+    margin-bottom: 1.125rem;
+    padding: 1rem 0.75rem;
+    outline: 2px solid transparent;
+    background-color: transparent;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 2px solid rgb(209 213 219);
+    transition: outline 0.5s ease;
+
+    &:focus {
+      outline: 2px solid #d3277c;
+    }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s;
+    -webkit-text-fill-color: #000 !important;
+  }
+}
+
+.dropdown {
+  margin-bottom: calc(20px + 1.125rem);
+}
+
+.button {
+  text-align: center;
+  padding: 1.5rem 0.75rem;
+  width: 100%;
+  background-image: $grd-main;
+  color: white;
+  border-radius: 10px;
+  font-size: 1rem;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  transition: all 0.5s ease;
+
+  &:hover {
+    transform: scale(1.025);
+  }
+}
+
+.error {
+  text-transform: none;
+  color: red;
+  font-size: 0.7rem;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+}
+
+.errorOutline {
+  outline: 2px solid red !important;
+}
