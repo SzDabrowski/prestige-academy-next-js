@@ -13,11 +13,11 @@ const PreschoolContent = () => {
             <div className={styles.textContent}>
               <div className={styles.whiteSpace}></div>
               <p>
-                Zapewnij swoje dziecko o kreatywnej zabawie i radości poprzez
-                zapisy na zajęcia taneczne w naszym przedszkolu! Nasze
-                profesjonalne instruktorki zapewnią nie tylko naukę podstawowych
-                technik tanecznych, ale także rozwijanie pewności siebie i
-                wyrazistości.{" "}
+                Zapewnij swojemu dziecku rozwoj kreatywnosci podczas nauki i
+                zabawy jednocześnie. Zapisz swoje dziecko na zajecia taneczne w
+                przedszkolu! Nasi profesjonalni instruktorzy zapewnią nie tylko
+                naukę podstawowych technik tańca, ale rowniez rozwijanie
+                umiejetnosci tanecznych i pewnosci siebie
               </p>
             </div>
           </Container>

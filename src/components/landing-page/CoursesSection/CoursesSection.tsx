@@ -9,13 +9,14 @@ const CoursesSection = () => {
       <section className={styles.section}>
         <h2 className={styles.header}>Kursy tańca</h2>
         <p>
-          Już od niemal 10 lat prowadzimy naukę tańca dla dzieci w przedszkolach
-          oraz poza nimi na terenie stargardu i okolic, a od nie dawna
-          prowadzimy również kursy tańca dla dorosłych.
-        </p>
-        <p>
-          Co roku staramy się poszerzać naszą ofertę, aby sprostać wymaganiom,
-          tych dla których taniec jest formą mile spędzonego czasu.
+          Zapraszamy do zapoznania się z naszą ofertą zajeć dla dzieci,
+          młodzieży oraz dorosłych. Niezależnie czy masz lat 4 czy 104 i chcesz
+          tańczyć solo lub w parze u nas znajdziesz coś dla siebie! Nasza
+          oferta, zawiera naukę rożnych stylów tańca oraz w różnej postaci tj.
+          zajęcia grupowe, indywidualne, solo lub w parach. Jako jedyni w
+          Stargardzie mamy ofertę Pro Am, czyli nauke prowadzoną przez
+          profesjonalnego tancerza/ke z amatorem, czyli Tobą! Już teraz sprawdź
+          nas i zapisz się na naukę tańca!
         </p>
 
         <div className={styles.container}>
