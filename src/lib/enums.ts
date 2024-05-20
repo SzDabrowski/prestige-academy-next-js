@@ -8,6 +8,8 @@ export const enum courseForEnum {
 }
 
 export const enum fileNames {
-  test = "123.txt",
-  pm = "umowa_uczestniczenia_w_zajeciach.pdf",
+  pm_3 = "Nowa umowa PM 3.pdf",
+  pm_4_5_7 = "Nowa umowa PM 4,5,7.pdf",
+  latino = "Nowa umowa Latino-Ladies.pdf",
+  kids = "Nowa umowa Prestige Kids-Junior.pdf",
 }
