@@ -1,10 +1,13 @@
 import styles from "./FirstDanceContent.module.scss";
 import { Container } from "@/components/Container/Container";
-import ContactForm from "@/components/landing-page/ContactForm/ContactForm";
+import { ContactForm } from "@/components/ContactForm/ContactForm";
+import Video from "next-video";
+
+import firstDanceVideo from "@/../videos/first_dance_video.mp4";
 
 export const FirstDanceContent = () => {
   return (
-    <main>
+    <div>
       <section className={styles.hero}></section>
 
       <main>
@@ -35,25 +38,28 @@ export const FirstDanceContent = () => {
               <p></p>
               <div className={styles.whiteSpace}></div>
               <p className={styles.big}>
-                Razem uczynimy go magicznym przeżyciem!
+                Razem uczynimy go niezapomnianym przeżyciem!
               </p>
             </div>
           </Container>
         </section>
-        <section className={styles.processSection}>
+        <section className={styles.videoSection}>
           <Container>
-            <h2>Jak to działa</h2>
+            <h2>Zobacz jedną z naszych choreografii:</h2>
+            <div className={styles.wrapper}>
+              <Video src={firstDanceVideo} />
+            </div>
           </Container>
         </section>
         <section className={styles.formSection}>
           <Container>
-            <h3>Zapisz sie!</h3>
-            <div className={styles.wrapper}>
-              <ContactForm />
+            <div className={styles.formWrapper}>
+              <h3>Zapisz sie!</h3>
+              <ContactForm courseName="Pierwszy taniec weselny" />
             </div>
           </Container>
         </section>
       </main>
-    </main>
+    </div>
   );
 };

@@ -1,17 +1,18 @@
+@import "../../styles/colors";
+@import "../../styles//mixins.scss";
+
 .selectMenu {
+  text-transform: none;
   flex-grow: 1;
-  width: 220px;
+  width: 250px;
   display: flex;
   flex-wrap: wrap;
   font-size: 1rem;
-  margin-bottom: 10px;
-  margin-top: 10px;
   color: black;
-  position: relative;
 
   &.active {
     .selectBtn {
-      box-shadow: 0 4px 0px -2px hsl(0, 63%, 44%);
+      box-shadow: 0 4px 0px -2px $clr-logo-main;
     }
 
     .options {
@@ -22,6 +23,12 @@
 
 .btnLabel {
   text-transform: uppercase;
+  position: relative;
+  top: 5px;
+
+  @include mobile {
+    top: 0;
+  }
 }
 
 .selectBtn {
@@ -32,6 +39,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
+  padding-bottom: calc(0.5rem - 4px);
   font-size: 0.9rem;
   border: none;
   box-shadow: 0 4px 0px -3px #ccc;
@@ -58,6 +66,7 @@
   background: #fff;
   box-shadow: rgba(196, 197, 198, 0.4) 0px 13px 72px 15px;
   display: none;
+  z-index: 100;
 
   .option {
     display: flex;

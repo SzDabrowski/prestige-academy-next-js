@@ -1,4 +1,12 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import { withNextVideo } from "next-video/process";
+// next.config.js
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
+  images: {
+    domains: ["localhost"],
+  },
+};
 
-export default nextConfig;
+export default withNextVideo(nextConfig);

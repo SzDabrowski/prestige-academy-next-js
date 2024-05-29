@@ -2,48 +2,42 @@
 
 import { Container } from "@/components/Container/Container";
 import styles from "./Contact.module.scss";
-import TextArea from "./TextArea/TextArea";
+import { MapComponent } from "./MapComponent";
+import companyInfo from "../../../data/companyInfo.json";
+import { ContactForm } from "@/components/ContactForm/ContactForm";
 
 export const Contact = () => {
-	return (
-		<Container>
-			<div className={styles.title}>
-				<h1>Contact</h1>
-				<span>We are a here to help.</span>
-			</div>
-			<div className={styles.contentContainer}>
-				<div className={styles.textContent}>
-					<h2>Contact Astroship</h2>
-					<p>
-						Have something to say? We are here to help. Fill up the form or send
-						email or call phone.
-					</p>
-					<span>1734 Sanfransico, CA 93063</span>
-					<span>hello@astroshipstarter.com</span>
-					<span>+1 (987) 4587 899</span>
-				</div>
-				<div className={styles.contactForm}>
-					<form
-						action="
-			"
-					>
-						<input
-							type="text"
-							placeholder="Full name"
-						/>
-						<input
-							type="text"
-							placeholder="Email Adress"
-						/>
-						<input
-							type="text"
-							placeholder="Phone Number"
-						/>
-						<TextArea />
-						<button>Send Message</button>
-					</form>
-				</div>
-			</div>
-		</Container>
-	);
+  return (
+    <section className={styles.main}>
+      <Container>
+        <div className={styles.title}>
+          <h1>Kontakt</h1>
+          <span>Jesteśmy tu, aby pomóc.</span>
+        </div>
+        <div className={styles.contentContainer}>
+          <div className={styles.textContent}>
+            <h2>Skontaktuj się z nami!</h2>
+            <p>
+              Masz jakieś pytania? Jesteśmy tutaj, aby pomóc. Wypełnij
+              formularz, wyślij e-mail lub zadzwoń.
+            </p>
+
+            <a href="https://maps.app.goo.gl/z7vsWmaorEjPrTQt5">
+              <span>{companyInfo.contact.adress}</span>
+            </a>
+            <a href="mailto:atprestigedance@gmail.com">
+              <span>{companyInfo.contact.email}</span>
+            </a>
+            <a href="tel:+48796934635">
+              <span>{companyInfo.contact.phoneNumber}</span>
+            </a>
+          </div>
+          <div className={styles.contactForm}>
+            <ContactForm />
+          </div>
+        </div>
+      </Container>
+      <MapComponent />
+    </section>
+  );
 };

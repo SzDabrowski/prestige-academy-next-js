@@ -1,11 +1,11 @@
 [
   {
-    "title": "Oferta",
-    "path": "/oferta"
-  },
-  {
     "title": "O nas",
     "path": "/o_nas"
+  },
+  {
+    "title": "Kontakt",
+    "path": "/kontakt"
   },
   {
     "title": "Kursy tańca",
@@ -13,11 +13,13 @@
     "children": [
       { "title": "Dorośli", "path": "/kursy/dorosli" },
       { "title": "Dzieci", "path": "/kursy/dzieci" },
-      { "title": "Pierwszy Taniec", "path": "/kursy/pierwszy_taniec" }
+      { "title": "Pierwszy Taniec", "path": "/kursy/pierwszy_taniec" },
+      { "title": "Grupy zlecone", "path": "/kursy/grupy_zlecone" },
+      { "title": "Zajęcia w przedszkolach", "path": "/kursy/przedszkola" }
     ]
   },
   {
-    "title": "Kontakt",
-    "path": "/kontakt"
+    "title": "Umowy",
+    "path": "/umowy"
   }
 ]

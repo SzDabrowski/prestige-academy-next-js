@@ -4,11 +4,9 @@ import Footer from "@/components/Footer/Footer";
 import AboutUs from "./(components)/AboutUsSection/AboutUs";
 
 export default function Home() {
-	return (
-		<main className={styles.main}>
-			<Header />
-			<AboutUs />
-			<Footer />
-		</main>
-	);
+  return (
+    <main className={styles.main}>
+      <AboutUs />
+    </main>
+  );
 }
