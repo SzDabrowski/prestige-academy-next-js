@@ -8,12 +8,9 @@ import { useRouter } from "next/router";
 export default function Home({ params }: { params: any }) {
   return (
     <main className={styles.main}>
-      <Header />
       <Container>
         <CoursesContent group={params.coursesFor} />
       </Container>
-
-      <Footer />
     </main>
   );
 }

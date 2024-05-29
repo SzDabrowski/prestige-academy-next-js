@@ -1,38 +1,28 @@
+@import "../../../../../styles/mixins.scss";
+@import "../../../../../styles/_colors.scss";
+
 .hero {
   width: 100%;
-  height: 70vh;
-  background-image: url("../../../../../assets/images/wedding.jpg");
+  height: 60vh;
+  background-image: url("/../../assets/images/wedding.jpg");
   background-size: cover;
   background-position: center;
 
-  .titleSection {
-    position: relative;
-    left: 0px;
-    top: 2%;
-    background-color: #fff;
-    padding: 1rem;
-    width: fit-content;
-    height: 96%;
-    width: 30%;
-    h1 {
-      font-size: 3rem;
-      text-transform: capitalize;
-      font-weight: 500;
-    }
-
-    h2 {
-      font-size: 2rem;
-      text-transform: capitalize;
-      font-weight: 500;
-    }
+  @include mobile {
+    height: 60vh;
   }
 }
 
 .title {
-  margin: 2rem;
-  margin-top: 5rem;
+  margin: auto;
+  margin: 6rem 0;
   text-align: center;
   padding: 0 20%;
+
+  @include mobile {
+    padding: 0;
+  }
+
   h1 {
     font-size: 3rem;
     text-transform: capitalize;
@@ -43,11 +33,11 @@
 .textContent {
   font-size: 1rem;
   text-align: center;
-  margin: 1rem 0;
 
   * {
-    margin: 1rem 0;
-    line-height: 1.75rem;
+    margin: 2rem 0;
+    line-height: 2.25rem;
+    letter-spacing: 1px;
     font-weight: 500;
   }
 
@@ -71,16 +61,45 @@
   height: 500px;
 }
 
-.formSection {
+.videoSection {
   padding: 3rem 0;
-  background-color: #fff;
+  background-color: rgb(56, 56, 59);
   color: #000;
   text-align: center;
-  height: 500px;
+  height: fit-content;
+
+  h2 {
+    font-size: 1.5rem;
+    color: #fff;
+    text-transform: capitalize;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
 
   .wrapper {
-    margin-top: 50px;
-    position: relative;
-    top: 80px;
+    margin: auto;
+    width: 60%;
+
+    @include mobile {
+      width: 70%;
+    }
+  }
+}
+
+.formWrapper {
+  padding: 5rem 15rem;
+  text-align: center;
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+
+    background: $grd-accents;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @include mobile {
+    padding: 5rem 0;
   }
 }
