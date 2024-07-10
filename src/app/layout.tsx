@@ -6,7 +6,6 @@ import "./globals.scss";
 import Footer from "@/components/Footer/Footer";
 import ChangeHeader from "./ChangeHeader";
 import Script from "next/script";
-import { NextScript } from "next/document";
 
 export default function RootLayout({
   children,
