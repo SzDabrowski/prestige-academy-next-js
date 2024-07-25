@@ -33,15 +33,6 @@ fbq('track', 'PageView');
       />
       <head>
         <title>Prestige</title>
-
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src={`https://www.facebook.com/tr?id=1968926770230087&ev=PageView&noscript=1`}
-          />
-        </noscript>
       </head>
       <body>
         <ChangeHeader />
