@@ -217,15 +217,6 @@ const PreschoolsForm = () => {
           </label>
         </div>
 
-        <div className={styles.capWrapper}>
-          <ReCAPTCHA
-            sitekey={process.env.NEXT_PUBLIC_RECAPTHCA_KEY || ""}
-            onChange={(val) => {
-              setCapVal;
-            }}
-          />
-        </div>
-
         <input
           className={styles.button}
           type="submit"
