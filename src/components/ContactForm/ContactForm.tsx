@@ -7,6 +7,8 @@ import { phoneNumberAutoFormat } from "@/utils/formUtils";
 import styles from "./ContactForm.module.scss";
 import TextArea from "../TextArea/TextArea";
 import { ChangeEvent, useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { TOAST_MESSAGE } from "@/lib/toastMessages";
 
 interface ContactFormInputs {
   courseName?: string;
@@ -52,33 +54,51 @@ export const ContactForm = (props: ContactForm) => {
 
   const onSubmit = async (data: ContactFormInputs, event?: any) => {
     event?.preventDefault();
-    console.log(data);
-    await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(data, null, 2),
-    })
-      .then(async (response) => {
-        let json = await response.json();
-        if (json.success) {
-          setIsSuccess(true);
-          setMessage(json.message);
-          event.target.reset();
-          reset();
-          setPhoneNumber("");
-        } else {
-          setIsSuccess(false);
-          setMessage(json.message);
-        }
+    const eventPromise = toast.promise(
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data, null, 2),
       })
-      .catch((error) => {
-        setIsSuccess(false);
-        setMessage("Client Error. Please check the console.log for more info");
-        console.log(error);
-      });
+        .then(async (response) => {
+          let json = await response.json();
+          if (json.success) {
+            setIsSuccess(true);
+            setMessage(json.message);
+            event.target.reset();
+            reset();
+            setPhoneNumber("");
+            return json.message; // Returning a success message for toast.promise
+          } else {
+            setIsSuccess(false);
+            setMessage(json.message);
+            throw new Error(json.message); // Throwing an error to trigger the reject state in toast.promise
+          }
+        })
+        .catch((error) => {
+          setIsSuccess(false);
+          setMessage(
+            "Client Error. Please check the console.log for more info"
+          );
+          console.log(error);
+          throw error; // Throwing error to trigger reject state in toast.promise
+        }),
+      {
+        loading: TOAST_MESSAGE.LOADING,
+        success: TOAST_MESSAGE.SUCCESS,
+        error: TOAST_MESSAGE.ERROR,
+      }
+    );
+
+    try {
+      await eventPromise; // Await the eventPromise to ensure proper flow control
+    } catch (error) {
+      // Handle any additional error logic if needed
+      console.error("Submission error:", error);
+    }
   };
 
   const onChangePhoneNumber = (e: ChangeEvent<HTMLInputElement>) => {
