@@ -6,11 +6,17 @@ import { useForm, SubmitHandler, useWatch } from "react-hook-form";
 
 import { checkIfCourseForPairs } from "@/utils/clientUtils";
 import { phoneNumberAutoFormat } from "@/utils/formUtils";
+import { verifyReCaptcha } from "@/utils/recaptchaUtils";
 
 import danceCourses from "@/data/danceCourses.json";
 
 import styles from "./CourseForm.module.scss";
 import ReCAPTCHA from "react-google-recaptcha";
+
+import toast, { Toaster } from "react-hot-toast";
+import { TOAST_MESSAGE } from "@/lib/toastMessages";
+import axios from "axios";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 interface FormInputs {
   selectedDanceCourse: string;
@@ -56,6 +62,8 @@ const CourseForm = (props: iCourseForm) => {
   const [Message, setMessage] = useState("");
   const [capVal, setCapVal] = useState(null);
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const {
     register,
     handleSubmit,
@@ -81,33 +89,53 @@ const CourseForm = (props: iCourseForm) => {
 
   const onSubmit = async (data: FormInputs, event?: any) => {
     event?.preventDefault();
-    console.log(data);
-    await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(data, null, 2),
-    })
-      .then(async (response) => {
-        let json = await response.json();
-        if (json.success) {
-          setIsSuccess(true);
-          setMessage(json.message);
-          event.target.reset();
-          reset();
-          setPhoneNumber("");
-        } else {
-          setIsSuccess(false);
-          setMessage(json.message);
-        }
+
+    const recaptchaRes = verifyReCaptcha(data, executeRecaptcha);
+
+    const eventPromise = toast.promise(
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data, null, 2),
       })
-      .catch((error) => {
-        setIsSuccess(false);
-        setMessage("Client Error. Please check the console.log for more info");
-        console.log(error);
-      });
+        .then(async (response) => {
+          let json = await response.json();
+          if (json.success) {
+            setIsSuccess(true);
+            setMessage(json.message);
+            event.target.reset();
+            reset();
+            setPhoneNumber("");
+            return json.message;
+          } else {
+            setIsSuccess(false);
+            setMessage(json.message);
+            throw new Error(json.message);
+          }
+        })
+        .catch((error) => {
+          setIsSuccess(false);
+          setMessage(
+            "Client Error. Please check the console.log for more info"
+          );
+          console.log(error);
+          throw error;
+        }),
+      {
+        loading: TOAST_MESSAGE.LOADING,
+        success: TOAST_MESSAGE.SUCCESS,
+        error: TOAST_MESSAGE.ERROR,
+      }
+    );
+
+    try {
+      await eventPromise;
+    } catch (error) {
+      console.error("Submission error:", error);
+    }
   };
 
   return (
@@ -257,6 +285,7 @@ const CourseForm = (props: iCourseForm) => {
             // disabled={!capVal}
           />
         </form>
+        <Toaster position="bottom-center" />
       </div>
     </div>
   );
