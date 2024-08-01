@@ -7,6 +7,7 @@ import Footer from "@/components/Footer/Footer";
 import ChangeHeader from "./ChangeHeader";
 import Script from "next/script";
 import GoogleCaptchaWrapper from "@/components/Recaptcha/GoogleCaptchaWrapper";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function RootLayout({
   children,
@@ -38,7 +39,7 @@ fbq('track', 'PageView');
       <body>
         <ChangeHeader />
         <GoogleCaptchaWrapper>{children}</GoogleCaptchaWrapper>
-
+        <Analytics />
         <Footer />
       </body>
     </html>
