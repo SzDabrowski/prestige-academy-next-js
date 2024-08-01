@@ -6,6 +6,7 @@ import "./globals.scss";
 import Footer from "@/components/Footer/Footer";
 import ChangeHeader from "./ChangeHeader";
 import Script from "next/script";
+import GoogleCaptchaWrapper from "@/components/Recaptcha/GoogleCaptchaWrapper";
 
 export default function RootLayout({
   children,
@@ -36,7 +37,8 @@ fbq('track', 'PageView');
       </head>
       <body>
         <ChangeHeader />
-        {children}
+        <GoogleCaptchaWrapper>{children}</GoogleCaptchaWrapper>
+
         <Footer />
       </body>
     </html>
