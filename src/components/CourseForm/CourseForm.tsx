@@ -6,6 +6,7 @@ import { useForm, SubmitHandler, useWatch } from "react-hook-form";
 
 import { checkIfCourseForPairs } from "@/utils/clientUtils";
 import { phoneNumberAutoFormat } from "@/utils/formUtils";
+import { verifyReCaptcha } from "@/utils/recaptchaUtils";
 
 import danceCourses from "@/data/danceCourses.json";
 
@@ -14,6 +15,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 import toast, { Toaster } from "react-hot-toast";
 import { TOAST_MESSAGE } from "@/lib/toastMessages";
+import axios from "axios";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 interface FormInputs {
   selectedDanceCourse: string;
@@ -59,6 +62,8 @@ const CourseForm = (props: iCourseForm) => {
   const [Message, setMessage] = useState("");
   const [capVal, setCapVal] = useState(null);
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const {
     register,
     handleSubmit,
@@ -84,6 +89,9 @@ const CourseForm = (props: iCourseForm) => {
 
   const onSubmit = async (data: FormInputs, event?: any) => {
     event?.preventDefault();
+
+    const recaptchaRes = verifyReCaptcha(data, executeRecaptcha);
+
     const eventPromise = toast.promise(
       fetch("https://api.web3forms.com/submit", {
         method: "POST",
