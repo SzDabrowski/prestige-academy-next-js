@@ -28,7 +28,14 @@ export const CourseContent = (props: iCourseContent) => {
         <div className={styles.textContent}>
           <span className={styles.danceGroup}>{`kursy/${props.group}`}</span>
           <h1>{props.data.title}</h1>
-          <p>{props.data.data.description}</p>
+          {typeof props.data.data.description === "object" ? (
+            Object.values(props.data.data.description).map(
+              (paragraph: any, index) => <p key={index}>{paragraph}</p>
+            )
+          ) : typeof props.data.data.description === "string" ? (
+            <p>{props.data.data.description}</p>
+          ) : null}
+
           {hasVideos ? (
             <div className={styles.videoContainer}>
               <span>Zobacz jak wygląda ten taniec:</span>
@@ -39,6 +46,16 @@ export const CourseContent = (props: iCourseContent) => {
           )}
         </div>
       </main>
+      <div className={styles.h2Wrapper}>
+        <div className={styles.wrapperInner}>
+          <h2>Zapisz się już dziś!</h2>
+          <p className={styles.timeInfo}>
+            Zajęcia w {props.data.data.timeInfo}
+          </p>
+        </div>
+      </div>
+      <div className={styles.timeInfo}></div>
+
       <div className={styles.contactWrapper}>
         <CourseForm selectedDanceCourse={props.data.title} />
       </div>
