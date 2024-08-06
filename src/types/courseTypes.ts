@@ -10,6 +10,7 @@ type data = {
   for: string;
   description: string;
   summary: string;
+  timeInfo: string;
 };
 
 export default courseData;
