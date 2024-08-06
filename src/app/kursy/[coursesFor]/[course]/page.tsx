@@ -7,7 +7,7 @@ import { CourseContent } from "./CourseContent/CourseContent";
 
 import courseData from "@/types/courseTypes";
 import danceCoursesJSON from "../../../../data/danceCourses.json";
-import { findCourseByTitle } from "../../../../utils/clientUtils";
+import { findCourseByTitle } from "@/utils/clientUtils";
 
 import { useRouter } from "next/router";
 import { useParams } from "next/navigation";

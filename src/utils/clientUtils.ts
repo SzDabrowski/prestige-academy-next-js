@@ -21,6 +21,7 @@ export function findCourseByTitle(
       for: "",
       description: "",
       summary: "",
+      timeInfo: "",
     },
   };
   json.forEach((item: courseData) => {

@@ -8,7 +8,7 @@ export type courseData = {
 
 type data = {
   for: string;
-  description: string;
+  description: string | object;
   summary: string;
   timeInfo: string;
 };
