@@ -49,9 +49,11 @@ export const CourseContent = (props: iCourseContent) => {
       <div className={styles.h2Wrapper}>
         <div className={styles.wrapperInner}>
           <h2>Zapisz się już dziś!</h2>
-          <p className={styles.timeInfo}>
-            Zajęcia w {props.data.data.timeInfo}
-          </p>
+          {props.data.data.timeInfo ? (
+            <p className={styles.timeInfo}>
+              Zajęcia w {props.data.data.timeInfo}
+            </p>
+          ) : null}
         </div>
       </div>
       <div className={styles.timeInfo}></div>
