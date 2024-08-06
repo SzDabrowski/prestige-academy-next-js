@@ -5,7 +5,7 @@ import CourseForm from "@/components/CourseForm/CourseForm";
 import courseData from "@/types/courseTypes";
 import Image from "next/image";
 import { useState } from "react";
-import mapCourseToPhoto from "@/utils/coursePhotoMapper";
+import mapCourseToPhoto from "../../../../../utils/coursePhotoMapper";
 interface iCourseContent {
   data: courseData;
   group: string;

@@ -4,8 +4,8 @@ import styles from "./ClassSummary.module.scss";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
-import { toCamelCase } from "@/utils/clientUtils";
-import { getImageURL } from "@/utils/imageUtils";
+import { toCamelCase } from "../../utils/clientUtils";
+import { getImageURL } from "../../utils/imageUtils";
 import { courseForEnum } from "@/lib/enums";
 
 interface iClassSummary {

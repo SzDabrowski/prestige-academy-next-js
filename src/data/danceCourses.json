@@ -1,6 +1,26 @@
 [
   {
-    "title": "Bachata",
+    "title": "Bachata Solo",
+    "pair": false,
+    "img": "",
+    "data": {
+      "for": "dorosli",
+      "description": "Taniec pełen zmysłowych ruchów, uwodzicielski, a zarazem subtelny, podczas którego partnerzy tańczą bardzo blisko, cały czas współpracując ze sobą. Jest świetnym sposobem na zbliżenie się z partnerem, poprawę samopoczucia oraz utratę zbędnych kilogramów.",
+      "summary": "Zmysłowy taniec pełen bliskości i subtelności. Poprawia samopoczucie i kondycję."
+    }
+  },
+  {
+    "title": "Bachata w parach",
+    "pair": true,
+    "img": "",
+    "data": {
+      "for": "dorosli",
+      "description": "Taniec pełen zmysłowych ruchów, uwodzicielski, a zarazem subtelny, podczas którego partnerzy tańczą bardzo blisko, cały czas współpracując ze sobą. Jest świetnym sposobem na zbliżenie się z partnerem, poprawę samopoczucia oraz utratę zbędnych kilogramów.",
+      "summary": "Zmysłowy taniec pełen bliskości i subtelności. Poprawia samopoczucie i kondycję."
+    }
+  },
+  {
+    "title": "Salsa Solo",
     "pair": false,
     "img": "",
     "data": {
