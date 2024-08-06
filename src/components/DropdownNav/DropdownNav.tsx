@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { menuItem } from "@/types/headerTypes";
 import ArrowIcon from "../icons/ArrowIcon/ArrowIcon";
-import { checkIfInMobileView } from "@/utils/clientUtils";
+import { checkIfInMobileView } from "../../utils/clientUtils";
 import Link from "next/link";
 
 import styles from "./DropdownNav.module.scss";
@@ -24,7 +24,6 @@ const DropDownNav = ({
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
   const handleMouseEnter = () => {
-    console.log(checkIfInMobileView());
     if (!checkIfInMobileView()) {
       setIsOpen(true);
     }

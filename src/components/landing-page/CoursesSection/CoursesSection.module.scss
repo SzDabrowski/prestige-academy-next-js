@@ -89,7 +89,7 @@
     }
 
     .preschools {
-      background-image: url("../../../../public/assets/images/preschool.webp");
+      background-image: url("../../../../public/assets/images/preschool.jpg");
     }
 
     .wide {
@@ -98,7 +98,8 @@
 
     .adults,
     .kids,
-    .wedding {
+    .wedding,
+    .preschools {
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
