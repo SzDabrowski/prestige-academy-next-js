@@ -16,8 +16,15 @@ interface iClassSummary {
 
 interface classData {
   for: string;
-  description: string;
+  description: string | descriptionObject;
   summary: string;
+}
+
+interface descriptionObject {
+  p1: string;
+  p2: string;
+  p3: string;
+  p4?: string;
 }
 
 import CoursesData from "../../data/danceCourses.json";

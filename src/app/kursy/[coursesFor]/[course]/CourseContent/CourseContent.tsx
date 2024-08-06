@@ -32,9 +32,9 @@ export const CourseContent = (props: iCourseContent) => {
             Object.values(props.data.data.description).map(
               (paragraph: any, index) => <p key={index}>{paragraph}</p>
             )
-          ) : typeof props.data.data.description === "string" ? (
+          ) : (
             <p>{props.data.data.description}</p>
-          ) : null}
+          )}
 
           {hasVideos ? (
             <div className={styles.videoContainer}>
