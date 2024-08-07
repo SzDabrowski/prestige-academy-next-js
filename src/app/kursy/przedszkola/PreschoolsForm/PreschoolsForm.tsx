@@ -4,7 +4,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { DropdownSelect } from "@/components/DropdownSelect/DropdownSelect";
 import { useForm, SubmitHandler, useWatch } from "react-hook-form";
 
-import { phoneNumberAutoFormat } from "@/utils/formUtils";
+import { phoneNumberAutoFormat } from "../../../../utils/formUtils";
 
 import preschoolsData from "@/data/preschools.json";
 

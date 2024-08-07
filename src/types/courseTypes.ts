@@ -1,6 +1,5 @@
 export type courseData = {
   title: string;
-
   img: string;
   data: data;
   pair?: boolean;
@@ -8,8 +7,16 @@ export type courseData = {
 
 type data = {
   for: string;
-  description: string;
+  description: string | descriptionObject;
   summary: string;
+  timeInfo?: string | descriptionObject;
+};
+
+type descriptionObject = {
+  p1?: string;
+  p2?: string;
+  p3?: string;
+  p4?: string;
 };
 
 export default courseData;

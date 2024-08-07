@@ -2,7 +2,7 @@ import styles from "./CoursesContent.module.scss";
 import { ClassSummary } from "@/components/ClassSummary/ClassSummary";
 import danceCourses from "../../../../data/danceCourses.json";
 import { courseForEnum } from "@/lib/enums";
-import mapCourseToPhoto from "@/utils/coursePhotoMapper";
+import mapCourseToPhoto from "../../../../utils/coursePhotoMapper";
 
 interface iCoursesContent {
   group: string;

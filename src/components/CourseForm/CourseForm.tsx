@@ -4,9 +4,9 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { DropdownSelect } from "@/components/DropdownSelect/DropdownSelect";
 import { useForm, SubmitHandler, useWatch } from "react-hook-form";
 
-import { checkIfCourseForPairs } from "@/utils/clientUtils";
-import { phoneNumberAutoFormat } from "@/utils/formUtils";
-import { verifyReCaptcha } from "@/utils/recaptchaUtils";
+import { checkIfCourseForPairs } from "../../utils/clientUtils";
+import { phoneNumberAutoFormat } from "../../utils/formUtils";
+import { verifyReCaptcha } from "../../utils/recaptchaUtils";
 
 import danceCourses from "@/data/danceCourses.json";
 
