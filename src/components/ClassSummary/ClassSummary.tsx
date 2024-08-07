@@ -4,8 +4,8 @@ import styles from "./ClassSummary.module.scss";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
-import { toCamelCase } from "@/utils/clientUtils";
-import { getImageURL } from "@/utils/imageUtils";
+import { toCamelCase } from "../../utils/clientUtils";
+import { getImageURL } from "../../utils/imageUtils";
 import { courseForEnum } from "@/lib/enums";
 
 interface iClassSummary {
@@ -16,8 +16,16 @@ interface iClassSummary {
 
 interface classData {
   for: string;
-  description: string;
+  description: string | descriptionObject;
   summary: string;
+  timeInfo?: string | descriptionObject;
+}
+
+interface descriptionObject {
+  p1: string;
+  p2: string;
+  p3: string;
+  p4?: string;
 }
 
 import CoursesData from "../../data/danceCourses.json";

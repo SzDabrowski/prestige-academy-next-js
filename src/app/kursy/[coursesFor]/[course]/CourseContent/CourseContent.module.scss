@@ -68,6 +68,7 @@
       font-size: 1.125rem;
       line-height: 1.5rem;
       letter-spacing: 1px;
+      margin-bottom: 1rem;
     }
   }
 }
@@ -87,6 +88,48 @@
     aspect-ratio: 16/9;
     background-color: #000;
     margin-bottom: 0;
+  }
+}
+
+.h2Wrapper {
+  width: 100%;
+  margin-top: 4rem;
+
+  .wrapperInner {
+    width: fit-content;
+    margin: auto;
+
+    @include mobile {
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 2rem;
+
+      @include mobile {
+        margin-left: 1rem;
+      }
+
+      &::after {
+        content: "";
+        position: relative;
+        top: -5px;
+        left: -55px;
+        display: block;
+        width: 90px;
+        height: 10px;
+        background-color: $clr-logo-main;
+        transform: rotate(90deg);
+      }
+    }
+
+    .timeInfo {
+      width: fit-content;
+      color: grey;
+      @include mobile {
+        padding-left: 1rem;
+      }
+    }
   }
 }
 

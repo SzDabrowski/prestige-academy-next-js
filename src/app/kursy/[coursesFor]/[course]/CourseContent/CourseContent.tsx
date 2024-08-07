@@ -5,7 +5,7 @@ import CourseForm from "@/components/CourseForm/CourseForm";
 import courseData from "@/types/courseTypes";
 import Image from "next/image";
 import { useState } from "react";
-import mapCourseToPhoto from "@/utils/coursePhotoMapper";
+import mapCourseToPhoto from "../../../../../utils/coursePhotoMapper";
 interface iCourseContent {
   data: courseData;
   group: string;
@@ -28,7 +28,14 @@ export const CourseContent = (props: iCourseContent) => {
         <div className={styles.textContent}>
           <span className={styles.danceGroup}>{`kursy/${props.group}`}</span>
           <h1>{props.data.title}</h1>
-          <p>{props.data.data.description}</p>
+          {typeof props.data.data.description === "object" ? (
+            Object.values(props.data.data.description).map(
+              (paragraph: any, index) => <p key={index}>{paragraph}</p>
+            )
+          ) : (
+            <p>{props.data.data.description}</p>
+          )}
+
           {hasVideos ? (
             <div className={styles.videoContainer}>
               <span>Zobacz jak wygląda ten taniec:</span>
@@ -39,6 +46,28 @@ export const CourseContent = (props: iCourseContent) => {
           )}
         </div>
       </main>
+      <div className={styles.h2Wrapper}>
+        <div className={styles.wrapperInner}>
+          <h2>Zapisz się już dziś!</h2>
+          {props.data.data.timeInfo ? (
+            typeof props.data.data.timeInfo === "object" ? (
+              Object.values(props.data.data.timeInfo).map(
+                (paragraph: any, index) => (
+                  <p className={styles.timeInfo} key={index}>
+                    {paragraph}
+                  </p>
+                )
+              )
+            ) : (
+              <p className={styles.timeInfo}>
+                Zajęcia w {props.data.data.timeInfo}
+              </p>
+            )
+          ) : null}
+        </div>
+      </div>
+      <div className={styles.timeInfo}></div>
+
       <div className={styles.contactWrapper}>
         <CourseForm selectedDanceCourse={props.data.title} />
       </div>

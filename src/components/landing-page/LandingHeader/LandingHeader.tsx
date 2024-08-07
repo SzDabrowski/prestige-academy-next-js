@@ -6,7 +6,7 @@ import { Container } from "@/components/Container/Container";
 import { menuItem } from "@/types/headerTypes";
 import { Fade as Hamburger } from "hamburger-react";
 import { useEffect, useState } from "react";
-import { checkIfInMobileView } from "@/utils/clientUtils";
+import { checkIfInMobileView } from "../../../utils/clientUtils";
 import { PrestigeLogoIcon } from "@/components/icons/LogoIcon/PrestigeLogoIcon";
 
 import styles from "./LandingHeader.module.scss";
