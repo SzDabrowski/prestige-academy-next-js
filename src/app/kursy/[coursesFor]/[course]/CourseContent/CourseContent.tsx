@@ -50,9 +50,19 @@ export const CourseContent = (props: iCourseContent) => {
         <div className={styles.wrapperInner}>
           <h2>Zapisz się już dziś!</h2>
           {props.data.data.timeInfo ? (
-            <p className={styles.timeInfo}>
-              Zajęcia w {props.data.data.timeInfo}
-            </p>
+            typeof props.data.data.timeInfo === "object" ? (
+              Object.values(props.data.data.timeInfo).map(
+                (paragraph: any, index) => (
+                  <p className={styles.timeInfo} key={index}>
+                    {paragraph}
+                  </p>
+                )
+              )
+            ) : (
+              <p className={styles.timeInfo}>
+                Zajęcia w {props.data.data.timeInfo}
+              </p>
+            )
           ) : null}
         </div>
       </div>

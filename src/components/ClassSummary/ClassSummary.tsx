@@ -18,6 +18,7 @@ interface classData {
   for: string;
   description: string | descriptionObject;
   summary: string;
+  timeInfo?: string | descriptionObject;
 }
 
 interface descriptionObject {

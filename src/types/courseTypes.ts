@@ -9,7 +9,7 @@ type data = {
   for: string;
   description: string | descriptionObject;
   summary: string;
-  timeInfo?: string;
+  timeInfo?: string | descriptionObject;
 };
 
 type descriptionObject = {
