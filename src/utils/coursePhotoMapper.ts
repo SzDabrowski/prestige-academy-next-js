@@ -1,5 +1,5 @@
 import clipDance from "../../public/assets/images/courses/clip.jpg";
-import bachata from "../../public/assets/images/courses/bachata.jpg";
+import bachata from "../../public/assets/images/courses/bachataSolo.jpg";
 import bachataPair from "../../public/assets/images/courses/bachataPara.jpg";
 import kids from "../../public/assets/images/courses/kids.jpg";
 import kidsPair from "../../public/assets/images/courses/towarzyskiDzieci.jpg";
