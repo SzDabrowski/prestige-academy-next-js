@@ -1,7 +1,7 @@
 [
   {
-    "title": "Bachata Solo",
-    "pair": false,
+    "title": "Bachata w parach",
+    "pair": true,
     "img": "",
     "data": {
       "for": "dorosli",
@@ -11,8 +11,8 @@
     }
   },
   {
-    "title": "Bachata w parach",
-    "pair": true,
+    "title": "Bachata Solo",
+    "pair": false,
     "img": "",
     "data": {
       "for": "dorosli",
@@ -38,17 +38,18 @@
         "p4": "- Zajęcia pełne energii: Każda lekcja to nie tylko nauka kroków, ale również świetna zabawa! Muzyka, rytm i taniec sprawią, że zapomnisz o codziennych troskach."
       },
       "summary": "Czy marzysz o tym, by poczuć radość tańca i przełamać rutynę? Dołącz do nas na wyjątkowe zajęcia salsy, które przeniosą Cię w świat pasji, energii i radości!",
-      "timeInfo": "Czwartki godz. 19:00 - 19:55"
+      "timeInfo": "Środy godz. 19:00 - 19:55"
     }
   },
   {
-    "title": "Ladies Styling",
+    "title": "High Heels",
     "pair": false,
     "img": "",
     "data": {
       "for": "dorosli",
-      "description": "Zajęcia stworzone specjalnie z myślą o paniach, które chcą poprawić ruch swojego ciała, wzmocnić mięśnie, poprawić swoją formę oraz pewność siebie! Kurs odbywa się w towarzystwie latynoskich rytmów, na sali, na której prócz instruktorki i innych kursantek nie ma nikogo, co pozwala poczuć się swobodnie.",
-      "summary": "Zajęcia dla pań, wzmacniające ciało i pewność siebie przy latynoskich rytmach."
+      "description": "Zapraszamy na wyjątkowe zajęcia z High Heels, które łączą elegancję z pewnością siebie! Podczas tych spotkań nauczysz się sztuki chodzenia w wysokich obcasach, poprawiając swoją postawę, równowagę i koordynację ruchową. Nasza doświadczona instruktorka wprowadzi Cię w świat tańca i stylizacji, oferując cenne wskazówki, jak podkreślić swoją kobiecość w tańcu i wygodnie poruszać się w obuwiu na obcasie. Dołącz do nas, aby zyskać nowe umiejętności, spotkać inspirujące kobiety i dobrze się bawić w przyjaznej atmosferze!",
+      "summary": "Zajęcia dla pań, wzmacniające ciało i pewność siebie przy latynoskich rytmach.",
+      "timeInfo": "Czwartki 19:00-19:55"
     }
   },
   {
@@ -59,7 +60,11 @@
       "for": "dorosli",
       "description": "Zajęcia taneczne dedykowane przede wszystkim do pań, które pragną wzmocnić swoją pewność siebie i odkryć na nowo kobiecość. Lekcje tańca latino solo łączą w sobie zmysłowość, pasję i ekspresję. Uczestniczki zajęć zapoznają się z podstawowymi krokami tańców latynoamerykańskich takich jak Cha-cha, samba, rumba, jive oraz Salsa czy bachata.",
       "summary": "Zmysłowe zajęcia dla pań, rozwijające pewność siebie i ekspresję poprzez taniec.",
-      "timeInfo": "Środy 18:00 - 18:55"
+      "timeInfo": {
+        "p1": "gr. podstawowa Wtorki 18:00 - 18:55",
+        "p2": "gr. początkująca Wtorki 19.00-19:55",
+        "p3": "gr. zaawansowana Środy 18:00-18:55"
+      }
     }
   },
   {
@@ -73,17 +78,35 @@
     }
   },
   {
-    "title": "Taniec dla dzieci 4-11 lat",
+    "title": "Prestige Kids 3-4 lata",
     "pair": false,
     "img": "",
     "data": {
       "for": "dzieci",
-      "description": "Dzieci w wieku 4-5 lat oraz 6-7 lat uczestniczą w zajęciach, które rozwijają aktywność ruchową, umiejętność pracy w grupie, pewność siebie, wrażliwość i umiejętność rozróżniania dźwięków. Nauka elementów tańca towarzyskiego, klasyki, disco oraz innych form tanecznych przygotowuje dzieci do występów zespołowych i parami.",
+      "description": {
+        "p1": "Dzieci  uczestniczą w zajęciach, które rozwijają aktywność ruchową, umiejętność pracy w grupie, pewność siebie, wrażliwość i umiejętność rozróżniania dźwięków.",
+        "p2": "Nauka elementów tańca towarzyskiego, klasyki, disco oraz innych form tanecznych przygotowuje dzieci do występów zespołowych i parami.",
+        "p3": "Ubiór: Obuwie na miekkiej podeszwie najlepiej baletki, dziewczynki różowe spódniczki białe bluzeczki, chłopcy ciemne spodnie, białe koszulki"
+      },
       "summary": "Zajęcia taneczne dla dzieci, rozwijające aktywność, pewność siebie i umiejętności społeczne."
     }
   },
   {
-    "title": "Video Klip Dance",
+    "title": "Prestige Junior 5-7 lat",
+    "pair": false,
+    "img": "",
+    "data": {
+      "for": "dzieci",
+      "description": {
+        "p1": "Dzieci  uczestniczą w zajęciach, które rozwijają aktywność ruchową, umiejętność pracy w grupie, pewność siebie, wrażliwość i umiejętność rozróżniania dźwięków.",
+        "p2": "Nauka elementów tańca towarzyskiego, klasyki, disco oraz innych form tanecznych przygotowuje dzieci do występów zespołowych i parami.",
+        "p3": "Ubiór: Obuwie na miekkiej podeszwie najlepiej baletki, dziewczynki różowe spódniczki białe bluzeczki, chłopcy ciemne spodnie, białe koszulki"
+      },
+      "summary": "Zajęcia taneczne dla dzieci, rozwijające aktywność, pewność siebie i umiejętności społeczne."
+    }
+  },
+  {
+    "title": "Video Klip 8 - 11 lat",
     "img": "",
     "data": {
       "for": "dzieci",
