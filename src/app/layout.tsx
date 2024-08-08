@@ -8,6 +8,7 @@ import ChangeHeader from "./ChangeHeader";
 import Script from "next/script";
 import GoogleCaptchaWrapper from "@/components/Recaptcha/GoogleCaptchaWrapper";
 import { Analytics } from "@vercel/analytics/react";
+import icon from "../../public/assets/images/logo/prestigeLogoOnly.png";
 
 export default function RootLayout({
   children,
@@ -35,6 +36,7 @@ fbq('track', 'PageView');
       />
       <head>
         <title>Prestige</title>
+        <link rel="icon" href={icon.src} sizes="" />
       </head>
       <body>
         <ChangeHeader />
