@@ -60,7 +60,7 @@ export const CourseContent = (props: iCourseContent) => {
               )
             ) : (
               <p className={styles.timeInfo}>
-                Zajęcia w {props.data.data.timeInfo}
+                Zajęcia {props.data.data.timeInfo}
               </p>
             )
           ) : null}
