@@ -22,10 +22,9 @@ interface classData {
 }
 
 interface descriptionObject {
-  p1: string;
-  p2: string;
-  p3: string;
-  p4?: string;
+  p1?: string;
+  p2?: string;
+  p3?: string;
 }
 
 import CoursesData from "../../data/danceCourses.json";
