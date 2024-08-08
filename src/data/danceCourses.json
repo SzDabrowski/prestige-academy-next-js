@@ -7,7 +7,10 @@
       "for": "dorosli",
       "description": "Taniec pełen zmysłowych ruchów, uwodzicielski, a zarazem subtelny, podczas którego partnerzy tańczą bardzo blisko, cały czas współpracując ze sobą. Jest świetnym sposobem na zbliżenie się z partnerem, poprawę samopoczucia oraz utratę zbędnych kilogramów.",
       "summary": "Zmysłowy taniec pełen bliskości i subtelności. Poprawia samopoczucie i kondycję.",
-      "timeInfo": "Czwartki godz. 19:00 - 19:45"
+      "timeInfo": {
+        "p1": "zajęcia w poniedziałki gr. Poziom P2 18.00-19.00",
+        "p2": "gr. Początkująca 19.10-20:10"
+      }
     }
   },
   {
@@ -22,7 +25,7 @@
         "p3": "Niezależnie od poziomu zaawansowania, nasza doświadczona kadra nauczycielska pomoże Ci opanować kroki i figury bachaty w przyjaznej atmosferze. Spotkasz pasjonatów tańca i zawrzesz nowe znajomości w gronie osób o podobnych zainteresowaniach. Tańcząc, poprawisz swoją kondycję, ruch oraz samopoczucie. To doskonała forma aktywności fizycznej!"
       },
       "summary": "Nie czekaj – złap za rękę przyjaciółkę lub przyjaciela i zapiszcie się na nasze zajęcia bachaty! Przekonajcie się, jak wiele radości może przynieść taniec.",
-      "timeInfo": "Poniedziałki godz. 18:00 - 19:00"
+      "timeInfo": "w Czwartki 18:00-18:55"
     }
   },
   {
@@ -38,7 +41,7 @@
         "p4": "- Zajęcia pełne energii: Każda lekcja to nie tylko nauka kroków, ale również świetna zabawa! Muzyka, rytm i taniec sprawią, że zapomnisz o codziennych troskach."
       },
       "summary": "Czy marzysz o tym, by poczuć radość tańca i przełamać rutynę? Dołącz do nas na wyjątkowe zajęcia salsy, które przeniosą Cię w świat pasji, energii i radości!",
-      "timeInfo": "Środy godz. 19:00 - 19:55"
+      "timeInfo": "w Czwartki godz. 19:00 - 19:55"
     }
   },
   {
@@ -49,7 +52,7 @@
       "for": "dorosli",
       "description": "Zapraszamy na wyjątkowe zajęcia z High Heels, które łączą elegancję z pewnością siebie! Podczas tych spotkań nauczysz się sztuki chodzenia w wysokich obcasach, poprawiając swoją postawę, równowagę i koordynację ruchową. Nasza doświadczona instruktorka wprowadzi Cię w świat tańca i stylizacji, oferując cenne wskazówki, jak podkreślić swoją kobiecość w tańcu i wygodnie poruszać się w obuwiu na obcasie. Dołącz do nas, aby zyskać nowe umiejętności, spotkać inspirujące kobiety i dobrze się bawić w przyjaznej atmosferze!",
       "summary": "Zajęcia dla pań, wzmacniające ciało i pewność siebie przy latynoskich rytmach.",
-      "timeInfo": "Czwartki 19:00-19:55"
+      "timeInfo": "w Środy 19:00-19:55"
     }
   },
   {
@@ -61,7 +64,7 @@
       "description": "Zajęcia taneczne dedykowane przede wszystkim do pań, które pragną wzmocnić swoją pewność siebie i odkryć na nowo kobiecość. Lekcje tańca latino solo łączą w sobie zmysłowość, pasję i ekspresję. Uczestniczki zajęć zapoznają się z podstawowymi krokami tańców latynoamerykańskich takich jak Cha-cha, samba, rumba, jive oraz Salsa czy bachata.",
       "summary": "Zmysłowe zajęcia dla pań, rozwijające pewność siebie i ekspresję poprzez taniec.",
       "timeInfo": {
-        "p1": "gr. podstawowa Wtorki 18:00 - 18:55",
+        "p1": "gr. średniozaawansowana Wtorki 18:00 - 18:55",
         "p2": "gr. początkująca Wtorki 19.00-19:55",
         "p3": "gr. zaawansowana Środy 18:00-18:55"
       }
@@ -122,7 +125,7 @@
       "for": "dorosli",
       "description": "Dla dorosłych, którzy kochają taniec i ruch, sportowy taniec towarzyski jest właśnie dla nich! Zajęcia prowadzone są przez doświadczonych instruktorów, którzy dbają o rozwijanie umiejętności tanecznych w przyjaznej i wspierającej atmosferze. Uczestnicy nie tylko poprawią swoją kondycję fizyczną, ale także rozwinięcie wyobraźni i twórczego myślenia.",
       "summary": "Zajęcia dla dorosłych, rozwijające umiejętności taneczne i kondycję w przyjaznej atmosferze.",
-      "timeInfo": "Wtorki 20:10 - 21:25"
+      "timeInfo": "we Wtorki 20:10 - 21:25"
     }
   }
 ]
