@@ -22,6 +22,7 @@ export function findCourseByTitle(
       description: "",
       summary: "",
       timeInfo: "",
+      recruitment: false,
     },
   };
   json.forEach((item: courseData) => {
