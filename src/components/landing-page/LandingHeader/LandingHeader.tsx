@@ -8,6 +8,7 @@ import { Fade as Hamburger } from "hamburger-react";
 import { useEffect, useState } from "react";
 import { checkIfInMobileView } from "../../../utils/clientUtils";
 import { PrestigeLogoIcon } from "@/components/icons/LogoIcon/PrestigeLogoIcon";
+import NotificationBar from "@/components/NotificationBar/NotificationBar";
 
 import styles from "./LandingHeader.module.scss";
 
@@ -29,34 +30,37 @@ const LandingHeader = () => {
   });
 
   return (
-    <header
-      className={`${styles.header} ${
-        isScrolling || isOpenHamb ? styles.moving : ``
-      }`}
-    >
-      <Container>
-        <div className={styles.headerContainer}>
-          <div className={styles.mobileContainer}>
-            <a href="#" className={styles.logo}>
-              <PrestigeLogoIcon
-                textfillColor={isScrolling || isOpenHamb ? "#000" : "#fff"}
-              />
-            </a>
-            <div className={styles.hamburgerWrapper}>
-              <Hamburger
-                toggled={isOpenHamb}
-                size={40}
-                color={isScrolling || isOpenHamb ? "#000" : "#fff"}
-                toggle={() => {
-                  setOpenHamb(!isOpenHamb);
-                }}
-              />
+    <div className={styles.headerWrapper}>
+      <NotificationBar />
+      <header
+        className={`${styles.header} ${
+          isScrolling || isOpenHamb ? styles.moving : ``
+        }`}
+      >
+        <Container>
+          <div className={styles.headerContainer}>
+            <div className={styles.mobileContainer}>
+              <a href="#" className={styles.logo}>
+                <PrestigeLogoIcon
+                  textfillColor={isScrolling || isOpenHamb ? "#000" : "#fff"}
+                />
+              </a>
+              <div className={styles.hamburgerWrapper}>
+                <Hamburger
+                  toggled={isOpenHamb}
+                  size={40}
+                  color={isScrolling || isOpenHamb ? "#000" : "#fff"}
+                  toggle={() => {
+                    setOpenHamb(!isOpenHamb);
+                  }}
+                />
+              </div>
             </div>
+            <Navbar isHamburgerOpen={isOpenHamb} />
           </div>
-          <Navbar isHamburgerOpen={isOpenHamb} />
-        </div>
-      </Container>
-    </header>
+        </Container>
+      </header>
+    </div>
   );
 };
 
