@@ -9,6 +9,7 @@ import Script from "next/script";
 import GoogleCaptchaWrapper from "@/components/Recaptcha/GoogleCaptchaWrapper";
 import { Analytics } from "@vercel/analytics/react";
 import icon from "../../public/assets/images/logo/prestigeLogoOnly.png";
+import NotificationBar from "@/components/NotificationBar/NotificationBar";
 
 export default function RootLayout({
   children,
@@ -38,6 +39,7 @@ fbq('track', 'PageView');
         <title>Prestige</title>
         <link rel="icon" href={icon.src} sizes="" />
       </head>
+
       <body>
         <ChangeHeader />
         <GoogleCaptchaWrapper>{children}</GoogleCaptchaWrapper>
