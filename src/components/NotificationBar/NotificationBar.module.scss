@@ -1,0 +1,47 @@
+@import "../../styles/colors.scss";
+
+.mainContainer {
+  width: 100%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.messageContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background: $grd-accents !important;
+  padding: 5px 0;
+  text-align: center;
+
+  p {
+    flex-grow: 1;
+    color: white !important;
+  }
+
+  button {
+    background: transparent;
+    color: white !important;
+    border: none;
+    box-shadow: none;
+    padding-right: 10px;
+    font-size: 1rem;
+  }
+}
+
+.imageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: hsla(204, 8%, 76%, 0.85);
+  z-index: 912;
+  display: flex;
+  justify-content: center;
+  overflow-y: hidden !important;
+
+  .wrapper {
+    margin: auto;
+  }
+}

@@ -17,9 +17,5 @@
       { "title": "Grupy zlecone", "path": "/kursy/grupy_zlecone" },
       { "title": "Zajęcia w przedszkolach", "path": "/kursy/przedszkola" }
     ]
-  },
-  {
-    "title": "Umowy",
-    "path": "/umowy"
   }
 ]

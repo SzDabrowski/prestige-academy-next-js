@@ -10,6 +10,7 @@ type data = {
   description: string | descriptionObject;
   summary: string;
   timeInfo?: string | descriptionObject;
+  recruitment: boolean;
 };
 
 type descriptionObject = {
