@@ -10,7 +10,8 @@
       "timeInfo": {
         "p1": "zajęcia w poniedziałki gr. Poziom P2 18.00-19.00",
         "p2": "gr. Początkująca 19.10-20:10"
-      }
+      },
+      "recruitment": true
     }
   },
   {
@@ -25,7 +26,8 @@
         "p3": "Niezależnie od poziomu zaawansowania, nasza doświadczona kadra nauczycielska pomoże Ci opanować kroki i figury bachaty w przyjaznej atmosferze. Spotkasz pasjonatów tańca i zawrzesz nowe znajomości w gronie osób o podobnych zainteresowaniach. Tańcząc, poprawisz swoją kondycję, ruch oraz samopoczucie. To doskonała forma aktywności fizycznej!"
       },
       "summary": "Nie czekaj – złap za rękę przyjaciółkę lub przyjaciela i zapiszcie się na nasze zajęcia bachaty! Przekonajcie się, jak wiele radości może przynieść taniec.",
-      "timeInfo": "w Czwartki 18:00-18:55"
+      "timeInfo": "w Czwartki 18:00-18:55",
+      "recruitment": true
     }
   },
   {
@@ -41,7 +43,8 @@
         "p4": "- Zajęcia pełne energii: Każda lekcja to nie tylko nauka kroków, ale również świetna zabawa! Muzyka, rytm i taniec sprawią, że zapomnisz o codziennych troskach."
       },
       "summary": "Czy marzysz o tym, by poczuć radość tańca i przełamać rutynę? Dołącz do nas na wyjątkowe zajęcia salsy, które przeniosą Cię w świat pasji, energii i radości!",
-      "timeInfo": "w Czwartki godz. 19:00 - 19:55"
+      "timeInfo": "w Czwartki godz. 19:00 - 19:55",
+      "recruitment": true
     }
   },
   {
@@ -52,7 +55,8 @@
       "for": "dorosli",
       "description": "Zapraszamy na wyjątkowe zajęcia z High Heels, które łączą elegancję z pewnością siebie! Podczas tych spotkań nauczysz się sztuki chodzenia w wysokich obcasach, poprawiając swoją postawę, równowagę i koordynację ruchową. Nasza doświadczona instruktorka wprowadzi Cię w świat tańca i stylizacji, oferując cenne wskazówki, jak podkreślić swoją kobiecość w tańcu i wygodnie poruszać się w obuwiu na obcasie. Dołącz do nas, aby zyskać nowe umiejętności, spotkać inspirujące kobiety i dobrze się bawić w przyjaznej atmosferze!",
       "summary": "Zajęcia dla pań, wzmacniające ciało i pewność siebie przy latynoskich rytmach.",
-      "timeInfo": "w Środy 19:00-19:55"
+      "timeInfo": "w Środy 19:00-19:55",
+      "recruitment": true
     }
   },
   {
@@ -67,7 +71,8 @@
         "p1": "gr. średniozaawansowana Wtorki 18:00 - 18:55",
         "p2": "gr. początkująca Wtorki 19.00-19:55",
         "p3": "gr. zaawansowana Środy 18:00-18:55"
-      }
+      },
+      "recruitment": true
     }
   },
   {
@@ -77,7 +82,8 @@
     "data": {
       "for": "dzieci",
       "description": "Dla dzieci, które kochają taniec i ruch, sportowy taniec towarzyski jest właśnie dla nich! Zajęcia prowadzone są przez doświadczonych instruktorów, którzy dbają o rozwijanie umiejętności tanecznych w przyjaznej i wspierającej atmosferze. Dziecko nie tylko poprawi swoją kondycję fizyczną, ale także rozwinięcie wyobraźni i twórczego myślenia.",
-      "summary": "Zajęcia dla dzieci, rozwijające umiejętności taneczne i kondycję w przyjaznej atmosferze."
+      "summary": "Zajęcia dla dzieci, rozwijające umiejętności taneczne i kondycję w przyjaznej atmosferze.",
+      "recruitment": false
     }
   },
   {
@@ -91,7 +97,9 @@
         "p2": "Nauka elementów tańca towarzyskiego, klasyki, disco oraz innych form tanecznych przygotowuje dzieci do występów zespołowych i parami.",
         "p3": "Ubiór: Obuwie na miekkiej podeszwie najlepiej baletki, dziewczynki różowe spódniczki białe bluzeczki, chłopcy ciemne spodnie, białe koszulki"
       },
-      "summary": "Zajęcia taneczne dla dzieci, rozwijające aktywność, pewność siebie i umiejętności społeczne."
+      "summary": "Zajęcia taneczne dla dzieci, rozwijające aktywność, pewność siebie i umiejętności społeczne.",
+      "timeInfo": "Wtorki 17:00-17:45",
+      "recruitment": true
     }
   },
   {
@@ -105,7 +113,9 @@
         "p2": "Nauka elementów tańca towarzyskiego, klasyki, disco oraz innych form tanecznych przygotowuje dzieci do występów zespołowych i parami.",
         "p3": "Ubiór: Obuwie na miekkiej podeszwie najlepiej baletki, dziewczynki różowe spódniczki białe bluzeczki, chłopcy ciemne spodnie, białe koszulki"
       },
-      "summary": "Zajęcia taneczne dla dzieci, rozwijające aktywność, pewność siebie i umiejętności społeczne."
+      "summary": "Zajęcia taneczne dla dzieci, rozwijające aktywność, pewność siebie i umiejętności społeczne.",
+      "timeInfo": "Wtorki 16:30-17:15",
+      "recruitment": true
     }
   },
   {
@@ -114,18 +124,22 @@
     "data": {
       "for": "dzieci",
       "description": "Forma tańca teledyskowego, oparta na wielu technikach tanecznych, takich jak Hip-Hop, Funky, New Style, Dancehall, Reggaeton. Choreografie zawierają powtarzalne schematy, a o klimacie danego układu decyduje muzyka, do której jest on tańczony. Dzieci uczą się m.in. choreografii do popularnych utworów mieszając różne style tańca.",
-      "summary": "Zajęcia taneczne dla dzieci, uczące choreografii do popularnych utworów z różnych stylów tanecznych."
+      "summary": "Zajęcia taneczne dla dzieci, uczące choreografii do popularnych utworów z różnych stylów tanecznych.",
+      "timeInfo": "Poniedziałki 17:00-17:45",
+      "recruitment": true
     }
   },
   {
     "title": "Taniec towarzyski",
     "pair": true,
+    "recruitment": true,
     "img": "",
     "data": {
       "for": "dorosli",
       "description": "Dla dorosłych, którzy kochają taniec i ruch, sportowy taniec towarzyski jest właśnie dla nich! Zajęcia prowadzone są przez doświadczonych instruktorów, którzy dbają o rozwijanie umiejętności tanecznych w przyjaznej i wspierającej atmosferze. Uczestnicy nie tylko poprawią swoją kondycję fizyczną, ale także rozwinięcie wyobraźni i twórczego myślenia.",
       "summary": "Zajęcia dla dorosłych, rozwijające umiejętności taneczne i kondycję w przyjaznej atmosferze.",
-      "timeInfo": "we Wtorki 20:10 - 21:25"
+      "timeInfo": "we Wtorki 20:10 - 21:25",
+      "recruitment": true
     }
   }
 ]
