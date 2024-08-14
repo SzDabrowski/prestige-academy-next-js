@@ -13,14 +13,18 @@ const PopupImage = (props: ImageProps) => {
   return (
     <div className={styles.imageContainer}>
       <div className={styles.wrapper}>
-        <Image
-          src={props.imagePath}
-          alt={props.altText}
-          width={0}
-          height={0}
-          sizes="80vw"
-          style={{ width: "100%", height: "auto", maxWidth: "80vw" }}
-        />
+        <div className={styles.ImgWrapper}>
+          <Image
+            src={props.imagePath}
+            alt={props.altText}
+            width={1098}
+            height={406}
+            sizes="(max-width: 1200px) 100vw, 33vw"
+            unoptimized={true}
+            quality={100}
+            className={styles.img}
+          />
+        </div>
       </div>
     </div>
   );
