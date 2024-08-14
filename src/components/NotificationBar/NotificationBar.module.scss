@@ -1,4 +1,5 @@
 @import "../../styles/colors.scss";
+@import "../../styles/mixins.scss";
 
 .mainContainer {
   width: 100%;
@@ -43,5 +44,19 @@
 
   .wrapper {
     margin: auto;
+  }
+
+  .ImgWrapper {
+    width: 80vw;
+    @include mobile {
+      width: 100vw;
+    }
+  }
+
+  .img {
+    width: 1090px;
+    max-width: 100vw;
+    height: auto;
+    z-index: 913;
   }
 }

@@ -3,7 +3,7 @@ import bachata from "../../public/assets/images/courses/bachataSolo.jpg";
 import bachataPair from "../../public/assets/images/courses/bachata.jpg";
 import kids4 from "../../public/assets/images/courses/KidsJunior.jpg";
 import kids7 from "../../public/assets/images/courses/PrestigeJunior7.jpg";
-import kidsPair from "../../public/assets/images/courses/towarzyskiDzieci.jpg";
+import kidsPair from "../../public/assets/images/courses/TTDzieci.jpg";
 import latinoSolo from "../../public/assets/images/courses/latinoSolo.jpg";
 import salsaSolo from "../../public/assets/images/courses/salsaSolo.jpg";
 import adultsPair from "../../public/assets/images/courses/towarzyski.jpg";
