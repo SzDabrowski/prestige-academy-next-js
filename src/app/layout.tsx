@@ -5,11 +5,14 @@ import { Inter } from "next/font/google";
 import "./globals.scss";
 import Footer from "@/components/Footer/Footer";
 import ChangeHeader from "./ChangeHeader";
-import Script from "next/script";
+
 import GoogleCaptchaWrapper from "@/components/Recaptcha/GoogleCaptchaWrapper";
 import { Analytics } from "@vercel/analytics/react";
 import icon from "../../public/assets/images/logo/prestigeLogoOnly.png";
 import NotificationBar from "@/components/NotificationBar/NotificationBar";
+
+import CookiesBot from "@/components/CookiesBot";
+import FbPixel from "@/components/FbPixel";
 
 export default function RootLayout({
   children,
@@ -18,34 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
-      <Script
-        id="fb-pixel"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: ` !function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1968926770230087');
-fbq('track', 'PageView');
-`,
-        }}
-      />
       <head>
         <title>Prestige</title>
         <link rel="icon" href={icon.src} sizes="" />
-
-        <script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="d2aaebb8-fc8b-4b60-ad63-52d868e43e33"
-          data-blockingmode="auto"
-          type="text/javascript"
-        ></script>
+        {/* <CookiesBot /> */}
+        <FbPixel />
       </head>
 
       <body>

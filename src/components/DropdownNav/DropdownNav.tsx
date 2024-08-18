@@ -52,7 +52,10 @@ const DropDownNav = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className={`${styles.dropdownHeader} ${styles.menuItem}`}>
+      <div
+        className={`${styles.dropdownHeader} ${styles.menuItem}`}
+        aria-expanded={isOpen}
+      >
         <span>{title}</span>
         <ArrowIcon isPressed={isOpen} />
       </div>

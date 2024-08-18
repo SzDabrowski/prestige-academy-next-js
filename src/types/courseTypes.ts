@@ -11,6 +11,7 @@ type data = {
   summary: string;
   timeInfo?: string | descriptionObject;
   recruitment: boolean;
+  price?: string;
 };
 
 type descriptionObject = {

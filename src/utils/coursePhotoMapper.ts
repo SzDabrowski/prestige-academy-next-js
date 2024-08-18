@@ -8,6 +8,9 @@ import latinoSolo from "../../public/assets/images/courses/latinoSolo.jpg";
 import salsaSolo from "../../public/assets/images/courses/salsaSolo.jpg";
 import adultsPair from "../../public/assets/images/courses/towarzyski.jpg";
 import ladiesStyling from "../../public/assets/images/courses/highHeels.jpg";
+import commercial from "@/../public/assets/images/courses/commercial.png";
+import jazz from "@/../public/assets/images/courses/jazz.jpg";
+
 import { StaticImageData } from "next/image";
 
 // Create a function to map course titles with photos
@@ -29,11 +32,14 @@ const mapCourseToPhoto = (title: string) => {
       return kids4;
     case "Prestige Kids 3-4 lata":
       return kids7;
-
     case "Video Klip 8 - 11 lat":
       return clipDance;
     case "Taniec towarzyski":
       return adultsPair;
+    case "Jazz i taniec wspolczesny":
+      return jazz;
+    case "Hip Hop commercial":
+      return commercial;
     default:
       return adultsPair; // Return an empty string for unknown courses
   }

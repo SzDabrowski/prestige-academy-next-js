@@ -28,22 +28,28 @@ export const CourseContent = (props: iCourseContent) => {
         <div className={styles.textContent}>
           <span className={styles.danceGroup}>{`kursy/${props.group}`}</span>
           <h1>{props.data.title}</h1>
-          {typeof props.data.data.description === "object" ? (
-            Object.values(props.data.data.description).map(
-              (paragraph: any, index) => <p key={index}>{paragraph}</p>
-            )
-          ) : (
-            <p>{props.data.data.description}</p>
-          )}
+          <div className={styles.textContentContainer}>
+            {typeof props.data.data.description === "object" ? (
+              Object.values(props.data.data.description).map(
+                (paragraph: any, index) => <p key={index}>{paragraph}</p>
+              )
+            ) : (
+              <p>{props.data.data.description}</p>
+            )}
 
-          {hasVideos ? (
-            <div className={styles.videoContainer}>
-              <span>Zobacz jak wygląda ten taniec:</span>
-              <div className={styles.videoWrapper}></div>
-            </div>
-          ) : (
-            ""
-          )}
+            {props.data.data.price && (
+              <div className={styles.priceTag}>{props.data.data.price}</div>
+            )}
+
+            {hasVideos ? (
+              <div className={styles.videoContainer}>
+                <span>Zobacz jak wygląda ten taniec:</span>
+                <div className={styles.videoWrapper}></div>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </main>
       <div className={styles.h2Wrapper}>

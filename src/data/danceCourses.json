@@ -11,7 +11,8 @@
         "p1": "zajęcia w poniedziałki gr. Poziom P2 18.00-19.00",
         "p2": "gr. Początkująca 19.10-20:10"
       },
-      "recruitment": true
+      "recruitment": true,
+      "price": "Koszt: 100zł na miesiąc za osobę"
     }
   },
   {
@@ -27,7 +28,8 @@
       },
       "summary": "Nie czekaj – złap za rękę przyjaciółkę lub przyjaciela i zapiszcie się na nasze zajęcia bachaty! Przekonajcie się, jak wiele radości może przynieść taniec.",
       "timeInfo": "w Czwartki 18:00-18:55",
-      "recruitment": true
+      "recruitment": true,
+      "price": "Koszt: 120zł na miesiąc"
     }
   },
   {
@@ -44,7 +46,8 @@
       },
       "summary": "Czy marzysz o tym, by poczuć radość tańca i przełamać rutynę? Dołącz do nas na wyjątkowe zajęcia salsy, które przeniosą Cię w świat pasji, energii i radości!",
       "timeInfo": "w Czwartki godz. 19:00 - 19:55",
-      "recruitment": true
+      "recruitment": true,
+      "price": "Koszt: 120zł na miesiąc"
     }
   },
   {
@@ -56,7 +59,8 @@
       "description": "Zapraszamy na wyjątkowe zajęcia z High Heels, które łączą elegancję z pewnością siebie! Podczas tych spotkań nauczysz się sztuki chodzenia w wysokich obcasach, poprawiając swoją postawę, równowagę i koordynację ruchową. Nasza doświadczona instruktorka wprowadzi Cię w świat tańca i stylizacji, oferując cenne wskazówki, jak podkreślić swoją kobiecość w tańcu i wygodnie poruszać się w obuwiu na obcasie. Dołącz do nas, aby zyskać nowe umiejętności, spotkać inspirujące kobiety i dobrze się bawić w przyjaznej atmosferze!",
       "summary": "Zajęcia dla pań, wzmacniające ciało i pewność siebie przy latynoskich rytmach.",
       "timeInfo": "w Środy 19:00-19:55",
-      "recruitment": true
+      "recruitment": true,
+      "price": "Koszt: 120zł na miesiąc"
     }
   },
   {
@@ -71,7 +75,8 @@
         "p1": "gr. średniozaawansowana Wtorki 18:00 - 18:55",
         "p2": "gr. początkująca Wtorki 19.00-19:55"
       },
-      "recruitment": true
+      "recruitment": true,
+      "price": "Koszt: 120zł na miesiąc"
     }
   },
   {
@@ -98,7 +103,8 @@
       },
       "summary": "Zajęcia taneczne dla dzieci, rozwijające aktywność, pewność siebie i umiejętności społeczne.",
       "timeInfo": "Czwartki 17:00-17:45",
-      "recruitment": true
+      "recruitment": true,
+      "price": "Koszt: 100zł na miesiąc"
     }
   },
   {
@@ -114,7 +120,8 @@
       },
       "summary": "Zajęcia taneczne dla dzieci, rozwijające aktywność, pewność siebie i umiejętności społeczne.",
       "timeInfo": "Wtorki 16:30-17:15",
-      "recruitment": true
+      "recruitment": true,
+      "price": "Koszt: 100zł na miesiąc"
     }
   },
   {
@@ -125,7 +132,8 @@
       "description": "Forma tańca teledyskowego, oparta na wielu technikach tanecznych, takich jak Hip-Hop, Funky, New Style, Dancehall, Reggaeton. Choreografie zawierają powtarzalne schematy, a o klimacie danego układu decyduje muzyka, do której jest on tańczony. Dzieci uczą się m.in. choreografii do popularnych utworów mieszając różne style tańca.",
       "summary": "Zajęcia taneczne dla dzieci, uczące choreografii do popularnych utworów z różnych stylów tanecznych.",
       "timeInfo": "Poniedziałki 17:00-17:45",
-      "recruitment": true
+      "recruitment": true,
+      "price": "Koszt: 100zł na miesiąc"
     }
   },
   {
@@ -138,6 +146,44 @@
       "description": "Dla dorosłych, którzy kochają taniec i ruch, sportowy taniec towarzyski jest właśnie dla nich! Zajęcia prowadzone są przez doświadczonych instruktorów, którzy dbają o rozwijanie umiejętności tanecznych w przyjaznej i wspierającej atmosferze. Uczestnicy nie tylko poprawią swoją kondycję fizyczną, ale także rozwinięcie wyobraźni i twórczego myślenia.",
       "summary": "Zajęcia dla dorosłych, rozwijające umiejętności taneczne i kondycję w przyjaznej atmosferze.",
       "timeInfo": "we Wtorki 20:10 - 21:25",
+      "recruitment": true,
+      "price": "Koszt: 100zł na miesiąc za osobę"
+    }
+  },
+
+  {
+    "title": "Jazz i taniec wspolczesny",
+    "img": "",
+    "data": {
+      "for": "dzieci",
+      "description": {
+        "p1": "Jazz i taniec współczesny to dynamiczne i ekspresyjne formy, które łączą techniki klasyczne z nowoczesnym podejściem. Taniec jazz charakteryzuje się rytmicznością, energią oraz swobodą ruchu, czerpiąc inspiracje z różnorodnych stylów. Jest pełen emocji i żywiołowości.",
+        "p2": "Z kolei taniec współczesny to forma artystyczna, która eksploruje granice ruchu, łącząc elementy improwizacji z techniką. Wyróżnia się dużą abstrakcyjnością i swobodą wyrazu. Oba style oferują wspaniałe możliwości ekspresji, kreatywnych interpretacji oraz odkrywania emocji.",
+        "p3": "Nie czekaj, zapisz już dziś swoje dziecko lub nastolatka/ke"
+      },
+      "summary": "Zajęcia taneczne dla dzieci, uczące choreografii do popularnych utworów z różnych stylów tanecznych.",
+      "timeInfo": {
+        "p1": "Zajęcia w środy w godz. 18:00-19:00 gr. 9-12 lat",
+        "p2": "środy w godz. 19:00-20:00 gr. 13-17lat"
+      },
+      "recruitment": true,
+      "price": "Koszt: 120zł na miesiąc"
+    }
+  },
+  {
+    "title": "Hip Hop commercial",
+    "pair": false,
+    "recruitment": true,
+    "img": "",
+    "data": {
+      "for": "dzieci",
+      "description": "Taniec commercial to dynamiczna i pełna energii forma wyrazu, łącząca elementy hip-hopu, jazzu i popu. Charakteryzuje się różnorodnością stylów oraz nowoczesnym podejściem do ruchu.  Dzięki swojemu komercyjnemu charakterowi, taniec ten często pojawia się w teledyskach, reklamach i na scenach koncertowych, przyciągając uwagę widzów swoją ekspresyjnością i rytmicznością. Taniec commercial to doskonała forma zabawy, która pozwala rozwijać umiejętności, poprawiać kondycję i cieszyć się każdą sekundą spędzoną na parkiecie!",
+      "summary": "Taniec commercial to dynamiczna i pełna energii forma wyrazu, łącząca elementy hip-hopu, jazzu i popu.",
+      "timeInfo": {
+        "p1": "Zajęcia w czwartki w godz. 18:00-19:00 gr. 9-12 lat",
+        "p2": "19:00-20:00 gr. 13-17lat"
+      },
+      "price": "Koszt: 120zł na miesiąc",
       "recruitment": true
     }
   }

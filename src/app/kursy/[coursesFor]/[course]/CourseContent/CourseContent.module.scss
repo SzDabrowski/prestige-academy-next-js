@@ -6,6 +6,7 @@
 }
 
 .mainSection {
+  min-height: 400px;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -16,7 +17,6 @@
   }
 
   .heroSection {
-    height: 60vh;
     background-color: red;
     overflow: hidden;
     img {
@@ -31,6 +31,8 @@
   }
 
   .textContent {
+    display: flex;
+    flex-direction: column;
     height: 100%;
     text-align: left;
     padding-top: 1rem;
@@ -40,8 +42,11 @@
       padding-top: 2vh;
     }
 
-    > * {
-      margin-bottom: 3rem;
+    .textContentContainer {
+      flex: 4 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .danceGroup {
@@ -52,7 +57,9 @@
     }
 
     h1 {
+      flex: 1 1 auto;
       font-size: 3rem;
+      margin-bottom: 20px;
       &::after {
         content: "";
         position: relative;
@@ -131,6 +138,16 @@
       }
     }
   }
+}
+
+.priceTag {
+  font-size: 2rem;
+  font-weight: 500;
+
+  background: $clr-logo-main;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .contactWrapper {
