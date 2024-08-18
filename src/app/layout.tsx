@@ -24,7 +24,7 @@ export default function RootLayout({
       <head>
         <title>Prestige</title>
         <link rel="icon" href={icon.src} sizes="" />
-        <CookiesBot />
+        {/* <CookiesBot /> */}
         <FbPixel />
       </head>
 
