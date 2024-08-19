@@ -70,6 +70,14 @@ export const CourseContent = (props: iCourseContent) => {
               </p>
             )
           ) : null}
+
+          {props.data.data.firstEvent ? (
+            <div className={styles.firstEventInfo}>
+              {props.data.data.firstEvent}
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
 
