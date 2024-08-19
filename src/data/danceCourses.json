@@ -9,10 +9,10 @@
       "summary": "Zmysłowy taniec pełen bliskości i subtelności. Poprawia samopoczucie i kondycję.",
       "timeInfo": {
         "p1": "zajęcia w poniedziałki gr. Poziom P2 18.00-19.00",
-        "p2": "gr. Początkująca 19.10-20:10"
+        "p2": "gr. Początkująca 19:10-20:10"
       },
       "recruitment": true,
-      "price": "Koszt: 100zł na miesiąc za osobę"
+      "price": "Koszt: 100zł/miesiąc za osobę"
     }
   },
   {
@@ -29,7 +29,7 @@
       "summary": "Nie czekaj – złap za rękę przyjaciółkę lub przyjaciela i zapiszcie się na nasze zajęcia bachaty! Przekonajcie się, jak wiele radości może przynieść taniec.",
       "timeInfo": "w Czwartki 18:00-18:55",
       "recruitment": true,
-      "price": "Koszt: 120zł na miesiąc"
+      "price": "Koszt: 120zł/miesiąc"
     }
   },
   {
@@ -45,9 +45,9 @@
         "p4": "- Zajęcia pełne energii: Każda lekcja to nie tylko nauka kroków, ale również świetna zabawa! Muzyka, rytm i taniec sprawią, że zapomnisz o codziennych troskach."
       },
       "summary": "Czy marzysz o tym, by poczuć radość tańca i przełamać rutynę? Dołącz do nas na wyjątkowe zajęcia salsy, które przeniosą Cię w świat pasji, energii i radości!",
-      "timeInfo": "w Czwartki godz. 19:00 - 19:55",
+      "timeInfo": "w Czwartki godz. 19:00-19:55",
       "recruitment": true,
-      "price": "Koszt: 120zł na miesiąc"
+      "price": "Koszt: 120zł/miesiąc"
     }
   },
   {
@@ -60,7 +60,7 @@
       "summary": "Zajęcia dla pań, wzmacniające ciało i pewność siebie przy latynoskich rytmach.",
       "timeInfo": "w Środy 19:00-19:55",
       "recruitment": true,
-      "price": "Koszt: 120zł na miesiąc"
+      "price": "Koszt: 120zł/miesiąc"
     }
   },
   {
@@ -72,11 +72,11 @@
       "description": "Zajęcia taneczne dedykowane przede wszystkim do pań, które pragną wzmocnić swoją pewność siebie i odkryć na nowo kobiecość. Lekcje tańca latino solo łączą w sobie zmysłowość, pasję i ekspresję. Uczestniczki zajęć zapoznają się z podstawowymi krokami tańców latynoamerykańskich takich jak Cha-cha, samba, rumba, jive oraz Salsa czy bachata.",
       "summary": "Zmysłowe zajęcia dla pań, rozwijające pewność siebie i ekspresję poprzez taniec.",
       "timeInfo": {
-        "p1": "gr. średniozaawansowana Wtorki 18:00 - 18:55",
+        "p1": "gr. średniozaawansowana Wtorki 18:00-18:55",
         "p2": "gr. początkująca Wtorki 19.00-19:55"
       },
       "recruitment": true,
-      "price": "Koszt: 120zł na miesiąc"
+      "price": "Koszt: 120zł/miesiąc"
     }
   },
   {
@@ -85,7 +85,7 @@
     "img": "towarzyski_dzieci.jpg",
     "data": {
       "for": "dzieci",
-      "description": "Dla dzieci, które kochają taniec i ruch, sportowy taniec towarzyski jest właśnie dla nich! Zajęcia prowadzone są przez doświadczonych instruktorów, którzy dbają o rozwijanie umiejętności tanecznych w przyjaznej i wspierającej atmosferze. Dziecko nie tylko poprawi swoją kondycję fizyczną, ale także rozwinięcie wyobraźni i twórczego myślenia.",
+      "description": "Dla dzieci, które kochają taniec i ruch. Zajęcia prowadzone są przez doświadczonych instruktorów, którzy dbają o rozwijanie umiejętności tanecznych w przyjaznej i wspierającej atmosferze. Dziecko nie tylko poprawi swoją kondycję fizyczną, ale także rozwinięcie wyobraźni i twórczego myślenia.",
       "summary": "Zajęcia dla dzieci, rozwijające umiejętności taneczne i kondycję w przyjaznej atmosferze.",
       "recruitment": false
     }
@@ -102,9 +102,9 @@
         "p3": "Ubiór: Obuwie na miekkiej podeszwie najlepiej baletki, dziewczynki różowe spódniczki białe bluzeczki, chłopcy ciemne spodnie, białe koszulki"
       },
       "summary": "Zajęcia taneczne dla dzieci, rozwijające aktywność, pewność siebie i umiejętności społeczne.",
-      "timeInfo": "Czwartki 17:00-17:45",
+      "timeInfo": "w Czwartki 17:00-17:45",
       "recruitment": true,
-      "price": "Koszt: 100zł na miesiąc"
+      "price": "Koszt: 100zł/miesiąc"
     }
   },
   {
@@ -119,21 +119,21 @@
         "p3": "Ubiór: Obuwie na miekkiej podeszwie najlepiej baletki, dziewczynki różowe spódniczki białe bluzeczki, chłopcy ciemne spodnie, białe koszulki"
       },
       "summary": "Zajęcia taneczne dla dzieci, rozwijające aktywność, pewność siebie i umiejętności społeczne.",
-      "timeInfo": "Wtorki 16:30-17:15",
+      "timeInfo": "we Wtorki 16:30-17:15",
       "recruitment": true,
-      "price": "Koszt: 100zł na miesiąc"
+      "price": "Koszt: 100zł/miesiąc"
     }
   },
   {
-    "title": "Video Klip 8 - 11 lat",
+    "title": "Video Klip 8-11 lat",
     "img": "",
     "data": {
       "for": "dzieci",
       "description": "Forma tańca teledyskowego, oparta na wielu technikach tanecznych, takich jak Hip-Hop, Funky, New Style, Dancehall, Reggaeton. Choreografie zawierają powtarzalne schematy, a o klimacie danego układu decyduje muzyka, do której jest on tańczony. Dzieci uczą się m.in. choreografii do popularnych utworów mieszając różne style tańca.",
       "summary": "Zajęcia taneczne dla dzieci, uczące choreografii do popularnych utworów z różnych stylów tanecznych.",
-      "timeInfo": "Poniedziałki 17:00-17:45",
+      "timeInfo": "w Poniedziałki 17:00-17:45",
       "recruitment": true,
-      "price": "Koszt: 100zł na miesiąc"
+      "price": "Koszt: 100zł/miesiąc"
     }
   },
   {
@@ -145,9 +145,9 @@
       "for": "dorosli",
       "description": "Dla dorosłych, którzy kochają taniec i ruch, sportowy taniec towarzyski jest właśnie dla nich! Zajęcia prowadzone są przez doświadczonych instruktorów, którzy dbają o rozwijanie umiejętności tanecznych w przyjaznej i wspierającej atmosferze. Uczestnicy nie tylko poprawią swoją kondycję fizyczną, ale także rozwinięcie wyobraźni i twórczego myślenia.",
       "summary": "Zajęcia dla dorosłych, rozwijające umiejętności taneczne i kondycję w przyjaznej atmosferze.",
-      "timeInfo": "we Wtorki 20:10 - 21:25",
+      "timeInfo": "we Wtorki 20:10-21:25",
       "recruitment": true,
-      "price": "Koszt: 100zł na miesiąc za osobę"
+      "price": "Koszt: 100zł/miesiąc za osobę"
     }
   },
 
@@ -163,11 +163,13 @@
       },
       "summary": "Zajęcia taneczne dla dzieci, uczące choreografii do popularnych utworów z różnych stylów tanecznych.",
       "timeInfo": {
-        "p1": "Zajęcia w środy w godz. 18:00-19:00 gr. 9-12 lat",
-        "p2": "środy w godz. 19:00-20:00 gr. 13-17lat"
+        "p1": "Zajęcia we wtorek",
+        "p2": "gr. 9-12 lat w godz. 18:00-19:00",
+        "p3": "gr. 13-17 lat w godz. 19:00-20:00"
       },
       "recruitment": true,
-      "price": "Koszt: 120zł na miesiąc"
+      "location": "Zajęcia odbywają się w Domu Kultury Kolejarza, ul. Szczecińska 17",
+      "price": "Koszt: 120zł/miesiąc"
     }
   },
   {
@@ -180,10 +182,12 @@
       "description": "Taniec commercial to dynamiczna i pełna energii forma wyrazu, łącząca elementy hip-hopu, jazzu i popu. Charakteryzuje się różnorodnością stylów oraz nowoczesnym podejściem do ruchu.  Dzięki swojemu komercyjnemu charakterowi, taniec ten często pojawia się w teledyskach, reklamach i na scenach koncertowych, przyciągając uwagę widzów swoją ekspresyjnością i rytmicznością. Taniec commercial to doskonała forma zabawy, która pozwala rozwijać umiejętności, poprawiać kondycję i cieszyć się każdą sekundą spędzoną na parkiecie!",
       "summary": "Taniec commercial to dynamiczna i pełna energii forma wyrazu, łącząca elementy hip-hopu, jazzu i popu.",
       "timeInfo": {
-        "p1": "Zajęcia w czwartki w godz. 18:00-19:00 gr. 9-12 lat",
-        "p2": "19:00-20:00 gr. 13-17lat"
+        "p1": "Zajęcia w środy",
+        "p2": "gr. 9-12 lat w godz. 18:00-19:00",
+        "p3": "gr. 13-17 lat w godz. 19:00-20:00"
       },
-      "price": "Koszt: 120zł na miesiąc",
+      "price": "Koszt: 120zł/miesiąc",
+      "location": "Zajęcia odbywają się w Domu Kultury Kolejarza, ul. Szczecińska 17",
       "recruitment": true
     }
   }

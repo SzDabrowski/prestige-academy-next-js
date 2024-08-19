@@ -8,29 +8,11 @@ import { toCamelCase } from "../../utils/clientUtils";
 import { getImageURL } from "../../utils/imageUtils";
 import { courseForEnum } from "@/lib/enums";
 
-interface iClassSummary {
-  title: string;
-  data: classData;
-  img: StaticImageData;
-}
-
-interface classData {
-  for: string;
-  description: string | descriptionObject;
-  summary: string;
-  timeInfo?: string | descriptionObject;
-  recruitment: boolean;
-}
-
-interface descriptionObject {
-  p1?: string;
-  p2?: string;
-  p3?: string;
-}
+import courseData from "@/types/courseTypes";
 
 import CoursesData from "../../data/danceCourses.json";
 
-export const ClassSummary = (props: iClassSummary) => {
+export const ClassSummary = (props: courseData) => {
   return (
     <section className={styles.danceClass}>
       <div className={styles.imgWrapper}>
