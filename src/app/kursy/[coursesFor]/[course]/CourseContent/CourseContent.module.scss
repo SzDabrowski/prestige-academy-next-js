@@ -101,47 +101,76 @@
 .h2Wrapper {
   width: 100%;
   margin-top: 4rem;
+}
 
-  .wrapperInner {
-    width: fit-content;
-    margin: auto;
+.wrapperInner {
+  border-left: 10px solid $clr-logo-main;
+  padding: 10px 5px;
+  width: fit-content;
+  margin: auto;
+
+  @include mobile {
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
 
     @include mobile {
-      margin: 0;
+      margin-left: 1rem;
     }
 
-    h2 {
-      font-size: 2rem;
+    // &::after {
+    //   content: "";
+    //   position: relative;
+    //   top: 10px;
+    //   left: -30%;
+    //   display: block;
+    //   width: 50%;
+    //   height: 10px;
+    //   background-color: $clr-logo-main;
+    //   transform: rotate(90deg);
+    // }
+  }
 
-      @include mobile {
-        margin-left: 1rem;
-      }
-
-      &::after {
-        content: "";
-        position: relative;
-        top: -5px;
-        left: -55px;
-        display: block;
-        width: 90px;
-        height: 10px;
-        background-color: $clr-logo-main;
-        transform: rotate(90deg);
-      }
-    }
-
-    .timeInfo {
-      width: fit-content;
-      color: grey;
-      @include mobile {
-        padding-left: 1rem;
-      }
+  .timeInfo {
+    margin-bottom: 0.3rem;
+    width: fit-content;
+    color: grey;
+    @include mobile {
+      padding-left: 1rem;
     }
   }
 }
 
 .priceTag {
   font-size: 2rem;
+  font-weight: 500;
+
+  background: $clr-logo-main;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.locationInfo {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+
+  background: $clr-logo-main;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.firstEventInfo {
+  text-decoration: underline;
+  text-decoration-color: $clr-logo-main;
+  margin-top: 2rem;
+  font-size: 1.3rem;
   font-weight: 500;
 
   background: $clr-logo-main;
