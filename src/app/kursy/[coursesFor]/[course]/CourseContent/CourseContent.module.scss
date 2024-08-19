@@ -166,6 +166,19 @@
   -webkit-text-fill-color: transparent;
 }
 
+.firstEventInfo {
+  text-decoration: underline;
+  text-decoration-color: $clr-logo-main;
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+
+  background: $clr-logo-main;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .contactWrapper {
   padding: 150px 0;
 

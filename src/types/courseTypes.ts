@@ -13,6 +13,7 @@ type data = {
   recruitment: boolean;
   price?: string;
   location?: string;
+  firstEvent?: string;
 };
 
 type descriptionObject = {
