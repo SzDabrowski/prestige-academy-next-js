@@ -128,6 +128,11 @@ const CourseForm = (props: iCourseForm) => {
         loading: TOAST_MESSAGE.LOADING,
         success: TOAST_MESSAGE.SUCCESS,
         error: TOAST_MESSAGE.ERROR,
+      },
+      {
+        success: {
+          duration: 5000,
+        },
       }
     );
 
@@ -285,7 +290,12 @@ const CourseForm = (props: iCourseForm) => {
             // disabled={!capVal}
           />
         </form>
-        <Toaster position="bottom-center" />
+        <Toaster
+          position="top-center"
+          containerStyle={{
+            top: 200,
+          }}
+        />
       </div>
     </div>
   );
