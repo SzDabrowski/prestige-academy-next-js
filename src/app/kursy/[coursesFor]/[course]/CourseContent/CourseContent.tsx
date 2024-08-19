@@ -72,7 +72,12 @@ export const CourseContent = (props: iCourseContent) => {
           ) : null}
         </div>
       </div>
-      <div className={styles.timeInfo}></div>
+
+      {props.data.data.location ? (
+        <div className={styles.locationInfo}>{props.data.data.location}</div>
+      ) : (
+        <></>
+      )}
 
       <div className={styles.contactWrapper}>
         <CourseForm selectedDanceCourse={props.data.title} />
