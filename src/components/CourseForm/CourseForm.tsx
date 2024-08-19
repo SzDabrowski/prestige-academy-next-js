@@ -234,7 +234,7 @@ const CourseForm = (props: iCourseForm) => {
                 {...register("email", {
                   required: "To pole jest wymagane",
                   pattern: {
-                    value: /^[a-z0-9.-_]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                    value: /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
                     message: "Wprowadź poprawny adres email",
                   },
                 })}
