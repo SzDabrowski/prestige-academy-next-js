@@ -99,6 +99,11 @@ export const ContactForm = (props: ContactForm) => {
         loading: TOAST_MESSAGE.LOADING,
         success: TOAST_MESSAGE.SUCCESS,
         error: TOAST_MESSAGE.ERROR,
+      },
+      {
+        success: {
+          duration: 5000,
+        },
       }
     );
 
@@ -223,7 +228,12 @@ export const ContactForm = (props: ContactForm) => {
           <span className={styles.error}>{errors.message.message}</span>
         )}
       </label>
-      <Toaster position="bottom-center" />
+      <Toaster
+        position="top-center"
+        containerStyle={{
+          top: 200,
+        }}
+      />
       <button className={styles.button}>Wyślij wiadomość</button>
     </form>
   );
