@@ -186,5 +186,23 @@
       "price": "Koszt: 120zł na miesiąc",
       "recruitment": true
     }
+  },
+  {
+    "title": "Latino Show Dance",
+    "pair": false,
+    "recruitment": true,
+    "img": "",
+    "data": {
+      "for": "dorosli",
+      "description": {
+        "p1": "Jeżeli czujesz się na scenie jak ryba w wodzie te zajęcia są właśnie dla Ciebie!Latino show Dance to dynamiczne zajęcia taneczne, które łączą energetyczne rytmy latynoamerykańskich stylów z elementami tańca scenicznego✨",
+        "p2": "Podczas tych zajęć uczestnicy mają okazję nauczyć się ekspresyjnych choreografii inspirowanych tańcami takimi jak salsa, samba, bachata, cha-cha czy rumba, które później będą prezentować na różnych pokazach i eventach organizowanych nie tylko przez naszą szkołę.",
+        "p3": "Niezależnie od poziomu zaawansowania, każdy znajdzie tu coś dla siebie! Wiek nie gra roli!"
+      },
+      "summary": "Jeżeli czujesz się na scenie jak ryba w wodzie te zajęcia są właśnie dla Ciebie! ",
+      "timeInfo": "Zajecia w środy w godz.18:00-19:00",
+      "price": "Koszt: 120zł na miesiąc",
+      "recruitment": true
+    }
   }
 ]
