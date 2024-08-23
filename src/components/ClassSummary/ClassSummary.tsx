@@ -20,6 +20,7 @@ interface classData {
   summary: string;
   timeInfo?: string | descriptionObject;
   recruitment: boolean;
+  location?: string;
 }
 
 interface descriptionObject {

@@ -33,7 +33,7 @@ const mapCourseToPhoto = (title: string) => {
       return kids4;
     case "Prestige Kids 3-4 lata":
       return kids7;
-    case "Video Klip 8 - 11 lat":
+    case "Video Klip 8-11 lat":
       return clipDance;
     case "Taniec towarzyski":
       return adultsPair;
