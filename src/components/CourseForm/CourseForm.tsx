@@ -160,19 +160,21 @@ const CourseForm = (props: iCourseForm) => {
                 options={courseTitles}
                 placeholder={"Wybierz kurs"}
                 getValue={handleDropdownSelect}
+                {...register("selectedDanceCourse", {
+                  required: "To pole jest wymagane",
+                })}
               />
 
               <input
                 type="hidden"
-                {...register("selectedDanceCourse", {
-                  required: "To pole jest wymagane",
-                })}
-                value={selectedDanceCourse}
+                value={selectedDanceCourse ? selectedDanceCourse : ""}
               />
 
-              {errors.name && selectedDanceCourse == "" && (
+              {errors.name && selectedDanceCourse === "" && (
                 <span className={styles.error}>
-                  {errors.selectedDanceCourse?.message}
+                  {errors.selectedDanceCourse
+                    ? errors.selectedDanceCourse.message
+                    : ""}
                 </span>
               )}
             </label>
