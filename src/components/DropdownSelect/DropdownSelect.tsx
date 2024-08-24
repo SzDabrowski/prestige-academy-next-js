@@ -1,7 +1,8 @@
 "use client";
 import styles from "./DropdownSelect.module.scss";
 import ArrowIcon from "../icons/ArrowIcon/ArrowIcon";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import useOutsideClick from "@/hooks/useOutSideClick";
 
 interface iDropdownSelect {
   title: string;
@@ -20,8 +21,16 @@ export const DropdownSelect = (props: iDropdownSelect) => {
     setSelectedOption(selectedOption);
   };
 
+  let dropdownRef = useRef(null);
+  useOutsideClick(dropdownRef, () => {
+    setIsActive(false);
+  });
+
   return (
-    <div className={`${styles.selectMenu} ${isActive ? styles.active : ""}`}>
+    <div
+      ref={dropdownRef}
+      className={`${styles.selectMenu} ${isActive ? styles.active : ""}`}
+    >
       <span className={styles.btnLabel}>{props.title}</span>
       <div
         className={styles.selectBtn}
