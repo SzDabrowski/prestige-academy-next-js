@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { menuItem } from "@/types/headerTypes";
 import ArrowIcon from "../icons/ArrowIcon/ArrowIcon";
 import { checkIfInMobileView } from "../../utils/clientUtils";
 import Link from "next/link";
 
 import styles from "./DropdownNav.module.scss";
+import useOutsideClick from "@/hooks/useOutSideClick";
 
 type DropDownNavProps = menuItem & {
   isHamburgerOpen: boolean;
@@ -22,6 +23,11 @@ const DropDownNav = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  let dropdownRef = useRef(null);
+  useOutsideClick(dropdownRef, () => {
+    setIsOpen(false);
+  });
 
   const handleMouseEnter = () => {
     if (!checkIfInMobileView()) {
@@ -51,6 +57,7 @@ const DropDownNav = ({
       className={styles.wrapper}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      ref={dropdownRef}
     >
       <div
         className={`${styles.dropdownHeader} ${styles.menuItem}`}
