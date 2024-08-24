@@ -159,28 +159,39 @@ const CourseForm = (props: iCourseForm) => {
           <input type="hidden" {...register("subject")} />
 
           <div className={styles.inputsContainer}>
-            <label className={`${styles.label} ${styles.DropdownSelect}`}>
-              <DropdownSelect
-                title={"Kurs tańca"}
-                options={courseTitles}
-                placeholder={"Wybierz kurs"}
-                getValue={handleDropdownSelect}
-              />
+            <input
+              {...register("selectedDanceCourse", {
+                required: "To pole jest wymagane",
+                minLength: {
+                  value: 3,
+                  message: "Imię i nazwisko musi mieć co najmniej 3 znaki",
+                },
+              })}
+              name="selectedDanceCourse"
+              type="hidden"
+              value={selectedDanceCourse ? selectedDanceCourse : ""}
+            />
 
-              <input
-                type="hidden"
-                {...register("selectedDanceCourse", {
-                  required: "To pole jest wymagane",
-                })}
-                value={selectedDanceCourse}
-              />
-
-              {errors.name && selectedDanceCourse == "" && (
-                <span className={styles.error}>
-                  {errors.selectedDanceCourse?.message}
-                </span>
-              )}
-            </label>
+            {props.selectedDanceCourse ? (
+              ""
+            ) : (
+              <label className={`${styles.label} ${styles.DropdownSelect}`}>
+                <DropdownSelect
+                  title={"Kurs tańca"}
+                  options={courseTitles}
+                  placeholder={"Wybierz kurs"}
+                  getValue={handleDropdownSelect}
+                  value={props.selectedDanceCourse || ""}
+                />
+                {selectedDanceCourse === "" && (
+                  <span className={styles.error}>
+                    {errors.selectedDanceCourse
+                      ? errors.selectedDanceCourse.message
+                      : ""}
+                  </span>
+                )}
+              </label>
+            )}
 
             <label className={styles.label}>
               <span>Imię i nazwisko</span>

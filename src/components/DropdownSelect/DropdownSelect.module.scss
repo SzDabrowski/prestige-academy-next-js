@@ -84,3 +84,12 @@
     }
   }
 }
+
+.errorMessage {
+  text-transform: none;
+  color: red;
+  font-size: 0.7rem;
+  position: absolute;
+  top: 55px;
+  left: 0;
+}
