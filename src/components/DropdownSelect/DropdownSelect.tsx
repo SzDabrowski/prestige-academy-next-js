@@ -1,20 +1,24 @@
 "use client";
 import styles from "./DropdownSelect.module.scss";
 import ArrowIcon from "../icons/ArrowIcon/ArrowIcon";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import useOutsideClick from "@/hooks/useOutSideClick";
 
 interface iDropdownSelect {
   title: string;
   options: string[];
   placeholder: string;
+  value?: string;
   getValue: (value: string) => string;
 }
 
 export const DropdownSelect = (props: iDropdownSelect) => {
   const [isActive, setIsActive] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string>("");
+  const [isClicked, setIsClicked] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<string>(
+    props.value || ""
+  );
 
   const sendValueToParent = (option: string) => {
     const selectedOption = props.getValue(option);
@@ -24,7 +28,14 @@ export const DropdownSelect = (props: iDropdownSelect) => {
   let dropdownRef = useRef(null);
   useOutsideClick(dropdownRef, () => {
     setIsActive(false);
+    setIsClicked(true);
   });
+
+  useEffect(() => {
+    if (props.value) {
+      sendValueToParent(props.value);
+    }
+  }, []);
 
   return (
     <div
@@ -42,10 +53,10 @@ export const DropdownSelect = (props: iDropdownSelect) => {
         }}
       >
         {" "}
-        {!isSelected ? (
-          <span className={styles.placeholder}>{props.placeholder}</span>
-        ) : (
+        {isSelected || props.value ? (
           <span className={styles.optionsValue}>{selectedOption}</span>
+        ) : (
+          <span className={styles.placeholder}>{props.placeholder}</span>
         )}
         <ArrowIcon isPressed={isActive} />
       </div>
