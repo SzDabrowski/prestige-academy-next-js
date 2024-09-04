@@ -82,6 +82,11 @@
   left: 0;
 }
 
+.dropdownError {
+  @extend .error;
+  bottom: -22px;
+}
+
 .errorOutline {
   outline: 2px solid red !important;
 }

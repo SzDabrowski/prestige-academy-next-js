@@ -1,6 +1,6 @@
 import styles from "./PreschoolsContent.module.scss";
 import { Container } from "@/components/Container/Container";
-import PreschoolsForm from "../PreschoolsForm/PreschoolsForm";
+import PreschoolsForm from "../../../../components/PreschoolsForm/PreschoolsForm";
 
 const PreschoolContent = () => {
   return (

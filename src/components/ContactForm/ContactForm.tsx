@@ -132,8 +132,8 @@ export const ContactForm = (props: ContactForm) => {
         value={process.env.NEXT_PUBLIC_WEBFORM_ACCES_KEY}
         {...register("access_key")}
       />
+      courseData
       <input type="hidden" {...register("subject")} />
-
       {props.courseName ? (
         <input
           type="hidden"
@@ -143,7 +143,6 @@ export const ContactForm = (props: ContactForm) => {
       ) : (
         ""
       )}
-
       <label className={styles.label}>
         <span>Imię i nazwisko:</span>
         <input
@@ -163,7 +162,6 @@ export const ContactForm = (props: ContactForm) => {
           <span className={styles.error}>{errors.name.message}</span>
         )}
       </label>
-
       <label className={styles.label}>
         <span>Adres email:</span>
         <input
@@ -183,7 +181,6 @@ export const ContactForm = (props: ContactForm) => {
           <span className={styles.error}>{errors.email.message}</span>
         )}
       </label>
-
       <label className={styles.label}>
         <span>Numer telefonu:</span>
         <input

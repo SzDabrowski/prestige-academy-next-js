@@ -4,15 +4,21 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { DropdownSelect } from "@/components/DropdownSelect/DropdownSelect";
 import { useForm, SubmitHandler, useWatch } from "react-hook-form";
 
-import { phoneNumberAutoFormat } from "../../../../utils/formUtils";
+import { phoneNumberAutoFormat } from "../../utils/formUtils";
+
+import toast, { Toaster } from "react-hot-toast";
+import { TOAST_MESSAGE } from "@/lib/toastMessages";
 
 import preschoolsData from "@/data/preschools.json";
 
 import styles from "./PreschoolsForm.module.scss";
 import ReCAPTCHA from "react-google-recaptcha";
+import { verifyReCaptcha } from "@/utils/recaptchaUtils";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 interface FormInputs {
   selectedPreschool: string;
+  group_name: string;
   child_name: string;
   parent_name: string;
   email: string;
@@ -58,47 +64,74 @@ const PreschoolsForm = () => {
     defaultValue: "Someone",
   });
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   useEffect(() => {
     setValue("selectedPreschool", selectedPreschool);
   }, [selectedPreschool]);
 
   useEffect(() => {
-    setValue("subject", `${userName} zapisała/ł się na kurs tanća`);
-  }, [userName, setValue]);
+    setValue(
+      "subject",
+      `${userName} zapisał/a się na zajęcia w przedszkolu - ${selectedPreschool}`
+    );
+  }, [userName, selectedPreschool]);
 
   const preschoolsNames = preschoolsData.map((course) => course.value);
 
   const onSubmit = async (data: FormInputs, event?: any) => {
     event?.preventDefault();
-    console.log(data);
-    await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(data, null, 2),
-    })
-      .then(async (response) => {
-        let json = await response.json();
-        if (json.success) {
-          setIsSuccess(true);
-          setMessage(json.message);
-          event.target.reset();
-          reset();
-          setPhoneNumber("");
-        } else {
-          setIsSuccess(false);
-          setMessage(json.message);
-        }
-      })
-      .catch((error) => {
-        setIsSuccess(false);
-        setMessage("Client Error. Please check the console.log for more info");
-        console.log(error);
-      });
-  };
 
+    const eventPromise = toast.promise(
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data, null, 2),
+      })
+        .then(async (response) => {
+          let json = await response.json();
+          if (json.success) {
+            setIsSuccess(true);
+            setMessage(json.message);
+            event.target.reset();
+            reset();
+            setPhoneNumber("");
+            return json.message;
+          } else {
+            setIsSuccess(false);
+            setMessage(json.message);
+            throw new Error(json.message);
+          }
+        })
+        .catch((error) => {
+          setIsSuccess(false);
+          setMessage(
+            "Client Error. Please check the console.log for more info"
+          );
+          console.log(error);
+          throw error;
+        }),
+      {
+        loading: TOAST_MESSAGE.LOADING,
+        success: TOAST_MESSAGE.SUCCESS,
+        error: TOAST_MESSAGE.ERROR,
+      },
+      {
+        success: {
+          duration: 5000,
+        },
+      }
+    );
+
+    try {
+      await eventPromise;
+    } catch (error) {
+      console.error("Submission error:", error);
+    }
+  };
   return (
     <div className={styles.formWrapper}>
       <form
@@ -131,9 +164,28 @@ const PreschoolsForm = () => {
             />
 
             {errors.selectedPreschool && selectedPreschool == "" && (
-              <span className={styles.error}>
+              <span className={styles.dropdownError}>
                 {errors.selectedPreschool?.message}
               </span>
+            )}
+          </label>
+
+          <label className={styles.label}>
+            <span>Nazwa grupy</span>
+            <input
+              id="group_name"
+              type="text"
+              {...register("group_name", {
+                required: "To pole jest wymagane",
+                minLength: {
+                  value: 3,
+                  message: "Nazwa grupy musi mieć co najmniej 3 znaki",
+                },
+              })}
+              placeholder="Grupa abc"
+            />
+            {errors.group_name && (
+              <span className={styles.error}>{errors.group_name.message}</span>
             )}
           </label>
 
@@ -217,15 +269,22 @@ const PreschoolsForm = () => {
           </label>
         </div>
 
-        <input
-          className={styles.button}
-          type="submit"
-          value="Wyślij zgłoszenie!"
-          disabled={!capVal}
-        />
+        <button className={styles.button}>Wyślij wiadomość</button>
       </form>
+      <Toaster
+        position="top-center"
+        containerStyle={{
+          top: 200,
+        }}
+      />
     </div>
   );
 };
 
 export default PreschoolsForm;
+function verifyReCaptchaeCaptcha(
+  data: FormInputs,
+  executeRecaptcha: ((action?: string) => Promise<string>) | undefined
+) {
+  throw new Error("Function not implemented.");
+}
