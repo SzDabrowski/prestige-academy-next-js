@@ -15,7 +15,10 @@
       { "title": "Dzieci", "path": "/kursy/dzieci" },
       { "title": "Pierwszy Taniec", "path": "/kursy/pierwszy_taniec" },
       { "title": "Grupy zlecone", "path": "/kursy/grupy_zlecone" },
-      { "title": "Zajęcia w przedszkolach", "path": "/kursy/przedszkola" }
+      {
+        "title": "Zajęcia w przedszkolach i szkołach",
+        "path": "/kursy/przedszkola"
+      }
     ]
   }
 ]
