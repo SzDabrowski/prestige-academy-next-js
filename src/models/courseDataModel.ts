@@ -65,13 +65,13 @@ const CourseSchema = new Schema<ICourse>({
 });
 
 // Exporting the Models
-const DescriptionModel = mongoose.model<IDescription>(
-  "Description",
-  DescriptionSchema
-);
+const DescriptionModel =
+  mongoose.models.Description ||
+  mongoose.model<IDescription>("Description", DescriptionSchema);
 const DataModel =
   mongoose.models.Data || mongoose.model<IData>("Data", DataSchema);
-const CourseModel = mongoose.model<ICourse>("Course", CourseSchema);
+const CourseModel =
+  mongoose.models.Course || mongoose.model<ICourse>("Course", CourseSchema);
 
 export { DescriptionModel, DataModel, CourseModel };
 export type { ICourse, IData, IDescription };
