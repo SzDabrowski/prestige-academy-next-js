@@ -2,6 +2,7 @@
 import Todo from "@/models/todoModel";
 import { revalidatePath } from "next/cache";
 import { connectToMongoDB } from "./db";
+import { client } from "./contentful/client";
 
 export const createTodos = async (formData: FormData) => {
   await connectToMongoDB();
@@ -40,4 +41,15 @@ export const deleteTodo = async (id: FormData) => {
     // Returning an error message if todo deletion fails
     return { message: "error deleting todo" };
   }
+};
+
+export const getStaticPropsUtil = async () => {
+  const response = await client.getEntries({ content_type: "courseData" });
+
+  return {
+    props: {
+      data: response.items,
+    },
+    revalidate: 60, // Moved revalidate outside of props
+  };
 };
