@@ -6,21 +6,18 @@ import type {
   LocaleCode,
 } from "contentful";
 
-// Define the fields for the "Grupy Zajęć" content type
-export interface TypeDanceGroupFields {
-  title: EntryFieldTypes.Symbol; // Required Symbol field
-  image: EntryFieldTypes.AssetLink; // Required Link to Asset
-  description?: EntryFieldTypes.RichText; // Optional RichText field
+export interface TypeCourseGroupFields {
+  title: EntryFieldTypes.Symbol;
+  image: EntryFieldTypes.AssetLink;
+  description?: EntryFieldTypes.RichText;
 }
 
-// Define the skeleton type for the "Grupy Zajęć" content type
-export type TypeDanceGroupSkeleton = EntrySkeletonType<
-  TypeDanceGroupFields,
+export type TypeCourseGroupSkeleton = EntrySkeletonType<
+  TypeCourseGroupFields,
   "grupyZaj"
 >;
 
-// Define the complete entry type for the "Grupy Zajęć" content type
-export type TypeDanceGroup<
+export type TypeCourseGroup<
   Modifiers extends ChainModifiers,
   Locales extends LocaleCode
-> = Entry<TypeDanceGroupSkeleton, Modifiers, Locales>;
+> = Entry<TypeCourseGroupSkeleton, Modifiers, Locales>;
