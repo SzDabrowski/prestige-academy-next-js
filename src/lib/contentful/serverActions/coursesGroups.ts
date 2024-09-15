@@ -1,4 +1,4 @@
-import { TypeDanceGroupSkeleton } from "@/types/typeCourseGroupSkeleton";
+import { TypeCourseGroupSkeleton } from "@/types/typeCourseGroupSkeleton";
 import { getStaticPropsUtil } from "@/lib/action";
 import { getAllGrupyZaj, getGrupyZajById } from "@/lib/contentful/api";
 import { stringify } from "querystring";
@@ -8,7 +8,7 @@ import contentfulClient from "@/lib/contentful/client";
 import { Entry } from "contentful";
 import { draftMode } from "next/headers";
 
-type DataEntry = Entry<TypeDanceGroupSkeleton, undefined, string>;
+type DataEntry = Entry<TypeCourseGroupSkeleton, undefined, string>;
 
 export interface CourseData {
   title: string;
@@ -34,7 +34,7 @@ export async function fetchCoursesData({
 }: fetchCoursesDataOptions): Promise<CourseData[]> {
   const contentful = contentfulClient({ preview });
 
-  const blogPostsResult = await contentful.getEntries<TypeDanceGroupSkeleton>({
+  const blogPostsResult = await contentful.getEntries<TypeCourseGroupSkeleton>({
     content_type: "grupyZaj",
     include: 2,
     order: ["fields.title"],
