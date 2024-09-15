@@ -177,8 +177,8 @@
         "p2": "gr. 9-12 lat w godz. 18:00-19:00",
         "p3": "gr. 13-17 lat w godz. 19:00-20:00"
       },
-      "firstEvent": "Pierwsze zajęcia 03.09",
-      "recruitment": true,
+      "firstEvent": "Zajęcia odwołane.",
+      "recruitment": false,
       "location": "Zajęcia odbywają się w Domu Kultury Kolejarza, ul. Szczecińska 17",
       "price": "Koszt: 120zł/miesiąc"
     }
@@ -186,7 +186,6 @@
   {
     "title": "Hip Hop commercial",
     "pair": false,
-    "recruitment": true,
     "img": "",
     "data": {
       "for": "dzieci",
@@ -194,8 +193,7 @@
       "summary": "Taniec commercial to dynamiczna i pełna energii forma wyrazu, łącząca elementy hip-hopu, jazzu i popu.",
       "timeInfo": {
         "p1": "Zajęcia w środy",
-        "p2": "gr. 9-12 lat w godz. 18:00-19:00",
-        "p3": "gr. 13-17 lat w godz. 19:00-20:00"
+        "p2": "godz. 18:00-19:00"
       },
       "firstEvent": "Pierwsze zajęcia 04.09",
       "price": "Koszt: 120zł/miesiąc",
