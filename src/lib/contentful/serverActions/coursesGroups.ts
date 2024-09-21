@@ -7,6 +7,7 @@ import { Document as RichTextDocument } from "@contentful/rich-text-types";
 import contentfulClient from "@/lib/contentful/client";
 import { Entry } from "contentful";
 import { draftMode } from "next/headers";
+import { error } from "console";
 
 type DataEntry = Entry<TypeCourseGroupSkeleton, undefined, string>;
 
@@ -29,20 +30,23 @@ function parseContentfulData(dataEntry?: DataEntry): CourseData | null {
 interface fetchCoursesDataOptions {
   preview: boolean;
 }
-export async function fetchCoursesData({
-  preview,
-}: fetchCoursesDataOptions): Promise<CourseData[]> {
+export async function fetchCoursesData({ preview }: fetchCoursesDataOptions) {
   const contentful = contentfulClient({ preview });
+  let entries: any[] = [];
 
-  const blogPostsResult = await contentful.getEntries<TypeCourseGroupSkeleton>({
-    content_type: "grupyZaj",
-    include: 2,
-    order: ["fields.title"],
-  });
+  try {
+    const blogPostsResult = await contentful.getEntries({
+      content_type: "grupyZaj",
+    });
+    entries = blogPostsResult.items.map((entry) => {
+      const { fields } = entry;
+      return fields; // Push entire fields object
+    });
+  } catch (error) {
+    console.error(error);
+  }
 
-  return blogPostsResult.items.map(
-    (blogPostEntry) => parseContentfulData(blogPostEntry) as CourseData
-  );
+  return entries;
 }
 
 interface fetchCourseDataOptions {
@@ -52,14 +56,29 @@ interface fetchCourseDataOptions {
 export async function fetchCourseData({
   courseTitle,
   preview,
-}: fetchCourseDataOptions): Promise<CourseData | null> {
+}: fetchCourseDataOptions) {
   const contentful = contentfulClient({ preview });
 
-  const blogPostsResult = await contentful.getEntries<TypeDanceGroupSkeleton>({
-    content_type: "grupyZaj",
-    "fields.title": courseTitle,
-    include: 2,
-  });
+  try {
+    const response = await contentful.getEntries<TypeCourseGroupSkeleton>({
+      content_type: "grupyZaj",
+      "fields.title": courseTitle,
+      include: 2,
+    });
 
-  return parseContentfulData(blogPostsResult.items[0]);
+    if (response.items.length === 0) {
+      console.warn(`No course found with the title "${courseTitle}".`);
+      return null;
+    }
+
+    const entry = response.items[0];
+    const { fields } = entry;
+
+    if (!fields || fields === null) new Error("no data");
+
+    return fields; // Return the fields of the single entry
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
