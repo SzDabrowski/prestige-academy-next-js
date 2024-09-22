@@ -1,25 +1,54 @@
+"use server";
+
 import styles from "./CommissionedContent.module.scss";
 import { Container } from "@/components/Container/Container";
 import { ContactForm } from "@/components/ContactForm/ContactForm";
 
-const CommissionedContent = () => {
+import { fetchCourseData } from "@/lib/contentful/serverActions/coursesGroups";
+import { draftMode } from "next/headers";
+
+import { notFound } from "next/navigation";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Image from "next/image";
+
+const CommissionedContent = async () => {
+  const data = await fetchCourseData({
+    preview: draftMode().isEnabled,
+    courseTitle: "Grupy zlecone",
+  });
+  if (!data) {
+    notFound();
+  }
+
+  const { title, description, image } = data;
+
+  if (!image || !("fields" in image) || !image.fields.file) {
+    return <main>Image data is not available</main>;
+  }
+  const { file } = image.fields;
+  if (!file.url || !file.details || !file.details.image) {
+    return <main>Invalid image data</main>;
+  }
+
   return (
     <div>
-      <section className={styles.hero}></section>
+      <section className={styles.hero}>
+        <Image
+          className={styles.image}
+          src={`https:${file.url}`}
+          height={file.details.image.height}
+          width={file.details.image.width}
+          alt={""}
+        />
+      </section>
+
       <main>
         <section className={styles.title}>
           <Container>
-            <h1>Grupy zlecone</h1>
+            <h1>{title}</h1>
             <div className={styles.textContent}>
               <div className={styles.whiteSpace}></div>
-              <p>
-                Zbliża się event w Waszej firmie lub chcecie zorganizować naukę
-                tańca dla swoich pracowników lub grupy przyjaciół? Skorzystaj z
-                naszej oferty nauki tańca z zakresu tańców latynoskich takich
-                jak bachata, salsa, Samba, cha cha itp. To świetny sposób na
-                wspólne spędzenie czasu oraz fantastyczną zabawę! Skontaktuj się
-                z nami a Przedstawimy Wam ofertę!
-              </p>
+              {documentToReactComponents(description!)}
             </div>
           </Container>
         </section>
