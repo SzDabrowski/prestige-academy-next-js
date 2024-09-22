@@ -1,3 +1,5 @@
+"use server";
+
 import styles from "./CommissionedContent.module.scss";
 import { Container } from "@/components/Container/Container";
 import { ContactForm } from "@/components/ContactForm/ContactForm";
@@ -5,27 +7,48 @@ import { ContactForm } from "@/components/ContactForm/ContactForm";
 import { fetchCourseData } from "@/lib/contentful/serverActions/coursesGroups";
 import { draftMode } from "next/headers";
 
-import getTextValueContentful from "@/utils/getTextValueContentful";
+import { notFound } from "next/navigation";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Image from "next/image";
 
 const CommissionedContent = async () => {
-  const pageContent = await fetchCourseData({
+  const data = await fetchCourseData({
     preview: draftMode().isEnabled,
     courseTitle: "Grupy zlecone",
   });
+  if (!data) {
+    notFound();
+  }
 
-  const descriptionContent = pageContent?.description?.content[0]?.content[0];
-  const description = getTextValueContentful(descriptionContent);
+  const { title, description, image } = data;
+
+  if (!image || !("fields" in image) || !image.fields.file) {
+    return <main>Image data is not available</main>;
+  }
+  const { file } = image.fields;
+  if (!file.url || !file.details || !file.details.image) {
+    return <main>Invalid image data</main>;
+  }
 
   return (
     <div>
-      <section className={styles.hero}></section>
+      <section className={styles.hero}>
+        <Image
+          className={styles.image}
+          src={`https:${file.url}`}
+          height={file.details.image.height}
+          width={file.details.image.width}
+          alt={""}
+        />
+      </section>
+
       <main>
         <section className={styles.title}>
           <Container>
-            <h1>{pageContent?.title}</h1>
+            <h1>{title}</h1>
             <div className={styles.textContent}>
               <div className={styles.whiteSpace}></div>
-              <p>{description}</p>
+              {documentToReactComponents(description!)}
             </div>
           </Container>
         </section>
