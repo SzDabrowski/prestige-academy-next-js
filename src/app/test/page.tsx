@@ -15,22 +15,11 @@ import Image from "next/image";
 export default async function Home() {
   const data = await fetchCourseData({
     preview: draftMode().isEnabled,
-    courseTitle: "Grupy zlecone",
+    courseTitle: "Grupy zlescone",
   });
 
   if (!data) {
     notFound();
-  }
-
-  const { title, description, image } = data;
-
-  if (!image || !("fields" in image) || !image.fields.file) {
-    return <main>Image data is not available</main>;
-  }
-
-  const { file } = image.fields;
-  if (!file.url || !file.details || !file.details.image) {
-    return <main>Invalid image data</main>;
   }
 
   return (
@@ -46,9 +35,9 @@ export default async function Home() {
         );
       })} */}
       <Image
-        src={`https:${file.url}`}
-        width={file.details.image.width}
-        height={file.details.image.height}
+        src={`https:${data.image.fields.file.url}`}
+        width={data.image.fields.file.details.image.width}
+        height={data.image.fields.file.details.image.height}
         alt={""}
       />
       {/* <div>{JSON.stringify()}</div> */}

@@ -1,5 +1,3 @@
-"use server";
-
 import styles from "./CommissionedContent.module.scss";
 import { Container } from "@/components/Container/Container";
 import { ContactForm } from "@/components/ContactForm/ContactForm";
@@ -7,48 +5,27 @@ import { ContactForm } from "@/components/ContactForm/ContactForm";
 import { fetchCourseData } from "@/lib/contentful/serverActions/coursesGroups";
 import { draftMode } from "next/headers";
 
-import { notFound } from "next/navigation";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import Image from "next/image";
+import getTextValueContentful from "@/utils/getTextValueContentful";
 
 const CommissionedContent = async () => {
-  const data = await fetchCourseData({
+  const pageContent = await fetchCourseData({
     preview: draftMode().isEnabled,
     courseTitle: "Grupy zlecone",
   });
-  if (!data) {
-    notFound();
-  }
 
-  const { title, description, image } = data;
-
-  if (!image || !("fields" in image) || !image.fields.file) {
-    return <main>Image data is not available</main>;
-  }
-  const { file } = image.fields;
-  if (!file.url || !file.details || !file.details.image) {
-    return <main>Invalid image data</main>;
-  }
+  const descriptionContent = pageContent?.description?.content[0]?.content[0];
+  const description = getTextValueContentful(descriptionContent);
 
   return (
     <div>
-      <section className={styles.hero}>
-        <Image
-          className={styles.image}
-          src={`https:${file.url}`}
-          height={file.details.image.height}
-          width={file.details.image.width}
-          alt={""}
-        />
-      </section>
-
+      <section className={styles.hero}></section>
       <main>
         <section className={styles.title}>
           <Container>
-            <h1>{title}</h1>
+            <h1>{pageContent?.title}</h1>
             <div className={styles.textContent}>
               <div className={styles.whiteSpace}></div>
-              {documentToReactComponents(description!)}
+              <p>{description}</p>
             </div>
           </Container>
         </section>
