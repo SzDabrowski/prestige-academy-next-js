@@ -7,15 +7,15 @@ import type {
 } from "contentful";
 
 export interface TypeDanceGroupFields {
+  targetGroup: EntryFieldTypes.Text;
   title: string;
   image: EntryFieldTypes.AssetLink;
-  targetGroup: string;
   pairClass: boolean;
-  summary: string;
+  summary?: string;
   description: EntryFieldTypes.RichText;
   recruitmentOpen: boolean;
-  dateOfFirstClasses: string;
-  price: string;
+  dateOfFirstClasses?: string;
+  price?: string;
   location?: string;
   classesTimeInformation: EntryFieldTypes.RichText;
 }
