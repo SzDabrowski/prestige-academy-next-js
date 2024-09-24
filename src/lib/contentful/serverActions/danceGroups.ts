@@ -1,4 +1,7 @@
-import { TypeDanceGroupSkeleton } from "@/types/typeDanceGroupsSkeleton";
+import {
+  TypeDanceGroupSkeleton,
+  TypeDanceGroupFields,
+} from "@/types/typeDanceGroupsSkeleton";
 import { getStaticPropsUtil } from "@/lib/action";
 import { getAllGrupyZaj, getGrupyZajById } from "@/lib/contentful/api";
 import { stringify } from "querystring";
@@ -7,65 +10,34 @@ import { Document as RichTextDocument } from "@contentful/rich-text-types";
 import contentfulClient from "@/lib/contentful/client";
 import { Entry } from "contentful";
 import { draftMode } from "next/headers";
-
-type DataEntry = Entry<TypeDanceGroupSkeleton, undefined, string>;
-
-export interface DanceGroupData {
-  title: string;
-  description: RichTextDocument | undefined;
-}
-
-function parseContentfulData(dataEntry?: DataEntry): DanceGroupData | null {
-  if (!dataEntry) {
-    return null;
-  }
-
-  return {
-    title: dataEntry.fields.title || "",
-    description: dataEntry.fields.description,
-  };
-}
-
-interface FetchDanceGroupsDataOptions {
-  preview: boolean;
-}
-
-// export async function fetchDanceGroupsData({
-//   preview,
-// }: FetchDanceGroupsDataOptions): Promise<DanceGroupData[]> {
-//   const contentful = contentfulClient({ preview });
-
-//   const danceGroupsResult = await contentful.getEntries<TypeDanceGroupSkeleton>(
-//     {
-//       content_type: "danceGroupData", // Updated content type ID
-//       include: 2,
-//       order: ["fields.title"],
-//     }
-//   );
-
-//   return danceGroupsResult.items.map(
-//     (danceGroupEntry) => parseContentfulData(danceGroupEntry) as DanceGroupData
-//   );
-// }
-
 interface FetchDanceGroupDataOptions {
   preview: boolean;
-  danceGroupTitle: string;
+  targetGroup: string;
 }
 
-export async function fetchDanceGroupData({
-  danceGroupTitle,
+export async function fetchDanceCoursesData({
+  targetGroup,
   preview,
-}: FetchDanceGroupDataOptions): Promise<DanceGroupData | null> {
+}: FetchDanceGroupDataOptions) {
   const contentful = contentfulClient({ preview });
 
-  const danceGroupsResult = await contentful.getEntries<TypeDanceGroupSkeleton>(
-    {
-      content_type: "courseData", // Updated content type ID
-      "fields.title": danceGroupTitle,
+  try {
+    const response = await contentful.getEntries<TypeDanceGroupSkeleton>({
+      content_type: "courseData",
+      "fields.targetGroup": targetGroup,
       include: 2,
-    }
-  );
+    });
 
-  return parseContentfulData(danceGroupsResult.items[0]);
+    if (response.items.length === 0) {
+      console.warn(`No course found with the title "${targetGroup}".`);
+      return null;
+    }
+
+    if (!response || response === null) new Error("no data");
+
+    return response; // Return the fields of the single entry
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }

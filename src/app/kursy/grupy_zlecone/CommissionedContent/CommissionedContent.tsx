@@ -2,30 +2,24 @@ import styles from "./CommissionedContent.module.scss";
 import { Container } from "@/components/Container/Container";
 import { ContactForm } from "@/components/ContactForm/ContactForm";
 
-import { fetchCourseData } from "@/lib/contentful/serverActions/coursesGroups";
-import { draftMode } from "next/headers";
-
-import getTextValueContentful from "@/utils/getTextValueContentful";
-
-const CommissionedContent = async () => {
-  const pageContent = await fetchCourseData({
-    preview: draftMode().isEnabled,
-    courseTitle: "Grupy zlecone",
-  });
-
-  const descriptionContent = pageContent?.description?.content[0]?.content[0];
-  const description = getTextValueContentful(descriptionContent);
-
+const CommissionedContent = () => {
   return (
     <div>
       <section className={styles.hero}></section>
       <main>
         <section className={styles.title}>
           <Container>
-            <h1>{pageContent?.title}</h1>
+            <h1>Grupy zlecone</h1>
             <div className={styles.textContent}>
               <div className={styles.whiteSpace}></div>
-              <p>{description}</p>
+              <p>
+                Zbliża się event w Waszej firmie lub chcecie zorganizować naukę
+                tańca dla swoich pracowników lub grupy przyjaciół? Skorzystaj z
+                naszej oferty nauki tańca z zakresu tańców latynoskich takich
+                jak bachata, salsa, Samba, cha cha itp. To świetny sposób na
+                wspólne spędzenie czasu oraz fantastyczną zabawę! Skontaktuj się
+                z nami a Przedstawimy Wam ofertę!
+              </p>
             </div>
           </Container>
         </section>
