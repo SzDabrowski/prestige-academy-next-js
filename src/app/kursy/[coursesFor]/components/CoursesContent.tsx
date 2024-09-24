@@ -3,12 +3,24 @@ import { ClassSummary } from "@/components/ClassSummary/ClassSummary";
 import danceCourses from "../../../../data/danceCourses.json";
 import { courseForEnum } from "@/lib/enums";
 import mapCourseToPhoto from "../../../../utils/coursePhotoMapper";
+import { fetchDanceCoursesData } from "@/lib/contentful/serverActions/danceGroups";
+import { draftMode } from "next/headers";
+import { EntryCollection } from "contentful";
+import { TypeDanceGroupSkeleton } from "@/types/typeDanceGroupsSkeleton";
 
 interface iCoursesContent {
   group: string;
 }
 
-export const CoursesContent = (props: iCoursesContent) => {
+export const CoursesContent = async (props: iCoursesContent) => {
+  const data = await fetchDanceCoursesData({
+    preview: draftMode().isEnabled,
+    targetGroup: props.group,
+  });
+
+  if (!data || !data.items || data.items.length === 0) {
+    return <div>No courses available for this group.</div>;
+  }
   const returnGroupText = (group: string) => {
     switch (group) {
       case courseForEnum.adults:
@@ -27,17 +39,24 @@ export const CoursesContent = (props: iCoursesContent) => {
         <p>dla {returnGroupText(props.group)}</p>
       </section>
       <section className={styles.coursesList}>
-        {danceCourses.map((danceCourse, index) => {
-          if (danceCourse.data.for === props.group) {
-            return (
-              <ClassSummary
-                key={index}
-                title={danceCourse.title}
-                data={danceCourse.data}
-                img={mapCourseToPhoto(danceCourse.title)}
-              />
-            );
+        {data.items!.map((item) => {
+          const { title, summary, image } = item.fields;
+
+          if (!image || !("fields" in image) || !image.fields.file) {
+            return <main>Image data is not available</main>;
           }
+          const { file } = image.fields;
+          if (!file.url || !file.details || !file.details.image) {
+            return <main>Invalid image data</main>;
+          }
+          return (
+            <ClassSummary
+              key={item.sys.space.sys.id}
+              title={title}
+              data={summary}
+              img={file.url}
+            />
+          );
         })}
       </section>
     </div>
