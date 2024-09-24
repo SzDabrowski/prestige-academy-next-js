@@ -8,7 +8,7 @@ import { stringify } from "querystring";
 import { ContentfulEntry, getContent } from "@/lib/contentful/client";
 import { Document as RichTextDocument } from "@contentful/rich-text-types";
 import contentfulClient from "@/lib/contentful/client";
-import { Entry } from "contentful";
+import { Entry, EntryCollection } from "contentful";
 import { draftMode } from "next/headers";
 interface FetchDanceGroupDataOptions {
   preview: boolean;
@@ -24,7 +24,7 @@ export async function fetchDanceCoursesData({
   try {
     const response = await contentful.getEntries<TypeDanceGroupSkeleton>({
       content_type: "courseData",
-      "fields.targetGroup": targetGroup,
+      'fields.targetGroup': targetGroup,
       include: 2,
     });
 
