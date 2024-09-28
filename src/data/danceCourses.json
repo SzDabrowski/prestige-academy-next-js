@@ -54,17 +54,17 @@
     }
   },
   {
-    "title": "High Heels",
-    "pair": false,
+    "title": "Taniec uzytkowy",
+    "pair": true,
     "img": "",
     "data": {
       "for": "dorosli",
-      "description": "Zapraszamy na wyjątkowe zajęcia z High Heels, które łączą elegancję z pewnością siebie! Podczas tych spotkań nauczysz się sztuki chodzenia w wysokich obcasach, poprawiając swoją postawę, równowagę i koordynację ruchową. Nasza doświadczona instruktorka wprowadzi Cię w świat tańca i stylizacji, oferując cenne wskazówki, jak podkreślić swoją kobiecość w tańcu i wygodnie poruszać się w obuwiu na obcasie. Dołącz do nas, aby zyskać nowe umiejętności, spotkać inspirujące kobiety i dobrze się bawić w przyjaznej atmosferze!",
-      "summary": "Zajęcia dla pań, wzmacniające ciało i pewność siebie przy latynoskich rytmach.",
-      "timeInfo": "w środy 19:00-19:55",
-      "firstEvent": "Pierwsze zajęcia 04.09",
+      "description": "Taniec użytkowy to forma ruchu tanecznego, która łączy w sobie funkcjonalność z estetyką. Jego głównym celem jest dostosowanie kroków do sytuacji takich jak np. taniec na weselu, imprezach integracyjnych, czy w innych codziennych sytuacjach. Cechuje się prostotą, łatwością do nauki i uniwersalnością.",
+      "summary": "Taniec użytkowy to forma ruchu tanecznego, która łączy w sobie funkcjonalność z estetyką.",
+      "timeInfo": "w środy 19:00-20:00",
+      "firstEvent": "Pierwsze zajęcia 02.10",
       "recruitment": true,
-      "price": "Koszt: 120zł/miesiąc"
+      "price": "Koszt: 100zł/miesiąc za osobę"
     }
   },
   {
@@ -77,8 +77,7 @@
       "summary": "Zmysłowe zajęcia dla pań, rozwijające pewność siebie i ekspresję poprzez taniec.",
       "timeInfo": {
         "p1": "Zajęcia we wtorki",
-        "p2": "gr. średniozaawansowana  18:00-18:55",
-        "p3": "gr. początkująca  19.00-19:55"
+        "p2": "18:00-18:55"
       },
       "recruitment": true,
       "firstEvent": "Pierwsze zajęcia 03.09",
