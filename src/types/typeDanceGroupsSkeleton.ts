@@ -1,23 +1,26 @@
 import type {
+  Asset,
   ChainModifiers,
   Entry,
   EntryFieldTypes,
   EntrySkeletonType,
   LocaleCode,
 } from "contentful";
+import { Document } from "@contentful/rich-text-types";
 
 export interface TypeDanceGroupFields {
   targetGroup: EntryFieldTypes.Text;
-  title: string;
-  image: EntryFieldTypes.AssetLink;
+  title: EntryFieldTypes.Text;
+  titleId: EntryFieldTypes.Text;
+  image: Asset;
   pairClass: boolean;
   summary?: string;
-  description: EntryFieldTypes.RichText;
+  description: Document;
   recruitmentOpen: boolean;
   dateOfFirstClasses?: string;
   price?: string;
   location?: string;
-  classesTimeInformation: EntryFieldTypes.RichText;
+  classesTimeInformation: Document;
 }
 
 // Define the skeleton for the DanceGroupData content type
@@ -29,5 +32,5 @@ export type TypeDanceGroupSkeleton = EntrySkeletonType<
 // Define the main DanceGroupData type with optional chain modifiers and locale
 export type TypeDanceGroup<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode
 > = Entry<TypeDanceGroupSkeleton, Modifiers, Locales>;

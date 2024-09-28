@@ -1,33 +1,49 @@
 "use client";
 
+import { useEffect, useState } from "react"; // Import useEffect and useState
+import { TypeDanceGroupFields } from "@/types/typeDanceGroupsSkeleton";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { Container } from "@/components/Container/Container";
 import { CourseContent } from "./CourseContent/CourseContent";
-
-import courseData from "@/types/courseTypes";
-import danceCoursesJSON from "../../../../data/danceCourses.json";
-import { findCourseByTitle } from "@/utils/clientUtils";
-
-import { useRouter } from "next/router";
-import { useParams } from "next/navigation";
-
-type tCourseData = courseData;
+import { notFound, useParams } from "next/navigation";
+import { fetchDanceGroupData } from "@/lib/contentful/serverActions/danceGroups"; // This should be a client-compatible fetching function
 
 export default function Home() {
-  const params = useParams();
-  const danceGroup = params.coursesFor;
+  const [data, setData] = useState<TypeDanceGroupFields | null>(null); // State to hold the fetched data
+  const [loading, setLoading] = useState(true); // State for loading status
+  const params = useParams(); // Get parameters from the URL
 
-  console.log(danceGroup);
-  const courseData: tCourseData = findCourseByTitle(
-    danceCoursesJSON,
-    String(params.course)
-  );
+  useEffect(() => {
+    const getData = async () => {
+      setLoading(true);
+      const groupTitle = String(params.course);
+      const fetchedData = await fetchDanceGroupData({
+        danceGroupTitle: groupTitle,
+        preview: false,
+      });
+      setData(fetchedData); // Update state with the fetched data
+      setLoading(false); // Set loading to false after fetching
+    };
+
+    getData(); // Call the async function
+  }, [params.coursesFor]); // Run this effect when params.coursesFor changes
+
+  // Show a loading message while the data is being fetched
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  // Handle the case where no data is available
+  if (!data) {
+    notFound();
+  }
 
   return (
-    <main className={""}>
+    <main>
       <Container>
-        <CourseContent data={courseData} group={String(danceGroup)} />
+        <CourseContent data={data} groupFor={String(params.coursesFor)} />{" "}
+        {/* Pass the fetched data to CourseContent */}
       </Container>
     </main>
   );

@@ -1,15 +1,17 @@
 import type {
   ChainModifiers,
   Entry,
+  Asset,
   EntryFieldTypes,
   EntrySkeletonType,
   LocaleCode,
 } from "contentful";
+import { Document } from "@contentful/rich-text-types";
 
 export interface TypeCourseGroupFields {
-  title: EntryFieldTypes.Symbol;
-  image: EntryFieldTypes.AssetLink;
-  description?: EntryFieldTypes.RichText;
+  title: EntryFieldTypes.Text;
+  image: Asset;
+  description?: Document;
 }
 
 export type TypeCourseGroupSkeleton = EntrySkeletonType<

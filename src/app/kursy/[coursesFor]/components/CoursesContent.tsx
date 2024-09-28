@@ -4,6 +4,11 @@ import { courseForEnum } from "@/lib/enums";
 import { fetchDanceCoursesData } from "@/lib/contentful/serverActions/danceGroups";
 import { Asset } from "@/lib/contentful/api";
 import { draftMode } from "next/headers";
+import {
+  TypeDanceGroupFields,
+  TypeDanceGroupSkeleton,
+} from "@/types/typeDanceGroupsSkeleton";
+import { Entry } from "contentful";
 
 interface iCoursesContent {
   group: string;
@@ -40,20 +45,19 @@ export const CoursesContent = async (props: iCoursesContent) => {
         <p>dla {returnGroupText(props.group)}</p>
       </section>
       <section className={styles.coursesList}>
-        {data.items.map((item) => {
-          const { title, summary, image, targetGroup, recruitmentOpen  } = item.fields;
-
-          // Image validation
-          const imageFile = image && 'fields' in image ? image.fields?.file : undefined;
-          if (!imageFile || !imageFile.url || !imageFile.details || !imageFile.details.image) {
-            return <div key={item.sys.id}>Invalid image data for {title}</div>;
-          }
+        {data.items.map((item: Entry<TypeDanceGroupSkeleton>) => {
+          const { title, summary, image, targetGroup, recruitmentOpen } =
+            item.fields;
 
           // Render ClassSummary component
           return (
             <ClassSummary
               key={item.sys.id} // Using item.sys.id for a unique key
-              title={title} img={imageFile.url} summary={summary!} recruitment={recruitmentOpen} group={targetGroup}             
+              title={String(title)}
+              img={String(image.fields!.file.url)}
+              summary={summary!}
+              recruitment={recruitmentOpen}
+              group={String(targetGroup)}
             />
           );
         })}
