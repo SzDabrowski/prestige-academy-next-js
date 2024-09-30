@@ -1,0 +1,84 @@
+// schema.prisma
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Make sure to set the DATABASE_URL in your .env file
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model DanceClass {
+  id              Int         @id @default(autoincrement())
+  title           String
+  pair            Boolean
+  img             String?
+  audienceId      Int
+  audience        Audience    @relation(fields: [audienceId], references: [id])
+  summary         String
+  price           String?
+  recruitment     Boolean
+  firstEvent      String?
+  descriptions    Description[]
+  schedules       Schedule[]
+}
+
+model Description {
+  id          Int         @id @default(autoincrement())
+  text        String
+  danceClass  DanceClass @relation(fields: [danceClassId], references: [id])
+  danceClassId Int
+}
+
+model Schedule {
+  id          Int         @id @default(autoincrement())
+  text        String
+  danceClass  DanceClass @relation(fields: [danceClassId], references: [id])
+  danceClassId Int
+}
+
+model Audience {
+  id           Int          @id @default(autoincrement())
+  name         String       @unique
+  danceClasses DanceClass[]
+}
+
+model Institution {
+  id          Int      @id @default(autoincrement())
+  key         String   @unique
+  value       String
+  file        String
+}
+
+model NavigationMenu {
+  id        Int             @id @default(autoincrement())
+  title     String
+  path      String
+  parentId  Int?
+  parent    NavigationMenu? @relation("MenuHierarchy", fields: [parentId], references: [id])
+  children  NavigationMenu[] @relation("MenuHierarchy")
+}
+
+model ContactInfo {
+  id          Int     @id @default(autoincrement())
+  phoneNumber String
+  email       String
+  address     String
+  facebook    String
+  instagram   String
+}
+
+model AboutUs {
+  id             Int      @id @default(autoincrement())
+  summaryDesc1   String
+  summaryDesc2   String
+  quote          String
+  quoteSign      String
+  krystianShort  String
+  krystianDesc   String
+  syzmonShort    String
+  syzmonDesc     String
+  gretaShort     String
+  gretaDesc      String
+}

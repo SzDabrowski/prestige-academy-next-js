@@ -4,91 +4,86 @@ import styles from "./CourseContent.module.scss";
 import CourseForm from "@/components/CourseForm/CourseForm";
 import courseData from "@/types/courseTypes";
 import Image from "next/image";
-import { useState } from "react";
 import mapCourseToPhoto from "../../../../../utils/coursePhotoMapper";
+import { fetchDanceGroupData } from "@/lib/contentful/serverActions/danceGroups";
+import { Asset } from "contentful";
+
+import { TypeDanceGroupFields } from "@/types/typeDanceGroupsSkeleton";
+import { toCamelCase } from "@/utils/clientUtils";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { iAssetLink } from "@/types/assetLinkType";
+
 interface iCourseContent {
-  data: courseData;
-  group: string;
+  groupFor: string;
+  data: TypeDanceGroupFields;
 }
+
 export const CourseContent = (props: iCourseContent) => {
-  const [hasVideos, setHasVideo] = useState(false);
+  const {
+    targetGroup,
+    title,
+    titleId,
+    image,
+    pairClass,
+    summary,
+    description,
+    recruitmentOpen,
+    dateOfFirstClasses,
+    price,
+    location,
+    classesTimeInformation,
+  } = props.data;
 
   return (
     <div className={styles.mainContainer}>
       <main className={styles.mainSection}>
         <div className={styles.heroSection}>
           <Image
-            src={mapCourseToPhoto(props.data.title)}
-            alt={""}
+            src={`https:${image.fields.file?.url}`}
+            alt={String(props.data.title)}
             width={800}
             height={400}
             quality={70}
           />
         </div>
         <div className={styles.textContent}>
-          <span className={styles.danceGroup}>{`kursy/${props.group}`}</span>
-          <h1>{props.data.title}</h1>
+          <span className={styles.danceGroup}>{`kursy/${props.groupFor}`}</span>
+          <h1>{String(title)}</h1>
           <div className={styles.textContentContainer}>
-            {typeof props.data.data.description === "object" ? (
-              Object.values(props.data.data.description).map(
-                (paragraph: any, index) => <p key={index}>{paragraph}</p>
-              )
-            ) : (
-              <p>{props.data.data.description}</p>
-            )}
+            {description && documentToReactComponents(description!)}
 
-            {props.data.data.price && (
-              <div className={styles.priceTag}>{props.data.data.price}</div>
-            )}
+            {price && <div className={styles.priceTag}>{price}</div>}
 
-            {hasVideos ? (
+            {/* {hasVideos ? (
               <div className={styles.videoContainer}>
                 <span>Zobacz jak wygląda ten taniec:</span>
                 <div className={styles.videoWrapper}></div>
               </div>
             ) : (
               ""
-            )}
+            )} */}
           </div>
         </div>
       </main>
       <div className={styles.h2Wrapper}>
         <div className={styles.wrapperInner}>
           <h2>Zapisz się już dziś!</h2>
-          {props.data.data.timeInfo ? (
-            typeof props.data.data.timeInfo === "object" ? (
-              Object.values(props.data.data.timeInfo).map(
-                (paragraph: any, index) => (
-                  <p className={styles.timeInfo} key={index}>
-                    {paragraph}
-                  </p>
-                )
-              )
-            ) : (
-              <p className={styles.timeInfo}>
-                Zajęcia {props.data.data.timeInfo}
-              </p>
-            )
-          ) : null}
+          {classesTimeInformation
+            ? documentToReactComponents(classesTimeInformation!)
+            : null}
 
-          {props.data.data.firstEvent ? (
-            <div className={styles.firstEventInfo}>
-              {props.data.data.firstEvent}
-            </div>
+          {dateOfFirstClasses ? (
+            <div className={styles.firstEventInfo}>{dateOfFirstClasses}</div>
           ) : (
             <></>
           )}
         </div>
       </div>
 
-      {props.data.data.location ? (
-        <div className={styles.locationInfo}>{props.data.data.location}</div>
-      ) : (
-        <></>
-      )}
+      {location ? <div className={styles.locationInfo}>{location}</div> : <></>}
 
       <div className={styles.contactWrapper}>
-        <CourseForm selectedDanceCourse={props.data.title} />
+        <CourseForm selectedDanceCourse={String(title)} />
       </div>
     </div>
   );

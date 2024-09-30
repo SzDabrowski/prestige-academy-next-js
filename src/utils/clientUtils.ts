@@ -1,4 +1,3 @@
-"use client";
 import courseData from "@/types/courseTypes";
 
 export const checkIfInMobileView = () => {
@@ -47,10 +46,31 @@ export function checkIfCourseForPairs(
   }
 }
 
-export function toCamelCase(str: string) {
+export function toCamelCase(str: string): string {
+  // Define a mapping for Polish diacritical characters to their ASCII equivalents
+  const polishToAscii: Record<string, string> = {
+    ą: "a",
+    ć: "c",
+    ę: "e",
+    ł: "l",
+    ń: "n",
+    ó: "o",
+    ś: "s",
+    ź: "z",
+    ż: "z",
+  };
+
+  // Replace Polish characters with ASCII equivalents
+  str = str
+    .split("")
+    .map((char) => polishToAscii[char] || char)
+    .join("");
+
+  // Convert to camelCase
   return str
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-      return index === 0 ? word.toLowerCase() : word.toUpperCase();
-    })
+    .toLowerCase()
+    .replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
+      index === 0 ? match.toLowerCase() : match.toUpperCase()
+    )
     .replace(/\s+/g, "");
 }
