@@ -1,4 +1,7 @@
-import { TypeCourseGroupSkeleton } from "@/types/typeCourseGroupSkeleton";
+import {
+  TypeCourseGroupFields,
+  TypeCourseGroupSkeleton,
+} from "@/types/typeCourseGroupSkeleton";
 import { getStaticPropsUtil } from "@/lib/action";
 import { getAllGrupyZaj, getGrupyZajById } from "@/lib/contentful/api";
 import { stringify } from "querystring";
@@ -76,9 +79,57 @@ export async function fetchCourseData({
 
     if (!fields || fields === null) new Error("no data");
 
-    return fields; // Return the fields of the single entry
+    return fields as unknown as TypeCourseGroupFields; // Return the fields of the single entry
   } catch (error) {
     console.error(error);
     return null;
   }
+}
+
+interface GetContentfulDataProps {
+  courseTitle: string;
+}
+
+export async function getContentfulData({
+  courseTitle,
+}: GetContentfulDataProps): Promise<{
+  data: TypeCourseGroupFields | null;
+  image: {
+    url: string;
+    width: number;
+    height: number;
+  } | null;
+}> {
+  const data = await fetchCourseData({
+    preview: draftMode().isEnabled,
+    courseTitle,
+  });
+
+  if (!data) {
+    return {
+      data: null,
+      image: null,
+    };
+  }
+
+  const { title, description, image } = data;
+
+  // Check for image
+  const imageField = image as any; // Adjust based on your actual types
+  if (
+    !imageField ||
+    !imageField.fields ||
+    !imageField.fields.file ||
+    !imageField.fields.file.url
+  ) {
+    return { data: null, image: null };
+  }
+
+  const imageData = {
+    url: imageField.fields.file.url,
+    width: imageField.fields.file.details?.image?.width || 100,
+    height: imageField.fields.file.details?.image?.height || 100,
+  };
+
+  return { data, image: imageData };
 }
