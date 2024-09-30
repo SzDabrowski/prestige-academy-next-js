@@ -4,40 +4,38 @@ import styles from "./CommissionedContent.module.scss";
 import { Container } from "@/components/Container/Container";
 import { ContactForm } from "@/components/ContactForm/ContactForm";
 
-import { fetchCourseData } from "@/lib/contentful/serverActions/coursesGroups";
+import {
+  fetchCourseData,
+  getContentfulData,
+} from "@/lib/contentful/serverActions/coursesGroups";
 import { draftMode } from "next/headers";
 
 import { notFound } from "next/navigation";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Image from "next/image";
+import { Asset } from "contentful";
+import { useState } from "react";
+import { TypeCourseGroupFields } from "@/types/typeCourseGroupSkeleton";
 
 const CommissionedContent = async () => {
-  const data = await fetchCourseData({
-    preview: draftMode().isEnabled,
+  const { data, image } = await getContentfulData({
     courseTitle: "Grupy zlecone",
   });
-  if (!data) {
+
+  // Check if data was found
+  if (!data || !image) {
     notFound();
   }
 
-  const { title, description, image } = data;
-
-  if (!image || !("fields" in image) || !image.fields.file) {
-    return <main>Image data is not available</main>;
-  }
-  const { file } = image.fields;
-  if (!file.url || !file.details || !file.details.image) {
-    return <main>Invalid image data</main>;
-  }
-
+  const { title, description } = data;
   return (
     <div>
       <section className={styles.hero}>
         <Image
           className={styles.image}
-          src={`https:${file.url}`}
-          height={file.details.image.height}
-          width={file.details.image.width}
+          src={`https:${image.url}`}
+          height={image.height}
+          width={image.width}
           alt={""}
         />
       </section>
@@ -45,7 +43,7 @@ const CommissionedContent = async () => {
       <main>
         <section className={styles.title}>
           <Container>
-            <h1>{title}</h1>
+            <h1>{String(title)}</h1>
             <div className={styles.textContent}>
               <div className={styles.whiteSpace}></div>
               {documentToReactComponents(description!)}
