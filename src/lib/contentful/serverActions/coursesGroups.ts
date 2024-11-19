@@ -101,7 +101,7 @@ export async function getContentfulData({
   } | null;
 }> {
   const data = await fetchCourseData({
-    preview: draftMode().isEnabled,
+    preview: (await draftMode()).isEnabled,
     courseTitle,
   });
 
