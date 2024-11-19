@@ -10,6 +10,8 @@ import preschoolsData from "@/data/preschools.json";
 
 import styles from "./PreschoolsForm.module.scss";
 import ReCAPTCHA from "react-google-recaptcha";
+import toast, { Toaster } from "react-hot-toast";
+import { TOAST_MESSAGE } from "@/lib/toastMessages";
 
 interface FormInputs {
   selectedPreschool: string;
@@ -70,33 +72,56 @@ const PreschoolsForm = () => {
 
   const onSubmit = async (data: FormInputs, event?: any) => {
     event?.preventDefault();
-    console.log(data);
-    await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(data, null, 2),
-    })
-      .then(async (response) => {
-        let json = await response.json();
-        if (json.success) {
-          setIsSuccess(true);
-          setMessage(json.message);
-          event.target.reset();
-          reset();
-          setPhoneNumber("");
-        } else {
-          setIsSuccess(false);
-          setMessage(json.message);
-        }
+
+    const eventPromise = toast.promise(
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data, null, 2),
       })
-      .catch((error) => {
-        setIsSuccess(false);
-        setMessage("Client Error. Please check the console.log for more info");
-        console.log(error);
-      });
+        .then(async (response) => {
+          let json = await response.json();
+          if (json.success) {
+            setIsSuccess(true);
+            setMessage(json.message);
+            event.target.reset();
+            reset();
+            setPhoneNumber("");
+            return json.message;
+          } else {
+            setIsSuccess(false);
+            setMessage(json.message);
+            throw new Error(json.message);
+          }
+        })
+        .catch((error) => {
+          setIsSuccess(false);
+          setMessage(
+            "Client Error. Please check the console.log for more info"
+          );
+          console.log(error);
+          throw error;
+        }),
+      {
+        loading: "Submitting your data...",
+        success: "Form submitted successfully!",
+        error: "Something went wrong. Please try again.",
+      },
+      {
+        success: {
+          duration: 5000,
+        },
+      }
+    );
+
+    try {
+      await eventPromise;
+    } catch (error) {
+      console.error("Submission error:", error);
+    }
   };
 
   return (
@@ -221,9 +246,15 @@ const PreschoolsForm = () => {
           className={styles.button}
           type="submit"
           value="Wyślij zgłoszenie!"
-          disabled={!capVal}
+          // disabled={!capVal}
         />
       </form>
+      <Toaster
+        position="top-center"
+        containerStyle={{
+          top: 200,
+        }}
+      />
     </div>
   );
 };
