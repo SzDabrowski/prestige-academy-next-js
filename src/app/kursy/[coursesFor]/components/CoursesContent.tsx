@@ -20,7 +20,7 @@ type ImageField = {
 
 export const CoursesContent = async ({ group }: CoursesContentProps) => {
   const data = await fetchDanceCoursesData({
-    preview: draftMode().isEnabled,
+    preview: (await draftMode()).isEnabled,
     targetGroup: group,
   });
 
