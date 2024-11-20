@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export const GET = async () => {
   try {
     const courseClients = await prisma.courseClient.findMany();
-    console.log(process.env.MONGODB_URI);
 
     return new NextResponse(JSON.stringify(courseClients), { status: 200 });
   } catch (error: any) {
