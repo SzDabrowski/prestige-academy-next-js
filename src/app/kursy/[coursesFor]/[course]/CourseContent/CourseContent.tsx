@@ -2,7 +2,6 @@
 
 import styles from "./CourseContent.module.scss";
 import CourseForm from "@/components/CourseForm/CourseForm";
-import courseData from "@/types/courseTypes";
 import Image from "next/image";
 import mapCourseToPhoto from "../../../../../utils/coursePhotoMapper";
 import { fetchDanceGroupData } from "@/lib/contentful/serverActions/danceGroups";
