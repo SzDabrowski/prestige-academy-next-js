@@ -6,10 +6,15 @@ export const GET = async () => {
     const courseClients = await prisma.courseClient.findMany();
 
     return new NextResponse(JSON.stringify(courseClients), { status: 200 });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error fetching course clients:", error);
-    return new NextResponse(JSON.stringify({ error: error.message }), {
-      status: 500,
-    });
+    return new NextResponse(
+      JSON.stringify({
+        error: "An error occurred while fetching course clients",
+      }),
+      {
+        status: 500,
+      }
+    );
   }
 };

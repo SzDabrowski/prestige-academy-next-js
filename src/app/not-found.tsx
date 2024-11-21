@@ -2,14 +2,14 @@ import styles from "./not-found.module.scss";
 
 const notFound = () => {
   return (
-    <div className={styles.containter}>
-      <div className="">
+    <main className={styles.container} role="main">
+      <div>
         <h1 className={styles.title}> 404 - Nie znaleziono strony </h1>
         <p className={styles.information}>
           Przepraszamy, nie ma takiej strony{" "}
         </p>
       </div>
-    </div>
+    </main>
   );
 };
 
