@@ -132,7 +132,7 @@ export const ContactForm = (props: ContactForm) => {
         value={process.env.NEXT_PUBLIC_WEBFORM_ACCES_KEY}
         {...register("access_key")}
       />
-      courseData
+
       <input type="hidden" {...register("subject")} />
       {props.courseName ? (
         <input
