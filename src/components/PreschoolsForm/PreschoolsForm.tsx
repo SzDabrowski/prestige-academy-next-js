@@ -269,8 +269,19 @@ const PreschoolsForm = () => {
           </label>
         </div>
 
-        <button className={styles.button}>Wyślij wiadomość</button>
+        <input
+          className={styles.button}
+          type="submit"
+          value="Wyślij zgłoszenie!"
+          // disabled={!capVal}
+        />
       </form>
+      <Toaster
+        position="top-center"
+        containerStyle={{
+          top: 200,
+        }}
+      />
       <Toaster
         position="top-center"
         containerStyle={{

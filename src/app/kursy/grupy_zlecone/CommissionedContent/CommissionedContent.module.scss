@@ -4,12 +4,13 @@
 .hero {
   width: 100%;
   height: 60vh;
-  background-image: url("/../../assets/images/commissioned.jpg");
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
 
-  @include mobile {
-    height: 60vh;
+  .image {
+    object-fit: cover;
+    width: 100% !important;
+    height: 100%;
+    margin: auto;
   }
 }
 

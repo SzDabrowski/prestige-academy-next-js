@@ -9,6 +9,7 @@ import { PrestigeLogoIcon } from "../icons/LogoIcon/PrestigeLogoIcon";
 
 import styles from "./Header.module.scss";
 import NotificationBar from "../NotificationBar/NotificationBar";
+import Link from "next/link";
 
 const Header = () => {
   const [isOpenHamb, setOpenHamb] = useState(false);
@@ -34,9 +35,9 @@ const Header = () => {
         <Container>
           <div className={styles.headerContainer}>
             <div className={styles.mobileContainer}>
-              <a href="/" className={styles.logo}>
+              <Link href="/" className={styles.logo}>
                 <PrestigeLogoIcon textfillColor={"black"} />
-              </a>
+              </Link>
               <div className={styles.hamburgerWrapper}>
                 <Hamburger
                   toggled={isOpenHamb}
