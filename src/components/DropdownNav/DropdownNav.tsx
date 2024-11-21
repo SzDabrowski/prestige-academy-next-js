@@ -19,7 +19,7 @@ const DropDownNav = ({
   childrenData,
   isHamburgerOpen,
 }: DropDownNavProps) => {
-  const [iconColor, setIconColor] = useState("white" || "black");
+  // const [iconColor, setIconColor] = useState("white" || "black");
   const [isOpen, setIsOpen] = useState(false);
 
   const [isDropdownVisible, setDropdownVisible] = useState(false);

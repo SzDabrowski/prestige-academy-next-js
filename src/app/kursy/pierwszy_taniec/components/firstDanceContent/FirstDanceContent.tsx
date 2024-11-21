@@ -1,60 +1,56 @@
 import styles from "./FirstDanceContent.module.scss";
 import { Container } from "@/components/Container/Container";
 import { ContactForm } from "@/components/ContactForm/ContactForm";
-import Video from "next-video";
 
-import firstDanceVideo from "@/../videos/first_dance_video.mp4";
+import { getContentfulData } from "@/lib/contentful/serverActions/coursesGroups"; // Import the new function
+import { draftMode } from "next/headers";
+import { notFound } from "next/navigation";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Image from "next/image";
+import { TypeCourseGroupFields } from "@/types/typeCourseGroupSkeleton";
 
-export const FirstDanceContent = () => {
+export const FirstDanceContent = async () => {
+  const { data, image } = await getContentfulData({
+    courseTitle: "Pierwszy taniec weselny",
+  });
+
+  // Check if data was found
+  if (!data || !image) {
+    notFound();
+  }
+
+  const { title, description } = data;
+
   return (
     <div>
-      <section className={styles.hero}></section>
+      <section className={styles.hero}>
+        {image ? (
+          <Image
+            className={styles.image}
+            src={`https:${image.url}`}
+            height={image?.height}
+            width={image?.width}
+            alt={String(title)}
+          />
+        ) : (
+          <main>Image data is not available</main>
+        )}
+      </section>
 
       <main>
         <section className={styles.title}>
           <Container>
-            <h1>PIERWSZY TANIEC WESELNY</h1>
+            <h1>{String(title)}</h1>
             <div className={styles.textContent}>
-              <div className={styles.whiteSpace}></div>
-              <p>
-                Pierwszy taniec na weselu to nie tylko tradycja, ale też
-                wyjątkowa przyjemność. Czas spędzony razem na zajęciach
-                tanecznych, gdzie przygotowujecie swój taniec, to świetna okazja
-                na oderwanie się od codzienności i wspólne emocje. Istotne jest,
-                aby ten taniec odzwierciedlał wasze uczucia i unikalną relację.
-                Naszym celem jest stworzenie choreografii, która doskonale odda
-                esencję Waszej miłości. Jesteśmy przekonani, że taniec to
-                opowieść, a Wasz taniec to historia Waszej wspólnej drogi. Może
-                być romantyczny, pełen energii, spokojny albo z nutą szaleństwa
-                - dostosujemy się do Waszych życzeń.
-              </p>
-              <div className={styles.whiteSpace}></div>
-              <p>
-                Ten moment to prezent dla Was i Waszych bliskich, na który
-                wszyscy czekają z niecierpliwością. Wspólnie stworzymy unikalną
-                choreografię, dostosowaną do waszych preferencji i wybranego
-                utworu.
-              </p>
-              <p></p>
-              <div className={styles.whiteSpace}></div>
-              <p className={styles.big}>
-                Razem uczynimy go niezapomnianym przeżyciem!
-              </p>
+              {documentToReactComponents(description!)}
             </div>
           </Container>
         </section>
-        <section className={styles.videoSection}>
-          <Container>
-            <h2>Zobacz jedną z naszych choreografii:</h2>
-            <div className={styles.wrapper}>
-              <Video src={firstDanceVideo} />
-            </div>
-          </Container>
-        </section>
+
         <section className={styles.formSection}>
           <Container>
             <div className={styles.formWrapper}>
-              <h3>Zapisz sie!</h3>
+              <h3>Zapisz się!</h3>
               <ContactForm courseName="Pierwszy taniec weselny" />
             </div>
           </Container>
@@ -63,3 +59,5 @@ export const FirstDanceContent = () => {
     </div>
   );
 };
+
+export default FirstDanceContent;

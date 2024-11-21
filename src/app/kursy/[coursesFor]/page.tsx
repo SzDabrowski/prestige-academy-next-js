@@ -1,15 +1,14 @@
-import Header from "@/components/Header/Header";
-import styles from "./page.module.scss";
-import Footer from "@/components/Footer/Footer";
 import { Container } from "@/components/Container/Container";
 import { CoursesContent } from "./components/CoursesContent";
-import { useRouter } from "next/router";
 
-export default function Home({ params }: { params: any }) {
+import styles from "./page.module.scss";
+
+export default async function Home({ params }: { params: any }) {
+  const resolvedParams = await params;
   return (
     <main className={styles.main}>
       <Container>
-        <CoursesContent group={params.coursesFor} />
+        <CoursesContent group={resolvedParams.coursesFor} />
       </Container>
     </main>
   );
