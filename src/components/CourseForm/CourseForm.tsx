@@ -17,6 +17,9 @@ import toast, { Toaster } from "react-hot-toast";
 import { TOAST_MESSAGE } from "@/lib/toastMessages";
 import axios from "axios";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { saveClient } from "@/utils/prismaUtils";
+
+import { CourseClientType } from "@/types/mongodbTypes";
 
 interface FormInputs {
   selectedDanceCourse: string;
@@ -89,17 +92,24 @@ const CourseForm = (props: iCourseForm) => {
 
   const onSubmit = async (data: FormInputs, event?: any) => {
     event?.preventDefault();
+    console.log(data);
 
     const recaptchaRes = verifyReCaptcha(data, executeRecaptcha);
 
+    const clientData: CourseClientType = {
+      courseName: data.selectedDanceCourse,
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+    };
+
     const eventPromise = toast.promise(
-      fetch("https://api.web3forms.com/submit", {
+      fetch("/api/db", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
         },
-        body: JSON.stringify(data, null, 2),
+        body: JSON.stringify(clientData),
       })
         .then(async (response) => {
           let json = await response.json();
@@ -112,7 +122,7 @@ const CourseForm = (props: iCourseForm) => {
             return json.message;
           } else {
             setIsSuccess(false);
-            setMessage(json.message);
+            setMessage(json.error);
             throw new Error(json.message);
           }
         })
@@ -136,11 +146,11 @@ const CourseForm = (props: iCourseForm) => {
       }
     );
 
-    try {
-      await eventPromise;
-    } catch (error) {
-      console.error("Submission error:", error);
-    }
+    // try {
+    //   await eventPromise;
+    // } catch (error) {
+    //   console.error("Submission error:", error);
+    // }
   };
 
   return (
