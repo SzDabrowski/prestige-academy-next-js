@@ -55,3 +55,4 @@ src/videos/*
 !src/videos/*.js
 !src/videos/*.ts
 public/_next-video
+.env
