@@ -35,7 +35,6 @@ const PreschoolsForm = () => {
 
   const handleDropdownSelect = (value: string) => {
     setselectedPreschool(value);
-    console.log(value);
     return value;
   };
 
