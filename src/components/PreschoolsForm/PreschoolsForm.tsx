@@ -15,6 +15,7 @@ import styles from "./PreschoolsForm.module.scss";
 import ReCAPTCHA from "react-google-recaptcha";
 import { verifyReCaptcha } from "@/utils/recaptchaUtils";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { PreschoolClientType } from "@/types/mongodbTypes";
 
 interface FormInputs {
   selectedPreschool: string;
@@ -82,14 +83,22 @@ const PreschoolsForm = () => {
   const onSubmit = async (data: FormInputs, event?: any) => {
     event?.preventDefault();
 
+    const preschoolClientData: PreschoolClientType = {
+      preschoolName: data.selectedPreschool,
+      studentName: data.child_name,
+      parentName: data.parent_name,
+      email: data.email,
+      phone: data.phone,
+      groupName: data.group_name || "",
+    };
+
     const eventPromise = toast.promise(
-      fetch("https://api.web3forms.com/submit", {
+      fetch("/api/db/preschools", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
         },
-        body: JSON.stringify(data, null, 2),
+        body: JSON.stringify(preschoolClientData),
       })
         .then(async (response) => {
           let json = await response.json();

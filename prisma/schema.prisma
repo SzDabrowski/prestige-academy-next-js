@@ -20,6 +20,7 @@ model CourseClient {
   pairName String?
   email String
   phone String @default("000-000-000")
+  createdAt   DateTime @default(now())
 }
 
 model PreschoolClient {
@@ -30,4 +31,5 @@ model PreschoolClient {
   parentName String
   email String
   phone String @default("000-000-000")
+  createdAt   DateTime @default(now())
 }

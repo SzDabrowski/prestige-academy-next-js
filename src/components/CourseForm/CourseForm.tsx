@@ -104,7 +104,7 @@ const CourseForm = (props: iCourseForm) => {
     };
 
     const eventPromise = toast.promise(
-      fetch("/api/db", {
+      fetch("/api/db/courses", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -146,11 +146,11 @@ const CourseForm = (props: iCourseForm) => {
       }
     );
 
-    // try {
-    //   await eventPromise;
-    // } catch (error) {
-    //   console.error("Submission error:", error);
-    // }
+    try {
+      await eventPromise;
+    } catch (error) {
+      console.error("Submission error:", error);
+    }
   };
 
   return (
