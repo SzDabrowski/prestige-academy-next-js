@@ -1,5 +1,5 @@
-@import "../../../../../styles/mixins.scss";
-@import "../../../../../styles/_colors.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/_colors.scss";
 
 .hero {
   width: 100%;
@@ -33,8 +33,6 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    margin-bottom: 5rem;
   }
 }
 
@@ -76,28 +74,23 @@
   text-align: center;
   height: fit-content;
 
-  h2 {
-    font-size: 1.5rem;
-    color: #fff;
-    text-transform: capitalize;
-    font-weight: 500;
-    margin-bottom: 1rem;
+  .next-video-container {
+    width: 100%;
+    max-width: 40px;
+    margin: 40px auto;
   }
 
   .wrapper {
-    margin: auto;
-    width: 60%;
-
-    @include mobile {
-      width: 70%;
-    }
+    margin-top: 50px;
+    position: relative;
+    top: 80px;
   }
 }
 
 .formWrapper {
   padding: 5rem 15rem;
   text-align: center;
-  h3 {
+  h2 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
 

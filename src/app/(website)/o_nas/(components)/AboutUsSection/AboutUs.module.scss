@@ -1,5 +1,5 @@
-@import "../../../../styles/mixins.scss";
-@import "../../../../styles/_colors.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/_colors.scss";
 
 .section {
   padding: 50px 0;
@@ -103,15 +103,15 @@
       }
 
       .greta {
-        background-image: url("../../../../../public/assets/images/teachers/greta-min.jpg");
+        background-image: url("/assets/images/teachers/greta-min.jpg");
       }
 
       .krystian {
-        background-image: url("../../../../../public/assets/images/teachers/krystian-min.jpg");
+        background-image: url("/assets/images/teachers/krystian-min.jpg");
       }
 
       .szymon {
-        background-image: url("../../../../../public/assets/images/teachers/szymon-min.jpg");
+        background-image: url("/assets/images/teachers/szymon-min.jpg");
       }
 
       .personText {

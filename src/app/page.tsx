@@ -11,6 +11,7 @@ import CourseForm from "@/components/CourseForm/CourseForm";
 export default function Home() {
   return (
     <main className={styles.main}>
+      <LandingHeader />
       <Hero />
       <Container>
         <CourseForm />
