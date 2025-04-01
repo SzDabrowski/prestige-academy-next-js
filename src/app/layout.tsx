@@ -8,6 +8,8 @@ import GoogleCaptchaWrapper from "@/components/Recaptcha/GoogleCaptchaWrapper";
 import { Analytics } from "@vercel/analytics/react";
 import icon from "../../public/assets/images/logo/prestigeLogoOnly.png";
 
+import Footer from "@/components/Footer/Footer";
+
 import CookiesBot from "@/components/CookiesBot";
 import FbPixel from "@/components/FbPixel";
 
@@ -28,6 +30,7 @@ export default function RootLayout({
       <body>
         <GoogleCaptchaWrapper>{children}</GoogleCaptchaWrapper>
         <Analytics />
+        <Footer />
       </body>
     </html>
   );

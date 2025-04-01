@@ -11,11 +11,17 @@ import { TOAST_MESSAGE } from "@/lib/toastMessages";
 
 import preschoolsData from "@/data/preschools.json";
 
+import { saveClientData } from "@/app/actions/serverDB";
+
+import { useTokenStore } from "@/app/hooks/useTokenStore";
+import { sendNotificationEmail } from "@/app/actions/sendNotification";
+
 import styles from "./PreschoolsForm.module.scss";
 import ReCAPTCHA from "react-google-recaptcha";
 import { verifyReCaptcha } from "@/utils/recaptchaUtils";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { PreschoolClientType } from "@/types/mongodbTypes";
+import { fetchServerToken } from "@/app/actions/serverDB";
 
 interface FormInputs {
   selectedPreschool: string;
@@ -29,6 +35,8 @@ interface FormInputs {
 }
 
 const PreschoolsForm = () => {
+  const { guestToken, setGuestToken } = useTokenStore();
+  const [loading, setLoading] = useState<boolean>(true);
   const [selectedPreschool, setselectedPreschool] = useState("");
 
   const [phoneNumber, setPhoneNumber] = useState<string>("");
@@ -67,6 +75,25 @@ const PreschoolsForm = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   useEffect(() => {
+    const fetchToken = async () => {
+      try {
+        const token = await fetchServerToken();
+
+        setGuestToken(token);
+      } catch (error) {
+        console.error("Error fetching token:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (guestToken === null) {
+      fetchToken();
+    }
+    console.log(guestToken);
+  }, []);
+
+  useEffect(() => {
     setValue("selectedPreschool", selectedPreschool);
   }, [selectedPreschool]);
 
@@ -82,6 +109,11 @@ const PreschoolsForm = () => {
   const onSubmit = async (data: FormInputs, event?: any) => {
     event?.preventDefault();
 
+    if (!guestToken) {
+      toast.error(TOAST_MESSAGE.NO_TOKEN);
+      return;
+    }
+
     const preschoolClientData: PreschoolClientType = {
       preschoolName: data.selectedPreschool,
       studentName: data.child_name,
@@ -91,55 +123,28 @@ const PreschoolsForm = () => {
       groupName: data.group_name || "",
     };
 
-    const eventPromise = toast.promise(
-      fetch("/api/db/preschools", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(preschoolClientData),
-      })
-        .then(async (response) => {
-          let json = await response.json();
-          if (json.success) {
-            setIsSuccess(true);
-            setMessage(json.message);
-            event.target.reset();
-            reset();
-            setPhoneNumber("");
-            return json.message;
-          } else {
-            setIsSuccess(false);
-            setMessage(json.message);
-            throw new Error(json.message);
-          }
-        })
-        .catch((error) => {
-          setIsSuccess(false);
-          setMessage(
-            "Client Error. Please check the console.log for more info"
-          );
-          console.log(error);
-          throw error;
-        }),
-      {
-        loading: TOAST_MESSAGE.LOADING,
-        success: TOAST_MESSAGE.SUCCESS,
-        error: TOAST_MESSAGE.ERROR,
-      },
-      {
-        success: {
-          duration: 5000,
-        },
-      }
-    );
-
     try {
-      await eventPromise;
+      await toast.promise(
+        saveClientData(guestToken, undefined, preschoolClientData),
+        {
+          loading: "Zapisywanie...",
+          success: "Zapisano pomyślnie!",
+          error: "Błąd podczas zapisu",
+        }
+      );
+      await sendNotificationEmail(guestToken, undefined, preschoolClientData);
+
+      setIsSuccess(true);
+      setMessage("Dane zapisane!");
+      reset();
+      setPhoneNumber("");
     } catch (error) {
-      console.error("Submission error:", error);
+      setIsSuccess(false);
+      setMessage("Błąd zapisu. Spróbuj ponownie.");
+      console.error("Error submitting form:", error);
     }
   };
+
   return (
     <div className={styles.formWrapper}>
       <form
