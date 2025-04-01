@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { CookieIcon } from "lucide-react";
 import CookieConsentBanner from "./CookieConsentBanner";
+import styles from "./CookieConsentToggler.module.scss"; // Import the SCSS module
 
-export default function CookieConsentToogler() {
+export default function CookieConsentToggler() {
   const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
@@ -22,9 +23,14 @@ export default function CookieConsentToogler() {
   };
 
   return (
-    <div>
-      <Button variant="outline" size="icon" onClick={handleOpen}>
-        <CookieIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
+    <div className={styles["toggler-container"]}>
+      <Button
+        variant="outline"
+        size="icon"
+        className={styles.button}
+        onClick={handleOpen}
+      >
+        <CookieIcon className={styles.icon} />
       </Button>
       {open && (
         <CookieConsentBanner

@@ -1,6 +1,8 @@
 // app/providers.tsx
 "use client";
 
+import { useCookiesConsent } from "@/hooks/useCookieConsent";
+
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, Suspense } from "react";
 import { usePostHog } from "posthog-js/react";
@@ -9,10 +11,13 @@ import posthog from "posthog-js";
 import { PostHogProvider as PHProvider } from "posthog-js/react";
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
+  const { cookiesAccepted } = useCookiesConsent();
+
   useEffect(() => {
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
       api_host:
         process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
+      persistence: cookiesAccepted ? "localStorage+cookie" : "memory",
       person_profiles: "always",
       capture_pageview: false,
       capture_pageleave: true,

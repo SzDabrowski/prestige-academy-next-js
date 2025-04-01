@@ -11,7 +11,8 @@ import icon from "../../public/assets/images/logo/prestigeLogoOnly.png";
 
 import Footer from "@/components/Footer/Footer";
 
-import CookiesBot from "@/components/CookiesBot";
+import CookieConsentToogler from "@/components/Cookies/CookieConsentToogler";
+
 import FbPixel from "@/components/FbPixel";
 
 export default function RootLayout({
@@ -34,6 +35,7 @@ export default function RootLayout({
         </GoogleCaptchaWrapper>
         <Analytics />
         <Footer />
+        <CookieConsentToogler />
       </body>
     </html>
   );
