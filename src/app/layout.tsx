@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import "./globals.scss";
 
 import GoogleCaptchaWrapper from "@/components/Recaptcha/GoogleCaptchaWrapper";
+import { PostHogProvider } from "@/components/PosthogProvider";
 import { Analytics } from "@vercel/analytics/react";
 import icon from "../../public/assets/images/logo/prestigeLogoOnly.png";
 
@@ -28,7 +29,9 @@ export default function RootLayout({
       </head>
 
       <body>
-        <GoogleCaptchaWrapper>{children}</GoogleCaptchaWrapper>
+        <GoogleCaptchaWrapper>
+          <PostHogProvider>{children}</PostHogProvider>
+        </GoogleCaptchaWrapper>
         <Analytics />
         <Footer />
       </body>
