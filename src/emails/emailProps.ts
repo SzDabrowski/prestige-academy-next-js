@@ -1,14 +1,19 @@
-import { CourseClientType, PreschoolClientType } from "@/types/mongodbTypes";
+import {
+  CourseClientType,
+  PreschoolClientType,
+  ContactClientType,
+} from "@/types/mongodbTypes";
 
 export interface NotificationEmailProps {
   recipientName: string;
   notificationTitle: string;
   notificationDescription: string;
-  messageData: CourseClientType | PreschoolClientType;
+  messageData: CourseClientType | PreschoolClientType | ContactClientType;
   actionButtonText: string;
   actionButtonUrl: string;
   year: number;
 }
+
 export interface ContactEmailProps {
   recipientName: string;
   subject: string;
@@ -28,11 +33,19 @@ const mockCourseClient: CourseClientType = {
   // Add any other necessary fields from CourseClientType
 };
 
+const mockContactClient: ContactClientType = {
+  name: "Jan Kowalski",
+  phone: "123-456-789",
+  email: "jan.kowalski@example.com",
+  subject: "Zapytanie o ofertę",
+  message:
+    "Dzień dobry, chciałbym uzyskać więcej informacji o oferowanych kursach. Pozdrawiam, Jan Kowalski",
+};
+
 export const defaultNotificationEmailProps: NotificationEmailProps = {
   recipientName: "Krystian",
   notificationTitle: "Nowe powiadomienie",
   notificationDescription: "Mamy dla Ciebie ważne aktualizacje",
-
   actionButtonText: "Zobacz szczegóły",
   actionButtonUrl: "https://admin.prestige.stargard.pl/dashboard/clients",
   year: new Date().getFullYear(),
@@ -48,4 +61,19 @@ export const defaultContactEmailProps: ContactEmailProps = {
   senderName: "Jan Kowalski",
   senderPhone: "123-456-789",
   year: new Date().getFullYear(),
+};
+
+// Example of creating notification props for a contact form submission
+export const createContactNotificationProps = (
+  contactData: ContactClientType
+): NotificationEmailProps => {
+  return {
+    recipientName: "Administrator",
+    notificationTitle: "Nowe zapytanie kontaktowe",
+    notificationDescription: `Otrzymałeś nowe zapytanie od ${contactData.name}`,
+    messageData: contactData,
+    actionButtonText: "Odpowiedz",
+    actionButtonUrl: "https://admin.prestige.stargard.pl/dashboard/messages",
+    year: new Date().getFullYear(),
+  };
 };

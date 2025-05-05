@@ -1,10 +1,14 @@
 import axios from "axios";
-import { CourseClientType, PreschoolClientType } from "@/types/mongodbTypes";
+import {
+  CourseClientType,
+  PreschoolClientType,
+  ContactClientType,
+} from "@/types/mongodbTypes";
 
 export const fetchServerToken = async (): Promise<string> => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/getGuestToken`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/GuestToken`,
       {
         method: "GET",
         headers: {
@@ -43,7 +47,7 @@ export const saveClientData = async (
   try {
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/forms/saveData`,
-      { clientData, preschoolData }, // Only one will be present
+      { clientData, preschoolData },
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -55,6 +59,28 @@ export const saveClientData = async (
     return response.data;
   } catch (error) {
     console.error("Error saving data:", error);
+    throw error;
+  }
+};
+
+export const sendContactMessage = async (
+  data: ContactClientType,
+  token: string
+) => {
+  try {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/forms/contact`,
+      { ...data },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error sending contact message:", error);
     throw error;
   }
 };

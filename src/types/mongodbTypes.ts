@@ -14,3 +14,11 @@ export type PreschoolClientType = {
   email: string;
   phone: string;
 };
+
+export type ContactClientType = {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+};

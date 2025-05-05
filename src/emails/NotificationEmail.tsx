@@ -16,8 +16,11 @@ import {
   Tailwind,
 } from "@react-email/components";
 
-import { CourseClientType, PreschoolClientType } from "@/types/mongodbTypes";
-import { text } from "stream/consumers";
+import {
+  CourseClientType,
+  PreschoolClientType,
+  ContactClientType,
+} from "@/types/mongodbTypes";
 import RootEmailTemplate from "./RootEmailTemplate";
 
 const baseURL = "https://www.prestige.stargard.pl";
@@ -26,7 +29,6 @@ export const NotificationEmail = ({
   recipientName = defaultNotificationEmailProps.recipientName,
   notificationTitle = defaultNotificationEmailProps.notificationTitle,
   notificationDescription = defaultNotificationEmailProps.notificationDescription,
-
   messageData = defaultNotificationEmailProps.messageData,
   actionButtonText = defaultNotificationEmailProps.actionButtonText,
   actionButtonUrl = defaultNotificationEmailProps.actionButtonUrl,
@@ -131,13 +133,60 @@ export const NotificationEmail = ({
           </>
         );
       }
+
+      // Check if messageData is of type ContactClientType
+      if ((messageData as ContactClientType).subject) {
+        const contact = messageData as ContactClientType;
+        return (
+          <>
+            <Text style={{ fontSize: "16px", color: "#27272a" }}>
+              Nowe zapytanie kontaktowe:
+            </Text>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 2fr", // One column for labels, the other for data
+                gap: "10px",
+                fontSize: "16px",
+                color: "#27272a",
+                marginTop: "10px",
+              }}
+            >
+              <div>
+                <strong>Temat:</strong>
+              </div>
+              <div>{contact.subject}</div>
+
+              <div>
+                <strong>Imię i nazwisko:</strong>
+              </div>
+              <div>{contact.name}</div>
+
+              <div>
+                <strong>Numer telefonu:</strong>
+              </div>
+              <div>{contact.phone}</div>
+
+              <div>
+                <strong>Adres e-mail:</strong>
+              </div>
+              <div>{contact.email}</div>
+
+              <div>
+                <strong>Wiadomość:</strong>
+              </div>
+              <div style={{ whiteSpace: "pre-wrap" }}>{contact.message}</div>
+            </div>
+          </>
+        );
+      }
     }
 
     return null;
   };
 
   return (
-    <RootEmailTemplate notificationTitle={notificationTitle} year={2025}>
+    <RootEmailTemplate notificationTitle={notificationTitle} year={year}>
       <Container
         style={{
           maxWidth: "600px",
@@ -188,8 +237,8 @@ export const NotificationEmail = ({
         {/* Dodatkowe informacje */}
         <Container style={{ paddingTop: "30px" }}>
           <Text style={{ fontSize: "14px", color: "#71717a" }}>
-            Ta wiadomosć została wygenerowana systemowo. Jeśli nie oczekiwałeś
-            tej wiadomości, zignoruj ten e-mail lub{" "}
+            Ta wiadomosć została wygenerowana automatycznie. Jeśli nie
+            oczekiwałeś tej wiadomości, zignoruj ten e-mail lub{" "}
             <Link
               href="https://example.com/contact"
               style={{ color: "#000000", textDecoration: "underline" }}

@@ -104,10 +104,6 @@ const CourseForm = (props: iCourseForm) => {
   }, []);
 
   useEffect(() => {
-    console.log("Updated guestToken:", guestToken);
-  }, [guestToken]);
-
-  useEffect(() => {
     setValue("selectedDanceCourse", selectedDanceCourse);
 
     setShowDancePartnerInput(

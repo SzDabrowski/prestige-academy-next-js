@@ -56,3 +56,4 @@ src/videos/*
 !src/videos/*.ts
 public/_next-video
 .env
+.qodo
