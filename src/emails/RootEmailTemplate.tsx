@@ -70,14 +70,14 @@ const RootEmailTemplate = ({
               © {year} Prestige akademia tańca. Wszelkie prawa zastrzeżone.
             </Text>
             <Text style={{ fontSize: "12px", color: "#71717a" }}>
-              Korzystając z naszej usługi, akceptujesz nasze{" "}
-              <Link
+              Korzystając z naszej usługi, akceptujesz naszą{" "}
+              {/* <Link
                 href="https://example.com/terms"
                 style={{ color: "#000000", textDecoration: "underline" }}
               >
                 Warunki korzystania
               </Link>{" "}
-              oraz{" "}
+              oraz{" "} */}
               <Link
                 href="https://example.com/privacy"
                 style={{ color: "#000000", textDecoration: "underline" }}
@@ -85,21 +85,6 @@ const RootEmailTemplate = ({
                 Politykę prywatności
               </Link>
               .
-            </Text>
-            <Text style={{ fontSize: "12px", color: "#71717a" }}>
-              <Link
-                href="https://example.com/unsubscribe"
-                style={{ color: "#000000", textDecoration: "underline" }}
-              >
-                Wypisz się
-              </Link>{" "}
-              •{" "}
-              <Link
-                href="https://example.com/preferences"
-                style={{ color: "#000000", textDecoration: "underline" }}
-              >
-                Ustawienia e-mail
-              </Link>
             </Text>
           </Container>
         </Container>
