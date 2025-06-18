@@ -3,6 +3,7 @@
 import { useForm, SubmitHandler, useWatch } from "react-hook-form";
 
 import { phoneNumberAutoFormat } from "../../utils/formUtils";
+import LoadingLogo from "../LoadingLogo/LoadingLogo";
 
 import styles from "./ContactForm.module.scss";
 import TextArea from "../TextArea/TextArea";
@@ -19,7 +20,10 @@ import { ContactClientType } from "@/types/mongodbTypes";
 
 import { useTokenStore } from "@/app/hooks/useTokenStore";
 import { fetchServerToken } from "@/app/actions/serverDB";
-import { sendNotificationEmail } from "@/app/actions/sendNotification";
+import {
+  sendNotificationEmail,
+  sendContactConfirmationEmail,
+} from "@/app/actions/sendNotification";
 export interface ContactFormInputs {
   courseName?: string;
   name: string;
@@ -79,12 +83,11 @@ export const ContactForm = (props: ContactForm) => {
     if (guestToken === null) {
       fetchToken();
     }
-    console.log(guestToken);
   }, []);
 
-  useEffect(() => {
-    console.log("Updated guestToken:", guestToken);
-  }, [guestToken]);
+  // useEffect(() => {
+  //   console.log("Updated guestToken:", guestToken);
+  // }, [guestToken]);
 
   const onSubmit = async (data: ContactFormInputs, event?: any) => {
     event?.preventDefault();
@@ -118,6 +121,8 @@ export const ContactForm = (props: ContactForm) => {
         undefined,
         contactData
       );
+
+      console.log(await sendContactConfirmationEmail(guestToken, contactData));
 
       setIsSuccess(true);
       setMessage("Wiadomość została wysłana pomyślnie!");

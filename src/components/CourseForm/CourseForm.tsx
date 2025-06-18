@@ -19,6 +19,8 @@ import axios from "axios";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { saveClient } from "@/utils/prismaUtils";
 
+import LoadingLogo from "../LoadingLogo/LoadingLogo";
+
 import { saveClientData } from "@/app/actions/serverDB";
 
 import { useTokenStore } from "@/app/hooks/useTokenStore";
@@ -159,7 +161,7 @@ const CourseForm = (props: iCourseForm) => {
     <div className={styles.wrapper}>
       <div className={styles.formContainer}>
         {loading ? (
-          <div>Ładowanie...</div>
+          <LoadingLogo />
         ) : (
           <form
             className={styles.form}

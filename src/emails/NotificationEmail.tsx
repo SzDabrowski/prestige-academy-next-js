@@ -240,7 +240,7 @@ export const NotificationEmail = ({
             Ta wiadomosć została wygenerowana automatycznie. Jeśli nie
             oczekiwałeś tej wiadomości, zignoruj ten e-mail lub{" "}
             <Link
-              href="https://example.com/contact"
+              href={`${baseURL}/kontakt`}
               style={{ color: "#000000", textDecoration: "underline" }}
             >
               skontaktuj się z pomocą techniczną

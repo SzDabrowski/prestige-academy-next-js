@@ -90,7 +90,6 @@ const PreschoolsForm = () => {
     if (guestToken === null) {
       fetchToken();
     }
-    console.log(guestToken);
   }, []);
 
   useEffect(() => {

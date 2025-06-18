@@ -6,6 +6,7 @@ import {
 } from "@/types/mongodbTypes";
 import { NotificationEmailProps } from "@/emails/emailProps";
 import NotificationEmail from "@/emails/NotificationEmail";
+import ContactConfirmationEmail from "@/emails/ConfirmationEmail";
 
 import { render } from "@react-email/components";
 
@@ -50,7 +51,7 @@ export const sendNotificationEmail = async (
 
     // Create the email data object
     const emailData: NotificationEmailProps = {
-      recipientName: "Krystian",
+      recipientName: "",
       notificationTitle,
       notificationDescription,
       actionButtonText,
@@ -59,13 +60,15 @@ export const sendNotificationEmail = async (
       messageData,
     };
 
+    const subject = "System :" + notificationTitle;
+
     // Render the email content using ReactDOMServer
     const html = await render(<NotificationEmail {...emailData} />);
 
     // Send the email data via axios
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/mailing/email/notification`,
-      { html }, // HTML email content
+      { html, subject }, // HTML email content
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -83,5 +86,59 @@ export const sendNotificationEmail = async (
   } catch (error) {
     console.error("Error sending email:", error);
     throw new Error("Failed to send notification email");
+  }
+};
+
+export const sendContactConfirmationEmail = async (
+  token: string,
+  contactData: ContactClientType
+): Promise<string> => {
+  if (!contactData) {
+    throw new Error("Contact data must be provided.");
+  }
+  if (!token) throw new Error("Unauthorized: No token provided");
+
+  try {
+    // Create the email data object for contact confirmation
+    const emailData: NotificationEmailProps = {
+      recipientName: contactData.name,
+      notificationTitle: "Potwierdzenie otrzymania wiadomości",
+      notificationDescription: "Dziękujemy za skontaktowanie się z nami",
+      actionButtonText: "Odwiedź naszą stronę",
+      actionButtonUrl: "https://www.prestige.stargard.pl",
+      year: new Date().getFullYear(),
+      messageData: contactData,
+    };
+
+    // Render the email content using ReactDOMServer
+    const html = await render(<ContactConfirmationEmail {...emailData} />);
+    const subject = contactData.subject;
+    const contact = contactData.email;
+
+    // Send the email data via axios
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/mailing/email/confirmation`,
+      {
+        html,
+        subject,
+        contact,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    // Check for successful response
+    if (response.status !== 200) {
+      throw new Error(`Server responded with ${response.status}`);
+    }
+
+    return "Działa";
+  } catch (error) {
+    console.error("Error sending contact confirmation email:", error);
+    throw new Error("Failed to send contact confirmation email");
   }
 };

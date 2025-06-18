@@ -8,6 +8,7 @@ import { Container } from "@/components/Container/Container";
 import { CourseContent } from "./CourseContent/CourseContent";
 import { notFound, useParams } from "next/navigation";
 import { fetchDanceGroupData } from "@/lib/contentful/serverActions/danceGroups"; // This should be a client-compatible fetching function
+import LoadingLogo from "@/components/LoadingLogo/LoadingLogo";
 
 export default function Home() {
   const [data, setData] = useState<TypeDanceGroupFields | null>(null); // State to hold the fetched data
@@ -31,7 +32,7 @@ export default function Home() {
 
   // Show a loading message while the data is being fetched
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingLogo />;
   }
 
   // Handle the case where no data is available

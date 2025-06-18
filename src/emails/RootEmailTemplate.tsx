@@ -79,7 +79,7 @@ const RootEmailTemplate = ({
               </Link>{" "}
               oraz{" "} */}
               <Link
-                href="https://example.com/privacy"
+                href="https://www.prestige.stargard.pl/docs/polityka_prywatnosci.pdf"
                 style={{ color: "#000000", textDecoration: "underline" }}
               >
                 Politykę prywatności
