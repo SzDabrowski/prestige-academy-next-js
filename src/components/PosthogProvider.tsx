@@ -14,19 +14,21 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
   const { cookiesAccepted } = useCookiesConsent();
 
   useEffect(() => {
-    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
-      api_host:
-        process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
-      persistence: cookiesAccepted ? "localStorage+cookie" : "memory",
-      person_profiles: "always",
-      capture_pageview: false,
-      capture_pageleave: true,
-    });
-  }, []);
+    if (typeof window !== "undefined") {
+      posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
+        api_host:
+          process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
+        persistence: cookiesAccepted ? "localStorage+cookie" : "memory",
+        person_profiles: "always",
+        capture_pageview: false,
+        capture_pageleave: true,
+      });
+    }
+  }, [cookiesAccepted]); // Add cookiesAccepted as dependency
 
   return (
     <PHProvider client={posthog}>
-      <PostHogPageView />
+      <SuspendedPostHogPageView />
       {children}
     </PHProvider>
   );

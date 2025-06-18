@@ -1,5 +1,3 @@
-"use client";
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.scss";
@@ -10,10 +8,18 @@ import { Analytics } from "@vercel/analytics/react";
 import icon from "../../public/assets/images/logo/prestigeLogoOnly.png";
 
 import Footer from "@/components/Footer/Footer";
-
 import CookieConsentToogler from "@/components/Cookies/CookieConsentToogler";
-
 import FbPixel from "@/components/FbPixel";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Prestige Academy",
+  description: "Your description here",
+  icons: {
+    icon: icon.src,
+  },
+};
 
 export default function RootLayout({
   children,
@@ -23,13 +29,9 @@ export default function RootLayout({
   return (
     <html lang="pl" suppressHydrationWarning>
       <head>
-        <title>Prestige</title>
-        <link rel="icon" href={icon.src} sizes="" />
-        {/* <CookiesBot /> */}
         <FbPixel />
       </head>
-
-      <body>
+      <body className={inter.className}>
         <GoogleCaptchaWrapper>
           <PostHogProvider>{children}</PostHogProvider>
         </GoogleCaptchaWrapper>
