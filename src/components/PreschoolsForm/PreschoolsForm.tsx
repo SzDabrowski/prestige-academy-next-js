@@ -90,7 +90,7 @@ const PreschoolsForm = () => {
     if (guestToken === null) {
       fetchToken();
     }
-  }, []);
+  }, [guestToken, setGuestToken]);
 
   useEffect(() => {
     setValue("selectedPreschool", selectedPreschool);

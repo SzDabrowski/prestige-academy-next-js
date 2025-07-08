@@ -35,7 +35,7 @@ export const ContactConfirmationEmail = ({
   year = defaultNotificationEmailProps.year,
 }: NotificationEmailProps) => {
   const renderMessageSummary = () => {
-    if (messageData && (messageData as ContactClientType).subject) {
+    if (messageData && "subject" in messageData && messageData.subject) {
       const contact = messageData as ContactClientType;
       return (
         <Container

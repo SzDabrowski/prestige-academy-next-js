@@ -42,7 +42,7 @@ export const FirstDanceContent = async () => {
           <Container>
             <h1>{String(title)}</h1>
             <div className={styles.textContent}>
-              {documentToReactComponents(description!)}
+              {description && documentToReactComponents(description)}
             </div>
           </Container>
         </section>

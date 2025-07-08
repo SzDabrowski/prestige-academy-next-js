@@ -8,7 +8,7 @@ import { Analytics } from "@vercel/analytics/react";
 import icon from "../../public/assets/images/logo/prestigeLogoOnly.png";
 
 import Footer from "@/components/Footer/Footer";
-import CookieConsentToogler from "@/components/Cookies/CookieConsentToogler";
+import CookieConsentToggler from "@/components/Cookies/CookieConsentToggler";
 import FbPixel from "@/components/FbPixel";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -37,7 +37,7 @@ export default function RootLayout({
         </GoogleCaptchaWrapper>
         <Analytics />
         <Footer />
-        <CookieConsentToogler />
+        <CookieConsentToggler />
       </body>
     </html>
   );

@@ -122,7 +122,11 @@ export const ContactForm = (props: ContactForm) => {
         contactData
       );
 
-      console.log(await sendContactConfirmationEmail(guestToken, contactData));
+      try {
+        await sendContactConfirmationEmail(guestToken, contactData);
+      } catch (emailError) {
+        console.error("Failed to send confirmation email:", emailError);
+      }
 
       setIsSuccess(true);
       setMessage("Wiadomość została wysłana pomyślnie!");
@@ -229,7 +233,7 @@ export const ContactForm = (props: ContactForm) => {
         <input
           className={errors.subject ? styles.errorOutline : ``}
           id="subject"
-          type="subject"
+          type="text"
           {...register("subject", {
             required: "To pole jest wymagane",
             minLength: {

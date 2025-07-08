@@ -36,7 +36,7 @@ const CommissionedContent = async () => {
           src={`https:${image.url}`}
           height={image.height}
           width={image.width}
-          alt={""}
+          alt={`${title} course image`}
         />
       </section>
 
@@ -46,7 +46,7 @@ const CommissionedContent = async () => {
             <h1>{String(title)}</h1>
             <div className={styles.textContent}>
               <div className={styles.whiteSpace}></div>
-              {documentToReactComponents(description!)}
+              {description && documentToReactComponents(description)}
             </div>
           </Container>
         </section>

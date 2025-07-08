@@ -19,6 +19,7 @@ export default function CookieConsentBanner({
   demo = false,
   display,
   onAcceptCallback = () => {},
+  onDeclineCallback = () => {},
 }: CookieConsentProps) {
   const { cookiesAccepted, setCookiesConsent } = useCookiesConsent();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -41,6 +42,7 @@ export default function CookieConsentBanner({
     setTimeout(() => {
       setHide(true); // Hide after animation
     }, 700);
+    onDeclineCallback();
   };
 
   const deleteCookies = () => {
@@ -98,7 +100,10 @@ export default function CookieConsentBanner({
               zgadzasz się na używanie plików cookie.
             </span>
             <br />
-            <a href="#" className={styles.cookieLink}>
+            <a
+              href="https://www.prestige.stargard.pl/docs/polityka_prywatnosci.pdf"
+              className={styles.cookieLink}
+            >
               Dowiedz się więcej.
             </a>
           </p>

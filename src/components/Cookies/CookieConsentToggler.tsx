@@ -1,5 +1,6 @@
 "use client";
 
+import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { CookieIcon } from "lucide-react";
@@ -10,9 +11,7 @@ export default function CookieConsentToggler() {
   const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    const cookieConsent = document.cookie.includes(
-      "CookieConsentAccepted=true"
-    );
+    const cookieConsent = Cookies.get("CookieConsentAccepted") === "true";
     if (!cookieConsent) {
       setOpen(true); // Show the banner only if the cookie isn't set
     }

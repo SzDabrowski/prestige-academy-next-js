@@ -9,7 +9,7 @@ import { PrestigeLogoIcon } from "../icons/LogoIcon/PrestigeLogoIcon";
 
 type AnimationType = "opacity" | "brightness" | "saturation" | "scale";
 
-const LoadignSvg = () => {
+const LoadingSvg = () => {
   return (
     <svg viewBox="0 0 200 200">
       <rect
@@ -128,7 +128,7 @@ const LoadingLogo = ({
           ...animationStyles,
         }}
       >
-        <LoadignSvg />
+        <LoadingSvg />
       </div>
     </div>
   );

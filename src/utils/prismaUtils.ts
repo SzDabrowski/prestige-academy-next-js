@@ -1,9 +1,15 @@
-"run server";
+"use server";
 
 import { CourseClientType, PreschoolClientType } from "@/types/mongodbTypes";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
+
+const prisma = globalForPrisma.prisma ?? new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export async function findClient(clientName: string, courseName: string) {
   return await prisma.courseClient.findFirst({
@@ -38,8 +44,9 @@ export async function saveClient(clientData: CourseClientType) {
   } catch (error) {
     if (error instanceof Error) {
       console.error("Error saving client:", error.message);
-      return error;
+      throw error;
     }
+    throw new Error("Unknown error occurred while saving client");
   }
 }
 
@@ -60,7 +67,7 @@ export async function findClientPreschool(
 
 export async function saveClientPreschool(clientData: PreschoolClientType) {
   try {
-    const existingClient = await findClient(
+    const existingClient = await findClientPreschool(
       clientData.studentName,
       clientData.preschoolName
     );

@@ -15,7 +15,12 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
+      const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+      if (!posthogKey) {
+        console.warn("NEXT_PUBLIC_POSTHOG_KEY environment variable is not set");
+        return;
+      }
+      posthog.init(posthogKey, {
         api_host:
           process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
         persistence: cookiesAccepted ? "localStorage+cookie" : "memory",

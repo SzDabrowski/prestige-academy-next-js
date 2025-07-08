@@ -136,7 +136,7 @@ export const sendContactConfirmationEmail = async (
       throw new Error(`Server responded with ${response.status}`);
     }
 
-    return "Działa";
+    return "success";
   } catch (error) {
     console.error("Error sending contact confirmation email:", error);
     throw new Error("Failed to send contact confirmation email");

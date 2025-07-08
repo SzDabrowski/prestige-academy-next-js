@@ -19,7 +19,8 @@ const RootEmailTemplate = ({
   year,
   children,
 }: RootEmailTemplateProps) => {
-  const baseURL = "https://www.prestige.stargard.pl";
+  const baseURL =
+    process.env.NEXT_PUBLIC_BASE_URL || "https://www.prestige.stargard.pl";
 
   return (
     <Html lang="pl">
@@ -33,7 +34,7 @@ const RootEmailTemplate = ({
           {/* Nagłówek */}
           <Container style={{ textAlign: "center", paddingBottom: "30px" }}>
             <Link
-              href=""
+              href={baseURL}
               style={{ display: "inline-block", textDecoration: "none" }}
             >
               <Container
@@ -46,7 +47,7 @@ const RootEmailTemplate = ({
               >
                 <img
                   src={`${baseURL}/assets/images/logo/PRESTIGE_logo_fullcolor_rgb.png`}
-                  alt="Logo"
+                  alt="Prestige akademia tańca - Logo"
                   style={{
                     display: "block",
                     border: "0",

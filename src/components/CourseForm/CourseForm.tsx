@@ -102,7 +102,6 @@ const CourseForm = (props: iCourseForm) => {
     if (guestToken === null) {
       fetchToken();
     }
-    console.log(guestToken);
   }, []);
 
   useEffect(() => {

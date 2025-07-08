@@ -37,7 +37,11 @@ export const CourseContent = (props: iCourseContent) => {
       <main className={styles.mainSection}>
         <div className={styles.heroSection}>
           <Image
-            src={`https:${image.fields.file?.url}`}
+            src={
+              image.fields.file?.url
+                ? `https:${image.fields.file.url}`
+                : "/fallback-image.jpg"
+            }
             alt={String(props.data.title)}
             width={800}
             height={400}
