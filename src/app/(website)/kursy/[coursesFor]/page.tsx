@@ -1,13 +1,16 @@
+import { use } from "react";
 import { Container } from "@/components/Container/Container";
 import { CoursesContent } from "./components/CoursesContent";
 
 import styles from "./page.module.scss";
 
 export default function Page({
-  params: { coursesFor },
+  params,
 }: {
-  params: { coursesFor: string };
+  params: Promise<{ coursesFor: string }>;
 }) {
+  const { coursesFor } = use(params);
+
   return (
     <main className={styles.main}>
       <Container>

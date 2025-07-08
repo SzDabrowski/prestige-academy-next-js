@@ -90,7 +90,6 @@ const CourseForm = (props: iCourseForm) => {
     const fetchToken = async () => {
       try {
         const token = await fetchServerToken();
-
         setGuestToken(token);
       } catch (error) {
         console.error("Error fetching token:", error);
@@ -101,8 +100,10 @@ const CourseForm = (props: iCourseForm) => {
 
     if (guestToken === null) {
       fetchToken();
+    } else {
+      setLoading(false);
     }
-  }, []);
+  }, []); // Remove dependencies to prevent infinite loop
 
   useEffect(() => {
     setValue("selectedDanceCourse", selectedDanceCourse);
@@ -110,7 +111,7 @@ const CourseForm = (props: iCourseForm) => {
     setShowDancePartnerInput(
       checkIfCourseForPairs(danceCourses, selectedDanceCourse)
     );
-  }, [selectedDanceCourse]);
+  }, [selectedDanceCourse, setValue]);
 
   useEffect(() => {
     setValue("subject", `${userName} zapisała/ł się na kurs tanća`);
@@ -149,6 +150,7 @@ const CourseForm = (props: iCourseForm) => {
       setMessage("Dane zapisane!");
       reset();
       setPhoneNumber("");
+      setselectedDanceCourse("");
     } catch (error) {
       setIsSuccess(false);
       setMessage("Błąd zapisu. Spróbuj ponownie.");
@@ -191,7 +193,7 @@ const CourseForm = (props: iCourseForm) => {
                   value={selectedDanceCourse}
                 />
 
-                {errors.name && selectedDanceCourse == "" && (
+                {errors.selectedDanceCourse && selectedDanceCourse === "" && (
                   <span className={styles.error}>
                     {errors.selectedDanceCourse?.message}
                   </span>
@@ -226,24 +228,20 @@ const CourseForm = (props: iCourseForm) => {
                 <input
                   id="pairName"
                   type="text"
-                  {...(showDancePartnerInput
-                    ? {
-                        ...register("pairName", {
-                          ...(showDancePartnerInput && {
-                            required: "To pole jest wymagane",
-                            minLength: {
-                              value: 3,
-                              message:
-                                "Imię i nazwisko musi mieć co najmniej 3 znaki",
-                            },
-                          }),
-                        }),
-                      }
-                    : "")}
+                  {...register("pairName", {
+                    ...(showDancePartnerInput && {
+                      required: "To pole jest wymagane",
+                      minLength: {
+                        value: 3,
+                        message:
+                          "Imię i nazwisko musi mieć co najmniej 3 znaki",
+                      },
+                    }),
+                  })}
                   placeholder="Anna Kowalska"
                   disabled={!showDancePartnerInput}
                 />
-                {errors.name && (
+                {errors.pairName && (
                   <span className={styles.error}>
                     {errors.pairName?.message}
                   </span>
@@ -306,7 +304,7 @@ const CourseForm = (props: iCourseForm) => {
               className={styles.button}
               type="submit"
               value="Zapisz się!"
-              // disabled={!capVal}
+              disabled={isSubmitting}
             />
           </form>
         )}
