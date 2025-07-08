@@ -3,7 +3,7 @@
 import { Container } from "@/components/Container/Container";
 import styles from "./Contact.module.scss";
 import { MapComponent } from "./MapComponent";
-import companyInfo from "../../../data/companyInfo.json";
+import companyInfo from "@/data/companyInfo.json";
 import { ContactForm } from "@/components/ContactForm/ContactForm";
 
 export const Contact = () => {
@@ -25,10 +25,10 @@ export const Contact = () => {
             <a href="https://maps.app.goo.gl/z7vsWmaorEjPrTQt5">
               <span>{companyInfo.contact.adress}</span>
             </a>
-            <a href="mailto:atprestigedance@gmail.com">
+            <a href={`mailto:${companyInfo.contact.email}`}>
               <span>{companyInfo.contact.email}</span>
             </a>
-            <a href="tel:+48796934635">
+            <a href={`tel:${companyInfo.contact.phoneNumber}`}>
               <span>{companyInfo.contact.phoneNumber}</span>
             </a>
           </div>

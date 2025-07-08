@@ -1,5 +1,5 @@
-@import "../../../styles/mixins.scss";
-@import "../../../styles/_colors.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/_colors.scss";
 
 .main {
   margin: 0;
@@ -15,7 +15,7 @@
     font-weight: 700;
     background: $grd-accents;
     -webkit-background-clip: text;
-
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   span {

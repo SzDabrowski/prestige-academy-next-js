@@ -3,6 +3,7 @@
 import { useForm, SubmitHandler, useWatch } from "react-hook-form";
 
 import { phoneNumberAutoFormat } from "../../utils/formUtils";
+import LoadingLogo from "../LoadingLogo/LoadingLogo";
 
 import styles from "./ContactForm.module.scss";
 import TextArea from "../TextArea/TextArea";
@@ -14,10 +15,19 @@ import { headers } from "next/headers";
 import axios from "axios";
 import { verifyReCaptcha } from "../../utils/recaptchaUtils";
 
-interface ContactFormInputs {
+import { sendContactMessage } from "@/app/actions/serverDB";
+import { ContactClientType } from "@/types/mongodbTypes";
+
+import { useTokenStore } from "@/app/hooks/useTokenStore";
+import { fetchServerToken } from "@/app/actions/serverDB";
+import {
+  sendNotificationEmail,
+  sendContactConfirmationEmail,
+} from "@/app/actions/sendNotification";
+export interface ContactFormInputs {
   courseName?: string;
   name: string;
-  email?: string;
+  email: string;
   phoneNumber: string;
   message: string;
   access_key: string;
@@ -46,6 +56,9 @@ export const ContactForm = (props: ContactForm) => {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [textAreaMessage, setTextAreaMessage] = useState<string>("");
 
+  const { guestToken, setGuestToken } = useTokenStore();
+  const [loading, setLoading] = useState<boolean>(true);
+
   const userName = useWatch({
     control,
     name: "name",
@@ -55,62 +68,74 @@ export const ContactForm = (props: ContactForm) => {
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   useEffect(() => {
-    setValue("subject", `${userName} sent a message from Website`);
-  }, [userName, setValue]);
+    const fetchToken = async () => {
+      try {
+        const token = await fetchServerToken();
+
+        setGuestToken(token);
+      } catch (error) {
+        console.error("Error fetching token:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (guestToken === null) {
+      fetchToken();
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   console.log("Updated guestToken:", guestToken);
+  // }, [guestToken]);
 
   const onSubmit = async (data: ContactFormInputs, event?: any) => {
     event?.preventDefault();
 
     //const recaptchaRes = verifyReCaptcha(data, executeRecaptcha);
-
-    const eventPromise = toast.promise(
-      fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(data, null, 2),
-      })
-        .then(async (response) => {
-          let json = await response.json();
-          if (json.success) {
-            setIsSuccess(true);
-            setMessage(json.message);
-            event.target.reset();
-            reset();
-            setPhoneNumber("");
-            return json.message;
-          } else {
-            setIsSuccess(false);
-            setMessage(json.message);
-            throw new Error(json.message);
-          }
-        })
-        .catch((error) => {
-          setIsSuccess(false);
-          setMessage(
-            "Client Error. Please check the console.log for more info"
-          );
-          console.log(error);
-          throw error;
-        }),
-      {
-        loading: TOAST_MESSAGE.LOADING,
-        success: TOAST_MESSAGE.SUCCESS,
-        error: TOAST_MESSAGE.ERROR,
-      },
-      {
-        success: {
-          duration: 5000,
-        },
-      }
-    );
-
     try {
-      await eventPromise;
+      if (!guestToken) {
+        toast.error(TOAST_MESSAGE.NO_TOKEN);
+        return;
+      }
+
+      const contactData: ContactClientType = {
+        name: data.name,
+        email: data.email,
+        phone: data.phoneNumber,
+        subject: data.subject,
+        message: data.message,
+      };
+
+      await toast.promise(
+        sendContactMessage(contactData, guestToken), // Use server action
+        {
+          loading: "Zapisywanie...",
+          success: "Zapisano pomyślnie!",
+          error: "Błąd podczas zapisu",
+        }
+      );
+      await sendNotificationEmail(
+        guestToken,
+        undefined,
+        undefined,
+        contactData
+      );
+
+      try {
+        await sendContactConfirmationEmail(guestToken, contactData);
+      } catch (emailError) {
+        console.error("Failed to send confirmation email:", emailError);
+      }
+
+      setIsSuccess(true);
+      setMessage("Wiadomość została wysłana pomyślnie!");
+      reset();
+      setPhoneNumber("");
     } catch (error) {
-      console.error("Submission error:", error);
+      setIsSuccess(false);
+      setMessage("Błąd zapisu. Spróbuj ponownie.");
+      console.error("Error submitting form:", error);
     }
   };
 
@@ -133,7 +158,6 @@ export const ContactForm = (props: ContactForm) => {
         {...register("access_key")}
       />
 
-      <input type="hidden" {...register("subject")} />
       {props.courseName ? (
         <input
           type="hidden"
@@ -203,6 +227,27 @@ export const ContactForm = (props: ContactForm) => {
           <span className={styles.error}>{errors.phoneNumber.message}</span>
         )}
       </label>
+
+      <label className={styles.label}>
+        <span>Temat:</span>
+        <input
+          className={errors.subject ? styles.errorOutline : ``}
+          id="subject"
+          type="text"
+          {...register("subject", {
+            required: "To pole jest wymagane",
+            minLength: {
+              value: 10,
+              message: "Temat musi mieć co najmniej 10 znaków",
+            },
+          })}
+          placeholder="Temat"
+        />
+        {errors.subject && (
+          <span className={styles.error}>{errors.subject.message}</span>
+        )}
+      </label>
+
       <label className={styles.label}>
         <span>Twoja wiadomość:</span>
         <TextArea
