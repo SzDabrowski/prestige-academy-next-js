@@ -19,11 +19,20 @@ export async function saveClientAction(
   preschoolData?: PreschoolClientType
 ) {
   if (!token) throw new Error("Unauthorized: No token provided");
+
+  if (!clientData && !preschoolData) {
+    throw new Error(
+      "Invalid data: At least one of clientData or preschoolData must be provided."
+    );
+  }
+
   if (clientData && (!clientData.email || !clientData.name)) {
     throw new Error("Invalid client data: email and name are required");
   }
   if (preschoolData && (!preschoolData.email || !preschoolData.parentName)) {
-    throw new Error("Invalid preschool data: email and name are required");
+    throw new Error(
+      "Invalid preschool data: email and parentName are required"
+    );
   }
   try {
     const response = await saveClientData(token, clientData, preschoolData);

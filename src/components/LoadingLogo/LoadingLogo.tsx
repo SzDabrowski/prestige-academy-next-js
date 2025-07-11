@@ -24,7 +24,7 @@ const LoadingSvg = () => {
         <animate
           attributeName="opacity"
           calcMode="spline"
-          dur="2"
+          dur="2s"
           values="1;0;1;"
           keySplines=".5 0 .5 1;.5 0 .5 1"
           repeatCount="indefinite"
@@ -43,7 +43,7 @@ const LoadingSvg = () => {
         <animate
           attributeName="opacity"
           calcMode="spline"
-          dur="2"
+          dur="2s"
           values="1;0;1;"
           keySplines=".5 0 .5 1;.5 0 .5 1"
           repeatCount="indefinite"
@@ -62,7 +62,7 @@ const LoadingSvg = () => {
         <animate
           attributeName="opacity"
           calcMode="spline"
-          dur="2"
+          dur="2s"
           values="1;0;1;"
           keySplines=".5 0 .5 1;.5 0 .5 1"
           repeatCount="indefinite"
@@ -110,6 +110,8 @@ const LoadingLogo = ({
 
   return (
     <div
+      role="status"
+      aria-label="Loading"
       style={{
         height: "100%",
         width: "100%",

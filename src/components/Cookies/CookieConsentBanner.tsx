@@ -59,17 +59,23 @@ export default function CookieConsentBanner({
 
   const deleteCookies = () => {
     const cookies = document.cookie.split(";");
+    const essentialCookies = ["session", "auth", "csrf_token"]; // Add your essential cookies
 
     cookies.forEach((cookie) => {
       const cookieName = cookie.split("=")[0];
-      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      if (
+        !essentialCookies.includes(cookieName) &&
+        cookieName !== "CookieConsentAccepted"
+      ) {
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      }
     });
   };
 
   useEffect(() => {
     // Check if the cookieConsent cookie is already set
-    const consent = document.cookie.includes("CookieConsentAccepted=true");
-    if (consent) {
+
+    if (cookiesAccepted) {
       if (!_display) {
         setIsOpen(false);
         setTimeout(() => {
@@ -82,7 +88,7 @@ export default function CookieConsentBanner({
     } else {
       setIsOpen(true); // Show the banner if consent is not set
     }
-  }, [_display, demo]);
+  }, [_display, demo, cookiesAccepted]);
 
   // If cookies are already accepted, do not show the banner
   if ((cookiesAccepted || hide) && !display) {

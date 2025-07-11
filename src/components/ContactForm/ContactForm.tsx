@@ -276,7 +276,9 @@ export const ContactForm = (props: ContactForm) => {
           top: 200,
         }}
       />
-      <button className={styles.button}>Wyślij wiadomość</button>
+      <button className={styles.button} disabled={loading || isSubmitting}>
+        {loading ? "Ładowanie..." : "Wyślij wiadomość"}
+      </button>
     </form>
   );
 };
