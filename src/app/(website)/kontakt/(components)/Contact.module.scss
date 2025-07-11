@@ -1,0 +1,74 @@
+@import "@/styles/mixins.scss";
+@import "@/styles/_colors.scss";
+
+.main {
+  margin: 0;
+  margin-bottom: -5px;
+}
+
+.title {
+  text-align: center;
+  margin: auto;
+  h1 {
+    font-size: 3rem;
+    color: black;
+    font-weight: 700;
+    background: $grd-accents;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  span {
+    margin-top: 1rem;
+    display: block;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: rgb(71 85 105);
+  }
+}
+
+.contentContainer {
+  margin: 4rem auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+
+  .textContent {
+    text-align: left;
+    h2 {
+      color: rgb(31 41 55);
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+
+    p {
+      margin-top: 1rem;
+      color: rgb(100 116 139);
+      font-size: 1.125rem;
+      line-height: 1.625rem;
+    }
+
+    span {
+      display: block;
+      margin-top: 0.75rem;
+      color: rgb(75 85 99);
+
+      &:hover {
+        background: $grd-accents;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .contactForm {
+    width: 100%;
+  }
+}

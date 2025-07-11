@@ -1,38 +1,50 @@
-"use client";
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.scss";
-import Footer from "@/components/Footer/Footer";
-import ChangeHeader from "./ChangeHeader";
 
 import GoogleCaptchaWrapper from "@/components/Recaptcha/GoogleCaptchaWrapper";
+import { PostHogProvider } from "@/components/PosthogProvider";
 import { Analytics } from "@vercel/analytics/react";
 import icon from "../../public/assets/images/logo/prestigeLogoOnly.png";
-import NotificationBar from "@/components/NotificationBar/NotificationBar";
 
-import CookiesBot from "@/components/CookiesBot";
+import Footer from "@/components/Footer/Footer";
+import CookieConsentToggler from "@/components/Cookies/CookieConsentToggler";
 import FbPixel from "@/components/FbPixel";
 
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Prestige Academy",
+  description: "Your description here",
+  icons: {
+    icon: icon.src,
+  },
+};
+
+/**
+ * Defines the root layout for the application, applying global providers, analytics, and UI elements.
+ *
+ * Wraps all page content with Google reCAPTCHA, PostHog analytics context, Vercel Analytics, Facebook Pixel, a footer, and cookie consent management. Sets the global font and language for the HTML document.
+ *
+ * @param children - The page content to be rendered within the layout
+ */
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl">
+    <html lang="pl" suppressHydrationWarning>
       <head>
-        <title>Prestige</title>
-        <link rel="icon" href={icon.src} sizes="" />
-        {/* <CookiesBot /> */}
         <FbPixel />
       </head>
-
-      <body>
-        <ChangeHeader />
-        <GoogleCaptchaWrapper>{children}</GoogleCaptchaWrapper>
+      <body className={inter.className}>
+        <GoogleCaptchaWrapper>
+          <PostHogProvider>{children}</PostHogProvider>
+        </GoogleCaptchaWrapper>
         <Analytics />
         <Footer />
+        <CookieConsentToggler />
       </body>
     </html>
   );

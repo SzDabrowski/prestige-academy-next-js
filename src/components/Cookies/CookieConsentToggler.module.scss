@@ -1,0 +1,69 @@
+// CookieConsentToggler.module.scss
+@import "../../styles/colors.scss";
+
+.toggler-container {
+  padding: 1rem;
+  position: fixed;
+  bottom: 80px;
+  right: 0;
+
+  z-index: 99;
+
+  .button {
+    position: relative; /* Necessary for the pseudo-element positioning */
+    padding: 16px;
+    background: white; /* Initially transparent or white */
+    transition:
+      background 0.3s ease,
+      box-shadow 0.3s ease; /* Transition for background and shadow */
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden; /* Ensure the pseudo-element doesn't overflow the button */
+
+    /* Pseudo-element to add the gradient */
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $grd-main;
+      opacity: 0; /* Fully visible initially */
+      transition: opacity 0.5s ease; /* Transition the opacity */
+      z-index: -1; /* Place it behind the button content */
+    }
+
+    &:hover,
+    &:active {
+      background: transparent; /* Or another background color */
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 6px 16px; /* Shadow change on hover */
+    }
+
+    &:hover::before,
+    &:active::before {
+      opacity: 1;
+    }
+
+    &.outline {
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .icon {
+      transform: rotate(0) scale(1);
+      transition: color 0.3s ease; /* Transition for icon color */
+      color: currentColor;
+    }
+
+    &:hover .icon {
+      color: white; /* Change icon color to white on hover */
+    }
+  }
+}

@@ -3,6 +3,21 @@
 
 :root {
   --gradient-main: linear-gradient(61deg, rgba(92, 9, 9, 1) 40%, #d3277c 100%);
+  --background: #fff;
+  --foreground: #000;
+  --primary: $clr-logo-main; // Using SCSS variable inside CSS variable
+  --primary-foreground: $clr-logo-white; // Using SCSS variable inside CSS variable
+  --secondary: #a0a0a0;
+  --accent: $clr-logo-main;
+  --card: #f4f4f4;
+  --border: #d3277c;
+  --radius: 0.5rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body,
@@ -23,10 +38,16 @@ a {
   color: inherit;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+// html,
+// body {
+//   box-sizing: border-box;
+//   padding: 0;
+//   margin: 0;
+// }
+
+.restore-spacing * {
+  padding: unset;
+  margin: unset;
 }
 
 html,
