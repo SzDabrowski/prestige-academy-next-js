@@ -21,6 +21,13 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Defines the root layout for the application, applying global providers, analytics, and UI elements.
+ *
+ * Wraps all page content with Google reCAPTCHA, PostHog analytics context, Vercel Analytics, Facebook Pixel, a footer, and cookie consent management. Sets the global font and language for the HTML document.
+ *
+ * @param children - The page content to be rendered within the layout
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

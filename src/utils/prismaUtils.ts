@@ -11,6 +11,13 @@ const prisma = globalForPrisma.prisma ?? new PrismaClient();
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
+/**
+ * Retrieves the first course client matching the specified client name and course name.
+ *
+ * @param clientName - The name of the client to search for
+ * @param courseName - The name of the course associated with the client
+ * @returns The first matching course client record, or null if none is found
+ */
 export async function findClient(clientName: string, courseName: string) {
   return await prisma.courseClient.findFirst({
     where: {
@@ -23,6 +30,14 @@ export async function findClient(clientName: string, courseName: string) {
   });
 }
 
+/**
+ * Saves a new course client to the database after ensuring no duplicate exists for the same name and course.
+ *
+ * Throws an error if a client with the same name is already registered for the course.
+ *
+ * @param clientData - The data for the course client to be saved
+ * @returns The newly created course client record
+ */
 export async function saveClient(clientData: CourseClientType) {
   try {
     const existingClient = await findClient(
@@ -50,6 +65,13 @@ export async function saveClient(clientData: CourseClientType) {
   }
 }
 
+/**
+ * Retrieves the first course client record matching the specified client name and course name.
+ *
+ * @param clientName - The name of the client to search for
+ * @param courseName - The name of the course to search for
+ * @returns The first matching course client record, or `null` if none is found
+ */
 export async function findClientPreschool(
   clientName: string,
   courseName: string
@@ -65,6 +87,14 @@ export async function findClientPreschool(
   });
 }
 
+/**
+ * Saves a new preschool client to the database if no duplicate exists.
+ *
+ * Checks for an existing preschool client with the same student and preschool name. If a duplicate is found, throws an error. On success, creates and returns the new preschool client record. If an error occurs, logs the error and returns the error object.
+ *
+ * @param clientData - The preschool client data to be saved
+ * @returns The created preschool client record, or an Error object if saving fails
+ */
 export async function saveClientPreschool(clientData: PreschoolClientType) {
   try {
     const existingClient = await findClientPreschool(

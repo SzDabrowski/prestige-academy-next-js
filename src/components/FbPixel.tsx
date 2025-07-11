@@ -11,6 +11,11 @@ declare global {
   }
 }
 
+/**
+ * Integrates the Facebook Pixel tracking script, initializing and tracking page views only when cookies are accepted.
+ *
+ * Dynamically manages Facebook Pixel consent and script injection based on the user's cookie consent status.
+ */
 function FbPixel() {
   const { cookiesAccepted } = useCookiesConsent();
 

@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 
+/**
+ * Handles POST requests for form submissions with Google reCAPTCHA verification.
+ *
+ * Verifies the provided reCAPTCHA token with Google's API and returns a JSON response indicating whether the verification succeeded. Includes the user's name and the reCAPTCHA score in the response.
+ */
 export async function POST(request: Request) {
   const secretKey = process?.env?.RECAPTCHA_SECRET_KEY;
 
