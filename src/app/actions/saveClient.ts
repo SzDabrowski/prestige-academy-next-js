@@ -1,7 +1,17 @@
 "use server";
 import { CourseClientType, PreschoolClientType } from "@/types/mongodbTypes";
 
-import { saveClientData } from "@/app/actions/serverDB"; // Your existing client action
+import { saveClientData } from "@/app/actions/serverDB"; /**
+ * Validates and saves client or preschool data using the provided token.
+ *
+ * Throws an error if the token is missing, or if required fields are absent in the provided client or preschool data.
+ * Returns the result of the save operation if successful.
+ *
+ * @param token - Authentication token required for the operation
+ * @param clientData - Optional client data; must include `email` and `name` if provided
+ * @param preschoolData - Optional preschool data; must include `email` and `parentName` if provided
+ * @returns The response from the save operation
+ */
 
 export async function saveClientAction(
   token: string,

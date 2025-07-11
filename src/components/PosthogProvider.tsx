@@ -10,6 +10,13 @@ import { usePostHog } from "posthog-js/react";
 import posthog from "posthog-js";
 import { PostHogProvider as PHProvider } from "posthog-js/react";
 
+/**
+ * Provides PostHog analytics context to child components, initializing PostHog on the client side based on user cookie consent.
+ *
+ * Initializes the PostHog client with configuration determined by environment variables and the user's cookie consent status. Tracks page views and ensures analytics are only enabled when the required API key is present.
+ *
+ * @param children - The React components to be wrapped with PostHog analytics context
+ */
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
   const { cookiesAccepted } = useCookiesConsent();
 
@@ -39,6 +46,11 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
+/**
+ * Sends a `$pageview` event to PostHog with the current URL whenever the route or query parameters change.
+ *
+ * This component does not render any UI.
+ */
 function PostHogPageView() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -61,7 +73,11 @@ function PostHogPageView() {
 
 // Wrap PostHogPageView in Suspense to avoid the useSearchParams usage above
 // from de-opting the whole app into client-side rendering
-// See: https://nextjs.org/docs/messages/deopted-into-client-rendering
+/**
+ * Renders the PostHogPageView component within a React Suspense boundary to prevent client-side rendering de-optimization in Next.js.
+ *
+ * This ensures that usage of navigation hooks inside PostHogPageView does not trigger full client-side rendering.
+ */
 function SuspendedPostHogPageView() {
   return (
     <Suspense fallback={null}>

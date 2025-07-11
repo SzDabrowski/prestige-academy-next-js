@@ -14,6 +14,18 @@ type CookieConsentProps = {
   onDeclineCallback?: () => void;
 };
 
+/**
+ * Displays a cookie consent banner with accept and decline options, managing user consent state and cookie deletion.
+ *
+ * Renders a banner in either "default" or "small" visual variant, depending on the `variant` prop. The banner appears if user consent has not been given or if explicitly requested via the `display` prop. Accepting sets consent and optionally triggers a callback; declining deletes all cookies, updates consent state, and can also trigger a callback. The banner hides after user action or if consent is already present.
+ *
+ * @param variant - Optional; determines the banner style ("default" or "small"). Defaults to "default".
+ * @param demo - Optional; enables demo mode. Defaults to false.
+ * @param display - Controls whether the banner should be displayed.
+ * @param onAcceptCallback - Optional; function called after accepting cookies.
+ * @param onDeclineCallback - Optional; function called after declining cookies.
+ * @returns The cookie consent banner React element, or null if not displayed.
+ */
 export default function CookieConsentBanner({
   variant = "default",
   demo = false,

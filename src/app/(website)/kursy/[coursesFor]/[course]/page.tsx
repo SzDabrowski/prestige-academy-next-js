@@ -10,6 +10,11 @@ import { notFound, useParams } from "next/navigation";
 import { fetchDanceGroupData } from "@/lib/contentful/serverActions/danceGroups";
 import LoadingLogo from "@/components/LoadingLogo/LoadingLogo";
 
+/**
+ * React component that displays dance group course content based on URL parameters.
+ *
+ * Fetches dance group data using the `course` route parameter and renders loading, not found, or course content states accordingly.
+ */
 export default function Home() {
   const [data, setData] = useState<TypeDanceGroupFields | null>(null);
   const [loading, setLoading] = useState(true);

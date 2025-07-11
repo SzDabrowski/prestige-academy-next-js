@@ -5,7 +5,13 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { CookieIcon } from "lucide-react";
 import CookieConsentBanner from "./CookieConsentBanner";
-import styles from "./CookieConsentToggler.module.scss"; // Import the SCSS module
+import styles from "./CookieConsentToggler.module.scss"; /**
+ * Displays a button to toggle the cookie consent banner and automatically shows the banner if consent has not been given.
+ *
+ * Checks for the "CookieConsentAccepted" cookie on mount and displays the consent banner if not present. Allows users to manually open or close the banner using the provided button.
+ *
+ * @returns The rendered cookie consent toggler component.
+ */
 
 export default function CookieConsentToggler() {
   const [open, setOpen] = useState<boolean>(false);
