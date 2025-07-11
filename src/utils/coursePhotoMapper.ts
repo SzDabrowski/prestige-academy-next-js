@@ -10,6 +10,8 @@ import adultsPair from "../../public/assets/images/courses/towarzyski.jpg";
 import ladiesStyling from "../../public/assets/images/courses/highHeels.jpg";
 import commercial from "@/../public/assets/images/courses/commercial.png";
 import jazz from "@/../public/assets/images/courses/jazz.jpg";
+import showDance from "@/../public/assets/images/courses/LatinoShowDance.jpg";
+import uzytkowy from "@/../public/assets/images/courses/uzytkowy.jpg";
 
 import { StaticImageData } from "next/image";
 
@@ -40,6 +42,10 @@ const mapCourseToPhoto = (title: string) => {
       return jazz;
     case "Hip Hop commercial":
       return commercial;
+    case "Latino Show Dance":
+      return showDance;
+    case "Taniec uzytkowy":
+      return uzytkowy;
     default:
       return adultsPair; // Return an empty string for unknown courses
   }
