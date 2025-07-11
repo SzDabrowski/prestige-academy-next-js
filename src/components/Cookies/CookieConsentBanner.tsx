@@ -62,7 +62,7 @@ export default function CookieConsentBanner({
     const essentialCookies = ["session", "auth", "csrf_token"]; // Add your essential cookies
 
     cookies.forEach((cookie) => {
-      const cookieName = cookie.split("=")[0];
+      const cookieName = cookie.split("=")[0].trim();
       if (
         !essentialCookies.includes(cookieName) &&
         cookieName !== "CookieConsentAccepted"
@@ -98,14 +98,22 @@ export default function CookieConsentBanner({
   return variant !== "small" ? (
     <div
       className={`${styles.cookieBanner} ${!isOpen ? styles.closed : ""} ${hide ? styles.hidden : ""}`}
+      role="dialog"
+      aria-labelledby="cookie-banner-title"
+      aria-describedby="cookie-banner-description"
     >
       <div className={styles.cookieBannerContent}>
         <div className={styles.cookieBannerHeader}>
-          <h1 className={styles.cookieBannerTitle}>Używamy plików cookie</h1>
+          <h1 id="cookie-banner-title" className={styles.cookieBannerTitle}>
+            Używamy plików cookie
+          </h1>
           <CookieIcon className={styles.cookieIcon} />
         </div>
         <div className={styles.cookieBannerBody}>
-          <p className="text-sm font-normal text-start">
+          <p
+            id="cookie-banner-description"
+            className="text-sm font-normal text-start"
+          >
             Używamy plików cookie, aby zapewnić Ci najlepsze doświadczenia na
             naszej stronie internetowej. Aby uzyskać więcej informacji o tym,
             jak używamy plików cookie, zapoznaj się z naszą polityką plików
