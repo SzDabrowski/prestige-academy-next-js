@@ -8,7 +8,7 @@ import {
 export const fetchServerToken = async (): Promise<string> => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/GuestToken`,
+      `https://server.prestige.stargard.pl/auth/GuestToken`,
       {
         method: "GET",
         headers: {
