@@ -47,7 +47,7 @@ export const defaultNotificationEmailProps: NotificationEmailProps = {
   notificationTitle: "Nowe powiadomienie",
   notificationDescription: "Mamy dla Ciebie ważne aktualizacje",
   actionButtonText: "Zobacz szczegóły",
-  actionButtonUrl: "https://admin.prestige.stargard.pl/dashboard/clients",
+  actionButtonUrl: "https://admin.prestige.stargard.pl/",
   year: new Date().getFullYear(),
   messageData: mockCourseClient, // Using the mock data here
 };
