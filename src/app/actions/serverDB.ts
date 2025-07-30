@@ -46,7 +46,7 @@ export const saveClientData = async (
 
   try {
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/forms/saveData`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/forms/submit`,
       { clientData, preschoolData },
       {
         headers: {
