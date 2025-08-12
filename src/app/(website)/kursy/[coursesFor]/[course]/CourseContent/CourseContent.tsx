@@ -30,6 +30,7 @@ export const CourseContent = (props: iCourseContent) => {
     price,
     location,
     classesTimeInformation,
+    signUpTitle,
   } = props.data;
 
   return (
@@ -69,7 +70,12 @@ export const CourseContent = (props: iCourseContent) => {
       </main>
       <div className={styles.h2Wrapper}>
         <div className={styles.wrapperInner}>
-          <h2>Zapisz się już dziś!</h2>
+          {props.data.signUpTitle ? (
+            <h2>props.data.signUpTitle</h2>
+          ) : (
+            <h2>Zapisz się już dziś!</h2>
+          )}
+
           {classesTimeInformation
             ? documentToReactComponents(classesTimeInformation!)
             : null}
