@@ -5,6 +5,13 @@ export type courseData = {
   pair?: boolean;
 };
 
+export interface DanceCourseListItem {
+  id: number;
+  title: string;
+  pairClass: boolean;
+  group: string;
+}
+
 type data = {
   for: string;
   description: string | descriptionObject;

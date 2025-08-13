@@ -15,7 +15,7 @@ import { Entry, EntryCollection } from "contentful";
 import { draftMode } from "next/headers";
 interface FetchDanceGroupDataOptions {
   preview: boolean;
-  targetGroup: string;
+  targetGroup: "dorosli" | "dzieci" | string;
 }
 
 export async function fetchDanceCoursesData({
