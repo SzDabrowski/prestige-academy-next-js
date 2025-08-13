@@ -15,7 +15,7 @@ import { Entry, EntryCollection } from "contentful";
 import { draftMode } from "next/headers";
 interface FetchDanceGroupDataOptions {
   preview: boolean;
-  targetGroup: string;
+  targetGroup: "dorosli" | "dzieci" | string;
 }
 
 export async function fetchDanceCoursesData({
@@ -37,8 +37,37 @@ export async function fetchDanceCoursesData({
     }
 
     if (!response || response === null) new Error("no data");
+    const plainData = {
+      items: response.items.map((item) => {
+        // Get image URL safely
+        const imageField = item.fields.image as any;
+        const imageUrl = imageField?.fields?.file?.url || "";
+        return {
+          fields: {
+            title: String(item.fields.title || ""),
+            titleId: String(item.fields.titleId || ""),
+            targetGroup: String(item.fields.targetGroup || ""),
+            pairClass: Boolean(item.fields.pairClass),
+            summary: String(item.fields.summary || ""),
+            recruitmentOpen: Boolean(item.fields.recruitmentOpen),
+            image: imageUrl
+              ? {
+                  fields: {
+                    file: {
+                      url: imageUrl,
+                    },
+                  },
+                }
+              : undefined,
+          },
+        };
+      }),
+      total: response.total,
+      skip: response.skip,
+      limit: response.limit,
+    };
 
-    return response; // Return the fields of the single entry
+    return plainData;
   } catch (error) {
     console.error(error);
     return null;

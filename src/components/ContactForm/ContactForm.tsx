@@ -214,7 +214,7 @@ export const ContactForm = (props: ContactForm) => {
           {...register("phoneNumber", {
             required: "To pole jest wymagane",
             pattern: {
-              value: /^[0-9]{3}-[0-9]{3}-[0-9]{3}$/,
+              value: /^[0-9]{3} [0-9]{3} [0-9]{3}$/,
               message: "Wprowadź poprawny numer telefonu (np. 123 123 123)",
             },
             setValueAs: (value) => phoneNumberAutoFormat(value),

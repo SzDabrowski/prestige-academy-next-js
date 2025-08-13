@@ -68,7 +68,7 @@ const RootEmailTemplate = ({
           {/* Stopka */}
           <Container style={{ paddingTop: "30px", textAlign: "center" }}>
             <Text style={{ fontSize: "12px", color: "#71717a" }}>
-              © {year} Prestige akademia tańca. Wszelkie prawa zastrzeżone.
+              © {year} Prestige Akademia tańca. Wszelkie prawa zastrzeżone.
             </Text>
             <Text style={{ fontSize: "12px", color: "#71717a" }}>
               Korzystając z naszej usługi, akceptujesz naszą{" "}

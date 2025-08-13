@@ -28,6 +28,8 @@ import { sendNotificationEmail } from "@/app/actions/sendNotification";
 
 import { CourseClientType } from "@/types/mongodbTypes";
 import { fetchServerToken } from "@/app/actions/serverDB";
+import { fetchDanceCoursesData } from "@/lib/contentful/serverActions/danceGroups";
+import { DanceCourseListItem } from "@/types/courseTypes";
 
 interface FormInputs {
   selectedDanceCourse: string;
@@ -46,6 +48,11 @@ interface iCourseForm {
 const CourseForm = (props: iCourseForm) => {
   const { guestToken, setGuestToken } = useTokenStore();
   const [loading, setLoading] = useState<boolean>(true);
+
+  const [danceCoursesList, setDanceCoursesList] = useState<
+    DanceCourseListItem[]
+  >([]);
+
   const [selectedDanceCourse, setselectedDanceCourse] = useState(
     props.selectedDanceCourse ? props.selectedDanceCourse : ""
   );
@@ -87,6 +94,50 @@ const CourseForm = (props: iCourseForm) => {
   };
 
   useEffect(() => {
+    const getData = async () => {
+      setLoading(true);
+      try {
+        const fetchedDataAdults = await fetchDanceCoursesData({
+          targetGroup: "dorosli",
+          preview: false,
+        });
+        const fetchedDataChildren = await fetchDanceCoursesData({
+          targetGroup: "dzieci",
+          preview: false,
+        });
+
+        const adultCourses: DanceCourseListItem[] =
+          fetchedDataAdults?.items?.map((item, index) => ({
+            id: index,
+            title: item.fields.title,
+            pairClass: item.fields.pairClass || false,
+            group: item.fields.targetGroup || "dorosli",
+          })) || [];
+
+        const childrenCourses: DanceCourseListItem[] =
+          fetchedDataChildren?.items?.map((item, index) => ({
+            id: index,
+            title: item.fields.title,
+            pairClass: item.fields.pairClass || false,
+            group: item.fields.targetGroup || "dzieci",
+          })) || [];
+
+        // Merge into one array
+        const allCourses = [...adultCourses, ...childrenCourses];
+        setDanceCoursesList(allCourses);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    // Only fetch if params are available
+
+    getData();
+  }, []);
+
+  useEffect(() => {
     const fetchToken = async () => {
       try {
         const token = await fetchServerToken();
@@ -108,16 +159,16 @@ const CourseForm = (props: iCourseForm) => {
   useEffect(() => {
     setValue("selectedDanceCourse", selectedDanceCourse);
 
-    setShowDancePartnerInput(
-      checkIfCourseForPairs(danceCourses, selectedDanceCourse)
+    const selectedCourse = danceCoursesList.find(
+      (course) => course.title === selectedDanceCourse
     );
+
+    setShowDancePartnerInput(selectedCourse?.pairClass || false);
   }, [selectedDanceCourse, setValue]);
 
   useEffect(() => {
     setValue("subject", `${userName} zapisała/ł się na kurs tanća`);
   }, [userName, setValue]);
-
-  const courseTitles = danceCourses.map((course) => course.title);
 
   const onSubmit = async (data: FormInputs, event?: any) => {
     event?.preventDefault();
@@ -180,7 +231,7 @@ const CourseForm = (props: iCourseForm) => {
               <label className={`${styles.label} ${styles.DropdownSelect}`}>
                 <DropdownSelect
                   title={"Kurs tańca"}
-                  options={courseTitles}
+                  options={danceCoursesList.map((course) => course.title)}
                   placeholder={"Wybierz kurs"}
                   getValue={handleDropdownSelect}
                 />
@@ -275,7 +326,7 @@ const CourseForm = (props: iCourseForm) => {
                   {...register("phone", {
                     required: "To pole jest wymagane",
                     pattern: {
-                      value: /^[0-9]{3}-[0-9]{3}-[0-9]{3}$/,
+                      value: /^[0-9]{3} [0-9]{3} [0-9]{3}$/,
                       message:
                         "Wprowadź poprawny numer telefonu (np. 123 123 123)",
                     },

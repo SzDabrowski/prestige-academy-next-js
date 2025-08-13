@@ -18,6 +18,24 @@ type ImageField = {
   };
 };
 
+type PlainDanceCourseItem = {
+  fields: {
+    title: string;
+    titleId: string;
+    targetGroup: string;
+    pairClass: boolean;
+    summary: string;
+    recruitmentOpen: boolean;
+    image?: {
+      fields: {
+        file: {
+          url: string;
+        };
+      };
+    };
+  };
+};
+
 export const CoursesContent = async ({ group }: CoursesContentProps) => {
   const data = await fetchDanceCoursesData({
     preview: (await draftMode()).isEnabled,
@@ -37,16 +55,15 @@ export const CoursesContent = async ({ group }: CoursesContentProps) => {
         <p>dla {groupText}</p>
       </section>
       <section className={styles.coursesList}>
-        {data.items.map((item: Entry<TypeDanceGroupSkeleton>) => {
-          const image = item.fields.image as unknown as ImageField;
+        {data.items.map((item: PlainDanceCourseItem, index: number) => {
           return (
             <ClassSummary
-              key={item.sys.id}
-              title={String(item.fields.title) || ""}
-              img={String(image?.fields?.file?.url) || ""}
-              summary={String(item.fields.summary) || ""}
-              recruitment={Boolean(item.fields.recruitmentOpen) ?? false}
-              group={String(item.fields.targetGroup) || ""}
+              key={item.fields.titleId} // ✅ Use titleId, not sys.id
+              title={item.fields.title}
+              img={item.fields.image?.fields?.file?.url || ""}
+              summary={item.fields.summary}
+              recruitment={item.fields.recruitmentOpen}
+              group={item.fields.targetGroup}
             />
           );
         })}
