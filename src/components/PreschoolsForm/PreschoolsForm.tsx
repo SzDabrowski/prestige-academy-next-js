@@ -22,8 +22,6 @@ import { verifyReCaptcha } from "@/utils/recaptchaUtils";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { PreschoolClientType } from "@/types/mongodbTypes";
 import { fetchServerToken } from "@/app/actions/serverDB";
-
-import LoadingLogo from "../LoadingLogo/LoadingLogo";
 import { plRegex } from "../../utils/formUtils";
 
 interface FormInputs {
@@ -337,20 +335,8 @@ const PreschoolsForm = () => {
 					top: 200,
 				}}
 			/>
-			<Toaster
-				position="top-center"
-				containerStyle={{
-					top: 200,
-				}}
-			/>
 		</div>
 	);
 };
 
 export default PreschoolsForm;
-function verifyReCaptchaeCaptcha(
-	data: FormInputs,
-	executeRecaptcha: ((action?: string) => Promise<string>) | undefined
-) {
-	throw new Error("Function not implemented.");
-}
