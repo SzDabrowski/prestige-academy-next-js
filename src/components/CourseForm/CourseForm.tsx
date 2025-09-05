@@ -48,7 +48,7 @@ interface iCourseForm {
 }
 
 const CourseForm = (props: iCourseForm) => {
-	const { guestToken, setGuestToken } = useTokenStore();
+	const { guestToken, setGuestToken, isTokenValid } = useTokenStore();
 
 	const [coursesLoading, setCoursesLoading] = useState<boolean>(true);
 	const [tokenLoading, setTokenLoading] = useState<boolean>(true);
@@ -154,7 +154,7 @@ const CourseForm = (props: iCourseForm) => {
 			}
 		};
 
-		if (guestToken === null) {
+		if (!guestToken || !isTokenValid()) {
 			fetchToken();
 		} else {
 			setTokenLoading(false);
@@ -203,6 +203,7 @@ const CourseForm = (props: iCourseForm) => {
 			await sendNotificationEmail(guestToken, clientData);
 
 			setIsSuccess(true);
+			setIsError(false);
 			setMessage("Dane zapisane!");
 			reset();
 			setPhoneNumber("");
@@ -212,6 +213,7 @@ const CourseForm = (props: iCourseForm) => {
 			setIsError(true);
 			setMessage("Błąd zapisu. Spróbuj ponownie.");
 			console.error("Error submitting form:", error);
+			throw error;
 		}
 	};
 
