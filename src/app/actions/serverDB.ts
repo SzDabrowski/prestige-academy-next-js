@@ -18,12 +18,11 @@ export const fetchServerToken = async (): Promise<string> => {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				"Cache-Control": "no-cache", // moved inside headers
 			},
-			cache: "no-store", // proper RequestInit usage
+			cache: "no-store",
 			signal: controller.signal,
 		});
-    
+
 		clearTimeout(timeoutId);
 
 		if (!response.ok) {
