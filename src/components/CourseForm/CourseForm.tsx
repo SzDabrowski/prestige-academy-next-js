@@ -2,7 +2,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 
 import { DropdownSelect } from "@/components/DropdownSelect/DropdownSelect";
-import { useForm, SubmitHandler, useWatch } from "react-hook-form";
+import { useForm, SubmitHandler, useWatch, Controller } from "react-hook-form";
 
 import { checkIfCourseForPairs } from "../../utils/clientUtils";
 import { phoneNumberAutoFormat } from "../../utils/formUtils";
@@ -31,318 +31,347 @@ import { fetchServerToken } from "@/app/actions/serverDB";
 import { fetchDanceCoursesData } from "@/lib/contentful/serverActions/danceGroups";
 import { DanceCourseListItem } from "@/types/courseTypes";
 
+import { plRegex } from "../../utils/formUtils";
+
 interface FormInputs {
-  selectedDanceCourse: string;
-  name: string;
-  pairName: string;
-  email: string;
-  phone: string;
-  subject: string;
-  access_key: string;
+	selectedDanceCourse: string;
+	name: string;
+	pairName: string;
+	email: string;
+	phone: string;
+	subject: string;
+	access_key: string;
 }
 
 interface iCourseForm {
-  selectedDanceCourse?: string;
+	selectedDanceCourse?: string;
 }
 
 const CourseForm = (props: iCourseForm) => {
-  const { guestToken, setGuestToken } = useTokenStore();
-  const [loading, setLoading] = useState<boolean>(true);
+	const { guestToken, setGuestToken, isTokenValid } = useTokenStore();
 
-  const [danceCoursesList, setDanceCoursesList] = useState<
-    DanceCourseListItem[]
-  >([]);
+	const [coursesLoading, setCoursesLoading] = useState<boolean>(true);
+	const [tokenLoading, setTokenLoading] = useState<boolean>(true);
 
-  const [selectedDanceCourse, setselectedDanceCourse] = useState(
-    props.selectedDanceCourse ? props.selectedDanceCourse : ""
-  );
-  const [showDancePartnerInput, setShowDancePartnerInput] = useState(false);
+	const [danceCoursesList, setDanceCoursesList] = useState<
+		DanceCourseListItem[]
+	>([]);
 
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
+	const [selectedDanceCourse, setselectedDanceCourse] = useState(
+		props.selectedDanceCourse ? props.selectedDanceCourse : ""
+	);
+	const [showDancePartnerInput, setShowDancePartnerInput] = useState(false);
 
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [Message, setMessage] = useState("");
-  const [capVal, setCapVal] = useState(null);
+	const [phoneNumber, setPhoneNumber] = useState<string>("");
 
-  const { executeRecaptcha } = useGoogleReCaptcha();
+	const [isSuccess, setIsSuccess] = useState(false);
+	const [isError, setIsError] = useState(false);
+	const [Message, setMessage] = useState("");
+	const [capVal, setCapVal] = useState(null);
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    reset,
-    control,
-    formState: { errors, isSubmitSuccessful, isSubmitting },
-  } = useForm<FormInputs>({
-    mode: "onTouched",
-  });
+	const { executeRecaptcha } = useGoogleReCaptcha();
 
-  const userName = useWatch({
-    control,
-    name: "name",
-    defaultValue: "Someone",
-  });
+	const {
+		register,
+		handleSubmit,
+		setValue,
+		reset,
+		control,
+		formState: { errors, isSubmitSuccessful, isSubmitting },
+	} = useForm<FormInputs>({
+		mode: "onTouched",
+	});
 
-  const handleDropdownSelect = (value: string) => {
-    setselectedDanceCourse(value);
-    return value;
-  };
+	const userName = useWatch({
+		control,
+		name: "name",
+		defaultValue: "Someone",
+	});
 
-  const onChangePhoneNumber = (e: ChangeEvent<HTMLInputElement>) => {
-    const targetValue = phoneNumberAutoFormat(e.target.value);
-    setPhoneNumber(targetValue);
-  };
+	const handleDropdownSelect = (value: string) => {
+		setselectedDanceCourse(value);
+		return value;
+	};
 
-  useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      try {
-        const fetchedDataAdults = await fetchDanceCoursesData({
-          targetGroup: "dorosli",
-          preview: false,
-        });
-        const fetchedDataChildren = await fetchDanceCoursesData({
-          targetGroup: "dzieci",
-          preview: false,
-        });
+	const onChangePhoneNumber = (e: ChangeEvent<HTMLInputElement>) => {
+		const targetValue = phoneNumberAutoFormat(e.target.value);
+		setPhoneNumber(targetValue);
+	};
 
-        const adultCourses: DanceCourseListItem[] =
-          fetchedDataAdults?.items?.map((item, index) => ({
-            id: index,
-            title: item.fields.title,
-            pairClass: item.fields.pairClass || false,
-            group: item.fields.targetGroup || "dorosli",
-          })) || [];
+	useEffect(() => {
+		const getData = async () => {
+			setCoursesLoading(true);
+			try {
+				const fetchedDataAdults = await fetchDanceCoursesData({
+					targetGroup: "dorosli",
+					preview: false,
+				});
+				const fetchedDataChildren = await fetchDanceCoursesData({
+					targetGroup: "dzieci",
+					preview: false,
+				});
 
-        const childrenCourses: DanceCourseListItem[] =
-          fetchedDataChildren?.items?.map((item, index) => ({
-            id: index,
-            title: item.fields.title,
-            pairClass: item.fields.pairClass || false,
-            group: item.fields.targetGroup || "dzieci",
-          })) || [];
+				const adultCourses: DanceCourseListItem[] =
+					fetchedDataAdults?.items?.map((item, index) => ({
+						id: index,
+						title: item.fields.title,
+						pairClass: item.fields.pairClass || false,
+						group: item.fields.targetGroup || "dorosli",
+					})) || [];
 
-        // Merge into one array
-        const allCourses = [...adultCourses, ...childrenCourses];
-        setDanceCoursesList(allCourses);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+				const childrenCourses: DanceCourseListItem[] =
+					fetchedDataChildren?.items?.map((item, index) => ({
+						id: index,
+						title: item.fields.title,
+						pairClass: item.fields.pairClass || false,
+						group: item.fields.targetGroup || "dzieci",
+					})) || [];
 
-    // Only fetch if params are available
+				// Merge into one array
+				const allCourses = [...adultCourses, ...childrenCourses];
+				setDanceCoursesList(allCourses);
+			} catch (error) {
+				console.error("Error fetching data:", error);
+			} finally {
+				setCoursesLoading(false);
+			}
+		};
 
-    getData();
-  }, []);
+		// Only fetch if params are available
 
-  useEffect(() => {
-    const fetchToken = async () => {
-      try {
-        const token = await fetchServerToken();
-        setGuestToken(token);
-      } catch (error) {
-        console.error("Error fetching token:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+		getData();
+	}, []);
 
-    if (guestToken === null) {
-      fetchToken();
-    } else {
-      setLoading(false);
-    }
-  }, []); // Remove dependencies to prevent infinite loop
+	useEffect(() => {
+		const fetchToken = async () => {
+			try {
+				const token = await fetchServerToken();
+				setGuestToken(token);
+			} catch (error) {
+				console.error("Error fetching token:", error);
+			} finally {
+				setTokenLoading(false);
+			}
+		};
 
-  useEffect(() => {
-    setValue("selectedDanceCourse", selectedDanceCourse);
+		if (!guestToken || !isTokenValid()) {
+			fetchToken();
+		} else {
+			setTokenLoading(false);
+		}
+	}, []); // Remove dependencies to prevent infinite loop
 
-    const selectedCourse = danceCoursesList.find(
-      (course) => course.title === selectedDanceCourse
-    );
+	useEffect(() => {
+		setValue("selectedDanceCourse", selectedDanceCourse);
 
-    setShowDancePartnerInput(selectedCourse?.pairClass || false);
-  }, [selectedDanceCourse, setValue]);
+		const selectedCourse = danceCoursesList.find(
+			(course) => course.title === selectedDanceCourse
+		);
 
-  useEffect(() => {
-    setValue("subject", `${userName} zapisała/ł się na kurs tanća`);
-  }, [userName, setValue]);
+		setShowDancePartnerInput(selectedCourse?.pairClass || false);
+	}, [selectedDanceCourse, danceCoursesList, setValue]);
 
-  const onSubmit = async (data: FormInputs, event?: any) => {
-    event?.preventDefault();
+	useEffect(() => {
+		setValue("subject", `${userName} zapisała/ł się na kurs tańca`);
+	}, [userName, setValue]);
 
-    if (!guestToken) {
-      toast.error(TOAST_MESSAGE.NO_TOKEN);
-      return;
-    }
+	const onSubmit = async (data: FormInputs, event?: any) => {
+		event?.preventDefault();
 
-    const clientData: CourseClientType = {
-      courseName: data.selectedDanceCourse,
-      pairName: showDancePartnerInput ? data.pairName || "" : "",
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-    };
+		if (!guestToken) {
+			toast.error(TOAST_MESSAGE.NO_TOKEN);
+			return;
+		}
 
-    try {
-      await toast.promise(
-        saveClientData(guestToken, clientData), // Use server action
-        {
-          loading: "Zapisywanie...",
-          success: "Zapisano pomyślnie!",
-          error: "Błąd podczas zapisu",
-        }
-      );
-      await sendNotificationEmail(guestToken, clientData);
+		const clientData: CourseClientType = {
+			courseName: data.selectedDanceCourse,
+			pairName: showDancePartnerInput ? data.pairName || "" : "",
+			name: data.name,
+			email: data.email,
+			phone: data.phone,
+		};
 
-      setIsSuccess(true);
-      setMessage("Dane zapisane!");
-      reset();
-      setPhoneNumber("");
-      setselectedDanceCourse("");
-    } catch (error) {
-      setIsSuccess(false);
-      setMessage("Błąd zapisu. Spróbuj ponownie.");
-      console.error("Error submitting form:", error);
-    }
-  };
+		try {
+			await toast.promise(
+				saveClientData(guestToken, clientData), // Use server action
+				{
+					loading: "Zapisywanie...",
+					success: "Zapisano pomyślnie!",
+					error: "Błąd podczas zapisu",
+				}
+			);
+			await sendNotificationEmail(guestToken, clientData);
 
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.formContainer}>
-        {loading ? (
-          <LoadingLogo />
-        ) : (
-          <form
-            className={styles.form}
-            onSubmit={handleSubmit(onSubmit)}
-            noValidate
-          >
-            <input
-              type="hidden"
-              value={process.env.NEXT_PUBLIC_WEBFORM_ACCES_KEY}
-              {...register("access_key")}
-            />
-            <input type="hidden" {...register("subject")} />
+			setIsSuccess(true);
+			setIsError(false);
+			setMessage("Dane zapisane!");
+			reset();
+			setPhoneNumber("");
+			setselectedDanceCourse("");
+		} catch (error) {
+			setIsSuccess(false);
+			setIsError(true);
+			setMessage("Błąd zapisu. Spróbuj ponownie.");
+			console.error("Error submitting form:", error);
+			throw error;
+		}
+	};
 
-            <div className={styles.inputsContainer}>
-              <label className={`${styles.label} ${styles.DropdownSelect}`}>
-                <DropdownSelect
-                  title={"Kurs tańca"}
-                  options={danceCoursesList.map((course) => course.title)}
-                  placeholder={"Wybierz kurs"}
-                  getValue={handleDropdownSelect}
-                />
+	return (
+		<div className={styles.wrapper}>
+			<div className={styles.formContainer}>
+				{coursesLoading || tokenLoading ? (
+					<LoadingLogo />
+				) : (
+					<form
+						className={styles.form}
+						onSubmit={handleSubmit(onSubmit)}
+						noValidate
+					>
+						<input
+							type="hidden"
+							value={process.env.NEXT_PUBLIC_WEBFORM_ACCES_KEY}
+							{...register("access_key")}
+						/>
+						<input
+							type="hidden"
+							{...register("subject")}
+						/>
 
-                <input
-                  type="hidden"
-                  {...register("selectedDanceCourse", {
-                    required: "To pole jest wymagane",
-                  })}
-                  value={selectedDanceCourse}
-                />
+						<div className={styles.inputsContainer}>
+							<label className={`${styles.label} ${styles.DropdownSelect}`}>
+								<DropdownSelect
+									title={"Kurs tańca"}
+									options={danceCoursesList.map((course) => course.title)}
+									placeholder={"Wybierz kurs"}
+									getValue={handleDropdownSelect}
+								/>
 
-                {errors.selectedDanceCourse && selectedDanceCourse === "" && (
-                  <span className={styles.error}>
-                    {errors.selectedDanceCourse?.message}
-                  </span>
-                )}
-              </label>
+								<input
+									type="hidden"
+									{...register("selectedDanceCourse", {
+										required: "To pole jest wymagane",
+									})}
+									value={selectedDanceCourse}
+								/>
 
-              <label className={styles.label}>
-                <span>Imię i nazwisko</span>
-                <input
-                  id="name"
-                  type="text"
-                  {...register("name", {
-                    required: "To pole jest wymagane",
-                    minLength: {
-                      value: 3,
-                      message: "Imię i nazwisko musi mieć co najmniej 3 znaki",
-                    },
-                  })}
-                  placeholder="Jan Kowalski"
-                />
-                {errors.name && (
-                  <span className={styles.error}>{errors.name.message}</span>
-                )}
-              </label>
+								{errors.selectedDanceCourse && selectedDanceCourse === "" && (
+									<span className={styles.error}>
+										{errors.selectedDanceCourse?.message}
+									</span>
+								)}
+							</label>
 
-              <label
-                className={`${styles.label} ${
-                  showDancePartnerInput ? "" : styles.hidden
-                }`}
-              >
-                <span>Partner:</span>
-                <input
-                  id="pairName"
-                  type="text"
-                  {...register("pairName", {
-                    ...(showDancePartnerInput && {
-                      required: "To pole jest wymagane",
-                      minLength: {
-                        value: 3,
-                        message:
-                          "Imię i nazwisko musi mieć co najmniej 3 znaki",
-                      },
-                    }),
-                  })}
-                  placeholder="Anna Kowalska"
-                  disabled={!showDancePartnerInput}
-                />
-                {errors.pairName && (
-                  <span className={styles.error}>
-                    {errors.pairName?.message}
-                  </span>
-                )}
-              </label>
+							<label className={styles.label}>
+								<span>Imię i nazwisko</span>
+								<input
+									id="name"
+									type="text"
+									{...register("name", {
+										required: "To pole jest wymagane",
+										pattern: {
+											value: plRegex,
+											message: "Usuń cyfry i znaki specjalne",
+										},
+										minLength: {
+											value: 3,
+											message: "Imię i nazwisko musi mieć co najmniej 3 znaki",
+										},
+									})}
+									placeholder="Jan Kowalski"
+								/>
+								{errors.name && (
+									<span className={styles.error}>{errors.name.message}</span>
+								)}
+							</label>
 
-              <label className={styles.label}>
-                <span>Adres email</span>
-                <input
-                  id="email"
-                  type="email"
-                  {...register("email", {
-                    required: "To pole jest wymagane",
-                    pattern: {
-                      value: /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                      message: "Wprowadź poprawny adres email",
-                    },
-                  })}
-                  placeholder="Twój adres email"
-                />
-                {errors.email && (
-                  <span className={styles.error}>{errors.email.message}</span>
-                )}
-              </label>
+							<label
+								className={`${styles.label} ${
+									showDancePartnerInput ? "" : styles.hidden
+								}`}
+							>
+								<span>Partner:</span>
+								<input
+									id="pairName"
+									type="text"
+									{...register("pairName", {
+										...(showDancePartnerInput && {
+											required: "To pole jest wymagane",
+											pattern: {
+												value: plRegex,
+												message: "Usuń cyfry i znaki specjalne",
+											},
+											minLength: {
+												value: 3,
+												message:
+													"Imię i nazwisko musi mieć co najmniej 3 znaki",
+											},
+										}),
+									})}
+									placeholder="Anna Kowalska"
+									disabled={!showDancePartnerInput}
+								/>
+								{errors.pairName && (
+									<span className={styles.error}>
+										{errors.pairName?.message}
+									</span>
+								)}
+							</label>
 
-              <label className={styles.label}>
-                <span>Numer telefonu</span>
-                <input
-                  id="tel"
-                  type="tel"
-                  {...register("phone", {
-                    required: "To pole jest wymagane",
-                    pattern: {
-                      value: /^[0-9]{3} [0-9]{3} [0-9]{3}$/,
-                      message:
-                        "Wprowadź poprawny numer telefonu (np. 123 123 123)",
-                    },
-                    setValueAs: (value) => phoneNumberAutoFormat(value),
-                  })}
-                  placeholder="Numer telefonu"
-                  onChange={onChangePhoneNumber}
-                  value={phoneNumber}
-                />
-                {errors.phone && (
-                  <span className={styles.error}>{errors.phone.message}</span>
-                )}
-              </label>
-            </div>
+							<label className={styles.label}>
+								<span>Adres email</span>
+								<input
+									id="email"
+									type="email"
+									{...register("email", {
+										required: "To pole jest wymagane",
+										pattern: {
+											value: /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+											message: "Wprowadź poprawny adres email",
+										},
+									})}
+									placeholder="Twój adres email"
+								/>
+								{errors.email && (
+									<span className={styles.error}>{errors.email.message}</span>
+								)}
+							</label>
 
-            {/* <div className={styles.capWrapper}>
+							<label className={styles.label}>
+								<span>Numer telefonu</span>
+								<Controller
+									name="phone"
+									control={control}
+									rules={{
+										required: "To pole jest wymagane",
+										pattern: {
+											value: /^[0-9]{3} [0-9]{3} [0-9]{3}$/,
+											message:
+												"Wprowadź poprawny numer telefonu (np. 123 123 123)",
+										},
+									}}
+									render={({ field }) => (
+										<input
+											id="tel"
+											type="tel"
+											placeholder="Numer telefonu"
+											value={phoneNumber}
+											onChange={(e) => {
+												const formatted = phoneNumberAutoFormat(e.target.value);
+												setPhoneNumber(formatted);
+												field.onChange(formatted);
+											}}
+											onBlur={field.onBlur}
+										/>
+									)}
+								/>
+								{errors.phone && (
+									<span className={styles.error}>{errors.phone.message}</span>
+								)}
+							</label>
+						</div>
+
+						{/* <div className={styles.capWrapper}>
             <ReCAPTCHA
               sitekey={process.env.NEXT_PUBLIC_RECAPTHCA_KEY || ""}
               onChange={(val) => {
@@ -351,23 +380,41 @@ const CourseForm = (props: iCourseForm) => {
             />
           </div> */}
 
-            <input
-              className={styles.button}
-              type="submit"
-              value="Zapisz się!"
-              disabled={isSubmitting}
-            />
-          </form>
-        )}
-        <Toaster
-          position="top-center"
-          containerStyle={{
-            top: 200,
-          }}
-        />
-      </div>
-    </div>
-  );
+						<button
+							className={`${styles.button} ${isSuccess ? styles.success : ""} ${isError ? styles.errorButton : ""}  `}
+							type="submit"
+							disabled={isSubmitting || isSubmitSuccessful}
+						>
+							{isSubmitting
+								? "Ładowanie..."
+								: isSubmitSuccessful && isSuccess
+									? "Wysłano zgłoszenie!"
+									: isError
+										? " Nie udało się wysłać zgłoszenia "
+										: "Wyślij zgłoszenie!"}
+						</button>
+						{isError ? (
+							<div
+								role="alert"
+								aria-live="polite"
+								className={styles.errorSendingMessage}
+							>
+								Spróbuj ponownie później lub odśwież stronę
+							</div>
+						) : (
+							""
+						)}
+					</form>
+				)}
+				<Toaster
+					position="top-center"
+					containerStyle={{
+						top: 200,
+					}}
+				/>
+			</div>
+		</div>
+	);
 };
 
 export default CourseForm;

@@ -22,6 +22,7 @@ import { verifyReCaptcha } from "@/utils/recaptchaUtils";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { PreschoolClientType } from "@/types/mongodbTypes";
 import { fetchServerToken } from "@/app/actions/serverDB";
+import { plRegex } from "../../utils/formUtils";
 
 interface FormInputs {
 	selectedPreschool: string;
@@ -35,7 +36,7 @@ interface FormInputs {
 }
 
 const PreschoolsForm = () => {
-	const { guestToken, setGuestToken } = useTokenStore();
+	const { guestToken, setGuestToken, isTokenValid } = useTokenStore();
 	const [loading, setLoading] = useState<boolean>(true);
 	const [selectedPreschool, setselectedPreschool] = useState("");
 
@@ -52,6 +53,7 @@ const PreschoolsForm = () => {
 	};
 
 	const [isSuccess, setIsSuccess] = useState(false);
+	const [isError, setIsError] = useState(false);
 	const [Message, setMessage] = useState("");
 	const [capVal, setCapVal] = useState(null);
 
@@ -87,7 +89,7 @@ const PreschoolsForm = () => {
 			}
 		};
 
-		if (guestToken === null) {
+		if (!guestToken || !isTokenValid()) {
 			fetchToken();
 		}
 	}, [guestToken, setGuestToken]);
@@ -134,13 +136,16 @@ const PreschoolsForm = () => {
 			await sendNotificationEmail(guestToken, undefined, preschoolClientData);
 
 			setIsSuccess(true);
+			setIsError(false);
 			setMessage("Dane zapisane!");
 			reset();
 			setPhoneNumber("");
 		} catch (error) {
 			setIsSuccess(false);
+			setIsError(true);
 			setMessage("Błąd zapisu. Spróbuj ponownie.");
 			console.error("Error submitting form:", error);
+			throw error;
 		}
 	};
 
@@ -192,6 +197,10 @@ const PreschoolsForm = () => {
 							type="text"
 							{...register("group_name", {
 								required: "To pole jest wymagane",
+								// pattern: {
+								// 	value: plRegex,
+								// 	message: "Usuń znaki specjalne",
+								// },
 								minLength: {
 									value: 3,
 									message: "Nazwa grupy musi mieć co najmniej 3 znaki",
@@ -211,6 +220,10 @@ const PreschoolsForm = () => {
 							type="text"
 							{...register("child_name", {
 								required: "To pole jest wymagane",
+								pattern: {
+									value: plRegex,
+									message: "Usuń cyfry i znaki specjalne",
+								},
 								minLength: {
 									value: 3,
 									message: "Imię i nazwisko musi mieć co najmniej 3 znaki",
@@ -230,6 +243,10 @@ const PreschoolsForm = () => {
 							type="text"
 							{...register("parent_name", {
 								required: "To pole jest wymagane",
+								pattern: {
+									value: plRegex,
+									message: "Usuń cyfry i znaki specjalne",
+								},
 								minLength: {
 									value: 3,
 									message: "Imię i nazwisko musi mieć co najmniej 3 znaki",
@@ -284,19 +301,34 @@ const PreschoolsForm = () => {
 					</label>
 				</div>
 
-				<input
+				{/* <input
 					className={styles.button}
 					type="submit"
-					value="Wyślij zgłoszenie!"
+					value=
 					// disabled={!capVal}
-				/>
+				/> */}
+
+				<button
+					className={`${styles.button} ${isSuccess ? styles.success : ""} ${isError ? styles.errorButton : ""}  `}
+					type="submit"
+					disabled={isSubmitting || isSubmitSuccessful}
+				>
+					{isSubmitting
+						? "Ładowanie..."
+						: isSubmitSuccessful && isSuccess
+							? "Wysłano zgłoszenie!"
+							: isError
+								? " Nie udało się wysłać zgłoszenia "
+								: "Wyślij zgłoszenie!"}
+				</button>
+				{isError ? (
+					<span className={styles.errorSendingMessage}>
+						Spróbuj ponownie pózniej lub odśwież stronę
+					</span>
+				) : (
+					""
+				)}
 			</form>
-			<Toaster
-				position="top-center"
-				containerStyle={{
-					top: 200,
-				}}
-			/>
 			<Toaster
 				position="top-center"
 				containerStyle={{
@@ -308,9 +340,3 @@ const PreschoolsForm = () => {
 };
 
 export default PreschoolsForm;
-function verifyReCaptchaeCaptcha(
-	data: FormInputs,
-	executeRecaptcha: ((action?: string) => Promise<string>) | undefined
-) {
-	throw new Error("Function not implemented.");
-}
