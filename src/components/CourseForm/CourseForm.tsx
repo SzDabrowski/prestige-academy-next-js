@@ -2,7 +2,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 
 import { DropdownSelect } from "@/components/DropdownSelect/DropdownSelect";
-import { useForm, SubmitHandler, useWatch } from "react-hook-form";
+import { useForm, SubmitHandler, useWatch, Controller } from "react-hook-form";
 
 import { checkIfCourseForPairs } from "../../utils/clientUtils";
 import { phoneNumberAutoFormat } from "../../utils/formUtils";
@@ -49,7 +49,9 @@ interface iCourseForm {
 
 const CourseForm = (props: iCourseForm) => {
 	const { guestToken, setGuestToken } = useTokenStore();
-	const [loading, setLoading] = useState<boolean>(true);
+
+	const [coursesLoading, setCoursesLoading] = useState<boolean>(true);
+	const [tokenLoading, setTokenLoading] = useState<boolean>(true);
 
 	const [danceCoursesList, setDanceCoursesList] = useState<
 		DanceCourseListItem[]
@@ -98,7 +100,7 @@ const CourseForm = (props: iCourseForm) => {
 
 	useEffect(() => {
 		const getData = async () => {
-			setLoading(true);
+			setCoursesLoading(true);
 			try {
 				const fetchedDataAdults = await fetchDanceCoursesData({
 					targetGroup: "dorosli",
@@ -131,7 +133,7 @@ const CourseForm = (props: iCourseForm) => {
 			} catch (error) {
 				console.error("Error fetching data:", error);
 			} finally {
-				setLoading(false);
+				setCoursesLoading(false);
 			}
 		};
 
@@ -148,14 +150,14 @@ const CourseForm = (props: iCourseForm) => {
 			} catch (error) {
 				console.error("Error fetching token:", error);
 			} finally {
-				setLoading(false);
+				setTokenLoading(false);
 			}
 		};
 
 		if (guestToken === null) {
 			fetchToken();
 		} else {
-			setLoading(false);
+			setTokenLoading(false);
 		}
 	}, []); // Remove dependencies to prevent infinite loop
 
@@ -167,10 +169,10 @@ const CourseForm = (props: iCourseForm) => {
 		);
 
 		setShowDancePartnerInput(selectedCourse?.pairClass || false);
-	}, [selectedDanceCourse, setValue]);
+	}, [selectedDanceCourse, danceCoursesList, setValue]);
 
 	useEffect(() => {
-		setValue("subject", `${userName} zapisała/ł się na kurs tanća`);
+		setValue("subject", `${userName} zapisała/ł się na kurs tańca`);
 	}, [userName, setValue]);
 
 	const onSubmit = async (data: FormInputs, event?: any) => {
@@ -216,7 +218,7 @@ const CourseForm = (props: iCourseForm) => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.formContainer}>
-				{loading ? (
+				{coursesLoading || tokenLoading ? (
 					<LoadingLogo />
 				) : (
 					<form
@@ -335,21 +337,31 @@ const CourseForm = (props: iCourseForm) => {
 
 							<label className={styles.label}>
 								<span>Numer telefonu</span>
-								<input
-									id="tel"
-									type="tel"
-									{...register("phone", {
+								<Controller
+									name="phone"
+									control={control}
+									rules={{
 										required: "To pole jest wymagane",
 										pattern: {
 											value: /^[0-9]{3} [0-9]{3} [0-9]{3}$/,
 											message:
 												"Wprowadź poprawny numer telefonu (np. 123 123 123)",
 										},
-										setValueAs: (value) => phoneNumberAutoFormat(value),
-									})}
-									placeholder="Numer telefonu"
-									onChange={onChangePhoneNumber}
-									value={phoneNumber}
+									}}
+									render={({ field }) => (
+										<input
+											id="tel"
+											type="tel"
+											placeholder="Numer telefonu"
+											value={phoneNumber}
+											onChange={(e) => {
+												const formatted = phoneNumberAutoFormat(e.target.value);
+												setPhoneNumber(formatted);
+												field.onChange(formatted);
+											}}
+											onBlur={field.onBlur}
+										/>
+									)}
 								/>
 								{errors.phone && (
 									<span className={styles.error}>{errors.phone.message}</span>
@@ -380,9 +392,13 @@ const CourseForm = (props: iCourseForm) => {
 										: "Wyślij zgłoszenie!"}
 						</button>
 						{isError ? (
-							<span className={styles.errorSendingMessage}>
-								Spróbuj ponownie pózniej lub odśwież stronę
-							</span>
+							<div
+								role="alert"
+								aria-live="polite"
+								className={styles.errorSendingMessage}
+							>
+								Spróbuj ponownie później lub odśwież stronę
+							</div>
 						) : (
 							""
 						)}

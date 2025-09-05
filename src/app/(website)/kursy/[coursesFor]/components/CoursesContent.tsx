@@ -7,67 +7,68 @@ import { TypeDanceGroupSkeleton } from "@/types/typeDanceGroupsSkeleton";
 import { Entry, Asset } from "contentful";
 
 interface CoursesContentProps {
-  group: string;
+	group: string;
 }
 
 type ImageField = {
-  fields?: {
-    file?: {
-      url?: string;
-    };
-  };
+	fields?: {
+		file?: {
+			url?: string;
+		};
+	};
 };
 
 type PlainDanceCourseItem = {
-  fields: {
-    title: string;
-    titleId: string;
-    targetGroup: string;
-    pairClass: boolean;
-    summary: string;
-    recruitmentOpen: boolean;
-    image?: {
-      fields: {
-        file: {
-          url: string;
-        };
-      };
-    };
-  };
+	fields: {
+		title: string;
+		titleId: string;
+		targetGroup: string;
+		pairClass: boolean;
+		summary: string;
+		recruitmentOpen: boolean;
+		image?: {
+			fields: {
+				file: {
+					url: string;
+				};
+			};
+		};
+	};
 };
 
 export const CoursesContent = async ({ group }: CoursesContentProps) => {
-  const data = await fetchDanceCoursesData({
-    preview: (await draftMode()).isEnabled,
-    targetGroup: group,
-  });
+	const data = await fetchDanceCoursesData({
+		preview: (await draftMode()).isEnabled,
+		targetGroup: group,
+	});
 
-  if (!data?.items?.length) {
-    return <div>No courses available for this group.</div>;
-  }
+	if (!data?.items?.length) {
+		return <div>No courses available for this group.</div>;
+	}
 
-  const groupText = group === courseForEnum.adults ? "dorosłych" : "dzieci";
+	const groupText = group === courseForEnum.adults ? "dorosłych" : "dzieci";
 
-  return (
-    <div className={styles.contentContainer}>
-      <section className={styles.heading}>
-        <h1 className={styles.mainHeader}>Kursy</h1>
-        <p>dla {groupText}</p>
-      </section>
-      <section className={styles.coursesList}>
-        {data.items.map((item: PlainDanceCourseItem, index: number) => {
-          return (
-            <ClassSummary
-              key={item.fields.titleId} // ✅ Use titleId, not sys.id
-              title={item.fields.title}
-              img={item.fields.image?.fields?.file?.url || ""}
-              summary={item.fields.summary}
-              recruitment={item.fields.recruitmentOpen}
-              group={item.fields.targetGroup}
-            />
-          );
-        })}
-      </section>
-    </div>
-  );
+	return (
+		<div className={styles.contentContainer}>
+			<section className={styles.heading}>
+				<h1 className={styles.mainHeader}>Kursy</h1>
+				<p>dla {groupText}</p>
+			</section>
+			<section className={styles.coursesList}>
+				{data.items.map((item: PlainDanceCourseItem, index: number) => {
+					const imgUrl = item.fields.image?.fields?.file?.url;
+					return (
+						<ClassSummary
+							key={item.fields.titleId}
+							title={item.fields.title}
+							img={imgUrl ?? "/images/placeholder-course.jpg"}
+							summary={item.fields.summary}
+							recruitment={item.fields.recruitmentOpen}
+							group={item.fields.targetGroup}
+						/>
+					);
+				})}
+			</section>
+		</div>
+	);
 };

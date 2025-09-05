@@ -12,7 +12,7 @@ export interface TypeDanceGroupFields {
   targetGroup: EntryFieldTypes.Text;
   title: EntryFieldTypes.Text;
   titleId: EntryFieldTypes.Text;
-  signUpTitle: EntryFieldTypes.Text;
+  signUpTitle?: EntryFieldTypes.Text;
   image: Asset;
   pairClass: boolean;
   summary?: string;

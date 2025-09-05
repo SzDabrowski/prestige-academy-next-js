@@ -38,7 +38,7 @@ interface FormInputs {
 }
 
 const PreschoolsForm = () => {
-	const { guestToken, setGuestToken } = useTokenStore();
+	const { guestToken, setGuestToken, isTokenValid } = useTokenStore();
 	const [loading, setLoading] = useState<boolean>(true);
 	const [selectedPreschool, setselectedPreschool] = useState("");
 
@@ -91,7 +91,7 @@ const PreschoolsForm = () => {
 			}
 		};
 
-		if (guestToken === null) {
+		if (!guestToken || !isTokenValid()) {
 			fetchToken();
 		}
 	}, [guestToken, setGuestToken]);
@@ -138,6 +138,7 @@ const PreschoolsForm = () => {
 			await sendNotificationEmail(guestToken, undefined, preschoolClientData);
 
 			setIsSuccess(true);
+			setIsError(false);
 			setMessage("Dane zapisane!");
 			reset();
 			setPhoneNumber("");
@@ -146,6 +147,7 @@ const PreschoolsForm = () => {
 			setIsError(true);
 			setMessage("Błąd zapisu. Spróbuj ponownie.");
 			console.error("Error submitting form:", error);
+			throw error;
 		}
 	};
 
