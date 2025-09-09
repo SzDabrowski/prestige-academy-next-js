@@ -1,7 +1,16 @@
+"use server";
+
 import {
   TypeCourseGroupFields,
   TypeCourseGroupSkeleton,
 } from "@/types/typeCourseGroupSkeleton";
+
+import {
+  TypePreschoolsList,
+  TypePreschoolsListFields,
+  TypePreschoolsListSkeleton,
+} from "@/types/typePreschoolsListSkeleton";
+
 import { getStaticPropsUtil } from "@/lib/action";
 import { getAllGrupyZaj, getGrupyZajById } from "@/lib/contentful/api";
 import { stringify } from "querystring";
@@ -132,4 +141,36 @@ export async function getContentfulData({
   };
 
   return { data, image: imageData };
+}
+
+interface fetchPreschoolsListOptions {
+  preview: boolean;
+}
+
+export async function fetchPreschoolsList({
+  preview,
+}: fetchPreschoolsListOptions) {
+  const contentful = contentfulClient({ preview });
+
+  try {
+    const response = await contentful.getEntries<TypePreschoolsListSkeleton>({
+      content_type: "przedszkola",
+    });
+
+    if (response.items.length === 0) {
+      console.warn(`No data found with the type - przedszkola.`);
+      return null;
+    }
+
+    const entry = response.items[0];
+
+    const { fields } = entry;
+
+    if (!fields || fields === null) new Error("no data");
+
+    return fields as unknown as TypePreschoolsListFields; // Return the fields of the single entry
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
