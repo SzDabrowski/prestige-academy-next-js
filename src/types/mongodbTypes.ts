@@ -22,3 +22,10 @@ export type ContactClientType = {
   subject: string;
   message: string;
 };
+
+export type EventClientType = {
+  schoolName: string;
+  groupName?: string | null;
+  name: string;
+  phone: string;
+};

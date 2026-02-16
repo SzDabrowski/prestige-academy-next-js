@@ -1,4 +1,4 @@
-@import "/src/styles/colors";
+@import "/../styles/colors";
 
 .label {
   text-align: left;
@@ -12,7 +12,9 @@
   font-size: 1rem;
   margin-bottom: 10px;
   margin-top: 10px;
-  transition: transform 0.5s ease, opacity 0.5s;
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s;
   position: relative;
 
   span {

@@ -1,94 +1,98 @@
 import axios from "axios";
 import {
-	CourseClientType,
-	PreschoolClientType,
-	ContactClientType,
+  CourseClientType,
+  PreschoolClientType,
+  ContactClientType,
+  EventClientType,
 } from "@/types/mongodbTypes";
 
 export const fetchServerToken = async (): Promise<string> => {
-	try {
-		const baseUrl =
-			process.env.NEXT_PUBLIC_SERVER_URL ??
-			"https://server.prestige.stargard.pl";
+  try {
+    const baseUrl =
+      process.env.NEXT_PUBLIC_SERVER_URL ??
+      "https://server.prestige.stargard.pl";
 
-		const controller = new AbortController();
-		const timeoutId = setTimeout(() => controller.abort(), 8000);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
 
-		const response = await fetch(`${baseUrl}/auth/GuestToken`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			cache: "no-store",
-			signal: controller.signal,
-		});
+    const response = await fetch(`${baseUrl}/auth/GuestToken`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+      signal: controller.signal,
+    });
 
-		clearTimeout(timeoutId);
+    clearTimeout(timeoutId);
 
-		if (!response.ok) {
-			throw new Error(`Server responded with ${response.status}`);
-		}
+    if (!response.ok) {
+      throw new Error(`Server responded with ${response.status}`);
+    }
 
-		const data = await response.json();
+    const data = await response.json();
 
-		if (!data.token) {
-			throw new Error("No token found in the server response");
-		}
+    if (!data.token) {
+      throw new Error("No token found in the server response");
+    }
 
-		return data.token;
-	} catch (error) {
-		console.error("Error fetching token:", error);
-		throw new Error("Failed to fetch guest token");
-	}
+    return data.token;
+  } catch (error) {
+    console.error("Error fetching token:", error);
+    throw new Error("Failed to fetch guest token");
+  }
 };
 
 export const saveClientData = async (
-	token: string,
-	clientData?: CourseClientType,
-	preschoolData?: PreschoolClientType
+  token: string,
+  clientData?: CourseClientType,
+  preschoolData?: PreschoolClientType,
+  eventData?: EventClientType,
 ) => {
-	if (!clientData && !preschoolData) {
-		throw new Error("Either clientData or preschoolData must be provided.");
-	}
-	if (!token) throw new Error("Unauthorized: No token provided");
+  if (!clientData && !preschoolData && !eventData) {
+    throw new Error(
+      "Either clientData or preschoolData, or  eventData must be provided.",
+    );
+  }
+  if (!token) throw new Error("Unauthorized: No token provided");
 
-	try {
-		const response = await axios.post(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/forms/submit`,
-			{ clientData, preschoolData },
-			{
-				headers: {
-					Authorization: `Bearer ${token}`,
-					"Content-Type": "application/json",
-				},
-			}
-		);
+  try {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/forms/submit`,
+      { clientData, preschoolData, eventData },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
 
-		return response.data;
-	} catch (error) {
-		console.error("Error saving data:", error);
-		throw error;
-	}
+    return response.data;
+  } catch (error) {
+    console.error("Error saving data:", error);
+    throw error;
+  }
 };
 
 export const sendContactMessage = async (
-	data: ContactClientType,
-	token: string
+  data: ContactClientType,
+  token: string,
 ) => {
-	try {
-		const response = await axios.post(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/forms/contact`,
-			{ ...data },
-			{
-				headers: {
-					Authorization: `Bearer ${token}`,
-					"Content-Type": "application/json",
-				},
-			}
-		);
-		return response.data;
-	} catch (error) {
-		console.error("Error sending contact message:", error);
-		throw error;
-	}
+  try {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/forms/contact`,
+      { ...data },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error sending contact message:", error);
+    throw error;
+  }
 };

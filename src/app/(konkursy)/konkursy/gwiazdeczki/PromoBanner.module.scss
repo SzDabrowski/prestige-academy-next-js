@@ -1,0 +1,179 @@
+.bannerContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem;
+  background-color: #1e1b4b; // Fallback navy
+}
+
+.bgImage {
+  object-fit: cover;
+  // Use a slight scale and brightness filter to match image_8ddac2
+  filter: brightness(0.9) contrast(1.05);
+  z-index: 1;
+}
+
+.gradientOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(30, 27, 75, 0.7) 0%,
+    rgba(30, 27, 75, 0.2) 40%,
+    transparent 100%
+  );
+  z-index: 2;
+}
+
+// Soft darkening of the corners (Vignette)
+.overlayRadial {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 20%,
+    rgba(146, 50, 133, 0.3) 100%
+  );
+  z-index: 2;
+}
+
+.deadlineBadge {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background-color: #ffdc5d;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: #000;
+  box-shadow: 0 4px 15px rgba(78, 47, 47, 0.1);
+  z-index: 3;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: white;
+  margin-bottom: 15%;
+
+  h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+}
+
+.yearPill {
+  position: relative;
+  background-color: #ffdc5d;
+  color: #1e1b4b;
+  display: inline-block;
+  padding: 0.25rem 2rem;
+  border-radius: 9999px;
+  font-size: 1.25rem;
+  font-weight: 900;
+  z-index: 1;
+  transform: rotate(-2deg);
+  top: -12px;
+}
+
+.tagline {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+
+  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07))
+    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.06));
+
+  .taglineIcon {
+    width: 1.25rem; /* w-5 */
+    height: 1.25rem; /* h-5 */
+    color: #fde047; /* text-yellow-300 */
+    fill: #fde047; /* fill-yellow-300 */
+  }
+}
+
+.sparkleIcon {
+  position: absolute;
+  top: -1.5rem; /* -top-6 */
+  right: -2rem; /* -right-8 */
+  width: 3rem; /* w-8 */
+  height: 3rem; /* h-8 */
+  color: #fde047; /* text-yellow-300 */
+  opacity: 0.8;
+  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+  animation: pulseCustom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.lightPoint {
+  position: absolute;
+  top: 50%;
+  left: -2.5rem; /* -left-10 */
+  width: 0.5rem; /* w-2 */
+  height: 0.5rem; /* h-2 */
+  background-color: #ffffff;
+  border-radius: 50%;
+  opacity: 0.7;
+  transform: translateY(-50%);
+  animation: pingCustom 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.particleContainer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 1;
+  z-index: 4; // Above overlays (2-3) but below content (10)
+}
+
+.particle {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: floatParticle linear infinite;
+  filter: blur(2px); // Gives them a soft "bokeh" feel
+}
+
+@keyframes floatParticle {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-40px) translateX(20px);
+  }
+}
+
+@keyframes pulseCustom {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes pingCustom {
+  75%,
+  100% {
+    transform: translateY(-50%) scale(2);
+    opacity: 0;
+  }
+}

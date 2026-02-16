@@ -6,6 +6,7 @@ import CoursesSection from "@/components/landing-page/CoursesSection/CoursesSect
 import AboutUsSection from "@/components/landing-page/AboutUsSection/AboutUsSection";
 import { Container } from "@/components/Container/Container";
 import CourseForm from "@/components/CourseForm/CourseForm";
+import { DanceBanner } from "@/components/DanceEventBanner/DanceEventBanner";
 
 /**
  * Renders the main landing page layout, composing the header, hero section, course form, courses list, and about us section.
@@ -20,6 +21,7 @@ export default function Home() {
       <Container>
         <CourseForm />
       </Container>
+      <DanceBanner />
       <CoursesSection />
       <AboutUsSection />
     </main>
