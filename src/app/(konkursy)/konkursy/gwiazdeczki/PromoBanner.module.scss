@@ -1,0 +1,155 @@
+@use "@/styles/colors" as *;
+
+.bannerContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 500px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1.5rem; // Mniejszy padding na start
+  background-color: $clr-logo-main;
+
+  @media (min-width: 768px) {
+    justify-content: flex-end;
+    padding: 3rem;
+    max-height: 100vh;
+  }
+}
+
+.bgImage {
+  object-fit: cover;
+
+  object-position: top;
+  filter: brightness(0.9) contrast(1.05);
+  z-index: 1;
+
+  @media (min-width: 768px) {
+    object-position: center;
+  }
+}
+
+.gradientOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, $clr-logo-main, + transparent 100%);
+  z-index: 2;
+}
+
+.deadlineBadge {
+  position: absolute;
+  top: 1rem; // Mniejszy odstęp na mobile
+  right: 1rem;
+  background-color: #ffdc5d;
+  padding: 0.4rem 0.8rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 800;
+  font-size: 0.65rem; // Mniejszy font na mobile
+  color: #000;
+  z-index: 3;
+
+  @media (min-width: 768px) {
+    top: 2rem;
+    right: 2rem;
+    font-size: 0.75rem;
+    padding: 0.5rem 1.25rem;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: white;
+  width: 100%;
+
+  h2 {
+    font-size: 1.8rem; // Drastycznie mniejszy na mobile
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+
+    @media (min-width: 768px) {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: 10%;
+  }
+}
+
+.yearPill {
+  position: relative;
+  background-color: #ffdc5d;
+  color: #1e1b4b;
+  display: inline-block;
+  padding: 0.15rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.9rem; // Mniejszy na mobile
+  font-weight: 900;
+  z-index: 1;
+  transform: rotate(-2deg);
+  top: -8px; // Mniejszy offset
+
+  @media (min-width: 768px) {
+    padding: 0.25rem 2rem;
+    font-size: 1.25rem;
+    top: -12px;
+  }
+}
+
+.tagline {
+  font-size: 0.8rem; // Mniejszy na mobile
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+  opacity: 0.9;
+
+  @media (min-width: 768px) {
+    font-size: 1.125rem;
+    margin-top: 1.5rem;
+  }
+
+  .taglineIcon {
+    width: 0.9rem;
+    height: 0.9rem;
+    color: #fde047;
+    fill: #fde047;
+
+    @media (min-width: 768px) {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+}
+
+.sparkleIcon {
+  position: absolute;
+  top: -1rem;
+  right: -1.2rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  color: #fde047;
+  opacity: 0.8;
+  animation: pulseCustom 2s infinite;
+
+  @media (min-width: 768px) {
+    top: -1.5rem;
+    right: -2rem;
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+// Reszta animacji i cząsteczek bez zmian...

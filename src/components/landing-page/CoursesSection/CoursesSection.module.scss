@@ -1,5 +1,5 @@
-@import "../../../styles/mixins.scss";
-@import "../../../styles/_colors.scss";
+@use "@/styles/colors" as *;
+@use "@/styles/mixins" as *;
 
 .section {
   margin-top: 100px;
@@ -16,6 +16,7 @@
     color: red;
     background: $grd-accents;
     -webkit-background-clip: text;
+    background-clip: text;
 
     -webkit-text-fill-color: transparent;
   }

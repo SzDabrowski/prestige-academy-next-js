@@ -1,0 +1,310 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/colors" as *;
+
+// Layout Wrappers
+.wrapper {
+  position: relative;
+  background-color: transparent;
+  height: fit-content;
+}
+
+.formContainer {
+  margin: auto;
+  padding-bottom: 1rem;
+  width: 100%;
+  background-color: transparent;
+}
+
+// Form Structure
+.form {
+  color: #000;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
+
+  .inputsContainer {
+    padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    > * {
+      max-width: 80%;
+      min-width: 65%;
+    }
+  }
+}
+
+// Inputs & Labels
+.label {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  position: relative;
+  margin: 0.5rem 0 1rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+
+  span {
+    flex-grow: 1;
+    padding-left: 0.5rem;
+  }
+
+  input {
+    width: 100%;
+    flex-grow: 2;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    border: none;
+    box-shadow: 0 4px 0px -3px #ccc;
+    box-sizing: border-box;
+    transition: ease-in-out 0.4s;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 4px 0px -2px $clr-logo-main;
+    }
+
+    &::placeholder {
+      color: #ccc;
+    }
+  }
+}
+
+// Helper Classes
+.hiddenLabel {
+  display: none;
+}
+
+.hidden {
+  position: absolute;
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+// Errors
+.error {
+  position: absolute;
+  top: 55px;
+  left: 0;
+  color: red;
+  font-size: 0.7rem;
+  text-transform: none;
+}
+
+.errorDropdown {
+  top: 70px;
+}
+
+// Buttons
+.button {
+  position: relative;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background-image: $grd-main;
+  background-size: 100% auto;
+  box-shadow: rgba(196, 197, 198, 0.4) 0px 13px 72px 15px;
+  transition: 0.5s;
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50px; // Match parent
+    transition: opacity 0.5s ease-in-out;
+    z-index: -1;
+  }
+
+  &::before {
+    background-image: $grd-main;
+    opacity: 1;
+  }
+
+  &::after {
+    background-image: linear-gradient(to right, #05851b, #57c785);
+    opacity: 0;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+    background-position: right center;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &.success::after {
+    opacity: 1;
+  }
+  &.success::before {
+    opacity: 0;
+  }
+
+  &.errorButton::after {
+    background-image: linear-gradient(to right, #c72b2b, #ff7777);
+    opacity: 1;
+  }
+  &.errorButton::before {
+    opacity: 0;
+  }
+}
+
+// Consents Section
+.consentsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.consentRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  min-height: 40px;
+}
+
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.consentCheckbox {
+  appearance: none;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:checked {
+    background-color: $clr-logo-main;
+    border-color: $clr-logo-main;
+
+    &::after {
+      content: "✓";
+      position: absolute;
+      top: -1px;
+      left: 3px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
+  &.checkboxError {
+    border-color: #ff0000;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
+  }
+}
+
+.consentContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.consentLabel {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #333;
+  cursor: pointer;
+  text-transform: none;
+
+  b {
+    color: $clr-logo-main;
+  }
+}
+
+.privacyLink {
+  color: $clr-logo-main;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+    text-decoration: none;
+  }
+}
+
+// Error Container & Animations
+.errorContainer {
+  height: 18px;
+  margin-top: 4px;
+}
+
+.consentError {
+  display: block;
+  color: #ff0000;
+  font-size: 0.7rem;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+.capWrapper {
+  margin: auto;
+  height: 80px;
+
+  > div {
+    margin: 10px;
+    transform: scale(0.7);
+    transform-origin: 0 0;
+  }
+}
+
+.shake {
+  animation: shakeAnim 0.4s ease-in-out;
+}
+
+@keyframes shakeAnim {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -4,18 +4,11 @@ import styles from "./CommissionedContent.module.scss";
 import { Container } from "@/components/Container/Container";
 import { ContactForm } from "@/components/ContactForm/ContactForm";
 
-import {
-  fetchCourseData,
-  getContentfulData,
-} from "@/lib/contentful/serverActions/coursesGroups";
-import { draftMode } from "next/headers";
+import { getContentfulData } from "@/lib/contentful/serverActions/coursesGroups";
 
 import { notFound } from "next/navigation";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Image from "next/image";
-import { Asset } from "contentful";
-import { useState } from "react";
-import { TypeCourseGroupFields } from "@/types/typeCourseGroupSkeleton";
 
 const CommissionedContent = async () => {
   const { data, image } = await getContentfulData({

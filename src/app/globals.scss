@@ -1,5 +1,7 @@
-@import "../styles/mixins.scss";
-@import "../styles/fonts";
+@use "@/styles/mixins" as *;
+@use "@/styles/colors" as *;
+
+@use "../styles/fonts";
 
 :root {
   --gradient-main: linear-gradient(61deg, rgba(92, 9, 9, 1) 40%, #d3277c 100%);

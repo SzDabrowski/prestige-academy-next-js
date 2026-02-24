@@ -1,5 +1,5 @@
-@import "@/styles/colors";
-@import "@/styles/mixins.scss";
+@use "@/styles/mixins" as *;
+@use "@/styles/colors" as *;
 
 .mainContainer {
   padding: 5vh 0;

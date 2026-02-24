@@ -22,3 +22,15 @@ export type ContactClientType = {
   subject: string;
   message: string;
 };
+
+export type EventClientType = {
+  id?: number;
+  schoolName: string;
+  groupName?: string | null;
+  childName: string;
+  phone: string;
+  consentParticipation: boolean;
+  consentDataProcessing: boolean;
+  subject?: string | null;
+  createdAt?: string | Date;
+};
