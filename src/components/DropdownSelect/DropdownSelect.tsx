@@ -14,46 +14,32 @@ interface iDropdownSelect {
 
 export const DropdownSelect = (props: iDropdownSelect) => {
   const [isActive, setIsActive] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
+  // Jeśli mamy początkową wartość, ustawiamy isSelected na true
+  const [isSelected, setIsSelected] = useState(!!props.value);
   const [selectedOption, setSelectedOption] = useState<string>(
-    props.value || ""
+    props.value || "",
   );
 
-  const sendValueToParent = (option: string) => {
-    const selectedOption = props.getValue(option);
-    setSelectedOption(selectedOption);
-  };
+  const dropdownRef = useRef(null);
 
-  let dropdownRef = useRef(null);
-  useOutsideClick(dropdownRef, () => {
+  useOutsideClick(dropdownRef, () => setIsActive(false));
+
+  const handleSelect = (option: string) => {
+    setIsSelected(true);
     setIsActive(false);
-    setIsClicked(true);
-  });
-
-  useEffect(() => {
-    if (props.value) {
-      sendValueToParent(props.value);
-    }
-  }, []);
+    setSelectedOption(option);
+    props.getValue(option);
+  };
 
   return (
     <div
       ref={dropdownRef}
       className={`${styles.selectMenu} ${isActive ? styles.active : ""}`}
     >
-      <span className={styles.btnLabel}>{props.title}</span>
-      <div
-        className={styles.selectBtn}
-        onClick={() => {
-          setIsActive(!isActive);
-        }}
-        onFocus={() => {
-          setIsActive(!isActive);
-        }}
-      >
-        {" "}
-        {isSelected || props.value ? (
+      {props.title && <span className={styles.btnLabel}>{props.title}</span>}
+
+      <div className={styles.selectBtn} onClick={() => setIsActive(!isActive)}>
+        {isSelected ? (
           <span className={styles.optionsValue}>{selectedOption}</span>
         ) : (
           <span className={styles.placeholder}>{props.placeholder}</span>
@@ -62,21 +48,15 @@ export const DropdownSelect = (props: iDropdownSelect) => {
       </div>
 
       <ul className={styles.options}>
-        {props.options.map((option, index) => {
-          return (
-            <li
-              key={index}
-              className={styles.option}
-              onClick={() => {
-                setIsSelected(true);
-                setIsActive(false);
-                sendValueToParent(option);
-              }}
-            >
-              <span>{option}</span>
-            </li>
-          );
-        })}
+        {props.options.map((option, index) => (
+          <li
+            key={index}
+            className={styles.option}
+            onClick={() => handleSelect(option)}
+          >
+            <span>{option}</span>
+          </li>
+        ))}
       </ul>
     </div>
   );

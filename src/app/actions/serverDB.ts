@@ -120,8 +120,21 @@ export const sendEventRegistration = async (data: any, token: string) => {
       },
     );
     return response.data;
-  } catch (error) {
-    console.error("Error sending event registration:", error);
-    throw error;
+  } catch (error: unknown) {
+    // Sprawdzamy, czy to błąd pochodzący z Axiosa
+    if (axios.isAxiosError(error)) {
+      // Tutaj TS już wie, że error to AxiosError
+      const backendMessage = error.response?.data.error.message;
+
+      // Rzucamy błąd z wiadomością z backendu
+      throw new Error(backendMessage || "Wystąpił błąd serwera");
+    }
+
+    // Obsługa błędów, które nie są z Axiosa (np. błędy programistyczne)
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+
+    throw new Error("Wystąpił nieoczekiwany błąd");
   }
 };

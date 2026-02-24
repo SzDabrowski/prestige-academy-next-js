@@ -41,13 +41,6 @@ const Gwiazdeczki = () => {
           <PromoBanner />
         </div>
       </main>
-
-      {isSuccess && (
-        <Toast
-          message="Zgłoszenie wysłane pomyślnie! Do zobaczenia na scenie!"
-          onClose={() => setIsSuccess(false)}
-        />
-      )}
     </div>
   );
 };
