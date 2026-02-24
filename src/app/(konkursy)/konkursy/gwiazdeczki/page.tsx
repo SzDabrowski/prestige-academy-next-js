@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import DanceEventForm from "@/components/DanceEventForm/DanceEventForm";
 import { PromoBanner } from "./promoBanner";
-import { Toast } from "./toast";
 import styles from "./page.module.scss";
 import { Star } from "lucide-react";
 
