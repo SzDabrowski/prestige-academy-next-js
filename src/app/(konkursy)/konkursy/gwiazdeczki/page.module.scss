@@ -15,7 +15,6 @@
 }
 
 .mainCard {
-  max-height: 95vh;
   width: 100%;
   max-width: 1100px;
   background-color: white;
@@ -28,6 +27,7 @@
   z-index: 1;
 
   @media (min-width: 768px) {
+    max-height: 95vh;
     flex-direction: row; // DESKTOP: Obok siebie
     border-radius: 3.5rem;
     min-height: 800px;
