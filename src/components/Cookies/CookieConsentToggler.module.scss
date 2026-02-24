@@ -3,10 +3,14 @@
 .toggler-container {
   padding: 1rem;
   position: fixed;
-  bottom: 80px;
+  bottom: 20px;
   right: 0;
 
   z-index: 99;
+
+  @media (min-width: 768px) {
+    bottom: 80px;
+  }
 
   .button {
     position: relative; /* Necessary for the pseudo-element positioning */
