@@ -17,6 +17,7 @@ export function DanceBanner() {
             fill
             priority
             style={{ objectFit: "cover", objectPosition: "center 20%" }}
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
 
@@ -34,10 +35,10 @@ export function DanceBanner() {
           </div>
 
           <div className={styles.contentInner}>
-            <h1 className={styles.heading}>
+            <h2 className={styles.heading}>
               TAŃCZĄCE GWIAZDECZKI!
-              <Sparkles className={styles.sparkleIcon} />
-            </h1>
+              <Sparkles className={styles.sparkleIcon} aria-hidden="true" />
+            </h2>
 
             <div className={styles.subHeadingGroup}>
               <p>WYSTĘPY TANECZNE DLA DZIECI</p>
@@ -45,7 +46,7 @@ export function DanceBanner() {
             </div>
 
             <Link href="/konkursy/gwiazdeczki" className={styles.ctaButton}>
-              ZAPISZ DZIECKO TERAZ <ArrowRight />
+              ZAPISZ DZIECKO TERAZ <ArrowRight aria-hidden="true" />
             </Link>
           </div>
         </div>
