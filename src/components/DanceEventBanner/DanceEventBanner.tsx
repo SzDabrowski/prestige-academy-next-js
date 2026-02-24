@@ -4,6 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import backgroundBanner from "../../../public/assets/images/konkurs.jpeg";
 
+/**
+ * Renders a promotional banner section for the "Tańczące Gwiazdeczki" children's dance competition.
+ *
+ * @returns A JSX element containing the banner layout: a responsive background image, decorative wave, heading with icon, subheadings, and a CTA link to the registration page.
+ */
 export function DanceBanner() {
   return (
     <section className={styles.bannerSection}>
