@@ -21,7 +21,7 @@ export const PromoBanner: React.FC = () => {
 
       <div className={styles.deadlineBadge}>
         <Calendar size={16} />
-        <span>Zapisy do: 15.04</span>
+        <span>Zapisy do: 13.03</span>
       </div>
 
       <div className={styles.particleContainer}>
@@ -52,11 +52,6 @@ export const PromoBanner: React.FC = () => {
           <Sparkles className={styles.sparkleIcon} />
           <div className={styles.lightPoint} />
         </div>
-
-        <p className={styles.tagline}>
-          Pierwszy konkurs, wielkie emocje
-          <Sparkles size={20} className={styles.taglineIcon} />
-        </p>
       </div>
     </div>
   );

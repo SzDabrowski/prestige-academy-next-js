@@ -1,8 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import styles from "./DanceEventBanner.module.scss";
 import Image from "next/image";
-import Background from "./background.jpg";
 import Link from "next/link";
 import backgroundBanner from "../../../public/assets/images/konkurs.jpeg";
 
@@ -10,7 +8,21 @@ export function DanceBanner() {
   return (
     <section className={styles.bannerSection}>
       <div className={styles.flexWrapper}>
+        {/* Sekcja wizualna - na mobile na górze */}
+        <div className={styles.visual}>
+          <Image
+            className={styles.image}
+            src={backgroundBanner}
+            alt="Dzieci tańczące na scenie"
+            fill
+            priority
+            style={{ objectFit: "cover", objectPosition: "center 20%" }}
+          />
+        </div>
+
+        {/* Sekcja tekstowa */}
         <div className={styles.textContent}>
+          {/* Fala widoczna tylko na desktopie */}
           <div className={styles.waveWrapper}>
             <svg
               className={styles.waveSvg}
@@ -29,24 +41,13 @@ export function DanceBanner() {
 
             <div className={styles.subHeadingGroup}>
               <p>WYSTĘPY TANECZNE DLA DZIECI</p>
-              <p>ZAPISY OTWARTE!</p>
+              <p className={styles.highlight}>ZAPISY OTWARTE!</p>
             </div>
-            <button className={styles.ctaButton}>
-              <Link href="/konkursy/gwiazdeczki">
-                ZAPISZ DZIECKO TERAZ <ArrowRight />
-              </Link>
-            </button>
-          </div>
-        </div>
 
-        <div className={styles.visual}>
-          <Image
-            className={styles.imagePlaceholder}
-            src={backgroundBanner}
-            alt="Dzieci tańczące na scenie"
-            fill
-            priority
-          />
+            <Link href="/konkursy/gwiazdeczki" className={styles.ctaButton}>
+              ZAPISZ DZIECKO TERAZ <ArrowRight />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

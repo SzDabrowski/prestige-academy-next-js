@@ -17,7 +17,7 @@
 .formContainer {
   margin: auto;
 
-  padding-bottom: 45px;
+  padding-bottom: 1rem;
 
   width: 100%;
 
@@ -37,14 +37,14 @@
 
   align-items: stretch;
 
-  gap: 20px;
+  gap: 1rem;
 
   flex-wrap: wrap;
 
   @media (min-width: 1024px) {
     flex-direction: row;
 
-    gap: 30px;
+    gap: 1rem;
   }
 
   .inputsContainer {

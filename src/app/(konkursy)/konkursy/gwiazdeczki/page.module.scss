@@ -1,7 +1,6 @@
 @use "@/styles/colors" as *;
 
 .wrapper {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,6 +15,7 @@
 }
 
 .mainCard {
+  max-height: 95vh;
   width: 100%;
   max-width: 1100px;
   background-color: white;

@@ -11,7 +11,7 @@
   justify-content: flex-end;
   align-items: center;
   padding: 1.5rem; // Mniejszy padding na start
-  background-color: #1e1b4b;
+  background-color: $clr-logo-main;
 
   @media (min-width: 768px) {
     justify-content: flex-end;
@@ -38,8 +38,7 @@
   background: linear-gradient(
     to top,
     rgba(30, 27, 75, 0.8) 0%,
-    rgba(30, 27, 75, 0.3) 50%,
-    transparent 100%
+    $clr-logo-main transparent 100%
   );
   z-index: 2;
 }
