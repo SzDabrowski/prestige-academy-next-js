@@ -14,18 +14,6 @@ const nextConfig = {
     // Używamy path.resolve, aby mieć pewność co do ścieżki absolutnej
     includePaths: [path.resolve(__dirname, "src/styles")],
     // Dodajemy średnik i nową linię, aby uniknąć błędów parsowania
-    additionalData: `@use "src/styles/_colors.scss" as *;\n`,
-  },
-  // Wymuszenie na Turbopacku przeładowania konfiguracji Sass
-  experimental: {
-    turbo: {
-      rules: {
-        "*.scss": {
-          loaders: ["sass-loader"],
-          as: "*.css",
-        },
-      },
-    },
   },
 };
 

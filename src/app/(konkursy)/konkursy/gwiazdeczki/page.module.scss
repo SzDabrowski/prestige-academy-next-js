@@ -50,7 +50,7 @@
     position: relative;
     text-align: left;
 
-    h1 {
+    .title {
       color: #1e1b4b;
       font-size: 2rem; // Mniejszy font na mobile
       font-weight: 900;
@@ -63,7 +63,7 @@
       }
     }
 
-    p {
+    .subtitle {
       color: #94a3b8;
       font-size: 0.7rem;
       font-weight: 800;

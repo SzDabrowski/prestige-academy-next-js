@@ -35,11 +35,7 @@
 .gradientOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(30, 27, 75, 0.8) 0%,
-    $clr-logo-main transparent 100%
-  );
+  background: linear-gradient(to top, $clr-logo-main, + transparent 100%);
   z-index: 2;
 }
 

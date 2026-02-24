@@ -20,14 +20,12 @@ const Gwiazdeczki = () => {
         {/* Na mobile to będzie na dole (dzięki flex-direction: column-reverse) */}
         <div className={styles.formSection}>
           <div className={styles.header}>
-            <div>
-              <h1>
-                TAŃCZĄCE
-                <br />
-                GWIAZDECZKI!
-              </h1>
-              <p>WYSTĘPY TANECZNE DLA DZIECI</p>
-            </div>
+            <h1 className={styles.title}>
+              TAŃCZĄCE
+              <br />
+              GWIAZDECZKI!
+            </h1>
+            <p className={styles.subtitle}>WYSTĘPY TANECZNE DLA DZIECI</p>
             <div className={styles.titleStar}>
               <Star fill="#ffdc5d" stroke="none" className={styles.star1} />
               <Star fill="#ffdc5d" stroke="none" className={styles.star2} />
