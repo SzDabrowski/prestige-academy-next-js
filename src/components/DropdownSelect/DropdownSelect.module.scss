@@ -28,10 +28,12 @@
 
 .btnLabel {
   text-transform: uppercase;
-  font-size: 0.8rem;
-  margin-bottom: 4px;
+  font-size: 1rem;
+  margin-bottom: 2px;
   display: block;
   color: #333;
+  position: relative;
+  top: 5px;
 }
 
 .selectBtn {
@@ -39,9 +41,11 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  font-size: 0.9rem;
   align-items: center;
-  padding: 0.6rem 0.5rem;
-  min-height: 45px;
+  padding: 0.5rem;
+  padding-bottom: calc(0.5rem - 4px);
+  min-height: 30px;
   border: none;
   box-shadow: 0 4px 0px -3px #ccc;
   box-sizing: border-box;
