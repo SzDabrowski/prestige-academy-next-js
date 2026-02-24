@@ -9,9 +9,9 @@ import CourseForm from "@/components/CourseForm/CourseForm";
 import { DanceBanner } from "@/components/DanceEventBanner/DanceEventBanner";
 
 /**
- * Renders the main landing page layout, composing the header, hero section, course form, courses list, and about us section.
+ * Render the landing page by composing primary sections in their display order.
  *
- * This component serves as the entry point for the landing page, arranging all primary sections in order.
+ * @returns A JSX element representing the main landing page element containing the header, hero, course form, dance banner, courses section, and about us section.
  */
 export default function Home() {
   return (
