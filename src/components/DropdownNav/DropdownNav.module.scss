@@ -1,5 +1,5 @@
-/* Dropdown Header Styles */
-@import "../../styles/mixins.scss";
+@use "@/styles/colors" as *;
+@use "@/styles/mixins" as *;
 
 .wrapper {
   position: relative;
@@ -39,7 +39,9 @@
   cursor: pointer;
 
   box-shadow: rgba(#666, 0.2) 0px 0px 20px 5px;
-  transition: opacity 0.4s, visibility 0s 0.4s; /* Add a delay for visibility */
+  transition:
+    opacity 0.4s,
+    visibility 0s 0.4s; /* Add a delay for visibility */
 
   ul {
     background-color: #fff;

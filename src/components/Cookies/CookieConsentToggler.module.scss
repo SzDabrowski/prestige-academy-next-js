@@ -1,6 +1,5 @@
-// CookieConsentToggler.module.scss
-@import "../../styles/colors.scss";
-
+@use "@/styles/colors" as *;
+@use "@/styles/mixins" as *;
 .toggler-container {
   padding: 1rem;
   position: fixed;

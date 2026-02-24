@@ -11,7 +11,7 @@ export const PromoBanner: React.FC = () => {
         src={backgroundBanner}
         alt="Tańczące Gwiazdeczki"
         fill
-        style={{ objectFit: "cover" }}
+        className={styles.bgImage}
         priority // loads immediately
       />
 

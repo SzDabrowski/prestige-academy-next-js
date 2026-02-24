@@ -1,6 +1,5 @@
-@import "../../styles/colors";
-@import "../../styles//mixins.scss";
-
+@use "@/styles/colors" as *;
+@use "@/styles/mixins" as *;
 .selectMenu {
   text-transform: none;
   flex-grow: 1;

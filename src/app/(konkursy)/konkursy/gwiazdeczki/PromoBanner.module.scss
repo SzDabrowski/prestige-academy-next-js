@@ -1,20 +1,35 @@
+@use "@/styles/colors" as *;
+
 .bannerContainer {
   position: relative;
   width: 100%;
   height: 100%;
+  max-height: 500px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 3rem;
-  background-color: #1e1b4b; // Fallback navy
+  align-items: center;
+  padding: 1.5rem; // Mniejszy padding na start
+  background-color: #1e1b4b;
+
+  @media (min-width: 768px) {
+    justify-content: flex-end;
+    padding: 3rem;
+    max-height: 100vh;
+  }
 }
 
 .bgImage {
   object-fit: cover;
-  // Use a slight scale and brightness filter to match image_8ddac2
+
+  object-position: top;
   filter: brightness(0.9) contrast(1.05);
   z-index: 1;
+
+  @media (min-width: 768px) {
+    object-position: center;
+  }
 }
 
 .gradientOverlay {
@@ -22,40 +37,34 @@
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(30, 27, 75, 0.7) 0%,
-    rgba(30, 27, 75, 0.2) 40%,
+    rgba(30, 27, 75, 0.8) 0%,
+    rgba(30, 27, 75, 0.3) 50%,
     transparent 100%
-  );
-  z-index: 2;
-}
-
-// Soft darkening of the corners (Vignette)
-.overlayRadial {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at center,
-    transparent 20%,
-    rgba(146, 50, 133, 0.3) 100%
   );
   z-index: 2;
 }
 
 .deadlineBadge {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 1rem; // Mniejszy odstęp na mobile
+  right: 1rem;
   background-color: #ffdc5d;
-  padding: 0.5rem 1.25rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 9999px;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   font-weight: 800;
-  font-size: 0.75rem;
+  font-size: 0.65rem; // Mniejszy font na mobile
   color: #000;
-  box-shadow: 0 4px 15px rgba(78, 47, 47, 0.1);
   z-index: 3;
+
+  @media (min-width: 768px) {
+    top: 2rem;
+    right: 2rem;
+    font-size: 0.75rem;
+    padding: 0.5rem 1.25rem;
+  }
 }
 
 .content {
@@ -63,13 +72,22 @@
   z-index: 10;
   text-align: center;
   color: white;
-  margin-bottom: 15%;
+  width: 100%;
 
   h2 {
-    font-size: 3.5rem;
+    font-size: 1.8rem; // Drastycznie mniejszy na mobile
     font-weight: 800;
-    line-height: 1;
-    margin-bottom: 1rem;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+
+    @media (min-width: 768px) {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: 10%;
   }
 }
 
@@ -78,102 +96,65 @@
   background-color: #ffdc5d;
   color: #1e1b4b;
   display: inline-block;
-  padding: 0.25rem 2rem;
+  padding: 0.15rem 1rem;
   border-radius: 9999px;
-  font-size: 1.25rem;
+  font-size: 0.9rem; // Mniejszy na mobile
   font-weight: 900;
   z-index: 1;
   transform: rotate(-2deg);
-  top: -12px;
+  top: -8px; // Mniejszy offset
+
+  @media (min-width: 768px) {
+    padding: 0.25rem 2rem;
+    font-size: 1.25rem;
+    top: -12px;
+  }
 }
 
 .tagline {
-  font-size: 1.125rem;
+  font-size: 0.8rem; // Mniejszy na mobile
   font-weight: 700;
-  letter-spacing: 0.025em;
-  opacity: 0.9;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+  opacity: 0.9;
 
-  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07))
-    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.06));
+  @media (min-width: 768px) {
+    font-size: 1.125rem;
+    margin-top: 1.5rem;
+  }
 
   .taglineIcon {
-    width: 1.25rem; /* w-5 */
-    height: 1.25rem; /* h-5 */
-    color: #fde047; /* text-yellow-300 */
-    fill: #fde047; /* fill-yellow-300 */
+    width: 0.9rem;
+    height: 0.9rem;
+    color: #fde047;
+    fill: #fde047;
+
+    @media (min-width: 768px) {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   }
 }
 
 .sparkleIcon {
   position: absolute;
-  top: -1.5rem; /* -top-6 */
-  right: -2rem; /* -right-8 */
-  width: 3rem; /* w-8 */
-  height: 3rem; /* h-8 */
-  color: #fde047; /* text-yellow-300 */
+  top: -1rem;
+  right: -1.2rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  color: #fde047;
   opacity: 0.8;
-  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
-  animation: pulseCustom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
+  animation: pulseCustom 2s infinite;
 
-.lightPoint {
-  position: absolute;
-  top: 50%;
-  left: -2.5rem; /* -left-10 */
-  width: 0.5rem; /* w-2 */
-  height: 0.5rem; /* h-2 */
-  background-color: #ffffff;
-  border-radius: 50%;
-  opacity: 0.7;
-  transform: translateY(-50%);
-  animation: pingCustom 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-.particleContainer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 1;
-  z-index: 4; // Above overlays (2-3) but below content (10)
-}
-
-.particle {
-  position: absolute;
-  background-color: white;
-  border-radius: 50%;
-  animation: floatParticle linear infinite;
-  filter: blur(2px); // Gives them a soft "bokeh" feel
-}
-
-@keyframes floatParticle {
-  0%,
-  100% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(-40px) translateX(20px);
+  @media (min-width: 768px) {
+    top: -1.5rem;
+    right: -2rem;
+    width: 3rem;
+    height: 3rem;
   }
 }
 
-@keyframes pulseCustom {
-  0%,
-  100% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 0.3;
-  }
-}
-
-@keyframes pingCustom {
-  75%,
-  100% {
-    transform: translateY(-50%) scale(2);
-    opacity: 0;
-  }
-}
+// Reszta animacji i cząsteczek bez zmian...

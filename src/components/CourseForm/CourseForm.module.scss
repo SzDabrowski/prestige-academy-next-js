@@ -1,208 +1,208 @@
-@import "../../styles/mixins.scss";
-@import "../../styles/_colors.scss";
+@use "@/styles/colors" as *;
+@use "@/styles/mixins" as *;
 
 .wrapper {
-	position: relative;
-	background-color: #fff;
-	height: fit-content;
-	@include mobile {
-		height: fit-content;
-	}
+  position: relative;
+  background-color: #fff;
+  height: fit-content;
+  @include mobile {
+    height: fit-content;
+  }
 }
 
 .formContainer {
-	position: relative;
-	margin: auto;
-	padding: 35px;
-	padding-bottom: 45px;
-	width: 100%;
-	box-shadow: rgba(255, 0, 0, 0.5) 0px 30px 80px -30px;
-	margin-top: -80px;
+  position: relative;
+  margin: auto;
+  padding: 35px;
+  padding-bottom: 45px;
+  width: 100%;
+  box-shadow: rgba(255, 0, 0, 0.5) 0px 30px 80px -30px;
+  margin-top: -80px;
 
-	z-index: 10;
-	background-color: #fff;
+  z-index: 10;
+  background-color: #fff;
 }
 
 .form {
-	color: #000;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
-	gap: 30px;
-	flex-wrap: wrap;
+  color: #000;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
 
-	.inputsContainer {
-		padding-bottom: 1rem;
-		display: flex;
-		align-items: center;
-		gap: 30px;
-		flex-wrap: wrap;
-		> * {
-			max-width: 250px;
-			min-width: 200px;
-		}
-	}
+  .inputsContainer {
+    padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    > * {
+      max-width: 250px;
+      min-width: 200px;
+    }
+  }
 }
 
 .label {
-	visibility: visible;
-	display: block;
-	opacity: 1;
-	flex-grow: 1;
-	display: flex;
-	flex-wrap: wrap;
-	text-transform: uppercase;
-	font-size: 1rem;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	transition:
-		transform 0.5s ease,
-		opacity 0.5s;
-	position: relative;
+  visibility: visible;
+  display: block;
+  opacity: 1;
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s;
+  position: relative;
 
-	span {
-		flex-grow: 1;
-		padding-left: 0.5rem;
-	}
+  span {
+    flex-grow: 1;
+    padding-left: 0.5rem;
+  }
 
-	input {
-		width: 100%;
-		flex-grow: 2;
-		padding: 0.5rem;
-		font-size: 0.9rem;
-		border: none;
-		box-shadow: 0 4px 0px -3px #ccc;
-		box-sizing: border-box;
-		transition: ease-in-out 0.4s;
+  input {
+    width: 100%;
+    flex-grow: 2;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    border: none;
+    box-shadow: 0 4px 0px -3px #ccc;
+    box-sizing: border-box;
+    transition: ease-in-out 0.4s;
 
-		&:focus-within {
-			box-shadow: 0 4px 0px -2px $clr-logo-main;
-		}
+    &:focus-within {
+      box-shadow: 0 4px 0px -2px $clr-logo-main;
+    }
 
-		&::placeholder {
-			color: #ccc;
-		}
+    &::placeholder {
+      color: #ccc;
+    }
 
-		&:focus {
-			outline: none;
-		}
-	}
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 .hiddenLabel {
-	display: none;
+  display: none;
 }
 
 .hidden {
-	position: absolute;
-	transform: scaleY(0);
-	opacity: 0;
+  position: absolute;
+  transform: scaleY(0);
+  opacity: 0;
 }
 
 .error {
-	text-transform: none;
-	color: red;
-	font-size: 0.7rem;
-	position: absolute;
-	top: 55px;
-	left: 0;
+  text-transform: none;
+  color: red;
+  font-size: 0.7rem;
+  position: absolute;
+  top: 55px;
+  left: 0;
 }
 
 .errorSendingMessage {
-	color: red;
-	font-size: 0.7rem;
+  color: red;
+  font-size: 0.7rem;
 }
 
 .button {
-	position: relative;
-	overflow: hidden;
-	text-align: center;
-	padding: 1.5rem 0.75rem;
-	width: 100%;
-	color: white;
-	border-radius: 10px;
-	font-size: 1rem;
-	box-shadow: none;
-	outline: none;
-	border: none;
-	transition: transform 0.3s ease;
-	background: transparent;
-	z-index: 1;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 1.5rem 0.75rem;
+  width: 100%;
+  color: white;
+  border-radius: 10px;
+  font-size: 1rem;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  transition: transform 0.3s ease;
+  background: transparent;
+  z-index: 1;
 
-	&::before,
-	&::after {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		border-radius: 10px;
-		transition: opacity 0.5s ease-in-out;
-		z-index: -2;
-	}
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    transition: opacity 0.5s ease-in-out;
+    z-index: -2;
+  }
 
-	/* Default background */
-	&::before {
-		background-image: $grd-main;
-		opacity: 1;
-		z-index: -1;
-	}
+  /* Default background */
+  &::before {
+    background-image: $grd-main;
+    opacity: 1;
+    z-index: -1;
+  }
 
-	/* Success gradient (hidden by default) */
-	&::after {
-		background-image: linear-gradient(
-			to right,
-			rgba(5, 133, 27, 1),
-			rgba(87, 199, 133, 1)
-		);
-		opacity: 0;
-	}
+  /* Success gradient (hidden by default) */
+  &::after {
+    background-image: linear-gradient(
+      to right,
+      rgba(5, 133, 27, 1),
+      rgba(87, 199, 133, 1)
+    );
+    opacity: 0;
+  }
 
-	/* Show success state */
-	&.success {
-		&::before {
-			opacity: 0;
-		}
-		&::after {
-			opacity: 1;
-		}
-	}
+  /* Show success state */
+  &.success {
+    &::before {
+      opacity: 0;
+    }
+    &::after {
+      opacity: 1;
+    }
+  }
 
-	/* Error gradient override */
-	&.errorButton {
-		&::before {
-			opacity: 0;
-		}
-		&::after {
-			background-image: linear-gradient(
-				to right,
-				rgba(199, 43, 43, 1),
-				rgba(255, 119, 119, 1)
-			);
-			opacity: 1;
-		}
-	}
+  /* Error gradient override */
+  &.errorButton {
+    &::before {
+      opacity: 0;
+    }
+    &::after {
+      background-image: linear-gradient(
+        to right,
+        rgba(199, 43, 43, 1),
+        rgba(255, 119, 119, 1)
+      );
+      opacity: 1;
+    }
+  }
 
-	&:hover {
-		transform: scale(1.025);
-	}
+  &:hover {
+    transform: scale(1.025);
+  }
 }
 
 @media (min-width: 1024px) {
-	.form {
-		flex-direction: row;
-	}
+  .form {
+    flex-direction: row;
+  }
 }
 
 .capWrapper {
-	margin: auto;
-	height: 80px;
-	> div {
-		margin: 10px;
-		transform: scale(0.7);
-		transform-origin: 0 0;
-	}
+  margin: auto;
+  height: 80px;
+  > div {
+    margin: 10px;
+    transform: scale(0.7);
+    transform-origin: 0 0;
+  }
 }
