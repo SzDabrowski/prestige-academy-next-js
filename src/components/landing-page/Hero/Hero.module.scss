@@ -20,7 +20,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: -2;
   background-image: url("../../../../public/assets/images/hero.jpeg");
   background-size: cover;
@@ -39,8 +39,9 @@
 }
 
 .heroWrapper {
-  height: calc(100vh - 80px);
-  min-height: 700px;
+  // height: calc(100vh - 80px);
+  height: 100vh;
+  min-height: 90vh;
   overflow: hidden;
 }
 

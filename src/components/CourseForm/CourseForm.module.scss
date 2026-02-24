@@ -17,10 +17,15 @@
   padding-bottom: 45px;
   width: 100%;
   box-shadow: rgba(255, 0, 0, 0.5) 0px 30px 80px -30px;
-  margin-top: -80px;
+  margin-top: 10px;
 
   z-index: 10;
   background-color: #fff;
+
+  @media (min-width: 768px) {
+    position: absolute;
+    top: -200px;
+  }
 }
 
 .form {
