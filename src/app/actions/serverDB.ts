@@ -96,3 +96,32 @@ export const sendContactMessage = async (
     throw error;
   }
 };
+
+export const sendEventRegistration = async (data: any, token: string) => {
+  if (!token) throw new Error("Unauthorized: No token provided");
+
+  try {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/event-sign-ins`,
+      {
+        schoolName: data.schoolName,
+        groupName: data.groupName,
+        childName: data.childName,
+        phone: data.phone,
+        consentParticipation: data.consentParticipation,
+        consentDataProcessing: data.consentDataProcessing,
+        subject: data.subject,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error sending event registration:", error);
+    throw error;
+  }
+};
