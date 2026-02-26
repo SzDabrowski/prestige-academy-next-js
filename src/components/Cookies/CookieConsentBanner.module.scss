@@ -1,5 +1,5 @@
-@import "../../styles/colors.scss";
-@import "../../styles/mixins.scss";
+@use "@/styles/colors" as *;
+@use "@/styles/mixins" as *;
 
 .cookieBanner {
   position: fixed;
@@ -12,14 +12,14 @@
   width: 100%;
   max-width: 28rem;
 
+  transition:
+    transform 0.7s ease,
+    opacity 0.7s ease;
+
   @include mobile {
     left: 0rem;
     bottom: 0rem;
   }
-
-  transition:
-    transform 0.7s ease,
-    opacity 0.7s ease;
 
   &.closed {
     transform: translateY(2rem);

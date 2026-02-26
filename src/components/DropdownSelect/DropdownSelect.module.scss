@@ -1,95 +1,145 @@
-@import "../../styles/colors";
-@import "../../styles//mixins.scss";
+@use "@/styles/colors" as *;
+@use "@/styles/mixins" as *;
 
 .selectMenu {
   text-transform: none;
   flex-grow: 1;
-  width: 250px;
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   font-size: 1rem;
   color: black;
+  position: relative;
+  z-index: 5; // Podstawowy z-index, aby być nad tłem
 
   &.active {
+    z-index: 1001; // Podbicie ponad inne elementy formularza, gdy otwarte
+
     .selectBtn {
       box-shadow: 0 4px 0px -2px $clr-logo-main;
     }
 
     .options {
       display: block;
+      animation: fadeIn 0.2s ease-out;
     }
   }
 }
 
 .btnLabel {
   text-transform: uppercase;
+  font-size: 1rem;
+  margin-bottom: 2px;
+  display: block;
+  color: #333;
   position: relative;
   top: 5px;
-
-  @include mobile {
-    top: 0;
-  }
 }
 
 .selectBtn {
-  //background-color: red;
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  font-size: 0.9rem;
   align-items: center;
   padding: 0.5rem;
   padding-bottom: calc(0.5rem - 4px);
-  font-size: 0.9rem;
+  min-height: 30px;
   border: none;
   box-shadow: 0 4px 0px -3px #ccc;
   box-sizing: border-box;
-  transition: ease-in-out 0.4s;
+  transition: all 0.4s ease-in-out;
   cursor: pointer;
+  background: #fff;
 
-  path {
-    stroke: black;
+  &:hover {
+    box-shadow: 0 4px 0px -2px #bbb;
+  }
+
+  .optionsValue {
+    text-align: left;
+    padding-right: 10px;
+    word-break: break-word;
+    flex-grow: 1;
   }
 
   .placeholder {
     color: #999;
+  }
+
+  // Ikona strzałki - upewnienie się, że nie zniknie przy długim tekście
+  svg,
+  img {
+    flex-shrink: 0;
+    margin-left: 10px;
   }
 }
 
 .options {
   width: 100%;
   position: absolute;
-  top: 60px;
-  padding: 20px;
-  margin-top: 10px;
+  top: 100%;
+  left: 0;
+  padding: 8px;
+  margin-top: 5px;
   border-radius: 8px;
   background: #fff;
-  box-shadow: rgba(196, 197, 198, 0.4) 0px 13px 72px 15px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 30px;
   display: none;
-  z-index: 100;
-  height: 300px;
-  overflow-y: scroll;
+  z-index: 1002;
+  max-height: 250px;
+  overflow-y: auto;
+  list-style: none;
+
+  // Personalizacja scrollbara
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
+  }
 
   .option {
     display: flex;
-    height: 55px;
+    min-height: 45px;
+    height: auto;
     cursor: pointer;
-    padding: 0 16px;
-    border-radius: 8px;
+    padding: 10px 16px;
+    border-radius: 6px;
     align-items: center;
     background: #fff;
+    transition: background 0.2s;
+    border-bottom: 1px solid #f2f2f2;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    span {
+      line-height: 1.4;
+      font-size: 0.9rem;
+      word-break: break-word;
+      color: #333;
+    }
 
     &:hover {
-      background: #f2f2f2;
+      background: #f8f8f8;
+      span {
+        color: $clr-logo-main;
+      }
     }
   }
 }
 
-.errorMessage {
-  text-transform: none;
-  color: red;
-  font-size: 0.7rem;
-  position: absolute;
-  top: 55px;
-  left: 0;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

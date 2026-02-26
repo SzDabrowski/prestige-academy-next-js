@@ -1,9 +1,9 @@
 "use client";
 
-import { useForm, SubmitHandler, useWatch } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 
 import { phoneNumberAutoFormat } from "../../utils/formUtils";
-import LoadingLogo from "../LoadingLogo/LoadingLogo";
+// import LoadingLogo from "../LoadingLogo/LoadingLogo";
 
 import styles from "./ContactForm.module.scss";
 import TextArea from "../TextArea/TextArea";
@@ -11,9 +11,6 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { TOAST_MESSAGE } from "@/lib/toastMessages";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-import { headers } from "next/headers";
-import axios from "axios";
-import { verifyReCaptcha } from "../../utils/recaptchaUtils";
 
 import { sendContactMessage } from "@/app/actions/serverDB";
 import { ContactClientType } from "@/types/mongodbTypes";
@@ -113,13 +110,13 @@ export const ContactForm = (props: ContactForm) => {
           loading: "Zapisywanie...",
           success: "Zapisano pomyślnie!",
           error: "Błąd podczas zapisu",
-        }
+        },
       );
       await sendNotificationEmail(
         guestToken,
         undefined,
         undefined,
-        contactData
+        contactData,
       );
 
       try {
