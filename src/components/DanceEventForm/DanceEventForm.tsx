@@ -143,6 +143,9 @@ const DanceEventForm = (props: iCourseForm) => {
           success: {
             duration: 5000,
           },
+          error: {
+            duration: 5000,
+          },
         },
       );
 
