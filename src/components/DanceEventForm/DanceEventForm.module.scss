@@ -124,13 +124,14 @@
   box-shadow: rgba(196, 197, 198, 0.4) 0px 13px 72px 15px;
   transition: 0.5s;
   cursor: pointer;
+  z-index: 1;
+  overflow: hidden;
 
   &::before,
   &::after {
     content: "";
     position: absolute;
     inset: 0;
-    border-radius: 50px; // Match parent
     transition: opacity 0.5s ease-in-out;
     z-index: -1;
   }
@@ -155,19 +156,23 @@
     transform: scale(0.97);
   }
 
-  &.success::after {
-    opacity: 1;
-  }
-  &.success::before {
-    opacity: 0;
+  &.success {
+    &::after {
+      opacity: 1;
+    }
+    &::before {
+      opacity: 0;
+    }
   }
 
-  &.errorButton::after {
-    background-image: linear-gradient(to right, #c72b2b, #ff7777);
-    opacity: 1;
-  }
-  &.errorButton::before {
-    opacity: 0;
+  &.errorButton {
+    &::after {
+      background-image: linear-gradient(to right, #c72b2b, #ff7777);
+      opacity: 1;
+    }
+    &::before {
+      opacity: 0;
+    }
   }
 }
 

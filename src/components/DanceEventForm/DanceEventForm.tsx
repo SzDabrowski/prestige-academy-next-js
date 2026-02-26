@@ -38,6 +38,7 @@ const DanceEventForm = (props: iCourseForm) => {
   const [selectedPreschool, setselectedPreschool] = useState("");
   const [preschoolsList, setPreschoolsList] = useState<string[]>([]);
   const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
 
   const {
     register,
@@ -118,32 +119,46 @@ const DanceEventForm = (props: iCourseForm) => {
     };
 
     try {
-      await toast.promise(sendEventRegistration(eventData, guestToken), {
-        loading: "Wysyłanie zgłoszenia...",
-        success: "Zostałeś pomyślnie zapisany!",
-        error: (err: any) => {
-          // Wyciągamy komunikat rzucony w serverDB.ts
-          const backendMessage = err.message || "Wystąpił błąd zapisu.";
+      await toast.promise(
+        sendEventRegistration(eventData, guestToken),
+        {
+          loading: "Wysyłanie zgłoszenia...",
+          success: "Pomyślnie zapisano uczestnika!",
+          error: (err: any) => {
+            const backendMessage = err.message || "Wystąpił błąd zapisu.";
+            if (
+              backendMessage.toLowerCase().includes("already registered") ||
+              backendMessage.toLowerCase().includes("już zarejestrowane")
+            ) {
+              setError("name", {
+                type: "manual",
+                message: "To dziecko zostało już wcześniej zapisane.",
+              });
+            }
 
-          // Jeśli backend zwrócił informację o duplikacie, ustawiamy błąd na polu "name"
-          if (
-            backendMessage.toLowerCase().includes("already registered") ||
-            backendMessage.toLowerCase().includes("już zarejestrowane")
-          ) {
-            setError("name", {
-              type: "manual",
-              message: "To dziecko zostało już wcześniej zapisane.",
-            });
-          }
-
-          return backendMessage;
+            return backendMessage;
+          },
         },
-      });
+        {
+          success: {
+            duration: 5000,
+          },
+          error: {
+            duration: 5000,
+          },
+        },
+      );
 
       props.onSuccess();
+      setIsSubmitSuccess(true);
       reset();
       setPhoneNumber("");
       setselectedPreschool("");
+
+      // setTimeout(() => {
+      //   setIsSubmitSuccess(false);
+      //   props.onSuccess();
+      // }, 3000);
     } catch (error) {
       console.error("Submit error:", error);
     }
@@ -255,7 +270,8 @@ const DanceEventForm = (props: iCourseForm) => {
                     className={styles.consentLabel}
                   >
                     Wyrażam zgodę na udział mojego dziecka <b>{userName}</b> w
-                    "Tańczące Gwiazdeczki 2026".
+                    "Tańczące Gwiazdeczki 2026" oraz na wykorzystanie wizerunku
+                    w celach promocyjnych.
                   </label>
                   <div className={styles.errorContainer}>
                     {errors.consentParticipation && (
@@ -310,12 +326,15 @@ const DanceEventForm = (props: iCourseForm) => {
             </div>
           </div>
 
-          <input
-            className={styles.button}
+          <button
             type="submit"
-            value={isSubmitting ? "Zapisywanie..." : "Zapisz dziecko!"}
-            disabled={isSubmitting}
-          />
+            disabled={isSubmitting || isSubmitSuccess}
+            className={`${styles.button} ${isSubmitSuccess ? styles.success : ""}`}
+          >
+            {isSubmitting && "Zapisywanie..."}
+            {isSubmitSuccess && "Zapisano pomyślnie!"}
+            {!isSubmitting && !isSubmitSuccess && "Zapisz dziecko!"}
+          </button>
         </form>
       )}
       <Toaster position="top-center" />
