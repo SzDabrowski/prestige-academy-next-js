@@ -1,0 +1,253 @@
+[Default] File: src/utils/coursePhotoMapper.ts imports clipDance from ../../public/assets/images/courses/VideoKlipDance.jpg
+[Default] File: src/utils/coursePhotoMapper.ts imports bachata from ../../public/assets/images/courses/bachataSolo.jpg
+[Default] File: src/utils/coursePhotoMapper.ts imports bachataPair from ../../public/assets/images/courses/bachata.jpg
+[Default] File: src/utils/coursePhotoMapper.ts imports kids4 from ../../public/assets/images/courses/KidsJunior.jpg
+[Default] File: src/utils/coursePhotoMapper.ts imports kids7 from ../../public/assets/images/courses/PrestigeJunior7.jpg
+[Default] File: src/utils/coursePhotoMapper.ts imports kidsPair from ../../public/assets/images/courses/TTDzieci.jpg
+[Default] File: src/utils/coursePhotoMapper.ts imports latinoSolo from ../../public/assets/images/courses/latinoSolo.jpg
+[Default] File: src/utils/coursePhotoMapper.ts imports salsaSolo from ../../public/assets/images/courses/salsaSolo.jpg
+[Default] File: src/utils/coursePhotoMapper.ts imports adultsPair from ../../public/assets/images/courses/towarzyski.jpg
+[Default] File: src/utils/coursePhotoMapper.ts imports ladiesStyling from ../../public/assets/images/courses/highHeels.jpg
+[Default] File: src/utils/coursePhotoMapper.ts imports commercial from @/../public/assets/images/courses/commercial.png
+[Default] File: src/utils/coursePhotoMapper.ts imports jazz from @/../public/assets/images/courses/jazz.jpg
+[Default] File: src/utils/coursePhotoMapper.ts imports showDance from @/../public/assets/images/courses/LatinoShowDance.jpg
+[Default] File: src/utils/coursePhotoMapper.ts imports uzytkowy from @/../public/assets/images/courses/uzytkowy.jpg
+[Default] File: src/utils/clientUtils.ts imports courseData from @/types/courseTypes
+[Named] File: src/utils/prismaUtils.ts imports { CourseClientType, PreschoolClientType } from @/types/mongodbTypes
+[Default] File: src/app/(konkursy)/konkursy/gwiazdeczki/promoBanner.tsx imports styles from ./PromoBanner.module.scss
+[Default] File: src/app/(konkursy)/konkursy/gwiazdeczki/promoBanner.tsx imports backgroundBanner from ../../../../../public/assets/images/konkurs.jpeg
+[Named] File: src/app/(konkursy)/konkursy/gwiazdeczki/page.tsx imports { PromoBanner } from ./promoBanner
+[Default] File: src/app/(konkursy)/konkursy/gwiazdeczki/page.tsx imports DanceEventForm from @/components/DanceEventForm/DanceEventForm
+[Default] File: src/app/(konkursy)/konkursy/gwiazdeczki/page.tsx imports styles from ./page.module.scss
+[Default] File: src/app/not-found.tsx imports styles from ./not-found.module.scss
+[Default] File: src/app/api/getData/route.ts imports prisma from @/utils/connectPrisma
+[Default] File: src/app/ChangeHeader.tsx imports LandingHeader from @/components/landing-page/LandingHeader/LandingHeader
+[Default] File: src/app/ChangeHeader.tsx imports Header from @/components/Header/Header
+[Named] File: src/app/(website)/kursy/[coursesFor]/[course]/page.tsx imports { TypeDanceGroupFields } from @/types/typeDanceGroupsSkeleton
+[Named] File: src/app/(website)/kursy/[coursesFor]/[course]/page.tsx imports { Container } from @/components/Container/Container
+[Named] File: src/app/(website)/kursy/[coursesFor]/[course]/page.tsx imports { CourseContent } from ./CourseContent/CourseContent
+[Named] File: src/app/(website)/kursy/[coursesFor]/[course]/page.tsx imports { fetchDanceGroupData } from @/lib/contentful/serverActions/danceGroups
+[Default] File: src/app/(website)/kursy/[coursesFor]/[course]/page.tsx imports Header from @/components/Header/Header
+[Default] File: src/app/(website)/kursy/[coursesFor]/[course]/page.tsx imports Footer from @/components/Footer/Footer
+[Default] File: src/app/(website)/kursy/[coursesFor]/[course]/page.tsx imports LoadingLogo from @/components/LoadingLogo/LoadingLogo
+[Named] File: src/app/(website)/kursy/[coursesFor]/[course]/CourseContent/CourseContent.tsx imports { fetchDanceGroupData } from @/lib/contentful/serverActions/danceGroups
+[Named] File: src/app/(website)/kursy/[coursesFor]/[course]/CourseContent/CourseContent.tsx imports { TypeDanceGroupFields } from @/types/typeDanceGroupsSkeleton
+[Named] File: src/app/(website)/kursy/[coursesFor]/[course]/CourseContent/CourseContent.tsx imports { toCamelCase } from @/utils/clientUtils
+[Named] File: src/app/(website)/kursy/[coursesFor]/[course]/CourseContent/CourseContent.tsx imports { iAssetLink } from @/types/assetLinkType
+[Default] File: src/app/(website)/kursy/[coursesFor]/[course]/CourseContent/CourseContent.tsx imports styles from ./CourseContent.module.scss
+[Default] File: src/app/(website)/kursy/[coursesFor]/[course]/CourseContent/CourseContent.tsx imports CourseForm from @/components/CourseForm/CourseForm
+[Named] File: src/app/(website)/kursy/[coursesFor]/page.tsx imports { Container } from @/components/Container/Container
+[Named] File: src/app/(website)/kursy/[coursesFor]/page.tsx imports { CoursesContent } from ./components/CoursesContent
+[Default] File: src/app/(website)/kursy/[coursesFor]/page.tsx imports styles from ./page.module.scss
+[Named] File: src/app/(website)/kursy/[coursesFor]/components/CoursesContent.tsx imports { ClassSummary } from @/components/ClassSummary/ClassSummary
+[Named] File: src/app/(website)/kursy/[coursesFor]/components/CoursesContent.tsx imports { courseForEnum } from @/lib/enums
+[Named] File: src/app/(website)/kursy/[coursesFor]/components/CoursesContent.tsx imports { fetchDanceCoursesData } from @/lib/contentful/serverActions/danceGroups
+[Named] File: src/app/(website)/kursy/[coursesFor]/components/CoursesContent.tsx imports { TypeDanceGroupSkeleton } from @/types/typeDanceGroupsSkeleton
+[Default] File: src/app/(website)/kursy/[coursesFor]/components/CoursesContent.tsx imports styles from ./CoursesContent.module.scss
+[Default] File: src/app/(website)/kursy/pierwszy_taniec/page.tsx imports FirstDanceContent from ./components/firstDanceContent/FirstDanceContent
+[Default] File: src/app/(website)/kursy/pierwszy_taniec/page.tsx imports ContactForm from @/components/ContactForm/ContactForm
+[Default] File: src/app/(website)/kursy/pierwszy_taniec/page.tsx imports Header from @/components/Header/Header
+[Named] File: src/app/(website)/kursy/pierwszy_taniec/components/firstDanceContent/FirstDanceContent.tsx imports { getContentfulData } from @/lib/contentful/serverActions/coursesGroups
+[Named] File: src/app/(website)/kursy/pierwszy_taniec/components/firstDanceContent/FirstDanceContent.tsx imports { TypeCourseGroupFields } from @/types/typeCourseGroupSkeleton
+[Default] File: src/app/(website)/kursy/pierwszy_taniec/components/firstDanceContent/FirstDanceContent.tsx imports styles from ./FirstDanceContent.module.scss
+[Default] File: src/app/(website)/kursy/pierwszy_taniec/components/firstDanceContent/FirstDanceContent.tsx imports Container from @/components/Container/Container
+[Default] File: src/app/(website)/kursy/pierwszy_taniec/components/firstDanceContent/FirstDanceContent.tsx imports ContactForm from @/components/ContactForm/ContactForm
+[Named] File: src/app/(website)/kursy/przedszkola/PreschoolsContent/PreschoolsContent.tsx imports { Container } from @/components/Container/Container
+[Default] File: src/app/(website)/kursy/przedszkola/PreschoolsContent/PreschoolsContent.tsx imports styles from ./PreschoolsContent.module.scss
+[Default] File: src/app/(website)/kursy/przedszkola/PreschoolsContent/PreschoolsContent.tsx imports PreschoolsForm from @/components/PreschoolsForm/PreschoolsForm
+[Default] File: src/app/(website)/kursy/przedszkola/page.tsx imports PreschoolContent from ./PreschoolsContent/PreschoolsContent
+[Named] File: src/app/(website)/kursy/grupy_zlecone/CommissionedContent/CommissionedContent.tsx imports { Container } from @/components/Container/Container
+[Named] File: src/app/(website)/kursy/grupy_zlecone/CommissionedContent/CommissionedContent.tsx imports { ContactForm } from @/components/ContactForm/ContactForm
+[Named] File: src/app/(website)/kursy/grupy_zlecone/CommissionedContent/CommissionedContent.tsx imports { getContentfulData } from @/lib/contentful/serverActions/coursesGroups
+[Default] File: src/app/(website)/kursy/grupy_zlecone/CommissionedContent/CommissionedContent.tsx imports styles from ./CommissionedContent.module.scss
+[Default] File: src/app/(website)/kursy/grupy_zlecone/page.tsx imports CommissionedContent from ./CommissionedContent/CommissionedContent
+[Default] File: src/app/(website)/kontakt/page.tsx imports styles from @/app/page.module.css
+[Default] File: src/app/(website)/kontakt/page.tsx imports Contact from ./(components)/Contact
+[Default] File: src/app/(website)/kontakt/page.tsx imports ContactForm from @/components/ContactForm/ContactForm
+[Default] File: src/app/(website)/kontakt/page.tsx imports Header from @/components/Header/Header
+[Default] File: src/app/(website)/kontakt/(components)/Contact.tsx imports Container from @/components/Container/Container
+[Default] File: src/app/(website)/kontakt/(components)/Contact.tsx imports styles from ./Contact.module.scss
+[Default] File: src/app/(website)/kontakt/(components)/Contact.tsx imports MapComponent from ./MapComponent
+[Default] File: src/app/(website)/kontakt/(components)/Contact.tsx imports companyInfo from @/data/companyInfo.json
+[Default] File: src/app/(website)/kontakt/(components)/Contact.tsx imports ContactForm from @/components/ContactForm/ContactForm
+[Named] File: src/app/(website)/layout.tsx imports { PrestigeLogoIcon } from @/components/icons/LogoIcon/PrestigeLogoIcon
+[Default] File: src/app/(website)/layout.tsx imports Header from @/components/Header/Header
+[Default] File: src/app/(website)/layout.tsx imports Container from @/components/Container/Container
+[Default] File: src/app/(website)/layout.tsx imports NotificationBar from @/components/NotificationBar/NotificationBar
+[Default] File: src/app/(website)/layout.tsx imports ContactForm from @/components/ContactForm/ContactForm
+[Default] File: src/app/(website)/o_nas/page.tsx imports styles from @/app/page.module.css
+[Default] File: src/app/(website)/o_nas/page.tsx imports AboutUs from ./(components)/AboutUsSection/AboutUs
+[Named] File: src/app/(website)/o_nas/(components)/AboutUsSection/AboutUs.tsx imports { Container } from @/components/Container/Container
+[Default] File: src/app/(website)/o_nas/(components)/AboutUsSection/AboutUs.tsx imports styles from ./AboutUs.module.scss
+[Default] File: src/app/(website)/o_nas/(components)/AboutUsSection/AboutUs.tsx imports aboutUsData from @/data/aboutUs.json
+[Default] File: src/app/(website)/o_nas/(components)/AboutUsSection/AboutUs.tsx imports ArrowIcon from @/components/icons/ArrowIcon/ArrowIcon
+[Named] File: src/app/page.tsx imports { Container } from @/components/Container/Container
+[Named] File: src/app/page.tsx imports { DanceBanner } from @/components/DanceEventBanner/DanceEventBanner
+[Default] File: src/app/page.tsx imports LandingHeader from @/components/landing-page/LandingHeader/LandingHeader
+[Default] File: src/app/page.tsx imports styles from ./page.module.css
+[Default] File: src/app/page.tsx imports Hero from @/components/landing-page/Hero/Hero
+[Default] File: src/app/page.tsx imports CoursesSection from @/components/landing-page/CoursesSection/CoursesSection
+[Default] File: src/app/page.tsx imports AboutUsSection from @/components/landing-page/AboutUsSection/AboutUsSection
+[Default] File: src/app/page.tsx imports CourseForm from @/components/CourseForm/CourseForm
+[Default] File: src/app/page.tsx imports ContactForm from @/components/ContactForm/ContactForm
+[Default] File: src/app/page.tsx imports Header from @/components/Header/Header
+[Named] File: src/app/layout.tsx imports { PostHogProvider } from @/components/PosthogProvider
+[Default] File: src/app/layout.tsx imports GoogleCaptchaWrapper from @/components/Recaptcha/GoogleCaptchaWrapper
+[Default] File: src/app/layout.tsx imports icon from ../../public/assets/images/logo/prestigeLogoOnly.png
+[Default] File: src/app/layout.tsx imports Footer from @/components/Footer/Footer
+[Default] File: src/app/layout.tsx imports CookieConsentToggler from @/components/Cookies/CookieConsentToggler
+[Default] File: src/app/layout.tsx imports FbPixel from @/components/FbPixel
+[Named] File: src/app/actions/serverDB.ts imports { CourseClientType, PreschoolClientType, ContactClientType, EventClientType } from @/types/mongodbTypes
+[Named] File: src/app/actions/sendNotification.tsx imports { CourseClientType, PreschoolClientType, ContactClientType } from @/types/mongodbTypes
+[Named] File: src/app/actions/sendNotification.tsx imports { NotificationEmailProps } from @/emails/emailProps
+[Default] File: src/app/actions/sendNotification.tsx imports NotificationEmail from @/emails/NotificationEmail
+[Default] File: src/app/actions/sendNotification.tsx imports ContactConfirmationEmail from @/emails/ConfirmationEmail
+[Named] File: src/app/actions/saveClient.ts imports { CourseClientType, PreschoolClientType } from @/types/mongodbTypes
+[Named] File: src/app/actions/saveClient.ts imports { saveClientData } from @/app/actions/serverDB
+[Named] File: src/emails/ContactEmail.tsx imports { ContactEmailProps, defaultContactEmailProps } from ./emailProps
+[Default] File: src/emails/ContactEmail.tsx imports RootEmailTemplate from ./RootEmailTemplate
+[Named] File: src/emails/emailProps.ts imports { CourseClientType, PreschoolClientType, ContactClientType } from @/types/mongodbTypes
+[Named] File: src/emails/NotificationEmail.tsx imports { NotificationEmailProps, defaultNotificationEmailProps } from ./emailProps
+[Named] File: src/emails/NotificationEmail.tsx imports { CourseClientType, PreschoolClientType, ContactClientType } from @/types/mongodbTypes
+[Default] File: src/emails/NotificationEmail.tsx imports RootEmailTemplate from ./RootEmailTemplate
+[Named] File: src/emails/ConfirmationEmail.tsx imports { NotificationEmailProps, defaultNotificationEmailProps } from ./emailProps
+[Named] File: src/emails/ConfirmationEmail.tsx imports { CourseClientType, PreschoolClientType, ContactClientType } from @/types/mongodbTypes
+[Default] File: src/emails/ConfirmationEmail.tsx imports RootEmailTemplate from ./RootEmailTemplate
+[Named] File: src/lib/contentful/serverActions/coursesGroups.ts imports { TypeCourseGroupFields, TypeCourseGroupSkeleton } from @/types/typeCourseGroupSkeleton
+[Named] File: src/lib/contentful/serverActions/coursesGroups.ts imports { TypePreschoolsList, TypePreschoolsListFields, TypePreschoolsListSkeleton } from @/types/typePreschoolsListSkeleton
+[Named] File: src/lib/contentful/serverActions/coursesGroups.ts imports { typeListaSzkolEventyFields, typeListaSzkolEventySkeletop } from @/types/typeListaSzkolEventySkeletop
+[Named] File: src/lib/contentful/serverActions/coursesGroups.ts imports { getStaticPropsUtil } from @/lib/action
+[Named] File: src/lib/contentful/serverActions/coursesGroups.ts imports { getAllGrupyZaj, getGrupyZajById } from @/lib/contentful/api
+[Named] File: src/lib/contentful/serverActions/coursesGroups.ts imports { ContentfulEntry, getContent } from @/lib/contentful/client
+[Default] File: src/lib/contentful/serverActions/coursesGroups.ts imports contentfulClient from @/lib/contentful/client
+[Named] File: src/lib/contentful/serverActions/danceGroups.ts imports { TypeDanceGroupSkeleton, TypeDanceGroupFields } from @/types/typeDanceGroupsSkeleton
+[Named] File: src/lib/contentful/serverActions/danceGroups.ts imports { getStaticPropsUtil } from @/lib/action
+[Named] File: src/lib/contentful/serverActions/danceGroups.ts imports { getAllGrupyZaj, getGrupyZajById } from @/lib/contentful/api
+[Named] File: src/lib/contentful/serverActions/danceGroups.ts imports { ContentfulEntry, getContent } from @/lib/contentful/client
+[Default] File: src/lib/contentful/serverActions/danceGroups.ts imports contentfulClient from @/lib/contentful/client
+[Named] File: src/lib/contentful/serverActions/chart.ts imports { getStaticPropsUtil } from @/lib/action
+[Named] File: src/lib/contentful/serverActions/chart.ts imports { ContentfulEntry, getContent } from @/lib/contentful/client
+[Named] File: src/lib/contentful/serverActions/chart.ts imports { TypeChartSkeleton } from @/types/typeChartSkeleton
+[Default] File: src/lib/contentful/serverActions/chart.ts imports contentfulClient from @/lib/contentful/client
+[Named] File: src/lib/action.ts imports { connectToMongoDB } from ./db
+[Named] File: src/lib/action.ts imports { client } from ./contentful/client
+[Default] File: src/lib/action.ts imports Todo from @/models/todoModel
+[Named] File: src/components/Footer/Footer.tsx imports { Container } from ../Container/Container
+[Named] File: src/components/Footer/Footer.tsx imports { PrestigeLogoIcon } from ../icons/LogoIcon/PrestigeLogoIcon
+[Named] File: src/components/Footer/Footer.tsx imports { FacebookIcon, InstagramIcon, AdressIcon, PhoneIcon, MailIcon } from ../icons/SocialIcons
+[Default] File: src/components/Footer/Footer.tsx imports styles from ./Footer.module.scss
+[Default] File: src/components/Footer/Footer.tsx imports navbarItems from ../../data/NavbarItems.json
+[Default] File: src/components/Footer/Footer.tsx imports aboutUsData from ../../data/aboutUs.json
+[Default] File: src/components/Footer/Footer.tsx imports CompamyInfo from ../../data/companyInfo.json
+[Named] File: src/components/ui/input.tsx imports { cn } from @/lib/utils
+[Named] File: src/components/ui/modeToggle.tsx imports { Button } from @/components/ui/button
+[Named] File: src/components/ui/modeToggle.tsx imports { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from @/components/ui/dropdown-menu
+[Named] File: src/components/ui/dropdown-menu.tsx imports { cn } from @/lib/utils
+[Named] File: src/components/ui/card.tsx imports { cn } from @/lib/utils
+[Named] File: src/components/ui/button.tsx imports { cn } from @/lib/utils
+[Named] File: src/components/ui/label.tsx imports { cn } from @/lib/utils
+[Named] File: src/components/icons/ArrowIcon/ArrowIcon.tsx imports { arrowIconTypes } from @/types/arrowIconTypes
+[Default] File: src/components/icons/ArrowIcon/ArrowIcon.tsx imports styles from ./ArrowIcon.module.scss
+[Named] File: src/components/NotificationBar/NotificationBar.tsx imports { fetchChartData } from @/lib/contentful/serverActions/chart
+[Named] File: src/components/NotificationBar/NotificationBar.tsx imports { TypeChartFields } from @/types/typeChartSkeleton
+[Default] File: src/components/NotificationBar/NotificationBar.tsx imports styles from ./NotificationBar.module.scss
+[Named] File: src/components/ClassSummary/ClassSummary.tsx imports { toCamelCase } from ../../utils/clientUtils
+[Named] File: src/components/ClassSummary/ClassSummary.tsx imports { getImageURL } from ../../utils/imageUtils
+[Named] File: src/components/ClassSummary/ClassSummary.tsx imports { courseForEnum } from @/lib/enums
+[Default] File: src/components/ClassSummary/ClassSummary.tsx imports styles from ./ClassSummary.module.scss
+[Default] File: src/components/ClassSummary/ClassSummary.tsx imports CoursesData from ../../data/danceCourses.json
+[Default] File: src/components/Container/Container.tsx imports styles from ./Container.module.scss
+[Named] File: src/components/DropdownNav/DropdownNav.tsx imports { menuItem } from @/types/headerTypes
+[Named] File: src/components/DropdownNav/DropdownNav.tsx imports { checkIfInMobileView } from ../../utils/clientUtils
+[Default] File: src/components/DropdownNav/DropdownNav.tsx imports ArrowIcon from ../icons/ArrowIcon/ArrowIcon
+[Default] File: src/components/DropdownNav/DropdownNav.tsx imports styles from ./DropdownNav.module.scss
+[Default] File: src/components/DropdownNav/DropdownNav.tsx imports useOutsideClick from @/hooks/useOutSideClick
+[Default] File: src/components/DropdownSelect/DropdownSelect.tsx imports styles from ./DropdownSelect.module.scss
+[Default] File: src/components/DropdownSelect/DropdownSelect.tsx imports ArrowIcon from ../icons/ArrowIcon/ArrowIcon
+[Default] File: src/components/DropdownSelect/DropdownSelect.tsx imports useOutsideClick from @/hooks/useOutSideClick
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { DropdownSelect } from @/components/DropdownSelect/DropdownSelect
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { checkIfCourseForPairs } from ../../utils/clientUtils
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { phoneNumberAutoFormat } from ../../utils/formUtils
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { verifyReCaptcha } from ../../utils/recaptchaUtils
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { TOAST_MESSAGE } from @/lib/toastMessages
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { saveClient } from @/utils/prismaUtils
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { saveClientData } from @/app/actions/serverDB
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { useTokenStore } from @/app/hooks/useTokenStore
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { sendNotificationEmail } from @/app/actions/sendNotification
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { CourseClientType } from @/types/mongodbTypes
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { fetchServerToken } from @/app/actions/serverDB
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { fetchDanceCoursesData } from @/lib/contentful/serverActions/danceGroups
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { DanceCourseListItem } from @/types/courseTypes
+[Named] File: src/components/CourseForm/CourseForm.tsx imports { plRegex } from ../../utils/formUtils
+[Default] File: src/components/CourseForm/CourseForm.tsx imports danceCourses from @/data/danceCourses.json
+[Default] File: src/components/CourseForm/CourseForm.tsx imports styles from ./CourseForm.module.scss
+[Default] File: src/components/CourseForm/CourseForm.tsx imports LoadingLogo from ../LoadingLogo/LoadingLogo
+[Named] File: src/components/PosthogProvider.tsx imports { useCookiesConsent } from @/hooks/useCookieConsent
+[Default] File: src/components/DanceEventBanner/DanceEventBanner.tsx imports styles from ./DanceEventBanner.module.scss
+[Default] File: src/components/DanceEventBanner/DanceEventBanner.tsx imports backgroundBanner from ../../../public/assets/images/konkurs.jpeg
+[Named] File: src/components/DanceEventForm/DanceEventForm.tsx imports { DropdownSelect } from @/components/DropdownSelect/DropdownSelect
+[Named] File: src/components/DanceEventForm/DanceEventForm.tsx imports { phoneNumberAutoFormat, plRegex } from ../../utils/formUtils
+[Named] File: src/components/DanceEventForm/DanceEventForm.tsx imports { TOAST_MESSAGE } from @/lib/toastMessages
+[Named] File: src/components/DanceEventForm/DanceEventForm.tsx imports { fetchServerToken, sendEventRegistration } from @/app/actions/serverDB
+[Named] File: src/components/DanceEventForm/DanceEventForm.tsx imports { fetchEventSchoolist } from @/lib/contentful/serverActions/coursesGroups
+[Named] File: src/components/DanceEventForm/DanceEventForm.tsx imports { useTokenStore } from @/app/hooks/useTokenStore
+[Named] File: src/components/DanceEventForm/DanceEventForm.tsx imports { EventClientType } from @/types/mongodbTypes
+[Default] File: src/components/DanceEventForm/DanceEventForm.tsx imports styles from ./DanceEventForm.module.scss
+[Default] File: src/components/DanceEventForm/DanceEventForm.tsx imports LoadingLogo from ../LoadingLogo/LoadingLogo
+[Named] File: src/components/FbPixel.tsx imports { useCookiesConsent } from @/hooks/useCookieConsent
+[Named] File: src/components/Cookies/CookieConsentBanner.tsx imports { Button } from @/components/ui/button
+[Named] File: src/components/Cookies/CookieConsentBanner.tsx imports { useCookiesConsent } from @/hooks/useCookieConsent
+[Default] File: src/components/Cookies/CookieConsentBanner.tsx imports styles from ./CookieConsentBanner.module.scss
+[Named] File: src/components/Cookies/CookieConsentToggler.tsx imports { Button } from @/components/ui/button
+[Default] File: src/components/Cookies/CookieConsentToggler.tsx imports CookieConsentBanner from ./CookieConsentBanner
+[Default] File: src/components/Cookies/CookieConsentToggler.tsx imports styles from ./CookieConsentToggler.module.scss
+[Default] File: src/components/TextArea/TextArea.tsx imports useAutosizeTextArea from ./useAutosizeTextArea
+[Default] File: src/components/TextArea/TextArea.tsx imports styles from ./TextArea.module.scss
+[Named] File: src/components/landing-page/AboutUsSection/AboutUsSection.tsx imports { Container } from @/components/Container/Container
+[Default] File: src/components/landing-page/AboutUsSection/AboutUsSection.tsx imports styles from ./AboutUsSection.module.scss
+[Default] File: src/components/landing-page/AboutUsSection/AboutUsSection.tsx imports abouUsData from ../../../data/aboutUs.json
+[Named] File: src/components/landing-page/CoursesSection/CoursesSection.tsx imports { Container } from @/components/Container/Container
+[Named] File: src/components/landing-page/CoursesSection/CoursesSection.tsx imports { courseForEnum } from @/lib/enums
+[Default] File: src/components/landing-page/CoursesSection/CoursesSection.tsx imports styles from ./CoursesSection.module.scss
+[Named] File: src/components/landing-page/Hero/Hero.tsx imports { Container } from @/components/Container/Container
+[Default] File: src/components/landing-page/Hero/Hero.tsx imports styles from ./Hero.module.scss
+[Named] File: src/components/landing-page/LandingHeader/LandingHeader.tsx imports { Container } from @/components/Container/Container
+[Named] File: src/components/landing-page/LandingHeader/LandingHeader.tsx imports { menuItem } from @/types/headerTypes
+[Named] File: src/components/landing-page/LandingHeader/LandingHeader.tsx imports { checkIfInMobileView } from ../../../utils/clientUtils
+[Named] File: src/components/landing-page/LandingHeader/LandingHeader.tsx imports { PrestigeLogoIcon } from @/components/icons/LogoIcon/PrestigeLogoIcon
+[Default] File: src/components/landing-page/LandingHeader/LandingHeader.tsx imports Navbar from @/components/Navbar/Navbar
+[Default] File: src/components/landing-page/LandingHeader/LandingHeader.tsx imports DropDownNav from @/components/DropdownNav/DropdownNav
+[Default] File: src/components/landing-page/LandingHeader/LandingHeader.tsx imports NotificationBar from @/components/NotificationBar/NotificationBar
+[Default] File: src/components/landing-page/LandingHeader/LandingHeader.tsx imports styles from ./LandingHeader.module.scss
+[Named] File: src/components/ContactForm/ContactForm.tsx imports { phoneNumberAutoFormat } from ../../utils/formUtils
+[Named] File: src/components/ContactForm/ContactForm.tsx imports { TOAST_MESSAGE } from @/lib/toastMessages
+[Named] File: src/components/ContactForm/ContactForm.tsx imports { sendContactMessage } from @/app/actions/serverDB
+[Named] File: src/components/ContactForm/ContactForm.tsx imports { ContactClientType } from @/types/mongodbTypes
+[Named] File: src/components/ContactForm/ContactForm.tsx imports { useTokenStore } from @/app/hooks/useTokenStore
+[Named] File: src/components/ContactForm/ContactForm.tsx imports { fetchServerToken } from @/app/actions/serverDB
+[Named] File: src/components/ContactForm/ContactForm.tsx imports { sendNotificationEmail, sendContactConfirmationEmail } from @/app/actions/sendNotification
+[Default] File: src/components/ContactForm/ContactForm.tsx imports LoadingLogo from ../LoadingLogo/LoadingLogo
+[Default] File: src/components/ContactForm/ContactForm.tsx imports styles from ./ContactForm.module.scss
+[Default] File: src/components/ContactForm/ContactForm.tsx imports TextArea from ../TextArea/TextArea
+[Named] File: src/components/PreschoolsForm/PreschoolsForm.tsx imports { DropdownSelect } from @/components/DropdownSelect/DropdownSelect
+[Named] File: src/components/PreschoolsForm/PreschoolsForm.tsx imports { phoneNumberAutoFormat } from ../../utils/formUtils
+[Named] File: src/components/PreschoolsForm/PreschoolsForm.tsx imports { TOAST_MESSAGE } from @/lib/toastMessages
+[Named] File: src/components/PreschoolsForm/PreschoolsForm.tsx imports { fetchPreschoolsList } from @/lib/contentful/serverActions/coursesGroups
+[Named] File: src/components/PreschoolsForm/PreschoolsForm.tsx imports { saveClientData } from @/app/actions/serverDB
+[Named] File: src/components/PreschoolsForm/PreschoolsForm.tsx imports { useTokenStore } from @/app/hooks/useTokenStore
+[Named] File: src/components/PreschoolsForm/PreschoolsForm.tsx imports { sendNotificationEmail } from @/app/actions/sendNotification
+[Named] File: src/components/PreschoolsForm/PreschoolsForm.tsx imports { verifyReCaptcha } from @/utils/recaptchaUtils
+[Named] File: src/components/PreschoolsForm/PreschoolsForm.tsx imports { PreschoolClientType } from @/types/mongodbTypes
+[Named] File: src/components/PreschoolsForm/PreschoolsForm.tsx imports { fetchServerToken } from @/app/actions/serverDB
+[Named] File: src/components/PreschoolsForm/PreschoolsForm.tsx imports { plRegex } from ../../utils/formUtils
+[Default] File: src/components/PreschoolsForm/PreschoolsForm.tsx imports preschoolsData from @/data/preschools.json
+[Default] File: src/components/PreschoolsForm/PreschoolsForm.tsx imports styles from ./PreschoolsForm.module.scss
+[Named] File: src/components/LoadingLogo/LoadingLogo.tsx imports { PrestigeLogoIcon } from ../icons/LogoIcon/PrestigeLogoIcon
+[Default] File: src/components/Navbar/Navbar.tsx imports NavbarItems from ../../data/NavbarItems.json
+[Default] File: src/components/Navbar/Navbar.tsx imports DropDownNav from ../DropdownNav/DropdownNav
+[Default] File: src/components/Navbar/Navbar.tsx imports styles from ./NavBar.module.scss
+[Named] File: src/components/Header/Header.tsx imports { Container } from @/components/Container/Container
+[Named] File: src/components/Header/Header.tsx imports { PrestigeLogoIcon } from ../icons/LogoIcon/PrestigeLogoIcon
+[Default] File: src/components/Header/Header.tsx imports Navbar from @/components/Navbar/Navbar
+[Default] File: src/components/Header/Header.tsx imports styles from ./Header.module.scss
+[Default] File: src/components/Header/Header.tsx imports NotificationBar from ../NotificationBar/NotificationBar
