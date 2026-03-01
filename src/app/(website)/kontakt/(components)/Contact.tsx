@@ -1,10 +1,10 @@
 "use client";
 
-import { Container } from "@/components/Container/Container";
+import Container from "@/components/Container/Container";
 import styles from "./Contact.module.scss";
-import { MapComponent } from "./MapComponent";
+import MapComponent from "./MapComponent";
 import companyInfo from "@/data/companyInfo.json";
-import { ContactForm } from "@/components/ContactForm/ContactForm";
+import ContactForm from "@/components/ContactForm/ContactForm";
 
 export const Contact = () => {
   return (
@@ -41,3 +41,5 @@ export const Contact = () => {
     </section>
   );
 };
+
+export default Contact;

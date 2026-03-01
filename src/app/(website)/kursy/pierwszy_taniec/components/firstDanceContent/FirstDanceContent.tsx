@@ -1,6 +1,6 @@
 import styles from "./FirstDanceContent.module.scss";
-import { Container } from "@/components/Container/Container";
-import { ContactForm } from "@/components/ContactForm/ContactForm";
+import Container from "@/components/Container/Container";
+import ContactForm from "@/components/ContactForm/ContactForm";
 
 import { getContentfulData } from "@/lib/contentful/serverActions/coursesGroups"; // Import the new function
 import { draftMode } from "next/headers";

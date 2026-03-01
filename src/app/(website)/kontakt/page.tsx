@@ -1,6 +1,6 @@
 import styles from "@/app/page.module.css";
 
-import { Contact } from "./(components)/Contact";
+import Contact from "./(components)/Contact";
 
 /**
  * Renders the home page with the main layout and the Contact component.

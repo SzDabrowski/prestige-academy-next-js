@@ -279,3 +279,5 @@ export const ContactForm = (props: ContactForm) => {
     </form>
   );
 };
+
+export default ContactForm;
