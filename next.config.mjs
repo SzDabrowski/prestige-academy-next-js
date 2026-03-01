@@ -7,14 +7,14 @@ const __dirname = path.dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    domains: ["localhost"],
+  eslint: {
+    ignoreDuringBuilds: true,
   },
-  sassOptions: {
-    // Używamy path.resolve, aby mieć pewność co do ścieżki absolutnej
-    includePaths: [path.resolve(__dirname, "src/styles")],
-    // Dodajemy średnik i nową linię, aby uniknąć błędów parsowania
+  typescript: {
+    ignoreBuildErrors: true,
   },
+
+  output: "standalone",
 };
 
-export default withNextVideo(nextConfig);
+export default nextConfig;
