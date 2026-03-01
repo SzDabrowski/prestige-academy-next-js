@@ -5,7 +5,6 @@ import { PrestigeLogoIcon } from "@/components/icons/LogoIcon/PrestigeLogoIcon";
 
 import ContactForm from "@/components/ContactForm/ContactForm";
 
-console.log({ ContactForm, Header });
 /**
  * Provides a layout wrapper that displays a header above the given child content.
  *
@@ -13,13 +12,6 @@ console.log({ ContactForm, Header });
  * @returns The layout with a header and the specified children
  */
 export default function Layout({ children }: { children: React.ReactNode }) {
-  // tymczasowy debug — sprawdzamy, czy importy są undefined
-  console.log({
-    Container,
-    NotificationBar,
-    PrestigeLogoIcon,
-  });
-
   return (
     <>
       <Header />
