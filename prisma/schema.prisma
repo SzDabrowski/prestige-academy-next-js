@@ -6,11 +6,12 @@
 
 generator client {
   provider = "prisma-client-js"
+
 }
 
 datasource db {
   provider = "mongodb"
-  url      = env("MONGODB_URI")
+
 }
 
 model CourseClient {
