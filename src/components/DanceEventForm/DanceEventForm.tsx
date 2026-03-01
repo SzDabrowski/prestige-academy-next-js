@@ -149,7 +149,6 @@ const DanceEventForm = (props: iCourseForm) => {
           noValidate
         >
           <div className={styles.inputsContainer}>
-            {/* SZKOŁA */}
             <label className={`${styles.label} ${styles.dropdown}`}>
               <span>Wybierz szkołę / przedszkole</span>
               <DropdownSelect
@@ -171,7 +170,6 @@ const DanceEventForm = (props: iCourseForm) => {
               )}
             </label>
 
-            {/* GRUPA - DYNAMICZNIE WY SZARZONA PRZY BRAKU DANYCH */}
             <label
               className={`${styles.label} ${styles.dropdown} ${
                 selectedPreschool ? "" : styles.hidden
@@ -199,7 +197,7 @@ const DanceEventForm = (props: iCourseForm) => {
                 <input
                   type="text"
                   readOnly
-                  tabIndex={-1} // pomija przy nawigacji Tabem, skoro jest tylko informacyjny
+                  tabIndex={-1}
                   className={`${styles.input} ${styles.readOnlyInput}`}
                   {...register("groupName", {
                     required: selectedPreschool ? false : "Wybierz placówkę",
@@ -208,7 +206,7 @@ const DanceEventForm = (props: iCourseForm) => {
                 />
               )}
               {errors.groupName && (
-                <span className={`${styles.error} ${styles.errorDropdown}`}>
+                <span className={`${styles.error} ${styles.errorDropdown2}`}>
                   {errors.groupName.message}
                 </span>
               )}
@@ -255,33 +253,78 @@ const DanceEventForm = (props: iCourseForm) => {
               )}
             </label>
 
-            {/* ZGODY */}
             <div className={styles.consentsSection}>
-              <div className={styles.consentRow}>
-                <input
-                  id="consentParticipation"
-                  type="checkbox"
-                  {...register("consentParticipation", {
-                    required: "Zgoda jest wymagana",
-                  })}
-                />
-                <label htmlFor="consentParticipation">
-                  Wyrażam zgodę na udział mojego dziecka <b>{userName}</b> i
-                  wykorzystanie wizerunku.
-                </label>
+              <div
+                className={`${styles.consentRow} ${errors.consentParticipation ? styles.shake : ""}`}
+              >
+                <div className={styles.checkboxWrapper}>
+                  <input
+                    id="consentParticipation"
+                    type="checkbox"
+                    className={`${styles.consentCheckbox} ${errors.consentParticipation ? styles.checkboxError : ""}`}
+                    {...register("consentParticipation", {
+                      required: "Zgoda na udział jest wymagana",
+                    })}
+                  />
+                </div>
+                <div className={styles.consentContent}>
+                  <label
+                    htmlFor="consentParticipation"
+                    className={styles.consentLabel}
+                  >
+                    Wyrażam zgodę na udział mojego dziecka <b>{userName}</b> w
+                    "Tańczące Gwiazdeczki 2026" oraz na wykorzystanie wizerunku
+                    w celach promocyjnych.
+                  </label>
+                  <div className={styles.errorContainer}>
+                    {errors.consentParticipation && (
+                      <span className={styles.consentError}>
+                        {errors.consentParticipation.message}
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
 
-              <div className={styles.consentRow}>
-                <input
-                  id="consentDataProcessing"
-                  type="checkbox"
-                  {...register("consentDataProcessing", {
-                    required: "Zgoda jest wymagana",
-                  })}
-                />
-                <label htmlFor="consentDataProcessing">
-                  Wyrażam zgodę na przetwarzanie danych osobowych (RODO).
-                </label>
+              <div
+                className={`${styles.consentRow} ${errors.consentDataProcessing ? styles.shake : ""}`}
+              >
+                <div className={styles.checkboxWrapper}>
+                  <input
+                    id="consentDataProcessing"
+                    type="checkbox"
+                    className={`${styles.consentCheckbox} ${errors.consentDataProcessing ? styles.checkboxError : ""}`}
+                    {...register("consentDataProcessing", {
+                      required: "Zgoda na przetwarzanie danych jest wymagana",
+                    })}
+                  />
+                </div>
+                <div className={styles.consentContent}>
+                  <label
+                    htmlFor="consentDataProcessing"
+                    className={styles.consentLabel}
+                  >
+                    Wyrażam zgodę na przetwarzanie danych osobowych (RODO)
+                    zgodnie z naszą{" "}
+                    <a
+                      href="https://www.prestige.stargard.pl/docs/polityka_prywatnosci.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.privacyLink}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      polityką prywatności
+                    </a>
+                    .
+                  </label>
+                  <div className={styles.errorContainer}>
+                    {errors.consentDataProcessing && (
+                      <span className={styles.consentError}>
+                        {errors.consentDataProcessing.message}
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
