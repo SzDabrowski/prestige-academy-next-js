@@ -9,7 +9,7 @@ interface iDropdownSelect {
   options: string[];
   placeholder: string;
   value?: string;
-  getValue: (value: string) => string;
+  getValue: (value: string) => void;
 }
 
 export const DropdownSelect = (props: iDropdownSelect) => {

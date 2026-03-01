@@ -11,6 +11,11 @@ import {
   TypePreschoolsListSkeleton,
 } from "@/types/typePreschoolsListSkeleton";
 
+import {
+  typeListaSzkolEventyFields,
+  typeListaSzkolEventySkeletop,
+} from "@/types/typeListaSzkolEventySkeletop";
+
 import { getStaticPropsUtil } from "@/lib/action";
 import { getAllGrupyZaj, getGrupyZajById } from "@/lib/contentful/api";
 import { stringify } from "querystring";
@@ -171,6 +176,28 @@ export async function fetchPreschoolsList({
     return fields as unknown as TypePreschoolsListFields; // Return the fields of the single entry
   } catch (error) {
     console.error(error);
+    return null;
+  }
+}
+
+export async function fetchEventSchoolist({
+  preview,
+}: fetchPreschoolsListOptions) {
+  const contentful = contentfulClient({ preview });
+
+  try {
+    const response = await contentful.getEntries<typeListaSzkolEventySkeletop>({
+      content_type: "listaSzkolEventy", // Upewnij się, że to ID modelu w Contentful
+    });
+
+    if (response.items.length === 0) {
+      console.warn(`No data found for content_type: listaSzkolEventy`);
+      return null;
+    }
+
+    return response.items[0].fields as unknown as typeListaSzkolEventyFields;
+  } catch (error) {
+    console.error("Contentful Fetch Error:", error);
     return null;
   }
 }

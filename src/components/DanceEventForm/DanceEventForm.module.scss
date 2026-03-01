@@ -313,3 +313,17 @@
     transform: translateY(0);
   }
 }
+
+.readOnlyInput {
+  background-color: #f2f2f2 !important;
+  color: #999 !important;
+  cursor: not-allowed;
+  border: 1px solid #ddd !important;
+  font-style: italic;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hidden {
+  display: none;
+}

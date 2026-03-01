@@ -9,12 +9,11 @@ import toast, { Toaster } from "react-hot-toast";
 import { TOAST_MESSAGE } from "@/lib/toastMessages";
 import LoadingLogo from "../LoadingLogo/LoadingLogo";
 
-// Import akcji serwerowych i typów
 import {
   fetchServerToken,
   sendEventRegistration,
 } from "@/app/actions/serverDB";
-import { fetchPreschoolsList } from "@/lib/contentful/serverActions/coursesGroups";
+import { fetchEventSchoolist } from "@/lib/contentful/serverActions/coursesGroups";
 import { useTokenStore } from "@/app/hooks/useTokenStore";
 import { EventClientType } from "@/types/mongodbTypes";
 
@@ -35,8 +34,12 @@ interface iCourseForm {
 const DanceEventForm = (props: iCourseForm) => {
   const { guestToken, setGuestToken } = useTokenStore();
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedPreschool, setselectedPreschool] = useState("");
-  const [preschoolsList, setPreschoolsList] = useState<string[]>([]);
+
+  // Dane z JSON: { "Nazwa": ["Gr1", "Gr2"] }
+  const [allSchools, setAllSchools] = useState<Record<string, string[]>>({});
+  const [selectedPreschool, setSelectedPreschool] = useState("");
+  const [selectedGroup, setSelectedGroup] = useState("");
+
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
 
@@ -44,13 +47,14 @@ const DanceEventForm = (props: iCourseForm) => {
     register,
     handleSubmit,
     setValue,
-    setError, // Dodane do obsługi błędów z backendu
     reset,
     control,
     formState: { errors, isSubmitting },
   } = useForm<FormInputs>({
     mode: "onTouched",
     defaultValues: {
+      selectedPreschool: "",
+      groupName: "",
       consentParticipation: false,
       consentDataProcessing: false,
     },
@@ -58,23 +62,17 @@ const DanceEventForm = (props: iCourseForm) => {
 
   const userName = useWatch({ control, name: "name", defaultValue: "..." });
 
-  // Inicjalizacja tokena i pobieranie listy placówek
   useEffect(() => {
     const initData = async () => {
       try {
-        // Token
         if (!guestToken) {
           const token = await fetchServerToken();
           setGuestToken(token);
         }
 
-        // Lista przedszkoli
-        const fetchedData = await fetchPreschoolsList({ preview: false });
-        if (fetchedData?.preschoolName) {
-          const names = Array.isArray(fetchedData.preschoolName)
-            ? fetchedData.preschoolName.map((item) => String(item))
-            : [];
-          setPreschoolsList(names);
+        const fetchedData = await fetchEventSchoolist({ preview: false });
+        if (fetchedData?.list) {
+          setAllSchools(fetchedData.list);
         }
       } catch (error) {
         console.error("Initialization error:", error);
@@ -82,24 +80,28 @@ const DanceEventForm = (props: iCourseForm) => {
         setLoading(false);
       }
     };
-
     initData();
   }, [guestToken, setGuestToken]);
 
-  // Synchronizacja dropdownu z react-hook-form
-  useEffect(() => {
-    setValue("selectedPreschool", selectedPreschool);
-  }, [selectedPreschool, setValue]);
+  const handlePreschoolChange = (value: string) => {
+    setSelectedPreschool(value);
+    setValue("selectedPreschool", value, { shouldValidate: true });
 
-  const handleDropdownSelect = (value: string) => {
-    setselectedPreschool(value);
+    const groups = allSchools[value] || [];
+    if (groups.length > 0) {
+      setSelectedGroup("");
+      setValue("groupName", "", { shouldValidate: false });
+    } else {
+      setSelectedGroup("Brak grupy");
+      setValue("groupName", "Brak grupy", { shouldValidate: true });
+    }
     return value;
   };
 
-  const onChangePhoneNumber = (e: ChangeEvent<HTMLInputElement>) => {
-    const targetValue = phoneNumberAutoFormat(e.target.value);
-    setPhoneNumber(targetValue);
-    setValue("phone", targetValue);
+  const handleGroupChange = (value: string) => {
+    setSelectedGroup(value);
+    setValue("groupName", value, { shouldValidate: true });
+    return value;
   };
 
   const onSubmit = async (data: FormInputs) => {
@@ -119,46 +121,18 @@ const DanceEventForm = (props: iCourseForm) => {
     };
 
     try {
-      await toast.promise(
-        sendEventRegistration(eventData, guestToken),
-        {
-          loading: "Wysyłanie zgłoszenia...",
-          success: "Pomyślnie zapisano uczestnika!",
-          error: (err: any) => {
-            const backendMessage = err.message || "Wystąpił błąd zapisu.";
-            if (
-              backendMessage.toLowerCase().includes("already registered") ||
-              backendMessage.toLowerCase().includes("już zarejestrowane")
-            ) {
-              setError("name", {
-                type: "manual",
-                message: "To dziecko zostało już wcześniej zapisane.",
-              });
-            }
-
-            return backendMessage;
-          },
-        },
-        {
-          success: {
-            duration: 5000,
-          },
-          error: {
-            duration: 5000,
-          },
-        },
-      );
+      await toast.promise(sendEventRegistration(eventData, guestToken), {
+        loading: "Wysyłanie zgłoszenia...",
+        success: "Pomyślnie zapisano uczestnika!",
+        error: (err: any) => err.message || "Błąd zapisu.",
+      });
 
       props.onSuccess();
       setIsSubmitSuccess(true);
       reset();
       setPhoneNumber("");
-      setselectedPreschool("");
-
-      // setTimeout(() => {
-      //   setIsSubmitSuccess(false);
-      //   props.onSuccess();
-      // }, 3000);
+      setSelectedPreschool("");
+      setSelectedGroup("");
     } catch (error) {
       console.error("Submit error:", error);
     }
@@ -175,14 +149,14 @@ const DanceEventForm = (props: iCourseForm) => {
           noValidate
         >
           <div className={styles.inputsContainer}>
-            {/* Szkoła / Przedszkole */}
+            {/* SZKOŁA */}
             <label className={`${styles.label} ${styles.dropdown}`}>
               <span>Wybierz szkołę / przedszkole</span>
               <DropdownSelect
                 title={""}
-                options={preschoolsList}
+                options={Object.keys(allSchools)}
                 placeholder={"Wybierz placówkę"}
-                getValue={handleDropdownSelect}
+                getValue={handlePreschoolChange}
               />
               <input
                 type="hidden"
@@ -197,22 +171,50 @@ const DanceEventForm = (props: iCourseForm) => {
               )}
             </label>
 
-            {/* Grupa */}
-            <label className={styles.label}>
-              <span>Nazwa grupy</span>
-              <input
-                type="text"
-                placeholder="Np. Grupa 5-latki"
-                {...register("groupName", {
-                  required: "Nazwa grupy jest wymagana",
-                })}
-              />
+            {/* GRUPA - DYNAMICZNIE WY SZARZONA PRZY BRAKU DANYCH */}
+            <label
+              className={`${styles.label} ${styles.dropdown} ${
+                selectedPreschool ? "" : styles.hidden
+              }`}
+            >
+              <span>Nazwa grupy:</span>
+              {selectedPreschool &&
+              allSchools[selectedPreschool]?.length > 0 ? (
+                <>
+                  <DropdownSelect
+                    key={`group-select-${selectedPreschool}`}
+                    title={""}
+                    options={allSchools[selectedPreschool]}
+                    placeholder={"Wybierz grupę z listy"}
+                    getValue={handleGroupChange}
+                  />
+                  <input
+                    type="hidden"
+                    {...register("groupName", {
+                      required: "Wybierz nazwę grupy",
+                    })}
+                  />
+                </>
+              ) : (
+                <input
+                  type="text"
+                  readOnly
+                  tabIndex={-1} // pomija przy nawigacji Tabem, skoro jest tylko informacyjny
+                  className={`${styles.input} ${styles.readOnlyInput}`}
+                  {...register("groupName", {
+                    required: selectedPreschool ? false : "Wybierz placówkę",
+                  })}
+                  value={selectedPreschool ? "Brak dostępnych grup" : ""}
+                />
+              )}
               {errors.groupName && (
-                <span className={styles.error}>{errors.groupName.message}</span>
+                <span className={`${styles.error} ${styles.errorDropdown}`}>
+                  {errors.groupName.message}
+                </span>
               )}
             </label>
 
-            {/* Dziecko */}
+            {/* IMIĘ I NAZWISKO */}
             <label className={styles.label}>
               <span>Imię i nazwisko dziecka</span>
               <input
@@ -228,7 +230,7 @@ const DanceEventForm = (props: iCourseForm) => {
               )}
             </label>
 
-            {/* Telefon */}
+            {/* TELEFON */}
             <label className={styles.label}>
               <span>Numer telefonu</span>
               <input
@@ -242,86 +244,44 @@ const DanceEventForm = (props: iCourseForm) => {
                     message: "Format: 123 123 123",
                   },
                 })}
-                onChange={onChangePhoneNumber}
+                onChange={(e) => {
+                  const val = phoneNumberAutoFormat(e.target.value);
+                  setPhoneNumber(val);
+                  setValue("phone", val, { shouldValidate: true });
+                }}
               />
               {errors.phone && (
                 <span className={styles.error}>{errors.phone.message}</span>
               )}
             </label>
 
-            {/* Sekcja zgód */}
+            {/* ZGODY */}
             <div className={styles.consentsSection}>
-              <div
-                className={`${styles.consentRow} ${errors.consentParticipation ? styles.shake : ""}`}
-              >
-                <div className={styles.checkboxWrapper}>
-                  <input
-                    id="consentParticipation"
-                    type="checkbox"
-                    className={`${styles.consentCheckbox} ${errors.consentParticipation ? styles.checkboxError : ""}`}
-                    {...register("consentParticipation", {
-                      required: "Zgoda na udział jest wymagana",
-                    })}
-                  />
-                </div>
-                <div className={styles.consentContent}>
-                  <label
-                    htmlFor="consentParticipation"
-                    className={styles.consentLabel}
-                  >
-                    Wyrażam zgodę na udział mojego dziecka <b>{userName}</b> w
-                    "Tańczące Gwiazdeczki 2026" oraz na wykorzystanie wizerunku
-                    w celach promocyjnych.
-                  </label>
-                  <div className={styles.errorContainer}>
-                    {errors.consentParticipation && (
-                      <span className={styles.consentError}>
-                        {errors.consentParticipation.message}
-                      </span>
-                    )}
-                  </div>
-                </div>
+              <div className={styles.consentRow}>
+                <input
+                  id="consentParticipation"
+                  type="checkbox"
+                  {...register("consentParticipation", {
+                    required: "Zgoda jest wymagana",
+                  })}
+                />
+                <label htmlFor="consentParticipation">
+                  Wyrażam zgodę na udział mojego dziecka <b>{userName}</b> i
+                  wykorzystanie wizerunku.
+                </label>
               </div>
 
-              <div
-                className={`${styles.consentRow} ${errors.consentDataProcessing ? styles.shake : ""}`}
-              >
-                <div className={styles.checkboxWrapper}>
-                  <input
-                    id="consentDataProcessing"
-                    type="checkbox"
-                    className={`${styles.consentCheckbox} ${errors.consentDataProcessing ? styles.checkboxError : ""}`}
-                    {...register("consentDataProcessing", {
-                      required: "Zgoda na przetwarzanie danych jest wymagana",
-                    })}
-                  />
-                </div>
-                <div className={styles.consentContent}>
-                  <label
-                    htmlFor="consentDataProcessing"
-                    className={styles.consentLabel}
-                  >
-                    Wyrażam zgodę na przetwarzanie danych osobowych (RODO)
-                    zgodnie z naszą{" "}
-                    <a
-                      href="https://www.prestige.stargard.pl/docs/polityka_prywatnosci.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.privacyLink}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      polityką prywatności
-                    </a>
-                    .
-                  </label>
-                  <div className={styles.errorContainer}>
-                    {errors.consentDataProcessing && (
-                      <span className={styles.consentError}>
-                        {errors.consentDataProcessing.message}
-                      </span>
-                    )}
-                  </div>
-                </div>
+              <div className={styles.consentRow}>
+                <input
+                  id="consentDataProcessing"
+                  type="checkbox"
+                  {...register("consentDataProcessing", {
+                    required: "Zgoda jest wymagana",
+                  })}
+                />
+                <label htmlFor="consentDataProcessing">
+                  Wyrażam zgodę na przetwarzanie danych osobowych (RODO).
+                </label>
               </div>
             </div>
           </div>
@@ -331,9 +291,11 @@ const DanceEventForm = (props: iCourseForm) => {
             disabled={isSubmitting || isSubmitSuccess}
             className={`${styles.button} ${isSubmitSuccess ? styles.success : ""}`}
           >
-            {isSubmitting && "Zapisywanie..."}
-            {isSubmitSuccess && "Zapisano pomyślnie!"}
-            {!isSubmitting && !isSubmitSuccess && "Zapisz dziecko!"}
+            {isSubmitting
+              ? "Wysyłanie..."
+              : isSubmitSuccess
+                ? "Zapisano!"
+                : "Zapisz dziecko!"}
           </button>
         </form>
       )}
