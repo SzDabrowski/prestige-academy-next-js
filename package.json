@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "start-next": "next start",
     "lint": "next lint",
@@ -14,7 +14,7 @@
     "db:seed": "npx dotenv -e .env.local -- prisma db seed",
     "prisma:generate": "npx dotenv -e .env.local -- prisma generate",
     "prisma:studio": "npx dotenv -e .env.local -- prisma studio",
-    "production:build": "npx prisma generate && npx prisma migrate deploy && next build",
+    "production:build": " next build",
     "email": "email dev --dir src/emails"
   },
   "dependencies": {
