@@ -3,6 +3,9 @@ import Container from "@/components/Container/Container";
 import NotificationBar from "@/components/NotificationBar/NotificationBar";
 import { PrestigeLogoIcon } from "@/components/icons/LogoIcon/PrestigeLogoIcon";
 
+import ContactForm from "@/components/ContactForm/ContactForm";
+
+console.log({ ContactForm, Header });
 /**
  * Provides a layout wrapper that displays a header above the given child content.
  *

@@ -8,6 +8,10 @@ import { Container } from "@/components/Container/Container";
 import CourseForm from "@/components/CourseForm/CourseForm";
 import { DanceBanner } from "@/components/DanceEventBanner/DanceEventBanner";
 
+import ContactForm from "@/components/ContactForm/ContactForm";
+import Header from "@/components/Header/Header";
+console.log({ ContactForm, Header });
+
 /**
  * Render the landing page by composing primary sections in their display order.
  *
