@@ -11,3 +11,5 @@ export const MapComponent = () => {
     ></iframe>
   );
 };
+
+export default MapComponent;

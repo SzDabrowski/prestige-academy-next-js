@@ -273,8 +273,8 @@ const DanceEventForm = (props: iCourseForm) => {
                     className={styles.consentLabel}
                   >
                     Wyrażam zgodę na udział mojego dziecka <b>{userName}</b> w
-                    "Tańczące Gwiazdeczki 2026" oraz na wykorzystanie wizerunku
-                    w celach promocyjnych.
+                    &quot;Tańczące Gwiazdeczki 2026&quot; oraz na wykorzystanie
+                    wizerunku w celach promocyjnych.
                   </label>
                   <div className={styles.errorContainer}>
                     {errors.consentParticipation && (

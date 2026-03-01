@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import { Container } from "@/components/Container/Container";
 import { Fade as Hamburger } from "hamburger-react";
 import { useEffect, useState } from "react";
-import { checkIfInMobileView } from "../../utils/clientUtils";
+
 import { PrestigeLogoIcon } from "../icons/LogoIcon/PrestigeLogoIcon";
 
 import styles from "./Header.module.scss";
