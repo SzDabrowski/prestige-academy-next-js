@@ -11,6 +11,7 @@ import { TOAST_MESSAGE } from "@/lib/toastMessages";
 
 import preschoolsData from "@/data/preschools.json";
 import { fetchPreschoolsList } from "@/lib/contentful/serverActions/coursesGroups";
+import { fetchEventSchoolist } from "@/lib/contentful/serverActions/coursesGroups";
 
 import { saveClientData } from "@/app/actions/serverDB";
 
@@ -39,15 +40,17 @@ interface FormInputs {
 const PreschoolsForm = () => {
   const { guestToken, setGuestToken, isTokenValid } = useTokenStore();
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedPreschool, setselectedPreschool] = useState("");
+  const [allSchools, setAllSchools] = useState<Record<string, string[]>>({});
+  const [selectedPreschool, setSelectedPreschool] = useState("");
   const [preschoolsList, setPreschoolsList] = useState<string[]>([]);
+  const [selectedGroup, setSelectedGroup] = useState("");
   const [preschoolsListLoading, setPreschoolsListLoading] =
     useState<boolean>(true);
 
   const [phoneNumber, setPhoneNumber] = useState<string>("");
 
   const handleDropdownSelect = (value: string) => {
-    setselectedPreschool(value);
+    setSelectedPreschool(value);
     return value;
   };
 
@@ -99,28 +102,25 @@ const PreschoolsForm = () => {
   }, [guestToken, setGuestToken]);
 
   useEffect(() => {
-    const getData = async () => {
-      setPreschoolsListLoading(true);
+    const initData = async () => {
       try {
-        const fetchedDataChildren = await fetchPreschoolsList({
-          preview: false,
-        });
+        if (!guestToken) {
+          const token = await fetchServerToken();
+          setGuestToken(token);
+        }
 
-        if (!fetchedDataChildren) throw new Error("No data received");
-
-        // fetchedDataChildren.preschoolName is already string[]
-        setPreschoolsList(
-          (fetchedDataChildren.preschoolName ?? []) as unknown as string[]
-        );
+        const fetchedData = await fetchEventSchoolist({ preview: false });
+        if (fetchedData?.list) {
+          setAllSchools(fetchedData.list);
+        }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Initialization error:", error);
       } finally {
-        setPreschoolsListLoading(false);
+        setLoading(false);
       }
     };
-
-    getData();
-  }, []);
+    initData();
+  }, [guestToken, setGuestToken]);
 
   useEffect(() => {
     setValue("selectedPreschool", selectedPreschool);
@@ -129,11 +129,32 @@ const PreschoolsForm = () => {
   useEffect(() => {
     setValue(
       "subject",
-      `${userName} zapisał/a się na zajęcia w przedszkolu - ${selectedPreschool}`
+      `${userName} zapisał/a się na zajęcia w przedszkolu - ${selectedPreschool}`,
     );
   }, [userName, selectedPreschool]);
 
   const preschoolsNames = preschoolsData.map((course) => course.value);
+
+  const handlePreschoolChange = (value: string) => {
+    setSelectedPreschool(value);
+    setValue("selectedPreschool", value, { shouldValidate: true });
+
+    const groups = allSchools[value] || [];
+    if (groups.length > 0) {
+      setSelectedGroup("");
+      setValue("group_name", "", { shouldValidate: false });
+    } else {
+      setSelectedGroup("Brak grupy");
+      setValue("group_name", "Brak grupy", { shouldValidate: true });
+    }
+    return value;
+  };
+
+  const handleGroupChange = (value: string) => {
+    setSelectedGroup(value);
+    setValue("group_name", value, { shouldValidate: true });
+    return value;
+  };
 
   const onSubmit = async (data: FormInputs, event?: any) => {
     event?.preventDefault();
@@ -159,7 +180,7 @@ const PreschoolsForm = () => {
           loading: "Zapisywanie...",
           success: "Zapisano pomyślnie!",
           error: "Błąd podczas zapisu",
-        }
+        },
       );
       await sendNotificationEmail(guestToken, undefined, preschoolClientData);
 
@@ -193,48 +214,64 @@ const PreschoolsForm = () => {
 
         <div className={styles.inputsContainer}>
           <label className={`${styles.label} ${styles.dropdown}`}>
+            <span>Wybierz szkołę / przedszkole</span>
             <DropdownSelect
-              title={"Wybierz przedszkole"}
-              options={preschoolsList}
-              placeholder={"Wybierz przedszkole"}
-              getValue={handleDropdownSelect}
+              title={""}
+              options={Object.keys(allSchools)}
+              placeholder={"Wybierz placówkę"}
+              getValue={handlePreschoolChange}
             />
-
             <input
               type="hidden"
               {...register("selectedPreschool", {
-                required: "To pole jest wymagane",
+                required: "Wybierz placówkę",
               })}
-              value={selectedPreschool}
             />
-
-            {errors.selectedPreschool && selectedPreschool == "" && (
-              <span className={styles.dropdownError}>
-                {errors.selectedPreschool?.message}
+            {errors.selectedPreschool && (
+              <span className={`${styles.error} ${styles.errorDropdown}`}>
+                {errors.selectedPreschool.message}
               </span>
             )}
           </label>
 
-          <label className={styles.label}>
-            <span>Nazwa grupy</span>
-            <input
-              id="group_name"
-              type="text"
-              {...register("group_name", {
-                required: "To pole jest wymagane",
-                // pattern: {
-                // 	value: plRegex,
-                // 	message: "Usuń znaki specjalne",
-                // },
-                minLength: {
-                  value: 3,
-                  message: "Nazwa grupy musi mieć co najmniej 3 znaki",
-                },
-              })}
-              placeholder="Grupa abc"
-            />
+          <label
+            className={`${styles.label} ${styles.dropdown} ${
+              selectedPreschool ? "" : styles.hidden
+            }`}
+          >
+            <span>Nazwa grupy:</span>
+            {selectedPreschool && allSchools[selectedPreschool]?.length > 0 ? (
+              <>
+                <DropdownSelect
+                  key={`group-select-${selectedPreschool}`}
+                  title={""}
+                  options={allSchools[selectedPreschool]}
+                  placeholder={"Wybierz grupę z listy"}
+                  getValue={handleGroupChange}
+                />
+                <input
+                  type="hidden"
+                  {...register("group_name", {
+                    required: "Wybierz nazwę grupy",
+                  })}
+                />
+              </>
+            ) : (
+              <input
+                type="text"
+                readOnly
+                tabIndex={-1}
+                className={`${styles.input} ${styles.readOnlyInput}`}
+                {...register("group_name", {
+                  required: selectedPreschool ? false : "Wybierz placówkę",
+                })}
+                value={selectedPreschool ? "Brak dostępnych grup" : ""}
+              />
+            )}
             {errors.group_name && (
-              <span className={styles.error}>{errors.group_name.message}</span>
+              <span className={`${styles.error} ${styles.errorDropdown2}`}>
+                {errors.group_name.message}
+              </span>
             )}
           </label>
 
