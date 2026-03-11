@@ -149,6 +149,27 @@ const PreschoolsForm = () => {
     return value;
   };
 
+  const handlePreschoolChange = (value: string) => {
+    setSelectedPreschool(value);
+    setValue("selectedPreschool", value, { shouldValidate: true });
+
+    const groups = allSchools[value] || [];
+    if (groups.length > 0) {
+      setSelectedGroup("");
+      setValue("group_name", "", { shouldValidate: false });
+    } else {
+      setSelectedGroup("Brak grupy");
+      setValue("group_name", "Brak grupy", { shouldValidate: true });
+    }
+    return value;
+  };
+
+  const handleGroupChange = (value: string) => {
+    setSelectedGroup(value);
+    setValue("group_name", value, { shouldValidate: true });
+    return value;
+  };
+
   const onSubmit = async (data: FormInputs, event?: any) => {
     event?.preventDefault();
 
