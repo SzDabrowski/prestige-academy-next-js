@@ -45,6 +45,7 @@ const RootEmailTemplate = ({
                   padding: "8px",
                 }}
               >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`${baseURL}/assets/images/logo/PRESTIGE_logo_fullcolor_rgb.png`}
                   alt="Prestige akademia tańca - Logo"

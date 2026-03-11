@@ -1,4 +1,3 @@
-import { use } from "react";
 import { Container } from "@/components/Container/Container";
 import { CoursesContent } from "./components/CoursesContent";
 
@@ -12,9 +11,9 @@ import styles from "./page.module.scss";
 export default function Page({
   params,
 }: {
-  params: Promise<{ coursesFor: string }>;
+  params: { coursesFor: string };
 }) {
-  const { coursesFor } = use(params);
+  const { coursesFor } = params;
 
   return (
     <main className={styles.main}>
