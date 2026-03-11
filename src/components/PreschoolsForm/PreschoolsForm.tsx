@@ -1,28 +1,19 @@
 "use client";
 import React, { ChangeEvent, useEffect, useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
 
 import { DropdownSelect } from "@/components/DropdownSelect/DropdownSelect";
-import { useForm, SubmitHandler, useWatch } from "react-hook-form";
-
-import { phoneNumberAutoFormat } from "../../utils/formUtils";
-
-import toast, { Toaster } from "react-hot-toast";
+import { phoneNumberAutoFormat, plRegex } from "../../utils/formUtils";
 import { TOAST_MESSAGE } from "@/lib/toastMessages";
-
 import { fetchEventSchoolist } from "@/lib/contentful/serverActions/coursesGroups";
-
-import { saveClientData } from "@/app/actions/serverDB";
-
+import { saveClientData, fetchServerToken } from "@/app/actions/serverDB";
 import { useTokenStore } from "@/app/hooks/useTokenStore";
 import { sendNotificationEmail } from "@/app/actions/sendNotification";
+import { PreschoolClientType } from "@/types/mongodbTypes";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 import styles from "./PreschoolsForm.module.scss";
-import ReCAPTCHA from "react-google-recaptcha";
-import { verifyReCaptcha } from "@/utils/recaptchaUtils";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-import { PreschoolClientType } from "@/types/mongodbTypes";
-import { fetchServerToken } from "@/app/actions/serverDB";
-import { plRegex } from "../../utils/formUtils";
 
 interface FormInputs {
   selectedPreschool: string;
@@ -41,23 +32,11 @@ const PreschoolsForm = () => {
   const [allSchools, setAllSchools] = useState<Record<string, string[]>>({});
   const [selectedPreschool, setSelectedPreschool] = useState("");
   const [selectedGroup, setSelectedGroup] = useState("");
-
   const [phoneNumber, setPhoneNumber] = useState<string>("");
-
-  const handleDropdownSelect = (value: string) => {
-    setSelectedPreschool(value);
-    return value;
-  };
-
-  const onChangePhoneNumber = (e: ChangeEvent<HTMLInputElement>) => {
-    const targetValue = phoneNumberAutoFormat(e.target.value);
-    setPhoneNumber(targetValue);
-  };
 
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [Message, setMessage] = useState("");
-  const [capVal, setCapVal] = useState(null);
+  const [message, setMessage] = useState("");
 
   const {
     register,
@@ -68,40 +47,37 @@ const PreschoolsForm = () => {
     formState: { errors, isSubmitSuccessful, isSubmitting },
   } = useForm<FormInputs>({
     mode: "onTouched",
+    defaultValues: {
+      child_name: "",
+      group_name: "",
+      selectedPreschool: "",
+    },
   });
 
-  const userName = useWatch({
+  // Obserwujemy imię dziecka, aby aktualizować temat wiadomości
+  const childName = useWatch({
     control,
     name: "child_name",
-    defaultValue: "Someone",
   });
 
-  const { executeRecaptcha } = useGoogleReCaptcha();
-
+  // Aktualizacja tematu, gdy zmienia się imię dziecka lub przedszkole
   useEffect(() => {
-    const fetchToken = async () => {
-      try {
-        const token = await fetchServerToken();
+    const name = childName || "Ktoś";
+    const school = selectedPreschool || "nie wybrano placówki";
+    setValue(
+      "subject",
+      `${name} zapisał/a się na zajęcia w przedszkolu - ${school}`,
+    );
+  }, [childName, selectedPreschool, setValue]);
 
-        setGuestToken(token);
-      } catch (error) {
-        console.error("Error fetching token:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (!guestToken || !isTokenValid()) {
-      fetchToken();
-    }
-  }, [guestToken, setGuestToken, isTokenValid]);
-
+  // Pobieranie tokena i listy szkół
   useEffect(() => {
     const initData = async () => {
       try {
-        if (!guestToken) {
-          const token = await fetchServerToken();
-          setGuestToken(token);
+        let currentToken = guestToken;
+        if (!guestToken || !isTokenValid()) {
+          currentToken = await fetchServerToken();
+          setGuestToken(currentToken);
         }
 
         const fetchedData = await fetchEventSchoolist({ preview: false });
@@ -115,18 +91,9 @@ const PreschoolsForm = () => {
       }
     };
     initData();
-  }, [guestToken, setGuestToken]);
+  }, [guestToken, setGuestToken, isTokenValid]);
 
-  useEffect(() => {
-    setValue("selectedPreschool", selectedPreschool);
-  }, [selectedPreschool, setValue]);
-
-  useEffect(() => {
-    setValue(
-      "subject",
-      `${userName} zapisał/a się na zajęcia w przedszkolu - ${selectedPreschool}`,
-    );
-  }, [userName, selectedPreschool, setValue]);
+  // --- Poprawione metody obsługi zmian ---
 
   const handlePreschoolChange = (value: string) => {
     setSelectedPreschool(value);
@@ -149,30 +116,13 @@ const PreschoolsForm = () => {
     return value;
   };
 
-  const handlePreschoolChange = (value: string) => {
-    setSelectedPreschool(value);
-    setValue("selectedPreschool", value, { shouldValidate: true });
-
-    const groups = allSchools[value] || [];
-    if (groups.length > 0) {
-      setSelectedGroup("");
-      setValue("group_name", "", { shouldValidate: false });
-    } else {
-      setSelectedGroup("Brak grupy");
-      setValue("group_name", "Brak grupy", { shouldValidate: true });
-    }
-    return value;
+  const onChangePhoneNumber = (e: ChangeEvent<HTMLInputElement>) => {
+    const formatted = phoneNumberAutoFormat(e.target.value);
+    setPhoneNumber(formatted);
+    setValue("phone", formatted, { shouldValidate: true });
   };
 
-  const handleGroupChange = (value: string) => {
-    setSelectedGroup(value);
-    setValue("group_name", value, { shouldValidate: true });
-    return value;
-  };
-
-  const onSubmit = async (data: FormInputs, event?: any) => {
-    event?.preventDefault();
-
+  const onSubmit = async (data: FormInputs) => {
     if (!guestToken) {
       toast.error(TOAST_MESSAGE.NO_TOKEN);
       return;
@@ -196,6 +146,7 @@ const PreschoolsForm = () => {
           error: "Błąd podczas zapisu",
         },
       );
+
       await sendNotificationEmail(guestToken, undefined, preschoolClientData);
 
       setIsSuccess(true);
@@ -203,12 +154,13 @@ const PreschoolsForm = () => {
       setMessage("Dane zapisane!");
       reset();
       setPhoneNumber("");
+      setSelectedPreschool("");
+      setSelectedGroup("");
     } catch (error) {
       setIsSuccess(false);
       setIsError(true);
       setMessage("Błąd zapisu. Spróbuj ponownie.");
       console.error("Error submitting form:", error);
-      throw error;
     }
   };
 
@@ -227,13 +179,14 @@ const PreschoolsForm = () => {
         <input type="hidden" {...register("subject")} />
 
         <div className={styles.inputsContainer}>
+          {/* Wybór przedszkola */}
           <label className={`${styles.label} ${styles.dropdown}`}>
             <span>Wybierz szkołę / przedszkole</span>
             <DropdownSelect
-              title={""}
               options={Object.keys(allSchools)}
               placeholder={"Wybierz placówkę"}
               getValue={handlePreschoolChange}
+              title=""
             />
             <input
               type="hidden"
@@ -248,20 +201,19 @@ const PreschoolsForm = () => {
             )}
           </label>
 
+          {/* Wybór grupy */}
           <label
-            className={`${styles.label} ${styles.dropdown} ${
-              selectedPreschool ? "" : styles.hidden
-            }`}
+            className={`${styles.label} ${styles.dropdown} ${selectedPreschool ? "" : styles.hidden}`}
           >
             <span>Nazwa grupy:</span>
             {selectedPreschool && allSchools[selectedPreschool]?.length > 0 ? (
               <>
                 <DropdownSelect
                   key={`group-select-${selectedPreschool}`}
-                  title={""}
                   options={allSchools[selectedPreschool]}
                   placeholder={"Wybierz grupę z listy"}
                   getValue={handleGroupChange}
+                  title=""
                 />
                 <input
                   type="hidden"
@@ -274,12 +226,9 @@ const PreschoolsForm = () => {
               <input
                 type="text"
                 readOnly
-                tabIndex={-1}
                 className={`${styles.input} ${styles.readOnlyInput}`}
-                {...register("group_name", {
-                  required: selectedPreschool ? false : "Wybierz placówkę",
-                })}
                 value={selectedPreschool ? "Brak dostępnych grup" : ""}
+                {...register("group_name")}
               />
             )}
             {errors.group_name && (
@@ -289,57 +238,52 @@ const PreschoolsForm = () => {
             )}
           </label>
 
+          {/* Dane dziecka */}
           <label className={styles.label}>
             <span>Imię i nazwisko dziecka</span>
             <input
-              id="child_name"
               type="text"
+              placeholder="Jaś Kowalski"
               {...register("child_name", {
                 required: "To pole jest wymagane",
                 pattern: {
                   value: plRegex,
                   message: "Usuń cyfry i znaki specjalne",
                 },
-                minLength: {
-                  value: 3,
-                  message: "Imię i nazwisko musi mieć co najmniej 3 znaki",
-                },
+                minLength: { value: 3, message: "Minimum 3 znaki" },
               })}
-              placeholder="Jaś Kowalski"
             />
             {errors.child_name && (
               <span className={styles.error}>{errors.child_name.message}</span>
             )}
           </label>
 
+          {/* Dane rodzica */}
           <label className={styles.label}>
             <span>Imię i nazwisko rodzica</span>
             <input
-              id="parent_name"
               type="text"
+              placeholder="Jan Kowalski"
               {...register("parent_name", {
                 required: "To pole jest wymagane",
                 pattern: {
                   value: plRegex,
                   message: "Usuń cyfry i znaki specjalne",
                 },
-                minLength: {
-                  value: 3,
-                  message: "Imię i nazwisko musi mieć co najmniej 3 znaki",
-                },
+                minLength: { value: 3, message: "Minimum 3 znaki" },
               })}
-              placeholder="Jan Kowalski"
             />
             {errors.parent_name && (
               <span className={styles.error}>{errors.parent_name.message}</span>
             )}
           </label>
 
+          {/* Email */}
           <label className={styles.label}>
             <span>Adres email</span>
             <input
-              id="email"
               type="email"
+              placeholder="Twój adres email"
               {...register("email", {
                 required: "To pole jest wymagane",
                 pattern: {
@@ -347,29 +291,27 @@ const PreschoolsForm = () => {
                   message: "Wprowadź poprawny adres email",
                 },
               })}
-              placeholder="Twój adres email"
             />
             {errors.email && (
               <span className={styles.error}>{errors.email.message}</span>
             )}
           </label>
 
+          {/* Telefon */}
           <label className={styles.label}>
             <span>Numer telefonu</span>
             <input
-              id="tel"
               type="tel"
+              placeholder="123 123 123"
+              value={phoneNumber}
               {...register("phone", {
                 required: "To pole jest wymagane",
                 pattern: {
                   value: /^[0-9]{3} [0-9]{3} [0-9]{3}$/,
-                  message: "Wprowadź poprawny numer telefonu (np. 123 123 123)",
+                  message: "Format: 123 123 123",
                 },
-                setValueAs: (value) => phoneNumberAutoFormat(value),
               })}
-              placeholder="Numer telefonu"
               onChange={onChangePhoneNumber}
-              value={phoneNumber}
             />
             {errors.phone && (
               <span className={styles.error}>{errors.phone.message}</span>
@@ -377,40 +319,25 @@ const PreschoolsForm = () => {
           </label>
         </div>
 
-        {/* <input
-					className={styles.button}
-					type="submit"
-					value=
-					// disabled={!capVal}
-				/> */}
-
         <button
-          className={`${styles.button} ${isSuccess ? styles.success : ""} ${isError ? styles.errorButton : ""}  `}
+          className={`${styles.button} ${isSuccess ? styles.success : ""} ${isError ? styles.errorButton : ""}`}
           type="submit"
           disabled={isSubmitting || isSubmitSuccessful}
         >
           {isSubmitting
             ? "Ładowanie..."
-            : isSubmitSuccessful && isSuccess
+            : isSuccess
               ? "Wysłano zgłoszenie!"
-              : isError
-                ? " Nie udało się wysłać zgłoszenia "
-                : "Wyślij zgłoszenie!"}
+              : "Wyślij zgłoszenie!"}
         </button>
-        {isError ? (
+
+        {isError && (
           <span className={styles.errorSendingMessage}>
-            Spróbuj ponownie pózniej lub odśwież stronę
+            Spróbuj ponownie później.
           </span>
-        ) : (
-          ""
         )}
       </form>
-      <Toaster
-        position="top-center"
-        containerStyle={{
-          top: 200,
-        }}
-      />
+      <Toaster position="top-center" containerStyle={{ top: 200 }} />
     </div>
   );
 };
