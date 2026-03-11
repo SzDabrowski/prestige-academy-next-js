@@ -159,7 +159,7 @@ const CourseForm = (props: iCourseForm) => {
     } else {
       setTokenLoading(false);
     }
-  }, []); // Remove dependencies to prevent infinite loop
+  }, [guestToken, isTokenValid, setGuestToken]);
 
   useEffect(() => {
     setValue("selectedDanceCourse", selectedDanceCourse);

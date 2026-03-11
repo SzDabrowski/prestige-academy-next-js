@@ -9,8 +9,6 @@ import { phoneNumberAutoFormat } from "../../utils/formUtils";
 import toast, { Toaster } from "react-hot-toast";
 import { TOAST_MESSAGE } from "@/lib/toastMessages";
 
-import preschoolsData from "@/data/preschools.json";
-import { fetchPreschoolsList } from "@/lib/contentful/serverActions/coursesGroups";
 import { fetchEventSchoolist } from "@/lib/contentful/serverActions/coursesGroups";
 
 import { saveClientData } from "@/app/actions/serverDB";
@@ -42,10 +40,7 @@ const PreschoolsForm = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [allSchools, setAllSchools] = useState<Record<string, string[]>>({});
   const [selectedPreschool, setSelectedPreschool] = useState("");
-  const [preschoolsList, setPreschoolsList] = useState<string[]>([]);
   const [selectedGroup, setSelectedGroup] = useState("");
-  const [preschoolsListLoading, setPreschoolsListLoading] =
-    useState<boolean>(true);
 
   const [phoneNumber, setPhoneNumber] = useState<string>("");
 
@@ -99,7 +94,7 @@ const PreschoolsForm = () => {
     if (!guestToken || !isTokenValid()) {
       fetchToken();
     }
-  }, [guestToken, setGuestToken]);
+  }, [guestToken, setGuestToken, isTokenValid]);
 
   useEffect(() => {
     const initData = async () => {
@@ -124,16 +119,35 @@ const PreschoolsForm = () => {
 
   useEffect(() => {
     setValue("selectedPreschool", selectedPreschool);
-  }, [selectedPreschool]);
+  }, [selectedPreschool, setValue]);
 
   useEffect(() => {
     setValue(
       "subject",
       `${userName} zapisał/a się na zajęcia w przedszkolu - ${selectedPreschool}`,
     );
-  }, [userName, selectedPreschool]);
+  }, [userName, selectedPreschool, setValue]);
 
-  const preschoolsNames = preschoolsData.map((course) => course.value);
+  const handlePreschoolChange = (value: string) => {
+    setSelectedPreschool(value);
+    setValue("selectedPreschool", value, { shouldValidate: true });
+
+    const groups = allSchools[value] || [];
+    if (groups.length > 0) {
+      setSelectedGroup("");
+      setValue("group_name", "", { shouldValidate: false });
+    } else {
+      setSelectedGroup("Brak grupy");
+      setValue("group_name", "Brak grupy", { shouldValidate: true });
+    }
+    return value;
+  };
+
+  const handleGroupChange = (value: string) => {
+    setSelectedGroup(value);
+    setValue("group_name", value, { shouldValidate: true });
+    return value;
+  };
 
   const handlePreschoolChange = (value: string) => {
     setSelectedPreschool(value);

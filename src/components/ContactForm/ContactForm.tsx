@@ -80,7 +80,7 @@ export const ContactForm = (props: ContactForm) => {
     if (guestToken === null) {
       fetchToken();
     }
-  }, []);
+  }, [guestToken, setGuestToken]);
 
   // useEffect(() => {
   //   console.log("Updated guestToken:", guestToken);
