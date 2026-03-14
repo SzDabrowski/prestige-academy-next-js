@@ -1,8 +1,12 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { ArrowRight, Sparkles, Calendar } from "lucide-react";
 import styles from "./DanceEventBanner.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import backgroundBanner from "../../../public/assets/images/konkurs.jpeg";
+import DanceEventOverlay from "../DanceEventOverlay/DanceEventOverlay";
 
 /**
  * Renders a promotional banner section for the "Tańczące Gwiazdeczki" children's dance competition.
@@ -10,6 +14,8 @@ import backgroundBanner from "../../../public/assets/images/konkurs.jpeg";
  * @returns A JSX element containing the banner layout: a responsive background image, decorative wave, heading with icon, subheadings, and a CTA link to the registration page.
  */
 export function DanceBanner() {
+  const [isOverlayOpen, setIsOverlayOpen] = useState(true);
+
   return (
     <section className={styles.bannerSection}>
       <div className={styles.flexWrapper}>
@@ -50,12 +56,25 @@ export function DanceBanner() {
               <p className={styles.highlight}>ZAPISY OTWARTE!</p>
             </div>
 
-            <Link href="/konkursy/gwiazdeczki" className={styles.ctaButton}>
-              ZAPISZ DZIECKO TERAZ <ArrowRight aria-hidden="true" />
-            </Link>
+            <div className={styles.buttonGroup}>
+              <Link href="/konkursy/gwiazdeczki" className={styles.ctaButton}>
+                ZAPISZ DZIECKO TERAZ <ArrowRight aria-hidden="true" />
+              </Link>
+              <button 
+                onClick={() => setIsOverlayOpen(true)} 
+                className={styles.planButton}
+              >
+                ZOBACZ PLAN WYDARZENIA <Calendar aria-hidden="true" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
+      <DanceEventOverlay 
+        isOpen={isOverlayOpen} 
+        onClose={() => setIsOverlayOpen(false)} 
+      />
     </section>
   );
 }
