@@ -160,6 +160,19 @@
   }
 }
 
+.disabledButton {
+  background-image: none;
+  background-color: #9ca3af;
+  color: #f3f4f6;
+  cursor: not-allowed;
+  box-shadow: none;
+
+  &:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
 .planButton {
   display: inline-flex;
   align-items: center;

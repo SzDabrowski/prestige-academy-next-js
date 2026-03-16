@@ -30,7 +30,7 @@ export const PromoBanner: React.FC = () => {
 
       <div className={styles.deadlineBadge}>
         <Calendar size={16} />
-        <span>Zapisy do: 13.03</span>
+        <span>Zapisy zakończone</span>
       </div>
 
       {/* Renderujemy cząsteczki TYLKO jeśli isClient jest true.

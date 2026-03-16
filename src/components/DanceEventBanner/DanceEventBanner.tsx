@@ -53,13 +53,13 @@ export function DanceBanner() {
 
             <div className={styles.subHeadingGroup}>
               <p>WYSTĘPY TANECZNE DLA DZIECI</p>
-              <p className={styles.highlight}>ZAPISY OTWARTE!</p>
+              <p className={styles.highlight}>ZAPISY ZAMKNIĘTE!</p>
             </div>
 
             <div className={styles.buttonGroup}>
-              <Link href="/konkursy/gwiazdeczki" className={styles.ctaButton}>
-                ZAPISZ DZIECKO TERAZ <ArrowRight aria-hidden="true" />
-              </Link>
+              <button disabled className={`${styles.ctaButton} ${styles.disabledButton}`}>
+                ZAPISY ZAKOŃCZONE
+              </button>
               <button 
                 onClick={() => setIsOverlayOpen(true)} 
                 className={styles.planButton}

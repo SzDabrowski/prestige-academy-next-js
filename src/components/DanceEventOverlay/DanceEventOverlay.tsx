@@ -36,37 +36,46 @@ export const DanceEventOverlay = ({ isOpen, onClose }: DanceEventOverlayProps) =
           <X size={32} />
         </button>
         
-        <h2 className={styles.title}>Plan Wydarzenia Tanecznego</h2>
+        <h2 className={styles.title}>Tańczące Gwiazdeczki - Plan Wydarzenia</h2>
         
         <div className={styles.schedule}>
           <div className={styles.day}>
-            <h3>Dzień 1 - Piątek</h3>
+            <h3>I BLOK: 10:00 - 11:15</h3>
+            <p className={styles.assemblyTime}>ZBIÓRKA DZIECI: 9:45</p>
             <ul>
-              <li><strong>17:00 - 18:30:</strong> Rejestracja i rozpoczęcie</li>
-              <li><strong>18:30 - 20:00:</strong> Podstawy techniki tanecznej</li>
-              <li><strong>20:00 - 22:00:</strong> Wieczorna integracja i practice</li>
+              <li>• VIDEO KLIP DANCE 8-10 LAT</li>
+              <li>• Dance Mix 3-4 latki</li>
+              <li>• Przedszkole TPD Witkowo oraz Kluczewo</li>
             </ul>
           </div>
 
           <div className={styles.day}>
-            <h3>Dzień 2 - Sobota</h3>
+            <h3>II BLOK: 12:15 - 13:20</h3>
+            <p className={styles.assemblyTime}>ZBIÓRKA DZIECI: 12:00</p>
             <ul>
-              <li><strong>10:00 - 11:30:</strong> Masterclass: Rytmika i dynamika</li>
-              <li><strong>11:45 - 13:15:</strong> Choreografia - Część 1</li>
-              <li><strong>13:15 - 15:00:</strong> Przerwa obiadowa</li>
-              <li><strong>15:00 - 16:30:</strong> Choreografia - Część 2</li>
-              <li><strong>16:45 - 18:15:</strong> Stretching i regeneracja</li>
-              <li><strong>21:00 - 02:00:</strong> Impreza główna (Gala)</li>
+              <li>• Przedszkole Miejskie nr 1 oddział przy ul. Limanowskiego (gr. Jabłuszka + Malinki)</li>
+              <li>• Przedszkole Miejskie nr 3</li>
+              <li>• Przedszkole Miejskie nr 3 oddział</li>
+              <li>• Przedszkole Miejskie nr 4</li>
+              <li>• Przedszkole Miejskie nr 5</li>
+              <li>• Przedszkole TPD Grzędzice</li>
+              <li>• Przedszkole TPD Pęzino</li>
+              <li>• Domowe Przedszkole Kubusia Puchata</li>
+              <li>• Niepubliczne Przedszkole Tęczowa Przygoda</li>
+              <li>• Niepubliczne Przedszkole Junior</li>
             </ul>
           </div>
 
           <div className={styles.day}>
-            <h3>Dzień 3 - Niedziela</h3>
+            <h3>III BLOK: 14:15 - 15:45</h3>
+            <p className={styles.assemblyTime}>ZBIÓRKA DZIECI: 14:00</p>
             <ul>
-              <li><strong>11:00 - 12:30:</strong> Masterclass: Partnerwork</li>
-              <li><strong>12:45 - 14:15:</strong> Musicality - interpretacja muzyki</li>
-              <li><strong>14:15 - 15:30:</strong> Przerwa obiadowa</li>
-              <li><strong>15:30 - 17:00:</strong> Q&A i podsumowanie wydarzenia</li>
+              <li>• Szkoła Podstawowa nr 6 (Zespół Szkolno-Przedszkolny Nr 1 os. Pyrzyckie) Klasy 0-3</li>
+              <li>• Przedszkole nr 7 os. Pyrzyckie</li>
+              <li>• Przedszkole TPD w Suchaniu</li>
+              <li>• Przedszkole TPD na os. Lotnisko</li>
+              <li>• Przedszkole Miejskie nr 1 oddział przy ul. Limanowskiego (gr. Poziomki + Jagódki)</li>
+              <li>• Dance Mix 5-7 lat</li>
             </ul>
           </div>
         </div>
