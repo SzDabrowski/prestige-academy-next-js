@@ -1,0 +1,162 @@
+@use "@/styles/colors" as *;
+@use "@/styles/mixins" as *;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  
+  // Animation for fading in
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.content {
+  position: relative;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 4px;
+  }
+
+  @include mobile {
+    padding: 2rem 1rem;
+    max-height: 95vh;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #4b5563;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+
+  &:hover {
+    color: $clr-logo-main;
+    transform: scale(1.1);
+  }
+}
+
+.title {
+  color: #111827;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  background: $grd-main;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  @include mobile {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.day {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  h3 {
+    color: $clr-logo-main;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid $clr-logo-main;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+  }
+
+  .assemblyTime {
+    color: #ef4444;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      color: #4b5563;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      flex-direction: column;
+
+      strong {
+        color: #111827;
+        font-weight: 600;
+        margin-right: 0.5rem;
+        min-width: 110px;
+      }
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: baseline;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

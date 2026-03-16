@@ -1,14 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import DanceEventForm from "@/components/DanceEventForm/DanceEventForm";
 import { PromoBanner } from "./promoBanner";
 import styles from "./page.module.scss";
 import { Star } from "lucide-react";
 
 const Gwiazdeczki = () => {
-  const [isSuccess, setIsSuccess] = useState(false);
-
   return (
     <div className={styles.wrapper}>
       {/* Dekoracyjne tło */}
@@ -30,7 +27,15 @@ const Gwiazdeczki = () => {
               <Star fill="#ffdc5d" stroke="none" className={styles.star2} />
             </div>
           </div>
-          <DanceEventForm onSuccess={() => setIsSuccess(true)} />
+          
+          <div style={{ textAlign: "center", padding: "3rem 1rem", backgroundColor: "#f9fafb", borderRadius: "12px", border: "1px solid #e5e7eb" }}>
+            <h2 style={{ color: "#ef4444", fontSize: "1.5rem", fontWeight: "700", marginBottom: "1rem" }}>
+              ZAPISY ZOSTAŁY ZAKOŃCZONE
+            </h2>
+            <p style={{ color: "#4b5563", fontSize: "1rem" }}>
+              Dziękujemy za zainteresowanie wydarzeniem. Limit miejsc został wyczerpany lub termin zapisów minął.
+            </p>
+          </div>
         </div>
 
         {/* Na mobile to będzie na górze */}
