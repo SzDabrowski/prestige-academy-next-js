@@ -66,6 +66,11 @@ export function toCamelCase(str: string): string {
     .map((char) => polishToAscii[char] || char)
     .join("");
 
+  // Encode "+" as "Plus" so it survives in the URL slug (e.g. "7 lat +" → "7LatPlus")
+  str = str.replace(/\+/g, " Plus");
+  // Remove any remaining special characters that are invalid/reserved in URLs
+  str = str.replace(/[^a-zA-Z0-9\s]/g, "");
+
   // Convert to camelCase
   return str
     .toLowerCase()
