@@ -37,6 +37,7 @@ type PlainDanceCourseItem = {
 };
 
 export const CoursesContent = async ({ group }: CoursesContentProps) => {
+	console.log("group", group);
 	const data = await fetchDanceCoursesData({
 		preview: (await draftMode()).isEnabled,
 		targetGroup: group,

@@ -31,6 +31,7 @@ export async function fetchDanceCoursesData({
 			include: 2,
 		});
 
+		console.log("targetGroup", targetGroup);
 		if (response.items.length === 0) {
 			console.warn(`No course found with the title "${targetGroup}".`);
 			return null;
@@ -54,12 +55,12 @@ export async function fetchDanceCoursesData({
 						recruitmentOpen: Boolean(item.fields.recruitmentOpen),
 						image: imageUrl
 							? {
-									fields: {
-										file: {
-											url: imageUrl,
-										},
+								fields: {
+									file: {
+										url: imageUrl,
 									},
-								}
+								},
+							}
 							: undefined,
 					},
 				};
@@ -69,6 +70,7 @@ export async function fetchDanceCoursesData({
 			limit: response.limit,
 		};
 
+		console.log("plainData", plainData);
 		return plainData;
 	} catch (error) {
 		console.error(error);

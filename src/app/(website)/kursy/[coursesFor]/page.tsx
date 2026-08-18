@@ -8,12 +8,12 @@ import styles from "./page.module.scss";
  *
  * Awaits the `params` promise to extract the `coursesFor` value, which determines the group of courses to display.
  */
-export default function Page({
+export default async function Page({
   params,
 }: {
   params: { coursesFor: string };
 }) {
-  const { coursesFor } = params;
+  const { coursesFor } = await params;
 
   return (
     <main className={styles.main}>
